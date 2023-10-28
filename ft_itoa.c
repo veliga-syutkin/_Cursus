@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 23:28:22 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/10/25 09:44:27 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/10/28 06:13:43 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ char	*ft_itoa(int n)
 	}
 	return (arr);
 }
+//						- MAIN FOR TESTS -
 /*
 #include "libft.h"
 #include <stdio.h>

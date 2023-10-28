@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vsyutkin <vsyutkin@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 08:07:05 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/10/19 09:23:06 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/10/28 06:41:07 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdio.h>
 
+// checks if char c is in string charset
 static int	ft_str_is_sym(char c, const char *charset)
 {
 	int	i;

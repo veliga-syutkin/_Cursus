@@ -67,16 +67,10 @@ int	ft_atoi(const char *nptr)
 	}
 	return (result * sign);
 }
-/*						- MAIN HERE -
+
+/*						- MAIN FOR TESTS -
 #include <stdio.h>
 #include <stdlib.h>
-
-int	ft_isdigit(int c)
-{
-	if (c >= '0' && c <= '9')
-		return (TRUE);
-	return (FALSE);
-}
 
 int main(int argc, char *argv[])
 {

@@ -35,7 +35,7 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	ft_bzero(ar, nmemb * size);
 	return (ar);
 }
-/*	o7 MAN CALLOC o7 
+/*	>>>MAN CALLOC<<<
 from Linux Ubuntu 22.04 LTS
 	The calloc() function allocates memory for an array 
 of nmemb elements of size bytes each 
@@ -51,6 +51,8 @@ with the result that an incorrectly sized block of memory would be allocated:
            malloc(nmemb * size);
 
 */
+
+//						- MAIN FOR TESTS -
 /*
 #include <stdio.h>
 int main ()

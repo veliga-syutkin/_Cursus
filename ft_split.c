@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 04:18:48 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/10/20 16:40:47 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/10/28 06:33:56 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ It returns the words array of pointers.*/
 
 #include "libft.h"
 
-// To comment
+// If new substring is not correctly malloced, we free everything
 static	char	**ft_malloc_error(char **tab)
 {
 	unsigned int	i;
@@ -43,7 +43,6 @@ until a delimiter character from charset is encountered.
 It returns the length of the substring.
 */
 static	int	ft_strlen_mod(const char *str, char charset)
-/* returns lenghts of str 'til something from charset is encountered.*/
 {
 	int	i;
 
@@ -77,16 +76,16 @@ static	int	ft_wordcount(const char *str, char charset)
 	return (words);
 }
 
-/*Splits the string s using the c delimiter 
-and returns an array of pointers to the resulting substrings. 
-*/
-
+// Ends the array of pointers with NULL
 char	**ft_sub_split(char **tab, unsigned int k)
 {
 	tab[k] = NULL;
 	return (tab);
 }
 
+/*Splits the string s using the c delimiter 
+and returns an array of pointers to the resulting substrings. 
+*/
 char	**ft_split(char const *s, char c)
 {
 	unsigned int	index;
