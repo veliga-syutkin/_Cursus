@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: v3l1g4 <v3l1g4@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 16:25:11 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/10/19 13:30:52 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/10/20 14:31:40 by v3l1g4           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 		return (0);
 	while ((s1[cnt] == s2[cnt]) && (cnt < n - 1) && (s1[cnt] && s2[cnt]))
 		cnt++;
-	return (UNS_CHAR s1[cnt] - UNS_CHAR s2[cnt]);
+	return ((unsigned char) s1[cnt] - (unsigned char) s2[cnt]);
 }
 
 /*

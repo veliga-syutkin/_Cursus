@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vsyutkin <vsyutkin@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 04:18:48 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/10/18 01:28:11 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/10/20 16:40:47 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,19 @@ It returns the words array of pointers.*/
 
 #include "libft.h"
 
-// Checks if char c is in charset
-static	int	ft_str_is_sym(char c, char charset)
+// To comment
+static	char	**ft_malloc_error(char **tab)
 {
-	if (charset == c)
-		return (1);
-	return (0);
+	unsigned int	i;
+
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
+	return (NULL);
 }
 
 /*Calculates the length of a substring in str 
@@ -41,30 +48,9 @@ static	int	ft_strlen_mod(const char *str, char charset)
 	int	i;
 
 	i = 0;
-	while (str[i] && !ft_str_is_sym(str[i], charset))
+	while (str[i] && str[i] != charset)
 		i++;
 	return (i);
-}
-
-/* Creates a new string by copying the first n characters of str 
-and adds a null character at the end. 
-It returns a pointer to the new string. */
-static	char	*ft_strndup(const char *str, int n)
-{
-	int		i;
-	char	*dup;
-
-	i = 0;
-	dup = (char *)malloc(sizeof(char) * (n + 1));
-	if (dup == NULL)
-		return (NULL);
-	while (str[i] && i < n)
-	{
-		dup[i] = str[i];
-		i++;
-	}
-	dup[i] = '\0';
-	return (dup);
 }
 
 /*Counts how many words (substrings) 
@@ -81,7 +67,7 @@ static	int	ft_wordcount(const char *str, char charset)
 	words = 0;
 	while (str[i])
 	{
-		while (str[i] && ft_str_is_sym(str[i], charset))
+		while (str[i] && (str[i] == charset))
 			i++;
 		len = ft_strlen_mod(str + i, charset);
 		if (len > 0)
@@ -94,13 +80,19 @@ static	int	ft_wordcount(const char *str, char charset)
 /*Splits the string s using the c delimiter 
 and returns an array of pointers to the resulting substrings. 
 */
-char	**ft_split(char const *s, char c)
-//char	**ft_split_by_str(char *s, char *charset)
+
+char	**ft_sub_split(char **tab, unsigned int k)
 {
-	int		index;
-	int		k;
-	int		len;
-	char	**words;
+	tab[k] = NULL;
+	return (tab);
+}
+
+char	**ft_split(char const *s, char c)
+{
+	unsigned int	index;
+	unsigned int	k;
+	unsigned int	len;
+	char			**words;
 
 	k = 0;
 	index = 0;
@@ -109,15 +101,19 @@ char	**ft_split(char const *s, char c)
 		return (NULL);
 	while (s[index])
 	{
-		while (s[index] && ft_str_is_sym(s[index], c))
+		while (s[index] && !(s[index] != c))
 			index++;
 		len = ft_strlen_mod(s + index, c);
 		if (len > 0)
-			words[k++] = ft_strndup(s + index, len);
+		{
+			words[k] = ft_substr(s, index, len);
+			if (!words[k])
+				return (ft_malloc_error(words));
+			k++;
+		}
 		index = index + len;
 	}
-	words[k] = NULL;
-	return (words);
+	return (ft_sub_split(words, k));
 }
 
 // ------------------- MAIN -----------------------------------------*/

@@ -1,21 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vsyutkin <vsyutkin@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/17 05:11:54 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/10/25 09:43:43 by vsyutkin         ###   ########.fr       */
+/*   Created: 2023/10/22 04:08:40 by vsyutkin          #+#    #+#             */
+/*   Updated: 2023/10/25 09:42:41 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-// Checks if character is from ascii table (man ascii)
-int	ft_isascii(int c)
+// Counts list size (number of elements lists)
+int	ft_lstsize(t_list *lst)
 {
-	if (c >= 0 && c <= 127)
-		return (TRUE);
-	return (FALSE);
+	int	count;
+	int	end;
+
+	count = 0;
+	end = FALSE;
+	while (end != TRUE && lst)
+	{
+		count++;
+		if (lst->next != NULL)
+			lst = lst->next;
+		else
+			end = TRUE;
+	}
+	return (count);
 }
