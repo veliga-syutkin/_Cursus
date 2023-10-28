@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vsyutkin <vsyutkin@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 04:57:18 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/10/19 10:25:22 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/10/28 18:23:28 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,3 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	}
 	return (NULL);
 }
-/*
-int	main(void)
-{
-	char	str[] = "Salut Morgane, Cest Moi. C'est vous, le Monteur?";
-	char	*little;
-
-	little = "Moi";
-	printf("%s\n", ft_strstr(str, little));
-	printf("%s\n", strstr(str, little));
-	return (0);
-}
-*/
