@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsyutkin <vsyutkin@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 04:18:48 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/10/29 09:54:29 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/10/29 14:10:43 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,16 @@ static	int	ft_strlen_mod(const char *str, char charset)
 are there in str using charset as delimiters. 
 It returns the number of words.
 */
-static	int	ft_wordcount(const char *str, char charset)
+static	
+char	**ft_wordcount(const char *str, char charset)
 {
-	int	i;
-	int	len;
-	int	words;
+	int		i;
+	int		len;
+	int		words;
+	char	**buffer;
 
+	if (!str)
+		return (NULL);
 	i = 0;
 	words = 0;
 	while (str[i])
@@ -73,7 +77,8 @@ static	int	ft_wordcount(const char *str, char charset)
 			words++;
 		i = i + len;
 	}
-	return (words);
+	buffer = malloc((words + 1) * sizeof(char *));
+	return (buffer);
 }
 
 // Ends the array of pointers with NULL
@@ -95,8 +100,8 @@ char	**ft_split(char const *s, char c)
 
 	k = 0;
 	index = 0;
-	words = (char **)malloc((ft_wordcount(s, c) + 1) * sizeof(char *));
-	if (words == NULL || s == NULL)
+	words = ft_wordcount(s, c);
+	if (!words)
 		return (NULL);
 	while (s[index])
 	{

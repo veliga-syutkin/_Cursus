@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsyutkin <vsyutkin@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 08:03:50 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/10/28 06:40:16 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/10/29 14:57:21 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ size_t	ft_strlen(const char *s)
 	int	count;
 
 	count = 0;
-	while (s[count] != '\0')
+	while (s && s[count] != '\0')
 		count++;
 	return (count);
 }

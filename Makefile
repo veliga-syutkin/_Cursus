@@ -69,6 +69,8 @@ clean:
 fclean: clean 
 	$(RM) $(NAME) $(PARASITE)
 
+mini: all clean
+
 re: fclean all
 
 bonus: $(OBJS) $(BONUS_OBJS)

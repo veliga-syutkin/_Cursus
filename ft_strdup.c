@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsyutkin <vsyutkin@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 07:29:16 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/10/28 18:21:54 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/10/29 14:39:05 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ char	*ft_strdup(const char *s)
 	int		len;
 	char	*copy;
 
+	if (!s)
+		return (NULL);
 	len = ft_strlen(s) + 1;
 	copy = (char *)malloc(len * (sizeof(char)));
 	if (!copy)

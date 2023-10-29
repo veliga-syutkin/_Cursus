@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsyutkin <vsyutkin@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 06:31:15 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/10/28 06:16:20 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/10/29 14:53:25 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	const unsigned char	*srce;
 	size_t				i;
 
-	if (!src && !dest)
+	if (!src || !dest)
 		return (dest);
 	else
 	{

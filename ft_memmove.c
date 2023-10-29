@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 06:47:04 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/10/19 14:13:59 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/10/29 14:53:20 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 	unsigned char		*d;
 	const unsigned char	*s;
 
-	if (!dest && !src)
+	if (!dest || !src)
 		return (dest);
 	else
 	{

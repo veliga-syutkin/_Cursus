@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsyutkin <vsyutkin@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 16:25:11 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/10/29 09:54:21 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/10/29 14:40:30 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	unsigned int	cnt;
 
+	if (!s1 && !s2)
+		return (NULL);
 	cnt = 0;
 	if (cnt == n)
 		return (0);

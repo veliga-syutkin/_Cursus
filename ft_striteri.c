@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 07:30:58 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/10/18 00:21:41 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/10/29 14:12:33 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 	int	index;
 
 	index = 0;
-	while (*s)
+	while (*s && f && s)
 	{
 		f(index, s);
 		s++;
