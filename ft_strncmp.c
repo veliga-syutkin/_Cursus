@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 16:25:11 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/10/28 18:22:54 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/10/29 09:54:21 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,3 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 		cnt++;
 	return ((unsigned char) s1[cnt] - (unsigned char) s2[cnt]);
 }
-

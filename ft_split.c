@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 04:18:48 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/10/28 18:20:55 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/10/29 09:54:29 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,4 +114,3 @@ char	**ft_split(char const *s, char c)
 	}
 	return (ft_sub_split(words, k));
 }
-
