@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 19:29:57 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/10/29 14:39:59 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/10/29 19:07:15 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 	size_t	src_len;
 	size_t	i;
 
-	if (!dst && !src)
-		return (NULL);
+	if (!dst || !src)
+		return (INT_MAX);
 	dest_len = 0;
 	src_len = 0;
 	i = 0;

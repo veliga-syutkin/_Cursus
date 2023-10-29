@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 05:48:48 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/10/29 14:40:13 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/10/29 19:07:09 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 	size_t	src_len;
 	size_t	i;
 
-	if (!dst && !src)
-		return (NULL);
+	if (!dst || !src)
+		return (INT_MAX);
 	dest_len = 0;
 	src_len = 0;
 	i = 0;

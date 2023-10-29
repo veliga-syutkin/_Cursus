@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsyutkin <vsyutkin@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 05:11:54 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/10/28 07:02:41 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/10/29 19:05:04 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@
 int	ft_isascii(int c)
 {
 	if (c >= 0 && c <= 127)
-		return (TRUE);
-	return (FALSE);
+		return (true);
+	return (false);
 }

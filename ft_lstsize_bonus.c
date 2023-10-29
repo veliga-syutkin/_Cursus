@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsyutkin <vsyutkin@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 04:08:40 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/10/25 09:42:41 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/10/29 19:54:33 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,18 @@
 // Counts list size (number of elements lists)
 int	ft_lstsize(t_list *lst)
 {
-	int	count;
-	int	end;
+	int		count;
+	bool	end;
 
 	count = 0;
-	end = FALSE;
-	while (end != TRUE && lst)
+	end = false;
+	while (end != true && lst)
 	{
 		count++;
 		if (lst->next != NULL)
 			lst = lst->next;
 		else
-			end = TRUE;
+			end = true;
 	}
 	return (count);
 }

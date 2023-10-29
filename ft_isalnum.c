@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 01:39:51 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/10/18 02:08:58 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/10/29 19:05:04 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 // or alphebetic, either upper- or lower-case.
 int	ft_isalnum(int c)
 {
-	if (ft_isalpha(c) != FALSE || ft_isdigit(c) != FALSE)
-		return (TRUE);
-	return (FALSE);
+	if (ft_isalpha(c) != false || ft_isdigit(c) != false)
+		return (true);
+	return (false);
 }

@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 08:07:05 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/10/29 14:40:54 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/10/29 19:05:04 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ static int	ft_str_is_sym(char c, const char *charset)
 	while (charset[i])
 	{
 		if (charset[i] == c)
-			return (TRUE);
+			return (true);
 		i++;
 	}
-	return (FALSE);
+	return (false);
 }
 
 // returns new string from s1 after cutting at start and end any chars in set. 

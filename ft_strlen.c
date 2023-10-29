@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 08:03:50 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/10/29 14:57:21 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/10/29 18:55:56 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,7 @@ size_t	ft_strlen(const char *s)
 	count = 0;
 	while (s && s[count] != '\0')
 		count++;
+	if (!s)
+		return (-1);
 	return (count);
 }

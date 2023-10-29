@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 07:29:16 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/10/29 14:39:05 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/10/29 18:54:26 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 /* Returns a pointer to a new string which is a duplicate of the string s,
  and terminated with \0. Memory for the new string is obtained with malloc(3).
 */
-char	*ft_strdup(const char *s);
-
 char	*ft_strdup(const char *s)
 {
 	int		len;

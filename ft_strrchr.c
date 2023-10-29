@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 07:23:24 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/10/29 14:40:47 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/10/29 18:56:53 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ char	*ft_strrchr(const char *s, int c)
 {
 	char	*result;
 
-	result = NULL;
 	if (!s)
 		return (NULL);
+	result = NULL;
 	while (*s != '\0')
 	{
 		if (*s == (char)c)

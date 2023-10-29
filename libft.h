@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 00:23:11 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/10/29 14:46:25 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/10/29 18:59:01 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@
 
 // -._.-""-._DEFINE PARTY_.-""-._.-
 
-# define TRUE 1
-# define FALSE 0
+# include <stdbool.h>
 
 /*
 WWWWWWWWW/''''''''''''''''\WWWWWWWWWW

@@ -18,24 +18,24 @@ static int	ft_is_white_space(char nptr)
 	if (nptr != ' ' && nptr != '\t' && nptr != '\n'
 		&& nptr != '\v' && nptr != '\f' && nptr != '\r')
 	{
-		return (FALSE);
+		return (false);
 	}
-	return (TRUE);
+	return (true);
 }
 
 //			2. Cheking the minus sign
 static int	ft_is_negative(char c)
 {
 	if (c != '-')
-		return (FALSE);
-	return (TRUE);
+		return (false);
+	return (true);
 }
 
 static int	ft_is_positive(char c)
 {
 	if (c != '+')
-		return (FALSE);
-	return (TRUE);
+		return (false);
+	return (true);
 }
 
 /*			Converts ASCII number to integer. 
@@ -49,20 +49,20 @@ int	ft_atoi(const char *nptr)
 	int	sign;
 
 	if (!nptr)
-		return (NULL);
+		return (0);
 	count = 0;
 	result = 0;
 	sign = 1;
-	while (ft_is_white_space(nptr[count]) != FALSE)
+	while (ft_is_white_space(nptr[count]) != false)
 		count++;
-	if (ft_is_negative(nptr[count]) != FALSE)
+	if (ft_is_negative(nptr[count]) != false)
 	{
 		sign = -1;
 		count++;
 	}
-	else if (ft_is_positive(nptr[count]) != FALSE)
+	else if (ft_is_positive(nptr[count]) != false)
 		count++;
-	while (ft_isdigit(nptr[count]) != FALSE)
+	while (ft_isdigit(nptr[count]) != false)
 	{
 		result = result * 10 + (nptr[count] - '0');
 		count++;

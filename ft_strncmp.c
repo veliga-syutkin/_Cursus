@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 16:25:11 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/10/29 14:40:30 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/10/29 19:07:30 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	unsigned int	cnt;
 
-	if (!s1 && !s2)
-		return (NULL);
+	if (!s1 || !s2)
+		return (INT_MAX);
 	cnt = 0;
 	if (cnt == n)
 		return (0);
