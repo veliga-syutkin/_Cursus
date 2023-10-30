@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 00:23:11 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/10/29 18:59:01 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/10/30 09:48:42 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,6 @@
 # include <unistd.h> // write
 # include <stdlib.h> // malloc, free
 # include <limits.h> // INT_MAX, ... 
-
-// -._.-""-._DEFINE PARTY_.-""-._.-
-
 # include <stdbool.h>
 
 /*
