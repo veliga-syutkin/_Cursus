@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsyutkin <vsyutkin@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 16:12:47 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/11/01 16:32:55 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/11/05 11:21:08 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	ft_printf(const char *s, ...)
 	int		result;
 	int		buffer;
 
-	cursor = 0; 
+	cursor = 0;
 	result = 0;
 	va_start(args, s);
 	while (*(s + cursor))
@@ -47,7 +47,7 @@ int	ft_printf(const char *s, ...)
 			buffer = ft_putarg(*(s + cursor++ + 1), args);
 		else if (*(s + cursor) == '%')
 			buffer = ft_putchar_fd(*(s + cursor++), 1);
-		else 
+		else
 			buffer = pt_putchar_fd(*(s + cursor), 1);
 		if (buffer == -1)
 			return (-1);
