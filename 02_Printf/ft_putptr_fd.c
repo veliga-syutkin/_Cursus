@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putptr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsyutkin <vsyutkin@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 17:24:44 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/11/01 18:39:50 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/11/05 12:02:11 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,14 @@ int	ft_putptr_fd(void *ptr, int fd)
 	if (!ptr)
 		return (write(fd, "0x0", 3));
 	ft_init(&digit, &result, &start_print);
-	if (ft_putstr_fd("0x", fd) == -1)
-		return (-1);
+	if (ft_putstr_fd("0x", fd) == ERROR)
+		return (ERROR);
 	while (digit >= 0)
 	{
 		if (ft_get_digit(ptr, digit) != '0' || start_print)
 		{
-			if (ft_putchar_fd(ft_get_digit(ptr, digit), fd) == -1)
-				return (-1);
+			if (ft_putchar_fd(ft_get_digit(ptr, digit), fd) == ERROR)
+				return (ERROR);
 			start_print = 1;
 			result++;
 		}
@@ -111,8 +111,8 @@ int ft_putptr_fd(void *ptr, int fd)
     ft_init(&digit, &result, &start_print);
 
     // On imprime le préfixe "0x"
-    if (ft_putstr_fd("0x", fd) == -1)
-        return (-1); // En cas d'erreur, on retourne -1
+    if (ft_putstr_fd("0x", fd) == ERROR)
+        return (ERROR); // En cas d'erreur, on retourne ERROR
 
     while (digit >= 0)
     {
@@ -120,8 +120,8 @@ int ft_putptr_fd(void *ptr, int fd)
         if (ft_get_digit(ptr, digit) != '0' || start_print)
         {
             // On imprime le chiffre hexadécimal
-            if (ft_putchar_fd(ft_get_digit(ptr, digit), fd) == -1)
-                return (-1); // En cas d'erreur, on retourne -1
+            if (ft_putchar_fd(ft_get_digit(ptr, digit), fd) == ERROR)
+                return (ERROR); // En cas d'erreur, on retourne ERROR
             
             start_print = 1; // On indique que l'impression a commencé
             result++;        // On incrémente le nombre de caractères imprimés

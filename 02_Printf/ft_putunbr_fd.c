@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putunbr_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsyutkin <vsyutkin@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 17:25:33 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/11/01 18:45:06 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/11/05 12:02:26 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ int	ft_putunbr_fd(unsigned int n, int fd)
 	while (cursor)
 	{
 		buffer = ft_putchar_fd((n / power(cursor--) % 10) + '0', fd);
-		if (buffer == -1)
-			return (-1);
+		if (buffer == ERROR)
+			return (ERROR);
 		result += buffer;
 	}
 	return (result);

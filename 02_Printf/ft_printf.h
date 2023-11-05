@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsyutkin <vsyutkin@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 15:56:58 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/11/01 18:20:50 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/11/05 12:20:57 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 # include <unistd.h>
 # include <stdarg.h>
 # include <limits.h>
+# include <stdbool.h>
+
+# define ERROR -1
 
 int		ft_printf(const char *s, ...);
 int		ft_putchar_fd(char c, int fd); //utiliser la mienne
@@ -25,6 +28,8 @@ int		ft_putnbr_fd(long long int n, int fd); // wtf
 int		ft_putptr_fd(void *ptr, int fd);
 int		ft_putstr_fd(char *s, int fd); // idem
 int		ft_putunbr_fd(unsigned int n, int fd);
+int		ft_flag_check(char c);
+int		ft_flag_sharp(char c, unsigned int number, int fd);
 size_t	ft_strlen(const char*s);
 
 

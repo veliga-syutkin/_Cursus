@@ -23,3 +23,28 @@
 		negative numbers. A + overrides a space if both are used.
 */
 
+int	ft_flag_check(char c)
+{
+	if (c == '#' || c == '0' || c == ' ' || c == '+')
+		return (true);
+	return (false);
+}
+
+int	ft_flag_sharp(char c, unsigned int number, int fd)
+{
+	if (number == 0)
+		return (ft_putchar_fd('0', 1));
+	if (c == 'x')
+	{
+		if (ft_putstr_fd("0x", 1) == ERROR)
+			return (ERROR);
+		return (ft_puthexl_fd(number, fd));
+	}
+	if (c == 'X')
+	{
+		if (ft_putstr_fd("0X", 1) == ERROR)
+			return (ERROR);
+		return (ft_puthexu_fd(number, fd));
+	}
+	return (-1);
+}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_puthexu_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsyutkin <vsyutkin@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 18:34:50 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/11/01 18:40:31 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/11/05 12:01:51 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ int	ft_puthexu_fd(unsigned int number, int fd)
 		buffer = get_digit(number, digit--);
 		if (buffer != '0' || start_print || digit < 0)
 		{
-			if (ft_putchar_fd(buffer, fd) == -1)
-				return (-1);
+			if (ft_putchar_fd(buffer, fd) == ERROR)
+				return (ERROR);
 			start_print = 1;
 			result++;
 		}	

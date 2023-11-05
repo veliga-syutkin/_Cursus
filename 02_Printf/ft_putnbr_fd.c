@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsyutkin <vsyutkin@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 02:39:24 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/11/01 18:44:06 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/11/05 12:02:00 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,16 +53,18 @@ int	ft_putnbr_fd(long long int n, int fd)
 	if (n == 0)
 		return (ft_putchar_fd('0', fd));
 	if (n < 0)
-		if (ft_putchar_fd('-', fd) == -1)
-			return (-1);
+	{
+		if (ft_putchar_fd('-', fd) == ERROR)
+			return (ERROR);
+	}
 	else
 		result--;
 	result++;
 	cursor = ft_intlen(n);
 	while (cursor)
 	{
-		if (ft_putchar_fd(ft_abs(n / power(cursor--) % 10) + '0', fd) == -1)
-			return (-1);
+		if (ft_putchar_fd(ft_abs(n / power(cursor--) % 10) + '0', fd) == ERROR)
+			return (ERROR);
 		result++;
 	}
 	return (result);
