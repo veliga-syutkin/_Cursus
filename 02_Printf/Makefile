@@ -1,4 +1,4 @@
-NAME = libftprintf.all
+NAME = libftprintf.a
 
 SRCS =	ft_flags.c \
 		ft_printf.c \
@@ -8,8 +8,8 @@ SRCS =	ft_flags.c \
 		ft_puthexu_fd.c \
 		ft_putnbr_fd.c \
 		ft_putunbr_fd.c \
+		ft_putptr_fd.c \
 		ft_strlen.c \
-		ft_putptr.c \
 
 OBJS = $(SRCS:.c=.o)
 
@@ -40,3 +40,4 @@ fclean: clean
 main: $(NAME)
 	$(CC) $(CFLAGS) $(MAIN) $(NAME)
 
+.PHONY: all clean fclean main
