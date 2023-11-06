@@ -6,14 +6,14 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 16:12:47 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/11/05 12:33:00 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/11/06 16:13:34 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 
-static int	ft_putarg_flag(char c, va_list args)
+static int	ft_putarg_flag(char flag, char c, va_list args)
 {
 	if (c == 'c')
 		return (ft_putchar_fd(va_arg(args, int), 1));
@@ -26,14 +26,14 @@ static int	ft_putarg_flag(char c, va_list args)
 	if (c == 'u')
 		return (ft_putunbr_fd(va_arg(args, unsigned int), 1));
 	if (c == 'x' || c == 'X')
-		return (ft_flag_sharp(c, va_arg(args, unsigned int), 1));
+		return (ft_flag_sharp(flag, c, va_arg(args, unsigned int), 1));
 	return (ft_putchar_fd('%', 1));
 }
 
-static int	ft_putarg_chek(char c, char flag, va_list args)
+static int	ft_putarg_chek(char flag, char c, va_list args)
 {
-	if (ft_flag_check(c))
-		return (ft_putarg_flag(flag, args));
+	if (ft_flag_check(flag))
+		return (ft_putarg_flag(flag, c, args));
 	if (c == 'c')
 		return (ft_putchar_fd(va_arg(args, int), 1));
 	if (c == 's')
@@ -66,8 +66,8 @@ int	ft_printf(const char *s, ...)
 	{
 		if (*(s + cursor) == '%' && *(s + cursor + 1) != '%')
 		{
-			buffer = ft_putarg_chek(*(s + cursor + 1), *(s + cursor + 2), args);
 			cursor++;
+			buffer = ft_putarg_chek(*(s + cursor), *(s + cursor + 1), args);
 		}
 		else if (*(s + cursor) == '%')
 			buffer = ft_putchar_fd(*(s + cursor++), 1);

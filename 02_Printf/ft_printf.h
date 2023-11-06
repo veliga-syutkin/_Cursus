@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 15:56:58 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/11/05 12:20:57 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/11/06 16:10:20 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int		ft_putptr_fd(void *ptr, int fd);
 int		ft_putstr_fd(char *s, int fd); // idem
 int		ft_putunbr_fd(unsigned int n, int fd);
 int		ft_flag_check(char c);
-int		ft_flag_sharp(char c, unsigned int number, int fd);
+int		ft_flag_sharp(char flag, char c, unsigned int number, int fd);
 size_t	ft_strlen(const char*s);
 
 

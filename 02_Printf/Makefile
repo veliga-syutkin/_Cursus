@@ -37,7 +37,9 @@ clean:
 fclean: clean 
 	$(RM) $(NAME) $(PARASITE)
 
+re: fclean all
+
 main: $(NAME)
 	$(CC) $(CFLAGS) $(MAIN) $(NAME)
 
-.PHONY: all clean fclean main
+.PHONY: all clean fclean re smain

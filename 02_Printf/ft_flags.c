@@ -30,8 +30,10 @@ int	ft_flag_check(char c)
 	return (false);
 }
 
-int	ft_flag_sharp(char c, unsigned int number, int fd)
+int	ft_flag_sharp(char flag, char c, unsigned int number, int fd)
 {
+	if (flag != '#')
+		return (ERROR);
 	if (number == 0)
 		return (ft_putchar_fd('0', 1));
 	if (c == 'x')
@@ -46,5 +48,5 @@ int	ft_flag_sharp(char c, unsigned int number, int fd)
 			return (ERROR);
 		return (ft_puthexu_fd(number, fd));
 	}
-	return (-1);
+	return (ERROR);
 }
