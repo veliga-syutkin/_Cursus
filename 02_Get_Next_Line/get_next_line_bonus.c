@@ -6,11 +6,11 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 19:02:23 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/11/04 11:29:10 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/11/06 15:18:51 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 int	try_buffer_without_nl(char *buffer, char **result, int fd)
 {
