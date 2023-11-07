@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 15:56:58 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/11/06 16:10:20 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/11/07 14:33:19 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdbool.h>
 
 # define ERROR -1
+# define LLONGI long long int
 
 int		ft_printf(const char *s, ...);
 int		ft_putchar_fd(char c, int fd); //utiliser la mienne
@@ -32,5 +33,16 @@ int		ft_flag_check(char c);
 int		ft_flag_sharp(char flag, char c, unsigned int number, int fd);
 size_t	ft_strlen(const char*s);
 
+//flags
+
+int		ft_putarg_minus_flag(char c, va_list args);
+
+//utils
+
+bool	ft_str_is_sym(char c, const char *charset);
+int		ft_diff_padd(const char *s, int cursor, LLONGI num);
+void	ft_cursor_move(char s, int *cursor);
+int		ft_intlen(long long int n);
+LLONGI	ft_atoi(const char *nptr);
 
 #endif

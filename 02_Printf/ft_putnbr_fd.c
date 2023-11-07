@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 02:39:24 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/11/05 12:02:00 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/11/07 12:51:25 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static long long int	ft_abs(long long int n)
 	return (n);
 }
 
-static int	ft_intlen(long long int n)
+int	ft_intlen(long long int n)
 {
 	int	result;
 
@@ -43,7 +43,7 @@ static long long int	power(int n)
 	return (result);
 }
 
-// Prints integer n in output fd
+// Prints L.L. integer n in output fd
 int	ft_putnbr_fd(long long int n, int fd)
 {
 	int	cursor;

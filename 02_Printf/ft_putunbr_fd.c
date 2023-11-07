@@ -6,12 +6,13 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 17:25:33 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/11/05 12:02:26 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/11/07 12:53:51 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+/*
 static int	ft_intlen(long long int n)
 {
 	int	result;
@@ -23,7 +24,7 @@ static int	ft_intlen(long long int n)
 		result++;
 	}
 	return (result);
-}
+}*/
 
 static int	power(int n)
 {

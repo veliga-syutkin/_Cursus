@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 10:17:04 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/11/07 10:39:24 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/11/07 12:44:45 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,14 @@
 		conversions, the converted value is padded on
 		the left with zeros rather than blanks. If a precision is given
 		with a numeric conversion (d, i, u, x, and X), the 0 flag is
-		ignored. For other conversions, the behavior is undefined.
+		ignored (but result is same). 
+		For other conversions, the behavior is undefined.
 
 -		The converted value is to be left adjusted on the field boundary. 
 		(The  default  is  right  justification.)  The converted value is 
 		padded on the right	with blanks, rather than on the left with blanks or 
 		zeros. A - overrides a 0 if both are given.
+Example: printf("%-5d\n", num)
 
 ------
 
@@ -39,11 +41,19 @@
 		by a signed conversion. By default, a sign is used only for
 		negative numbers. A + overrides a space if both are used.
 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Importance of each flag, in order:
+1. '-' (will override '0' flag)
+2. '+' (will override ' ' (space) flag)
+3. ' ' (space)
+4. '#'
+5. '0'
+
 */
 
-int	ft_flag_check(char c)
+int	ft_flag_check(char f)
 {
-	if (c == '#' || c == '0' || c == ' ' || c == '+')
+	if (f == '#' || f == '0' || f == ' ' || f == '+' || f == '0')
 		return (true);
 	return (false);
 }
