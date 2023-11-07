@@ -1,4 +1,14 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_flags.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/07 10:17:04 by vsyutkin          #+#    #+#             */
+/*   Updated: 2023/11/07 10:39:24 by vsyutkin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "ft_printf.h"
 
@@ -9,6 +19,13 @@
 		the left with zeros rather than blanks. If a precision is given
 		with a numeric conversion (d, i, u, x, and X), the 0 flag is
 		ignored. For other conversions, the behavior is undefined.
+
+-		The converted value is to be left adjusted on the field boundary. 
+		(The  default  is  right  justification.)  The converted value is 
+		padded on the right	with blanks, rather than on the left with blanks or 
+		zeros. A - overrides a 0 if both are given.
+
+------
 
 #		The value should be converted to an "alternate form". For x and X
 		conversions, a nonzero result has the string "0x" (or "0X" for X
@@ -21,6 +38,7 @@
 +		A sign (+ or -) should always be placed before a number produced
 		by a signed conversion. By default, a sign is used only for
 		negative numbers. A + overrides a space if both are used.
+
 */
 
 int	ft_flag_check(char c)
