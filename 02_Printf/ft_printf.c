@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 16:12:47 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/11/07 14:56:13 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/11/07 16:40:51 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,25 +72,6 @@ static int	ft_putarg_chek(char flag, char c, va_list args)
 }
 */
 
-// checks if after '%' is a flag or conversion
-// returns 0 (false) if there is none
-static bool	ft_percent_check(char c)
-{
-	int		i;
-	char	charset[15];
-
-	*charset = "cspdiuxX%0 #-+";
-	charset[15] = '\0';
-	i = 0;
-	while (charset[i])
-	{
-		if (charset[i] == c)
-			return (true);
-		i++;
-	}
-	return (false);
-}
-
 // If there is only conversion, go standart way. 
 // If there is any flag, pre-process it before going standart way.
 static int	ft_dependance(const char *s, int cursor, va_list args)
@@ -101,15 +82,15 @@ static int	ft_dependance(const char *s, int cursor, va_list args)
 	temp = 0;
 	if (*(s + cursor) == '%' && ft_str_is_sym(*(s + cursor + 1), "cspdiuxX%"))
 		return (ft_putarg(*(s + cursor + 1), args));
-	if (*(s + cursor) == '%' && *(s + cursor + 1) == '-')
+	else if (*(s + cursor) == '%' && *(s + cursor + 1) == '-')
 	{
-		result = ft_putarg_minus_flag(*(s + cursor + ft_atoi(*(s + cursor))), args);
+		result = ft_putarg_minus_flag(*(s + cursor + ft_atoi((s + cursor))), args);
 		if (result == ERROR)
 			return (ERROR);
-		temp = ft_diff_padd(s, cursor, ft_atoi(*(s + cursor)));
+		temp = ft_diff_padd(s, cursor, ft_atoi((s + cursor)));
 		return (ft_putnchar_fd(temp, ' ', 1));
 	}
-	return (ft_putarg_chek(*(s + cursor), *(s + cursor + 1), args));
+	return (ft_putarg(*(s + cursor), args));
 }
 
 int	ft_printf(const char *s, ...)
@@ -128,7 +109,8 @@ int	ft_printf(const char *s, ...)
 			&& ft_str_is_sym(*(s + cursor + 1), "cspdiuxX%0 #-+"))
 		{
 			buffer = ft_dependance(s, cursor, args);
-			ft_cursor_move(s, &cursor);
+			cursor++;
+			ft_cursor_move(*s, &cursor);
 		}
 		else if (*(s + cursor) == '%')
 			buffer = ft_putchar_fd(*(s + cursor++), 1);

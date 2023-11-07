@@ -10,6 +10,13 @@ SRCS =	ft_flags.c \
 		ft_putunbr_fd.c \
 		ft_putptr_fd.c \
 		ft_strlen.c \
+		ft_atoi.c \
+		ft_calloc.c \
+		ft_flags_combined.c \
+		ft_flags_part1.c \
+		ft_flags_part2.c \
+		ft_isdigit.c \
+		ft_utils.c \
 
 OBJS = $(SRCS:.c=.o)
 

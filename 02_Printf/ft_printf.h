@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 15:56:58 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/11/07 14:55:36 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/11/07 16:07:40 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdarg.h>
 # include <limits.h>
 # include <stdbool.h>
+# include <stdlib.h>
 
 # define ERROR -1
 # define LLONGI long long int
@@ -46,5 +47,7 @@ int		ft_intlen(long long int n);
 LLONGI	ft_atoi(const char *nptr);
 void	*ft_calloc(size_t nmemb, size_t size);
 int		ft_putnchar_fd(LLONGI n, char c, int fd);
+int		ft_isdigit(int c);
+void	*ft_calloc(size_t nmemb, size_t size);
 
 #endif
