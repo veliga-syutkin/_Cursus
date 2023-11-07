@@ -16,7 +16,7 @@
 static int	ft_is_white_space(char nptr)
 {
 	if (nptr != ' ' && nptr != '\t' && nptr != '\n'
-		&& nptr != '\v' && nptr != '\f' && nptr != '\r')
+		&& nptr != '\v' && nptr != '\f' && nptr != '\r' && nptr != '%')
 	{
 		return (false);
 	}

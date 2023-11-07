@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 16:12:47 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/11/07 16:40:51 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/11/07 17:51:47 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,11 @@ static int	ft_dependance(const char *s, int cursor, va_list args)
 		return (ft_putarg(*(s + cursor + 1), args));
 	else if (*(s + cursor) == '%' && *(s + cursor + 1) == '-')
 	{
-		result = ft_putarg_minus_flag(*(s + cursor + ft_atoi((s + cursor))), args);
+		result = ft_putarg_minus_flag(*(s + cursor + 2 + ft_atoi((s + cursor + 1))), args);
 		if (result == ERROR)
 			return (ERROR);
 		temp = ft_diff_padd(s, cursor, ft_atoi((s + cursor)));
+		ft_cursor_move(*s, &cursor);
 		return (ft_putnchar_fd(temp, ' ', 1));
 	}
 	return (ft_putarg(*(s + cursor), args));

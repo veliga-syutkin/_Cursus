@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 12:20:06 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/11/07 16:31:51 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/11/07 17:52:24 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,5 @@ void	ft_cursor_move(char s, int *cursor)
 {
 	while (*(s + cursor) && !ft_str_is_sym(*(s + cursor), "cspdiuxX%"))
 		cursor++;
-	cursor++;
 }
 
