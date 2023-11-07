@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 16:12:47 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/11/07 14:41:39 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/11/07 14:56:13 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,8 @@ static bool	ft_percent_check(char c)
 // If there is any flag, pre-process it before going standart way.
 static int	ft_dependance(const char *s, int cursor, va_list args)
 {
-	int	result;
-	int	temp;
+	int		result;
+	LLONGI	temp;
 
 	temp = 0;
 	if (*(s + cursor) == '%' && ft_str_is_sym(*(s + cursor + 1), "cspdiuxX%"))
@@ -107,8 +107,7 @@ static int	ft_dependance(const char *s, int cursor, va_list args)
 		if (result == ERROR)
 			return (ERROR);
 		temp = ft_diff_padd(s, cursor, ft_atoi(*(s + cursor)));
-		while (temp > 0)
-			result += ft_putchar_fd(' ', 1);
+		return (ft_putnchar_fd(temp, ' ', 1));
 	}
 	return (ft_putarg_chek(*(s + cursor), *(s + cursor + 1), args));
 }

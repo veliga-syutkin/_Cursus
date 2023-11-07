@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 12:19:45 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/11/07 14:30:41 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/11/07 14:54:33 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 //If num lenght > pad, do nothing
 //Else return pad - (num lenght).
-int	ft_diff_padd(const char *s, int cursor, LLONGI num)
+LLONGI	ft_diff_padd(const char *s, int cursor, LLONGI num)
 {
 	LLONGI	lenght;
 	LLONGI	pad;
@@ -40,4 +40,21 @@ int	ft_putarg_minus_flag(char c, va_list args)
 	if (c == 'X')
 		return (ft_puthexu_fd(va_arg(args, unsigned int), 1));
 	return (ft_putchar_fd('%', 1));
+}
+
+// Prints for n times char c on output fd
+int	ft_putnchar_fd(LLONGI n, char c, int fd)
+{
+	char	*voide;
+	LLONGI	index;
+
+	voide = ft_calloc(n, sizeof(char));
+	if (!voide)
+		return (ERROR);
+	index = 0;
+	while (index < n)
+	{
+		voide[index] = ' ';
+	}
+	return (ft_putstr_fd(voide, 1));
 }
