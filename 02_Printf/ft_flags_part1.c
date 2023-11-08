@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 12:19:45 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/11/07 16:11:25 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/11/08 02:03:30 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,25 @@
 
 //If num lenght > pad, do nothing
 //Else return pad - (num lenght).
-LLONGI	ft_diff_padd(const char *s, int cursor, LLONGI num)
+// NUM = needed padd, lenght = occupied padd
+LLONGI	ft_diff_padd(LLONGI num)
 {
 	LLONGI	lenght;
-	LLONGI	pad;
 
-	pad = ft_atoi((s + cursor));
 	lenght = ft_intlen(num);
-	if (pad <= lenght)
+	if (lenght <= num)
 		return (0);
-	return (pad - lenght);
+	return (lenght - num);
+}
+
+int	ft_flag_len(const char *s, int cursor)
+{
+	int	index;
+
+	index = 0;
+	while (!ft_str_is_sym(*(s + cursor + index), "cspdiuxX%"))
+		index++;
+	return (index);
 }
 
 // '-' flag
@@ -47,6 +56,7 @@ int	ft_putnchar_fd(LLONGI n, char c, int fd)
 {
 	char	*voide;
 	LLONGI	index;
+	int		result;
 
 	voide = ft_calloc(n, sizeof(char));
 	if (!voide)
@@ -55,6 +65,9 @@ int	ft_putnchar_fd(LLONGI n, char c, int fd)
 	while (index < n)
 	{
 		voide[index] = c;
+		index++;
 	}
-	return (ft_putstr_fd(voide, fd));
+	result = ft_putstr_fd(voide, fd);
+	free(voide);
+	return (result);
 }
