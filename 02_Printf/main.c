@@ -18,9 +18,10 @@ int	main(int argc, char **argv)
 {
 	if (argc > 1)
 	{
-		printf("PRINTF_SYS: %-42d\n", atoi(argv[argc - 1]));
+		char *str = NULL;
+		printf("PRINTF_SYS: %s,%p %d\n", /*atoi*/(argv[argc - 1]), str, 42);
 		fflush(NULL);
-		ft_printf("PRINTF_FT_: %-42d\n", atoi(argv[argc - 1]));
+		ft_printf("PRINTF_FT_: %s,%p %d\n", /*atoi*/(argv[argc - 1]), str, 42);
 	}
 	return (0);
 }
