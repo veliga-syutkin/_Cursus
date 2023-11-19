@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 02:10:48 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/10/17 03:44:12 by marvin           ###   ########.fr       */
+/*   Updated: 2023/11/08 15:32:03 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-//  Prints character in output fd
-void	ft_putchar_fd(char c, int fd)
-{
-	if (write(fd, &c, 1) != -1)
-		return ;
+/*  Prints character in output fd and return how many characters were print. 
+Returns -1 if print failed.*/
+int	ft_putchar_fd(char c, int fd)
+{	
+	return (write(fd, &c, 1));
 }

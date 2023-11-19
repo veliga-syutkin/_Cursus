@@ -32,6 +32,13 @@ SRCS = 	ft_atoi.c \
 		ft_substr.c \
 		ft_tolower.c \
 		ft_toupper.c \
+		ft_putunbr_fd.c \
+		ft_puthexl_fd.c \
+		ft_puthexu_fd.c \
+		ft_putptr_fd.c \
+		ft_printf.c \
+		get_next_line_bonus.c \
+		get_next_line_utils_bonus.c \
 
 OBJS = $(SRCS:.c=.o)
 
@@ -54,6 +61,8 @@ BONUS			=	ft_lstadd_back_bonus.c \
 BONUS_OBJS		= $(BONUS:.c=.o)
 
 PARASITE = a.out
+
+MAIN = ./main/main.c
 
 .c.o: 
 	gcc $(CFLAGS) -c $< -o ${<:.c=.o}
@@ -78,4 +87,7 @@ bonus: $(OBJS) $(BONUS_OBJS)
 
 rebonus: fclean bonus
 
-.PHONY: all clean fclean re bonus rebonus
+#main: $(NAME)
+#	$(CC) $(CFLAGS) $(MAIN) $(NAME)
+
+.PHONY: all clean fclean re bonus rebonus main
