@@ -62,32 +62,32 @@ BONUS_OBJS		= $(BONUS:.c=.o)
 
 PARASITE = a.out
 
-MAIN = ./main/main.c
+MAIN = main.c
+
+EXE = ULTIMATE_PROGRAM.EXE
 
 .c.o: 
 	gcc $(CFLAGS) -c $< -o ${<:.c=.o}
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	ar rcs $(NAME) $(OBJS)
+$(NAME): $(OBJS) $(BONUS_OBJS)
+	ar rcs $(NAME) $(OBJS) $(BONUS_OBJS)
 
 clean: 
 	$(RM) $(OBJS) $(BONUS_OBJS)
 
 fclean: clean 
-	$(RM) $(NAME) $(PARASITE)
+	$(RM) $(NAME) $(PARASITE) $(EXE)
 
 mini: all clean
 
 re: fclean all
 
-bonus: $(OBJS) $(BONUS_OBJS)
-	ar rcs $(NAME) $(OBJS) $(BONUS_OBJS)
+main: $(NAME)
+	$(CC) $(CFLAGS) $(MAIN) $(NAME) -o $(EXE)
 
-rebonus: fclean bonus
+exe: main
+	./$(EXE)
 
-#main: $(NAME)
-#	$(CC) $(CFLAGS) $(MAIN) $(NAME)
-
-.PHONY: all clean fclean re bonus rebonus main
+.PHONY: all clean fclean mini re main exe
