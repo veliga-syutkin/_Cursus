@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 00:23:11 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/11/19 15:58:42 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/11/19 19:57:49 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <stdlib.h> // malloc, free
 # include <limits.h> // INT_MAX, ... 
 # include <stdbool.h>
+# include <stdarg.h>
+# include <stdlib.h>
 
 # include "get_next_line_bonus.h"
 # include "ft_printf.h"

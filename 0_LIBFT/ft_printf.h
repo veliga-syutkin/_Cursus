@@ -6,15 +6,14 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 15:56:58 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/11/08 15:32:22 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/11/19 19:57:35 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include <unistd.h>
-# include <stdarg.h>
+# include "libft.h"
 
 size_t	ft_strlen(const char *s);
 int		ft_putchar_fd(char c, int fd);
