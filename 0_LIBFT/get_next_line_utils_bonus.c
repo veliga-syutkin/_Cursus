@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 19:03:07 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/11/19 19:35:25 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/11/19 19:39:19 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ char	*ft_malloc(int size, char *result)
 	if (!result)
 	{
 		buffer = malloc(size);
+		if (!buffer)
+			return (NULL);
 		*buffer = '\0';
 		return (buffer);
 	}
