@@ -6,37 +6,37 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 19:03:07 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/11/19 15:49:44 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/11/19 19:21:16 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-int	ft_strlen(char *s)
-{
-	int	len;
+// int	ft_strlen(char *s)
+// {
+// 	int	len;
 
-	len = 0;
-	while (*(s + len))
-		len++;
-	return (len);
-}
+// 	len = 0;
+// 	while (*(s + len))
+// 		len++;
+// 	return (len);
+// }
 
-char	*ft_strchr(char *s, char c)
-{
-	int	cursor;
+// char	*ft_strchr(char *s, char c)
+// {
+// 	int	cursor;
 
-	cursor = 0;
-	while (*(s + cursor))
-	{
-		if (*(s + cursor) == c)
-			return (s + cursor);
-		cursor++;
-	}
-	if (*(s + cursor) == c)
-		return (s + cursor);
-	return (0);
-}
+// 	cursor = 0;
+// 	while (*(s + cursor))
+// 	{
+// 		if (*(s + cursor) == c)
+// 			return (s + cursor);
+// 		cursor++;
+// 	}
+// 	if (*(s + cursor) == c)
+// 		return (s + cursor);
+// 	return (0);
+// }
 
 void	move_buffer_left(char buffer[BUFFER_SIZE + 1])
 {

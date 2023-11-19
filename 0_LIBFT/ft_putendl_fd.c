@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 02:35:34 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/11/19 15:58:12 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/11/19 19:22:34 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_putendl_fd(char *s, int fd)
 	int	write;
 
 	if (!s)
-		return ;
+		return (0);
 	state = ft_putstr_fd(s, fd);
 	if (state == -1)
 		return (-1);
