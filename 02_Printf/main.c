@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 11:40:35 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/11/07 17:39:33 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/11/08 01:43:03 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,10 @@ int	main(int argc, char **argv)
 {
 	if (argc > 1)
 	{
-		printf("PRINTF_SYS: %-123d\n", atoi(argv[argc - 1]));
+		char *str = NULL;
+		printf("PRINTF_SYS: %s,%p %d\n", /*atoi*/(argv[argc - 1]), str, 42);
 		fflush(NULL);
-		ft_printf("PRINTF_FT_: %-123d\n", atoi(argv[argc - 1]));
+		ft_printf("PRINTF_FT_: %s,%p %d\n", /*atoi*/(argv[argc - 1]), str, 42);
 	}
 	return (0);
 }

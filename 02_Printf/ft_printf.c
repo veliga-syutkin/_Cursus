@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 16:12:47 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/11/07 17:51:47 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/11/08 01:55:26 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,11 +84,12 @@ static int	ft_dependance(const char *s, int cursor, va_list args)
 		return (ft_putarg(*(s + cursor + 1), args));
 	else if (*(s + cursor) == '%' && *(s + cursor + 1) == '-')
 	{
-		result = ft_putarg_minus_flag(*(s + cursor + 2 + ft_atoi((s + cursor + 1))), args);
+		cursor += 2;
+		temp = ft_diff_padd(s, cursor, ft_atoi(s + cursor));
+		ft_cursor_move(*s, &cursor);
+		result = (ft_putarg(*(s + cursor + 1), args));
 		if (result == ERROR)
 			return (ERROR);
-		temp = ft_diff_padd(s, cursor, ft_atoi((s + cursor)));
-		ft_cursor_move(*s, &cursor);
 		return (ft_putnchar_fd(temp, ' ', 1));
 	}
 	return (ft_putarg(*(s + cursor), args));
@@ -101,18 +102,14 @@ int	ft_printf(const char *s, ...)
 	int		result;
 	int		buffer;
 
-	cursor = 0; //ft_init
+	cursor = 0;
 	result = 0;
 	va_start(args, s);
 	while (*(s + cursor))
 	{
 		if (*(s + cursor) == '%'
 			&& ft_str_is_sym(*(s + cursor + 1), "cspdiuxX%0 #-+"))
-		{
 			buffer = ft_dependance(s, cursor, args);
-			cursor++;
-			ft_cursor_move(*s, &cursor);
-		}
 		else if (*(s + cursor) == '%')
 			buffer = ft_putchar_fd(*(s + cursor++), 1);
 		else
