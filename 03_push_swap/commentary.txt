@@ -1,0 +1,24 @@
+Principe de l'algo: 
+Le min et le max absolu sont gardes dans la stack a. Elle sont mis cote a cote.
+on envoi le plus haut relatif dans le stack b vers le bas, 
+le plus bas relatif vers le haut
+
+Tant que le truc en question n'est pas adjacent a la suite du min et/ou max,
+on l'envoi dans le stack b. 
+
+quand on envoi qqch dans le stack b, 
+on trie le stack b pour recevoir au bon emplacement. 
+
+l'element avec le quel on travaille sera en haut de la stack b 
+si jamais il faudra le deplacer dans la stack a. 
+  * * * 
+
+On aura une liste doublement chainee par stack (donc 2 listes doublement chaines).
+Les maillons auront comme stat: 
+a) Valeur (`value`)
+b) Maillon precedent (`previous`)
+c) Maillon suivant (`next`)
+d) L'ordre final du maillon (le plus haut du stack etant le 1er)
+e) L'etat de liaison avec min/max
+
+Le dernier element sera lier sur le 1er element, et vice versa.
