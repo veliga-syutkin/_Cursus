@@ -6,15 +6,15 @@
 /*   By: vsyutkin <vsyutkin@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 04:08:35 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/10/24 15:57:24 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/11/27 05:17:43 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void	*ft_lstclear_null(t_list **lst, void (*del)(void*), void *postop)
+static void	*ft_lstclear_null(t_stack **lst, void (*del)(void*), void *postop)
 {
-	t_list	*tmp;
+	t_stack	*tmp;
 
 	free (postop);
 	if (!del || !lst || !(void *)lst)
@@ -31,11 +31,11 @@ static void	*ft_lstclear_null(t_list **lst, void (*del)(void*), void *postop)
 // Iterates on list, applies f function to every content, 
 // Creates a new list from every f application. 
 // Del function is here for destroy an element if needs to.
-t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
+t_stack	*ft_lstmap(t_stack *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	*new_list;
-	t_list	*last;
-	t_list	*new_elem;
+	t_stack	*new_list;
+	t_stack	*last;
+	t_stack	*new_elem;
 	void	*postop;
 
 	if (!lst || !f || !del)

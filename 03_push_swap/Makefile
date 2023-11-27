@@ -1,4 +1,4 @@
-SRCS = 	ft_atoi.c \
+LIBFT = ft_atoi.c \
 		ft_bzero.c \
 		ft_calloc.c \
 		ft_isalnum.c \
@@ -39,26 +39,27 @@ SRCS = 	ft_atoi.c \
 		ft_printf.c \
 		get_next_line_bonus.c \
 		get_next_line_utils_bonus.c \
+		ft_lstadd_back_bonus.c \
+		ft_lstadd_front_bonus.c \
+		ft_lstclear_bonus.c \
+		ft_lstdelone_bonus.c \
+		ft_lstiter_bonus.c \
+		ft_lstlast_bonus.c \
+		ft_lstmap_bonus.c \
+		ft_lstnew_bonus.c \
+		ft_lstsize_bonus.c \
+
+LIBFT_DIR = ./0_LIBFT/
+
+SRCS = $(addprefix $(LIBFT_DIR), $(LIBFT))
 
 OBJS = $(SRCS:.c=.o)
 
-NAME = libft.a
+AR = libft.a
 
 RM = rm -f
 
 CFLAGS =  -Wall -Wextra -Werror
-
-BONUS			=	ft_lstadd_back_bonus.c \
-					ft_lstadd_front_bonus.c \
-					ft_lstclear_bonus.c \
-					ft_lstdelone_bonus.c \
-					ft_lstiter_bonus.c \
-					ft_lstlast_bonus.c \
-					ft_lstmap_bonus.c \
-					ft_lstnew_bonus.c \
-					ft_lstsize_bonus.c
-
-BONUS_OBJS		= $(BONUS:.c=.o)
 
 PARASITE = a.out
 
@@ -69,23 +70,23 @@ EXE = push_swap
 .c.o: 
 	gcc $(CFLAGS) -c $< -o ${<:.c=.o}
 
-all: $(NAME)
+all: main
 
-$(NAME): $(OBJS) $(BONUS_OBJS)
-	ar rcs $(NAME) $(OBJS) $(BONUS_OBJS)
+$(AR): $(OBJS) 
+	ar rcs $(AR) $(OBJS) 
 
 clean: 
-	$(RM) $(OBJS) $(BONUS_OBJS)
+	$(RM) $(OBJS) 
 
 fclean: clean 
-	$(RM) $(NAME) $(PARASITE) $(EXE)
+	$(RM) $(AR) $(PARASITE) $(EXE)
 
 mini: all clean
 
 re: fclean all
 
-main: $(NAME)
-	$(CC) $(CFLAGS) $(MAIN) $(NAME) -o $(EXE)
+main: $(AR)
+	$(CC) $(CFLAGS) $(MAIN) $(AR) -o $(EXE)
 
 exe: main
 	./$(EXE)

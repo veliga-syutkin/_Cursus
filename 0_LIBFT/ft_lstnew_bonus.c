@@ -6,19 +6,19 @@
 /*   By: vsyutkin <vsyutkin@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 04:08:37 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/10/28 06:16:01 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/11/27 05:17:43 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-// Allocs and returns new t_list element. 
+// Allocs and returns new t_stack element. 
 // 	Content goes content, next goes NULL.
-t_list	*ft_lstnew(void *content)
+t_stack	*ft_lstnew(void *content)
 {
-	t_list	*list;
+	t_stack	*list;
 
-	list = (t_list *) malloc (sizeof(t_list) * 1);
+	list = (t_stack *) malloc (sizeof(t_stack) * 1);
 	if (!list)
 		return (NULL);
 	list->content = content;

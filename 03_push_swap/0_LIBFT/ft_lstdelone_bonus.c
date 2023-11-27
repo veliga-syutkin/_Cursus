@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstdelone_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vsyutkin <vsyutkin@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 04:08:28 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/10/29 18:52:08 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/11/27 07:52:09 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 // Frees memory of lst, deletes the node form chain list. 
 // Uses function *del to proper delete the content. 
-void	ft_lstdelone(t_list *lst, void (*del)(void*))
+void	ft_lstdelone(t_stack *lst, void (*del)(void*))
 {
 	if (!del || !lst)
 		return ;
 	if (lst)
 	{
-		(*del)(lst->content);
+		(*del)(lst->value);
 		free(lst);
 	}
 }
