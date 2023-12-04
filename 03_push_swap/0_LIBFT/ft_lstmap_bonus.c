@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsyutkin <vsyutkin@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 04:08:35 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/11/27 05:17:43 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/12/04 13:57:08 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_stack	*ft_lstmap(t_stack *lst, void *(*f)(void *), void (*del)(void *))
 	new_list = NULL;
 	while (lst)
 	{
-		postop = (*f)(lst->content);
+		postop = (*f)(lst->value);
 		if (postop)
 		{
 			new_elem = ft_lstnew(postop);
