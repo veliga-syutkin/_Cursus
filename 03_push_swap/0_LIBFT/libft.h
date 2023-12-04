@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsyutkin <vsyutkin@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 00:23:11 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/11/27 05:17:07 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/12/04 11:46:27 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,14 +69,18 @@ Next: pointer to the next element
 Prev: pointer to the previous element
 Pos_end: position of the element in the final stack
 Link: if the element is linked to min or max element
+Start: pointer to the first element of the stack
+End: pointer to the last element of the stack
 */
-typedef struct		s_stack
+typedef struct s_stack
 {
 	int				value;
 	struct s_stack	*next;
-	struct s_stack 	*prev;
+	struct s_stack	*prev;
 	int				pos_end;
 	bool			link;
+	struct s_stack	*start;
+	struct s_stack	*end;
 }					t_stack;
 
 t_stack	*ft_lstnew(void *content);
