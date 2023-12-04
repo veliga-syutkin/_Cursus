@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 03:33:12 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/12/04 12:43:47 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/12/04 12:48:03 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,17 @@ void	ft_print_stack(t_stack *stack)
 int	main(int argc, char **argv)
 {
 	t_stack	*test;
+	int		cursor;
 
-	
+	if (argc >= 2)
+		test = ft_lstnew(ft_atoi(argv[1]));
+	if (argc >= 3)
+	{
+		while (argv[cursor])
+		{
+			
+		}
+	}
 }
 
 
