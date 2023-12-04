@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 00:23:11 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/12/04 14:04:38 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/12/04 16:08:51 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 
 # include "get_next_line_bonus.h"
 # include "ft_printf.h"
+# include "../push_swap.h"
 
 /*
 WWWWWWWWW/''''''''''''''''\WWWWWWWWWW

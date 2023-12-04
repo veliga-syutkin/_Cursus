@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 03:33:12 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/12/04 14:11:01 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/12/04 15:04:36 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_print_stack(t_stack *stack)
 	i = 1;
 	while (tmp)
 	{
-		ft_printf("%d, value: %d\n", i, tmp->value);
+		ft_printf("%d, value: %d, pos_end: %d\n", i, tmp->value, tmp->pos_end);
 		tmp = tmp->next;
 		i++;
 	}
@@ -47,6 +47,7 @@ int	main(int argc, char **argv)
 			cursor++;
 		}
 	}
+	pos_end(&test);
 	ft_print_stack(test);
 	return (0);
 }

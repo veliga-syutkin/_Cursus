@@ -49,9 +49,13 @@ LIBFT = ft_atoi.c \
 		ft_lstsize_bonus.c \
 		# ft_lstmap_bonus.c \
 
+LSTUTILS =	pos_end.c \
+
 LIBFT_DIR = ./0_LIBFT/
 
-SRCS = $(addprefix $(LIBFT_DIR), $(LIBFT))
+LSTUTILS_dir = ./1_LSTUTILS/
+
+SRCS = $(addprefix $(LIBFT_DIR), $(LIBFT)) $(addprefix $(LSTUTILS_dir), $(LSTUTILS))
 
 OBJS = $(SRCS:.c=.o)
 
@@ -81,7 +85,7 @@ clean:
 fclean: clean 
 	$(RM) $(AR) $(PARASITE) $(EXE)
 
-mini: all clean
+mini: main clean
 
 re: fclean all
 
