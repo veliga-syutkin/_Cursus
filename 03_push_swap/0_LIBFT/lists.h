@@ -1,21 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   lists.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/27 03:30:43 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/12/04 16:49:19 by vsyutkin         ###   ########.fr       */
+/*   Created: 2023/12/04 16:25:36 by vsyutkin          #+#    #+#             */
+/*   Updated: 2023/12/04 16:26:48 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#ifndef LISTS_H
+# define LISTS_H
 
-# include "./0_LIBFT/libft.h"
+typedef struct s_stack
+{
+	int				value;
+	struct s_stack	*next;
+	struct s_stack	*prev;
+	int				pos_end;
+	bool			link;
+	struct s_stack	*start;
+	struct s_stack	*end;
+}					t_stack;
 
-void	pos_end(t_stack **stack);
-void	ft_print_stack(t_stack *stack); 
+typedef struct s_order
+{
+	int				value;
+	int				order;
+	struct s_order	*next;
+}		t_order;
 
 #endif

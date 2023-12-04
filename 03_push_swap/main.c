@@ -6,27 +6,11 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 03:33:12 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/12/04 15:04:36 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/12/04 16:48:57 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-// t_stack visualization
-void	ft_print_stack(t_stack *stack)
-{
-	t_stack	*tmp;
-	int		i;
-
-	tmp = stack;
-	i = 1;
-	while (tmp)
-	{
-		ft_printf("%d, value: %d, pos_end: %d\n", i, tmp->value, tmp->pos_end);
-		tmp = tmp->next;
-		i++;
-	}
-}
 
 // current tests
 int	main(int argc, char **argv)

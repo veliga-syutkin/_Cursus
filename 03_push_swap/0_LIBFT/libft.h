@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 00:23:11 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/12/04 16:08:51 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/12/04 16:37:04 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 
 # include "get_next_line_bonus.h"
 # include "ft_printf.h"
+# include "lists.h"
 # include "../push_swap.h"
 
 /*
@@ -73,16 +74,6 @@ Link: if the element is linked to min or max element
 Start: pointer to the first element of the stack
 End: pointer to the last element of the stack
 */
-typedef struct s_stack
-{
-	int				value;
-	struct s_stack	*next;
-	struct s_stack	*prev;
-	int				pos_end;
-	bool			link;
-	struct s_stack	*start;
-	struct s_stack	*end;
-}					t_stack;
 
 t_stack	*ft_lstnew(int value);
 void	ft_lstadd_front(t_stack **lst, t_stack *new);
@@ -93,5 +84,9 @@ void	ft_lstdelone(t_stack *lst, void (*del)(void*));
 void	ft_lstclear(t_stack **lst, void (*del)(void*));
 void	ft_lstiter(t_stack *lst, void (*f)(void *));
 t_stack	*ft_lstmap(t_stack *lst, void *(*f)(void *), void (*del)(void *));
+void	lstadd_back(t_order **lst, t_order *new);
+t_order	*lstnew(int value);
+void	lstclear(t_order **lst, void (*del)(void*));
+void	lstdelone(t_order *lst, void (*del)(void*));
 
 #endif

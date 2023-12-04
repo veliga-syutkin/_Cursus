@@ -6,17 +6,32 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 14:42:35 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/12/04 16:10:43 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/12/04 16:54:00 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
+// t_stack visualization
+void	ft_print_stack(t_stack *stack)
+{
+	t_stack	*tmp;
+	int		i;
+
+	tmp = stack;
+	i = 1;
+	while (tmp)
+	{
+		ft_printf("%d, value: %d, pos_end: %d\n", i, tmp->value, tmp->pos_end);
+		tmp = tmp->next;
+		i++;
+	}
+}
+
 //get chained list of given values in stack
 t_order	*to_ordernot(t_stack **stack)
 {
 	t_order	*ordernot;
-	t_order	*tmp_order;
 	t_stack	*tmp_stack;
 
 	tmp_stack = *stack;
@@ -24,10 +39,10 @@ t_order	*to_ordernot(t_stack **stack)
 	tmp_stack = tmp_stack->next;
 	while (tmp_stack)
 	{
-		ft_lstadd_back(&ordernot, lstnew(tmp_stack->value));
+		lstadd_back(&ordernot, lstnew(tmp_stack->value));
+		ft_printf("ORDERNOT: %s\n", tmp_stack->value);
 		tmp_stack = tmp_stack->next;
 	}
-	ft_printf("%s\n", ordernot);
 	return (ordernot);
 }
 
@@ -81,7 +96,7 @@ void	pos_end(t_stack **stack)
 	t_order	*tmp_order;
 
 	toorder = to_ordernot(stack);
-	sorter(&toorder);
+	sorter(toorder);
 	order(&toorder);
 	tmp_stack = *stack;
 	tmp_order = toorder;
@@ -98,5 +113,5 @@ void	pos_end(t_stack **stack)
 		}
 		tmp_stack = tmp_stack->next;
 	}
-	ft_lstclear(&toorder, free);
+	lstclear(&toorder, free);
 }
