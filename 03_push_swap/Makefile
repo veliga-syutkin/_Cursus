@@ -70,7 +70,7 @@ EXE = push_swap
 .c.o: 
 	gcc $(CFLAGS) -c $< -o ${<:.c=.o}
 
-all: main
+all: mini
 
 $(AR): $(OBJS) 
 	ar rcs $(AR) $(OBJS) 
