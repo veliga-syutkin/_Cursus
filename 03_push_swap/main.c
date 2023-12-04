@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 03:33:12 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/12/04 12:42:53 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/12/04 12:43:47 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	ft_print_stack(t_stack *stack)
 // current tests
 int	main(int argc, char **argv)
 {
+	t_stack	*test;
+
 	
 }
 
