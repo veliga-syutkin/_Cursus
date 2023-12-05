@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 00:23:11 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/12/05 17:04:49 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/12/05 20:22:44 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ void	ft_delfirst(t_stack **head, void (*del)(void*));
 void	ft_lstclear(t_stack **lst, void (*del)(void*));
 void	ft_lstiter(t_stack *lst, void (*f)(void *));
 t_stack	*ft_lstmap(t_stack *lst, void *(*f)(void *), void (*del)(void *));
+void	ft_lstupdate(t_stack **stack);
+void	ft_lstupdate_both(t_stack **stack_a, t_stack **stack_b);
 
 void	lstadd_back(t_order **lst, t_order *new);
 t_order	*lstnew(int value);

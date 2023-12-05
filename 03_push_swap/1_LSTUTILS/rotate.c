@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 13:55:30 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/12/05 16:35:19 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/12/05 20:21:59 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	rotate(t_stack **stack)
 	last = last->next;
 	last->value = value;
 	last->next = NULL;
+	ft_lstupdate(stack);
 }
 
 //First element of 2 stacks become last one,
@@ -35,4 +36,5 @@ void	rotates(t_stack **stack_a, t_stack **stack_b)
 {
 	rotate(stack_a);
 	rotate(stack_b);
+	ft_lstupdate_both(stack_a, stack_b);
 }

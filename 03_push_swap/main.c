@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 03:33:12 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/12/05 17:02:17 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/12/05 20:16:50 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,18 @@ void	ft_print_stacks(t_stack *stack_a, t_stack *stack_b)
 void	ft_tests(t_stack **stack_a, t_stack **stack_b)
 {
 	push(stack_a, stack_b);
-	checkpoint(1);
-	// ft_print_stacks(*stack_a, *stack_b);
+	ft_print_stacks(*stack_a, *stack_b);
+	ft_printf("pushed A to B\n");
 	rotate(stack_a);
-	// ft_print_stacks(*stack_a, *stack_b);
+	ft_print_stacks(*stack_a, *stack_b);
+	ft_printf("rotated A\n");
 	push(stack_a, stack_b);
 	ft_print_stacks(*stack_a, *stack_b);
-	checkpoint(0);
-	reverse(stack_b);
+	ft_printf("pushed A to B again\n");
+	// reverse(stack_a);
 	// reverses(stack_a, stack_b);
-	ft_print_stacks(*stack_a, *stack_b);
-	checkpoint(100);
+	// ft_print_stacks(*stack_a, *stack_b);
+	// checkpoint(100);
 }
 
 // current stack_a

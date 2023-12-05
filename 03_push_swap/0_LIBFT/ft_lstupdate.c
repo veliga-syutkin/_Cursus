@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 11:35:21 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/12/04 12:13:17 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/12/05 20:20:22 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,11 @@ void	ft_lstupdate(t_stack **stack)
 			tmp->end = end;
 		}
 	}
+}
+
+/*Updates ->prev links in both stacks*/
+void	ft_lstupdate_both(t_stack **stack_a, t_stack **stack_b)
+{
+	ft_lstupdate(stack_a);
+	ft_lstupdate(stack_b);
 }

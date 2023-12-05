@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 13:40:57 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/12/05 14:28:56 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/12/05 20:22:22 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	swap(t_stack **stack)
 	tmp = tmp->next;
 	top->value = tmp->value;
 	tmp->value = value;
+	ft_lstupdate(stack);
 }
 
 //Swap the first 2 elements of 2 given stacks.
@@ -34,4 +35,5 @@ void	swaps(t_stack **stack_a, t_stack **stack_b)
 {
 	swap(stack_a);
 	swap(stack_b);
+	ft_lstupdate_both(stack_a, stack_b);
 }
