@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 04:08:28 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/12/04 16:45:06 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/12/05 16:12:37 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,13 @@ void	lstdelone(t_order *lst, void (*del)(void*))
 //		(*del)(*lst->value);
 		free(lst);
 	}
+}
+//like delone, but for the first element of the chained list.
+void	ft_delfirst(t_stack **head, void (*del)(void*))
+{
+	t_stack	*to_delete;
+
+	to_delete = *head;
+	*head = to_delete->next;
+	ft_lstdelone(to_delete, (*del));
 }

@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 13:49:40 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/12/05 15:13:42 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/12/05 16:58:13 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,25 @@
 void	push(t_stack **from, t_stack **to)
 {
 	t_stack	*tmp;
+	int		end;
 
 	tmp = *from;
+	end = tmp->pos_end;
 	if (!from)
 		return ;
-	if (!to)
+	if (!*to)
 	{
 		checkpoint(2);
-		ft_lstnew(tmp->value);
+		*to = ft_lstnew(tmp->value);
+		(*to)->pos_end = tmp->pos_end;
+		ft_delfirst(from, free);
 	}
 	else
 	{
 		checkpoint(3);
-		ft_lstadd_front(to, tmp);
-		checkpoint(4);
+		ft_lstadd_front(to, ft_lstnew(tmp->value));
+		tmp = *to;
+		tmp->pos_end = end;
+		ft_delfirst(from, free);
 	}
-	//ft_lstdelone(tmp, free);
 }

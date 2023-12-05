@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 00:23:11 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/12/05 15:26:58 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/12/05 17:04:49 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,22 +65,13 @@ int		ft_toupper(int c);
 
 // -._.-""-._FUNCTIONS FOR LISTS_.-""-._.-
 
-/*
-Value: value of the element
-Next: pointer to the next element
-Prev: pointer to the previous element
-Pos_end: position of the element in the final stack
-Link: if the element is linked to min or max element
-Start: pointer to the first element of the stack
-End: pointer to the last element of the stack
-*/
-
 t_stack	*ft_lstnew(int value);
 void	ft_lstadd_front(t_stack **lst, t_stack *new);
 int		ft_lstsize(t_stack *lst);
 t_stack	*ft_lstlast(t_stack *lst);
 void	ft_lstadd_back(t_stack **lst, t_stack *new);
 void	ft_lstdelone(t_stack *lst, void (*del)(void*));
+void	ft_delfirst(t_stack **head, void (*del)(void*));
 void	ft_lstclear(t_stack **lst, void (*del)(void*));
 void	ft_lstiter(t_stack *lst, void (*f)(void *));
 t_stack	*ft_lstmap(t_stack *lst, void *(*f)(void *), void (*del)(void *));

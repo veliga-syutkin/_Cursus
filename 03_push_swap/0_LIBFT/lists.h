@@ -6,12 +6,23 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 16:25:36 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/12/04 16:26:48 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/12/05 17:04:53 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LISTS_H
 # define LISTS_H
+
+
+/*
+Value: value of the element
+Next: pointer to the next element
+Prev: pointer to the previous element
+Pos_end: position of the element in the final stack
+Link: if the element is linked to min or max element
+Start: pointer to the first element of the stack
+End: pointer to the last element of the stack
+*/
 
 typedef struct s_stack
 {

@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 14:42:35 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/12/05 15:11:21 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/12/05 16:19:14 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	ft_print_stack(t_stack **stack)
 		tmp = tmp->next;
 		i++;
 	}
+	ft_putchar_fd('\n', 1);
 }
 
 //get chained list of given values in stack
