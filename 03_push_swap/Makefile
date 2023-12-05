@@ -40,6 +40,7 @@ LIBFT = ft_atoi.c \
 		get_next_line_bonus.c \
 		get_next_line_utils_bonus.c \
 		ft_lstadd_back.c \
+		ft_lstadd_front_bonus.c \
 		ft_lstadd_before_bonus.c \
 		ft_lstclear_bonus.c \
 		ft_lstdelone_bonus.c \
@@ -50,6 +51,10 @@ LIBFT = ft_atoi.c \
 		# ft_lstmap_bonus.c \
 
 LSTUTILS =	pos_end.c \
+			push.c \
+			reverse.c \
+			rotate.c \
+			swap.c \
 
 LIBFT_DIR = ./0_LIBFT/
 

@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 13:55:30 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/12/05 14:11:04 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/12/05 14:28:22 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,5 @@ void	rotate(t_stack **stack)
 void	rotates(t_stack **stack_a, t_stack **stack_b)
 {
 	rotate(stack_a);
-	rotate(stack_a);
+	rotate(stack_b);
 }

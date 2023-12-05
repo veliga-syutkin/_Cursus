@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 14:11:21 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/12/05 14:14:20 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/12/05 14:28:00 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	reverse(t_stack **stack)
 {
 	t_stack	*tmp;
 
-	tmp = ft_lstlast(stack);
+	tmp = ft_lstlast(*stack);
 	ft_lstadd_front(stack, tmp);
 	ft_lstdelone(tmp, free);
 }

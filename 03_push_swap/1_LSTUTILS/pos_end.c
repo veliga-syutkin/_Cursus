@@ -6,19 +6,19 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 14:42:35 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/12/05 13:35:32 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/12/05 15:11:21 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
 // t_stack visualization
-void	ft_print_stack(t_stack *stack)
+void	ft_print_stack(t_stack **stack)
 {
 	t_stack	*tmp;
 	int		i;
 
-	tmp = stack;
+	tmp = *stack;
 	i = 1;
 	while (tmp)
 	{
