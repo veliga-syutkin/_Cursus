@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 09:27:15 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/12/04 16:37:24 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/12/05 14:05:47 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	ft_lstclear(t_stack **lst, void (*del)(void*))
 	}
 }
 
+// Frees and deletes passed list and also the following lists.
 // Sets inital pointer to NULL. 
 void	lstclear(t_order **lst, void (*del)(void*))
 {

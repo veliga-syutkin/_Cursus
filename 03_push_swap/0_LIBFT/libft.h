@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 00:23:11 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/12/04 16:37:04 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/12/05 14:14:58 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
 
-// -._.-""-._BONUS THINGY_.-""-._.-
+// -._.-""-._FUNCTIONS FOR LISTS_.-""-._.-
 
 /*
 Value: value of the element

@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 14:42:35 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/12/04 16:54:00 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/12/05 13:35:32 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ t_order	*to_ordernot(t_stack **stack)
 	while (tmp_stack)
 	{
 		lstadd_back(&ordernot, lstnew(tmp_stack->value));
-		ft_printf("ORDERNOT: %s\n", tmp_stack->value);
 		tmp_stack = tmp_stack->next;
 	}
 	return (ordernot);
@@ -88,7 +87,7 @@ void	order(t_order **toorder)
 	}
 }
 
-
+// Get's final position of each given number, first member is lowest among them
 void	pos_end(t_stack **stack)
 {
 	t_order	*toorder;
@@ -99,9 +98,9 @@ void	pos_end(t_stack **stack)
 	sorter(toorder);
 	order(&toorder);
 	tmp_stack = *stack;
-	tmp_order = toorder;
 	while (tmp_stack)
 	{
+		tmp_order = toorder;
 		while (tmp_order)
 		{
 			if (tmp_stack->value == tmp_order->value)
