@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 03:33:12 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/12/08 16:12:16 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/12/08 16:28:32 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,17 +71,15 @@ int	main(int argc, char **argv)
 		}
 	}
 	else
-	{
 		return (0);
-	}
 	stack_b = NULL;
 	pos_end(&stack_a);
 	ft_printf("OG list:");
 	ft_print_stack(&stack_a);
 	ft_tests(&stack_a, &stack_b);
-	// ft_lstclear(&stack_a, free);
-	// if (stack_b)
-	// 	ft_lstclear(&stack_b, free);
+	ft_lstclear(&stack_a, free);
+	if (stack_b)
+		ft_lstclear(&stack_b, free);
 	return (0);
 }
 

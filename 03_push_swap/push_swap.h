@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 03:30:43 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/12/05 15:11:26 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/12/08 16:39:47 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,11 @@ void	rotate(t_stack **stack);
 void	rotates(t_stack **stack_a, t_stack **stack_b);
 void	reverse(t_stack **stack);
 void	reverses(t_stack **stack_a, t_stack **stack_b);
+
+// -._.-""-._SOLVER_.-""-._.-
+
+void	linker(t_stack **stack_a, t_stack **stack_b);
+
 
 //########### DEBUG ###########
 
