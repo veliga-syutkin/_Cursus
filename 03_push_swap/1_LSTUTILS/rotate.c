@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 13:55:30 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/12/05 20:21:59 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/12/08 15:25:22 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,20 @@
 void	rotate(t_stack **stack)
 {
 	t_stack	*tmp;
-	t_stack	*last;
 	int		value;
+	int		end;
 
 	tmp = *stack;
 	value = tmp->value;
-	last = ft_lstlast(*stack);
-	ft_lstadd_back(stack, tmp);
-	ft_delfirst(stack, free);
-	last = last->next;
-	last->value = value;
-	last->next = NULL;
-	ft_lstupdate(stack);
+	end = tmp->pos_end;
+	while (tmp->next)
+	{
+		tmp->value = tmp->next->value;
+		tmp->pos_end = tmp->next->pos_end;
+		tmp = tmp->next;
+	}
+	tmp->value = value;
+	tmp->pos_end = end;
 }
 
 //First element of 2 stacks become last one,
