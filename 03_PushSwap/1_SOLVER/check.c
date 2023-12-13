@@ -6,14 +6,14 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 13:31:43 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/12/13 13:47:22 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/12/13 16:56:40 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-//
-static int	char_allwed_sign(char **c, int cursor_c, int cursor_v)
+static
+int	char_allowed_sign(char **c, int cursor_c, int cursor_v)
 {
 	char	*buffer;
 
@@ -21,7 +21,7 @@ static int	char_allwed_sign(char **c, int cursor_c, int cursor_v)
 	if (*buffer == '-' || *buffer == '+')
 	{
 		if (*(buffer + 1) == '-' || *(buffer + 1) == '+')
-			error(0);
+			error();
 		if (cursor_v)
 			if (*(buffer - 1) != ' ')
 				error();
@@ -42,7 +42,7 @@ static void	check_max(char *number)
 	int	useless;
 
 	useless = 0;
-	if (ft_atoi_long(number, &useless) > INT_MAX)
+	if (ft_atoi_long(number, &useless) > 2147483647)
 		error();
 }
 
@@ -62,8 +62,8 @@ static void	check_number(int argc, char **argv)
 
 void	check(int argc, char **argv)
 {
-	int	csr_argc;
-	int	csr_argv;
+	int		csr_argc;
+	int		csr_argv;
 
 	csr_argc = 1;
 	csr_argv = 0;

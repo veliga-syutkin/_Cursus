@@ -6,9 +6,11 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 13:47:58 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/12/13 13:58:26 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/12/13 17:03:51 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "push_swap.h"
 
 #include "push_swap.h"
 
@@ -46,9 +48,9 @@ int	cost_to_reset_rb(t_list *list)
 
 int	find_cost_rb(t_list *element, t_list *list_b)
 {
-	int	cost;
-	int	last;
 	int	first;
+	int	last;
+	int	cost;
 
 	if (element->data > find_max(list_b) || element->data < find_min(list_b))
 	{

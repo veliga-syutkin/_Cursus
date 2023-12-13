@@ -12,60 +12,70 @@
 
 #include "libft.h"
 
-//			1. Skip all white spaces
-static int	ft_is_white_space(char nptr)
+static
+void	ft_getsign(const char *c, int *sign, int *cursor, int *cursor_nptr)
 {
-	if (nptr != ' ' && nptr != '\t' && nptr != '\n'
-		&& nptr != '\v' && nptr != '\f' && nptr != '\r')
-	{
-		return (false);
-	}
-	return (true);
+	if (*c == '+')
+		*sign = 1;
+	else if (*c == '-')
+		*sign = -1;
+	else
+		*sign = 0;
+	*cursor = *cursor + 1;
+	*cursor_nptr = *cursor_nptr + 1;
+	return ;
 }
 
-//			2. Cheking the minus sign
-static int	ft_is_negative(char c)
+static
+int	ft_isdigit(int c)
 {
-	if (c != '-')
-		return (false);
-	return (true);
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
 }
 
-static int	ft_is_positive(char c)
+int	ft_atoi(const char *nptr, int *cursor_nptr)
 {
-	if (c != '+')
-		return (false);
-	return (true);
-}
-
-/*			Converts ASCII number to integer. 
-Skips all white spaces, looks if there is one minus or not, 
-converts the following number in nptring, stops when encounters non digit char.  
-*/
-int	ft_atoi(const char *nptr)
-{
-	int	count;
-	int	result;
+	int	cursor;
 	int	sign;
+	int	result;
 
-	if (!nptr)
-		return (0);
-	count = 0;
+	cursor = 0;
 	result = 0;
-	sign = 1;
-	while (ft_is_white_space(nptr[count]) != false)
-		count++;
-	if (ft_is_negative(nptr[count]) != false)
+	if (!ft_isdigit(*(nptr + cursor)))
+		ft_getsign(nptr + cursor, &sign, &cursor, cursor_nptr);
+	else if (ft_isdigit(*(nptr + cursor)))
+		sign = 1;
+	while (*(nptr + cursor) == '0')
 	{
-		sign = -1;
-		count++;
+		cursor++;
+		*cursor_nptr = *cursor_nptr + 1;
 	}
-	else if (ft_is_positive(nptr[count]) != false)
-		count++;
-	while (ft_isdigit(nptr[count]) != false)
+	while (ft_isdigit(*(nptr + cursor)))
 	{
-		result = result * 10 + (nptr[count] - '0');
-		count++;
+		result = (result * 10) + *((char *)nptr + cursor++) - '0';
+		*cursor_nptr = *cursor_nptr + 1;
 	}
+	if (!cursor)
+		*cursor_nptr = *cursor_nptr + 1;
+	return (result * sign);
+}
+
+long int	ft_atoi_long(const char *nptr, int *cursor_nptr)
+{
+	int			cursor;
+	int			sign;
+	long int	result;
+
+	cursor = 0;
+	result = 0;
+	if (!ft_isdigit(*(nptr + cursor)))
+		ft_getsign(nptr + cursor, &sign, &cursor, cursor_nptr);
+	else if (ft_isdigit(*(nptr + cursor)))
+		sign = 1;
+	while (*(nptr + cursor) == '0')
+		cursor++;
+	while (ft_isdigit(*(nptr + cursor)))
+		result = (result * 10) + *((char *)nptr + cursor++) - '0';
 	return (result * sign);
 }
