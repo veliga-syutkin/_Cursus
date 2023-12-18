@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   list_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vsyutkin <vsyutkin@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 14:48:04 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/12/13 14:54:28 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/12/18 05:27:28 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+// gets the max value in list
 int	find_max(t_list *list)
 {
 	int	max;
@@ -26,6 +27,7 @@ int	find_max(t_list *list)
 	return (max);
 }
 
+// gets the min value in list
 int	find_min(t_list *list)
 {
 	int	min;
@@ -40,6 +42,7 @@ int	find_min(t_list *list)
 	return (min);
 }
 
+// gets the length of list
 int	get_len(t_list *list)
 {
 	int len;
@@ -53,6 +56,7 @@ int	get_len(t_list *list)
 	return (len);
 }
 
+// gets the last data (value) in list
 int	get_last_data(t_list *list, int offset)
 {
 	int	cursor;
@@ -68,6 +72,7 @@ int	get_last_data(t_list *list, int offset)
 	return (list->data);
 }
 
+// puts lisb_b in order and pushes to b.
 void	reset_and_pb(t_list **list_a, t_list **list_b)
 {
 	while ((*list_b)->data < get_last_data(*list_b, 0))

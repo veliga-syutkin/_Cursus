@@ -6,14 +6,14 @@
 /*   By: vsyutkin <vsyutkin@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 15:41:44 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/12/18 03:22:56 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/12/18 05:34:53 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static
-int	find_cheapest(t_list **list_a, t_list **list_b)
+// returns the cheapest element to push to list_b
+static int	find_cheapest(t_list **list_a, t_list **list_b)
 {
 	t_list	*buffer;
 	int		cheapest;
@@ -41,6 +41,8 @@ int	find_cheapest(t_list **list_a, t_list **list_b)
 	return (cheapest);
 }
 
+// Chooses either rotate or reverse rotate for list_b 
+// depending of element to push from list_a
 static
 void	chose_move(t_list **list_a, t_list **list_b)
 {
@@ -69,6 +71,7 @@ void	chose_move(t_list **list_a, t_list **list_b)
 	}
 }
 
+// executes the cheapest move to push element from list_a to list_b
 static
 void	do_cheapest(t_list **list_a, t_list **list_b)
 {
@@ -89,6 +92,7 @@ void	do_cheapest(t_list **list_a, t_list **list_b)
 	write(1, "pb\n", 3);
 }
 
+// sets the list_a in order from list_b (with reverse rotate if needed)
 static
 void	check_rra(t_list **list_a, t_list **list_b, int *moved)
 {
@@ -105,6 +109,11 @@ void	check_rra(t_list **list_a, t_list **list_b, int *moved)
 	}
 }
 
+/* Push to stack b until 3 elements in stack a left. 
+When pushing to stack b, find the cheapest way to keep stack b in order
+with incoming element from stack a.
+	When there is 3 elements in stack a, order them and push everything from 
+stack b in order in stack a, and job's done.*/
 int	solve(t_list **list_a, t_list **list_b)
 {
 	int	moved;

@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   solve_3.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vsyutkin <vsyutkin@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 16:09:42 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/12/13 17:05:04 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/12/18 05:35:20 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-#include "push_swap.h"
-
+// checks and returns state of list
 static
 int	list_state(t_list *list)
 {
@@ -37,6 +36,7 @@ int	list_state(t_list *list)
 	return (123);
 }
 
+// solves list with 3 elements
 void	solve_3(t_list **list)
 {
 	int		state;

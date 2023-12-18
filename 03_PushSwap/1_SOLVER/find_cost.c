@@ -6,13 +6,13 @@
 /*   By: vsyutkin <vsyutkin@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 13:47:58 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/12/18 02:36:12 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/12/18 05:26:04 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// calculates the cost of "reverse rotate b"
+// calculate and return cost to set b in order by reverse rotate
 int	cost_to_reset_rrb(t_list *list)
 {
 	int	cost;
@@ -30,7 +30,7 @@ int	cost_to_reset_rrb(t_list *list)
 	return (cost);
 }
 
-// calculates the cost of "rotate b"
+// calculate and return cost to set b in order by rotate
 int	cost_to_reset_rb(t_list *list)
 {
 	int	cost;
@@ -46,6 +46,7 @@ int	cost_to_reset_rb(t_list *list)
 	return (cost);
 }
 
+// calculate and return cost to set b in order by rotate to push element 
 int	find_cost_rb(t_list *element, t_list *list_b)
 {
 	int	first;
@@ -70,6 +71,7 @@ int	find_cost_rb(t_list *element, t_list *list_b)
 	return (cost);
 }
 
+// calculate and return cost to set b in order by reverse rotate to push element
 int	find_cost_rrb(t_list *element, t_list *list_b)
 {
 	int	first;
