@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   setup.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vsyutkin <vsyutkin@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 15:30:16 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/12/13 17:05:49 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/12/18 02:34:34 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-#include "push_swap.h"
-
+// will add a new node to the end of the list
+// if list doesn't exist, will create it
 static
 int	*extend(int *buffer, int buffer_len, int value)
 {
@@ -41,6 +41,7 @@ int	*extend(int *buffer, int buffer_len, int value)
 	return (free(buffer), result);
 }
 
+// creates chained list from given and validated arguments
 t_list	*setup(int argc, char **argv)
 {
 	int		*buffer;

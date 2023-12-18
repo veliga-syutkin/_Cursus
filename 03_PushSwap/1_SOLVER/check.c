@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vsyutkin <vsyutkin@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 13:31:43 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/12/13 16:56:40 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/12/18 02:28:10 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/* Checks input for allowed signs: space before single '+' or '-' */
 static
 int	char_allowed_sign(char **c, int cursor_c, int cursor_v)
 {
@@ -30,6 +31,7 @@ int	char_allowed_sign(char **c, int cursor_c, int cursor_v)
 	return (0);
 }
 
+// Checks input for allowed signs: '0' to '9'
 static int	char_allowed(int c)
 {
 	if (c >= '0' && c <= '9')
@@ -37,6 +39,7 @@ static int	char_allowed(int c)
 	return (0);
 }
 
+// Looks for presence of integer overflow, if yes: exit with error
 static void	check_max(char *number)
 {
 	int	useless;
@@ -46,6 +49,7 @@ static void	check_max(char *number)
 		error();
 }
 
+// Looks for presence of integer overflow.
 static void	check_number(int argc, char **argv)
 {
 	int	csr_argc;
@@ -60,6 +64,8 @@ static void	check_number(int argc, char **argv)
 	}
 }
 
+// Process input for validity of data provided.
+// Must be multiple arguments (e.g.: ./push_swap 1 2 3 4 5)
 void	check(int argc, char **argv)
 {
 	int		csr_argc;

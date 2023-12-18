@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   find_cost.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vsyutkin <vsyutkin@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 13:47:58 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/12/13 17:03:51 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/12/18 02:36:12 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-#include "push_swap.h"
-
+// calculates the cost of "reverse rotate b"
 int	cost_to_reset_rrb(t_list *list)
 {
 	int	cost;
@@ -31,6 +30,7 @@ int	cost_to_reset_rrb(t_list *list)
 	return (cost);
 }
 
+// calculates the cost of "rotate b"
 int	cost_to_reset_rb(t_list *list)
 {
 	int	cost;
