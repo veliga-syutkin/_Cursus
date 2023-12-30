@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsyutkin <vsyutkin@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 14:48:04 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/12/18 05:27:28 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/12/30 23:53:04 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	find_min(t_list *list)
 // gets the length of list
 int	get_len(t_list *list)
 {
-	int len;
+	int	len;
 
 	len = 0;
 	while (list)

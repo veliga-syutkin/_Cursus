@@ -6,13 +6,13 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 15:21:17 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/12/13 15:23:30 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/12/30 23:52:49 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	reset_rb(t_list  **list_b)
+void	reset_rb(t_list **list_b)
 {
 	while ((*list_b)->data < get_last_data(*list_b, 0))
 	{
