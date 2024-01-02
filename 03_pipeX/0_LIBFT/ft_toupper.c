@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_failoc.c                                        :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/04 16:32:21 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/01/02 12:50:03 by vsyutkin         ###   ########.fr       */
+/*   Created: 2023/10/17 03:59:10 by vsyutkin          #+#    #+#             */
+/*   Updated: 2023/10/18 00:25:22 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	*ft_failloc(size_t n)
+#include "libft.h"
+
+// Converts char c in UPPERCASE
+int	ft_toupper(int c)
 {
-	static int i = 0;
-
-	if (i++ < 5)
-		return malloc(n);
-	return NULL;
+	if (c >= 'a' && c <= 'z')
+		c = c - 32;
+	return (c);
 }
-# define malloc(x) ft_failloc(x)
-

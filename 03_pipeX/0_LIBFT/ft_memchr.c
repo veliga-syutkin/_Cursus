@@ -1,22 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_failoc.c                                        :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/04 16:32:21 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/01/02 12:50:03 by vsyutkin         ###   ########.fr       */
+/*   Created: 2023/10/17 06:05:42 by vsyutkin          #+#    #+#             */
+/*   Updated: 2023/10/29 14:54:32 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	*ft_failloc(size_t n)
+#include "libft.h"
+
+// Search int c in memory area from *s for n bytes and return a pointer to it
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	static int i = 0;
+	const unsigned char	*p;
+	unsigned char		uc;
+	size_t				i;
 
-	if (i++ < 5)
-		return malloc(n);
-	return NULL;
+	if (!s)
+		return (NULL);
+	p = s;
+	uc = c;
+	i = 0;
+	while (i < n)
+	{
+		if (p[i] == uc)
+			return ((void *)(p + i));
+		i++;
+	}
+	return (NULL);
 }
-# define malloc(x) ft_failloc(x)
-

@@ -1,22 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_failoc.c                                        :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/04 16:32:21 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/01/02 12:50:03 by vsyutkin         ###   ########.fr       */
+/*   Created: 2023/10/17 07:17:51 by vsyutkin          #+#    #+#             */
+/*   Updated: 2023/10/29 14:56:51 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	*ft_failloc(size_t n)
+#include "libft.h"
+
+/*Returns a pointer to the first occurrence of the character c in the string s.
+*/
+char	*ft_strchr(const char *s, int c)
 {
-	static int i = 0;
-
-	if (i++ < 5)
-		return malloc(n);
-	return NULL;
+	if (!s)
+		return (NULL);
+	while (*s != '\0')
+	{
+		if (*s == (char)c)
+			return ((char *)s);
+		s++;
+	}
+	if ((char)c == '\0')
+		return ((char *)s);
+	return (NULL);
 }
-# define malloc(x) ft_failloc(x)
-

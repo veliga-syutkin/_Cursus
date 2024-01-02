@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_failoc.c                                        :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/04 16:32:21 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/01/02 12:50:03 by vsyutkin         ###   ########.fr       */
+/*   Created: 2023/10/17 03:59:05 by vsyutkin          #+#    #+#             */
+/*   Updated: 2023/10/18 00:25:28 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	*ft_failloc(size_t n)
+#include "libft.h"
+
+// CONVERTS CHAR C IN lowercase
+int	ft_tolower(int c)
 {
-	static int i = 0;
-
-	if (i++ < 5)
-		return malloc(n);
-	return NULL;
+	if (c >= 'A' && c <= 'Z')
+		c = c + 32;
+	return (c);
 }
-# define malloc(x) ft_failloc(x)
-

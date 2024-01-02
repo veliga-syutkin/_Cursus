@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_failoc.c                                        :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/04 16:32:21 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/01/02 12:50:03 by vsyutkin         ###   ########.fr       */
+/*   Created: 2023/10/17 03:28:15 by vsyutkin          #+#    #+#             */
+/*   Updated: 2023/10/29 14:53:11 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	*ft_failloc(size_t n)
+#include "libft.h"
+
+// Fills area of memory from *s with char c for n bytes. (bzero with extra step)
+void	*ft_memset(void *s, int c, size_t n)
 {
-	static int i = 0;
+	unsigned char	*p;
 
-	if (i++ < 5)
-		return malloc(n);
-	return NULL;
+	if (!s)
+		return (NULL);
+	p = s;
+	while (n--)
+		*p++ = (unsigned char)c;
+	return (s);
 }
-# define malloc(x) ft_failloc(x)
-

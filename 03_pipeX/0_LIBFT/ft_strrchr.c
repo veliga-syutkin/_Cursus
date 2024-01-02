@@ -1,22 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_failoc.c                                        :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/04 16:32:21 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/01/02 12:50:03 by vsyutkin         ###   ########.fr       */
+/*   Created: 2023/10/17 07:23:24 by vsyutkin          #+#    #+#             */
+/*   Updated: 2023/10/29 18:56:53 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	*ft_failloc(size_t n)
+#include "libft.h"
+
+/*Returns a pointer to the last occurrence of the character c in the string s.
+*/
+char	*ft_strrchr(const char *s, int c)
 {
-	static int i = 0;
+	char	*result;
 
-	if (i++ < 5)
-		return malloc(n);
-	return NULL;
+	if (!s)
+		return (NULL);
+	result = NULL;
+	while (*s != '\0')
+	{
+		if (*s == (char)c)
+			result = ((char *)s);
+		s++;
+	}
+	if ((char)c == '\0')
+		return ((char *)s);
+	return (result);
 }
-# define malloc(x) ft_failloc(x)
-

@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_failoc.c                                        :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/04 16:32:21 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/01/02 12:50:03 by vsyutkin         ###   ########.fr       */
+/*   Created: 2023/10/17 01:56:32 by vsyutkin          #+#    #+#             */
+/*   Updated: 2023/10/29 19:05:04 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	*ft_failloc(size_t n)
+#include "libft.h"
+
+// Checks if character is digit (aka number from 0 to 9) 
+int	ft_isdigit(int c)
 {
-	static int i = 0;
-
-	if (i++ < 5)
-		return malloc(n);
-	return NULL;
+	if (c >= '0' && c <= '9')
+		return (true);
+	return (false);
 }
-# define malloc(x) ft_failloc(x)
-

@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_failoc.c                                        :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/04 16:32:21 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/01/02 12:50:03 by vsyutkin         ###   ########.fr       */
+/*   Created: 2023/08/31 08:03:50 by vsyutkin          #+#    #+#             */
+/*   Updated: 2023/11/07 11:00:16 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	*ft_failloc(size_t n)
+#include "libft.h"
+
+// calculates  the length of the string pointed to by s, 
+// excluding the terminating null byte ('\0').
+// Returns index of last char + 1. 
+size_t	ft_strlen(const char *s)
 {
-	static int i = 0;
+	int	count;
 
-	if (i++ < 5)
-		return malloc(n);
-	return NULL;
+	if (!s)
+		return (-1);
+	count = 0;
+	while (s[count] != '\0')
+		count++;
+	return (count);
 }
-# define malloc(x) ft_failloc(x)
-
