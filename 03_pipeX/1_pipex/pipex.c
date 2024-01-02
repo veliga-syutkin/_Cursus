@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 11:59:07 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/01/02 12:16:03 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/01/02 13:12:16 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,6 @@
 
 int	main(int argc, char **argv)
 {
-	
+	fd_printf(2, "argc: %d\n", argc);
+	fd_printf(2, "argv[0]: %s\n", argv[0]);
 }
