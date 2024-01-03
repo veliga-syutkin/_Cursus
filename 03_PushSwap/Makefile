@@ -1,4 +1,5 @@
-SOLVER =	check.c \
+SOLVER =	main.c \
+			check.c \
 			error.c \
 			find_cost.c \
 			list_utils.c \
@@ -7,66 +8,47 @@ SOLVER =	check.c \
 			reset.c \
 			rotate.c \
 			setup.c \
-			rotate.c \
-			setup.c \
 			solve_3.c \
 			solve.c \
 			swap.c \
-
-LIBFT =	ft_atoi.c \
-		ft_printf.c \
-		ft_putchar_fd.c \
-		ft_putendl_fd.c \
-		ft_puthexl_fd.c \
-		ft_puthexu_fd.c \
-		ft_putnbr_fd.c \
-		ft_putptr_fd.c \
-		ft_putstr_fd.c \
-		ft_putunbr_fd.c \
-		ft_strlen.c \
 
 LIBFT_DIR = ./0_LIBFT/
 
 SOLVER_DIR = ./1_SOLVER/
 
-SRCS = $(addprefix $(LIBFT_DIR), $(LIBFT)) $(addprefix $(SOLVER_DIR), $(SOLVER))
+SRCS = $(addprefix $(SOLVER_DIR), $(SOLVER))
 
 OBJS = $(SRCS:.c=.o)
 
-AR = libft.a 
+AR = ./libft.a 
 
 RM = rm -f 
 
 CFLAGS = -Wall -Wextra -Werror
 
-PARASITE = a.out
+NAME = push_swap
 
-MAIN = ./1_SOLVER/main.c
-
-EXE = push_swap
-
-.c.o: 
-	gcc $(CFLAGS) -c $< -o ${<:.c=.o}
-
-all: mini
+all: $(NAME)
 
 $(AR): $(OBJS) 
-	ar rcs $(AR) $(OBJS) 
+	make -C $(LIBFT_DIR) 
+
+$(NAME): $(OBJS) $(AR) 
+	$(CC) $(CFLAGS) $(OBJS) $(AR) -o $(NAME)
 
 clean: 
+	make -C $(LIBFT_DIR) clean
 	$(RM) $(OBJS) 
 
 fclean: clean 
-	$(RM) $(AR) $(PARASITE) $(EXE)
+	make -C $(LIBFT_DIR) fclean
+	$(RM) $(AR) $(PARASITE) $(NAME)
 
 mini: main clean
 
 re: fclean all
 
-main: $(AR)
-	$(CC) $(CFLAGS) $(MAIN) $(AR) -o $(EXE)
-
-exe: main
-	./$(EXE)
+exe: all
+	./$(NAME)
 
 .PHONY: all clean fclean mini re main exe
