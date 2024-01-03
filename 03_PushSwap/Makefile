@@ -51,4 +51,7 @@ re: fclean all
 exe: all
 	./$(NAME)
 
-.PHONY: all clean fclean mini re main exe
+leak: $(AR)
+	g$(CC) $(CFLAGS) $(SRCS) $(AR) -o $(NAME) 
+
+.PHONY: all clean fclean mini re exe

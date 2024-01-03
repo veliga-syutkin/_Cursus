@@ -23,7 +23,7 @@ typedef struct s_list {
 
 //error.c
 
-void		error(void);
+void		error(t_list **list);
 
 //	* * * 
 // #############################################################################

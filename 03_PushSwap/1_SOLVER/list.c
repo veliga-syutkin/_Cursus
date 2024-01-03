@@ -37,7 +37,7 @@ static void	check_duplicate(int *data, int len)
 		if (intchr(data, *(data + cursor++), len))
 		{
 			free(data);
-			error();
+			error(NULL);
 		}
 	}
 }
@@ -52,7 +52,7 @@ t_list	*create(int *data, int len)
 	cursor = 0;
 	result = malloc(sizeof(t_list));
 	if (!result)
-		error();
+		error(NULL);
 	buffer = result;
 	buffer->data = *data;
 	cursor++;
@@ -61,7 +61,7 @@ t_list	*create(int *data, int len)
 		buffer->next = malloc(sizeof(t_list));
 		buffer = buffer->next;
 		if (!buffer)
-			error();
+			error(NULL);
 		buffer->data = *(data + cursor);
 		cursor++;
 	}
@@ -81,12 +81,15 @@ void	clear_list(t_list **list)
 	t_list	*buffer;
 	t_list	*buffer_next;
 
-	buffer = *list;
-	while (buffer->next)
+	if (list)
 	{
-		buffer_next = buffer->next;
+		buffer = *list;
+		while (buffer->next)
+		{
+			buffer_next = buffer->next;
+			free(buffer);
+			buffer = buffer_next;
+		}
 		free(buffer);
-		buffer = buffer_next;
 	}
-	free(buffer);
 }

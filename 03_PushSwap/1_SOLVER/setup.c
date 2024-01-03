@@ -24,7 +24,7 @@ int	*extend(int *buffer, int buffer_len, int value)
 	{
 		result = malloc(sizeof(int));
 		if (!result)
-			error();
+			error(NULL);
 		*result = value;
 		return (result);
 	}
@@ -32,7 +32,7 @@ int	*extend(int *buffer, int buffer_len, int value)
 	if (!result)
 	{
 		free(buffer);
-		error();
+		error(NULL);
 	}
 	cursor = -1;
 	while (cursor++ < buffer_len - 1)
