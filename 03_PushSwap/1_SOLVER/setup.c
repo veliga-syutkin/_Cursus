@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 15:30:16 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/12/18 02:34:34 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/01/05 11:14:20 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ int	*extend(int *buffer, int buffer_len, int value)
 }
 
 // creates chained list from given and validated arguments
-t_list	*setup(int argc, char **argv)
+static
+t_list	*setup_multiple(int argc, char **argv)
 {
 	int		*buffer;
 	int		buffer_len;
@@ -69,4 +70,39 @@ t_list	*setup(int argc, char **argv)
 	}
 	result = create(buffer, buffer_len);
 	return (free(buffer), result);
+}
+
+// creates chained list from given and validated arguments
+static
+t_list	*setup_single(char **argv)
+{
+	int		*buffer;
+	int		buffer_len;
+	int		csr_argv;
+	int		len;
+	t_list	*result;
+
+	buffer = NULL;
+	buffer_len = 0;
+	csr_argv = 0;
+	len = ft_strlen(argv[1]);
+	while (csr_argv < len)
+	{
+		if (*(argv[1] + csr_argv) != ' ')
+			buffer = extend(buffer, buffer_len++, \
+			ft_atoi(argv[1] + csr_argv, &csr_argv));
+		else
+			csr_argv++;
+	}
+	result = create(buffer, buffer_len);
+	return (free(buffer), result);
+}
+
+// creates chained list from given and validated arguments
+t_list	*setup(int argc, char **argv)
+{
+	if (argc == 2)
+		return (setup_single(argv));
+	else
+		return (setup_multiple(argc, argv));
 }

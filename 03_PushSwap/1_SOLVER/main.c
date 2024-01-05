@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 15:03:50 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/12/18 03:46:14 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/01/05 09:58:24 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,5 @@ int	main(int argc, char **argv)
 	if (get_len(list_a) > 3)
 		left_rra = solve(&list_a, &list_b);
 	make_left_rra(&list_a, left_rra);
-	clear_list(&list_a);
-	return (0);
+	return (clear_list(&list_a), 0);
 }

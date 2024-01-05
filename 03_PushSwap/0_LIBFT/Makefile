@@ -1,4 +1,5 @@
 LIBFT =	ft_atoi.c \
+		ft_isdigit.c \
 		ft_printf.c \
 		ft_putchar_fd.c \
 		ft_putendl_fd.c \

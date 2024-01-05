@@ -26,14 +26,6 @@ void	ft_getsign(const char *c, int *sign, int *cursor, int *cursor_nptr)
 	return ;
 }
 
-static
-int	ft_isdigit(int c)
-{
-	if (c >= '0' && c <= '9')
-		return (1);
-	return (0);
-}
-
 int	ft_atoi(const char *nptr, int *cursor_nptr)
 {
 	int	cursor;

@@ -1,5 +1,6 @@
 SOLVER =	main.c \
 			check.c \
+			dquote.c \
 			error.c \
 			find_cost.c \
 			list_utils.c \

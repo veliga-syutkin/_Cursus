@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 13:31:43 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/12/18 02:28:10 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/01/05 11:18:04 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static void	check_number(int argc, char **argv)
 }
 
 // Process input for validity of data provided.
-// Must be multiple arguments (e.g.: ./push_swap 1 2 3 4 5)
+// DEPRECATED: Must be multiple arguments (e.g.: ./push_swap 1 2 3 4 5)
 void	check(int argc, char **argv)
 {
 	int		csr_argc;
@@ -73,6 +73,10 @@ void	check(int argc, char **argv)
 
 	csr_argc = 1;
 	csr_argv = 0;
+	if (argc == 1)
+		exit(0);
+	if (argc == 2)
+		return (dquote(argv));
 	while (csr_argc < argc)
 	{
 		if (!*(*(argv + csr_argc) + csr_argv))
@@ -87,7 +91,5 @@ void	check(int argc, char **argv)
 		else
 			error(NULL);
 	}
-	if (argc == 1)
-		exit(0);
 	check_number(argc, argv);
 }
