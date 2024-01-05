@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 15:21:17 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/01/05 18:51:23 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2023/12/30 23:52:49 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ void	reset_rrb(t_list **list_b)
 	while ((*list_b)->data < get_last_data(*list_b, 0))
 	{
 		rrx(list_b);
-		ft_putstr_fd("rrb\n", 1);
+		ft_putstr_fd("rr\n", 1);
 	}
 }
