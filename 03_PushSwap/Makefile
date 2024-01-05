@@ -11,6 +11,7 @@ SOLVER =	main.c \
 			setup.c \
 			solve_3.c \
 			solve.c \
+			stak_a.c \
 			swap.c \
 
 LIBFT_DIR = ./0_LIBFT/
@@ -54,5 +55,6 @@ exe: all
 
 leak: $(AR)
 	g$(CC) $(CFLAGS) $(SRCS) $(AR) -o $(NAME) 
+	valgrind -s --leak-check=full --show-leak-kinds=all ./push_swap 1 5
 
 .PHONY: all clean fclean mini re exe

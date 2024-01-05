@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dquote.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsyutkin <vsyutkin@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 10:02:21 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/01/05 11:26:33 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/01/05 18:48:32 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ void	dquote(char **argv)
 				error(NULL);
 		}
 		if (ft_atoi_long(argv[1], &csr_argv) > INT_MAX)
-				error(NULL);
+			error(NULL);
 		csr_argv++;
 		while (argv[1][csr_argv] != ' ' && argv[1][csr_argv] != '\0')
-				csr_argv++;
+			csr_argv++;
 	}
 }

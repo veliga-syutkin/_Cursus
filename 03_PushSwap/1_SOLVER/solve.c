@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   solve.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsyutkin <vsyutkin@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 15:41:44 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/12/18 05:34:53 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/01/05 20:00:13 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ void	do_cheapest(t_list **list_a, t_list **list_b)
 	chose_move(list_a, list_b);
 	pb(list_a, list_b);
 	write(1, "pb\n", 3);
+	stak_a(list_a);
 }
 
 // sets the list_a in order from list_b (with reverse rotate if needed)
@@ -121,10 +122,12 @@ int	solve(t_list **list_a, t_list **list_b)
 	moved = 0;
 	pb(list_a, list_b);
 	write(1, "pb\n", 3);
+	// stak_a(list_a);
 	if (get_len(*list_a) > 4)
 	{
 		pb(list_a, list_b);
 		write(1, "pb\n", 3);
+		// stak_a(list_a);
 	}
 	while ((*list_a)->next->next && (*list_a)->next->next->next)
 		do_cheapest(list_a, list_b);

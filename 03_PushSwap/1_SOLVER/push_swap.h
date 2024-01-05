@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsyutkin <vsyutkin@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 13:44:18 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/01/05 11:11:02 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/01/05 19:52:01 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void		check(int argc, char **argv);
 
 //dquote.c
 
-void	dquote(char **argv);
+void		dquote(char **argv);
 
 //	* * * 
 // #############################################################################
@@ -76,6 +76,13 @@ int			ft_atoi(const char *nptr, int *cursor_nptr);
 long int	ft_atoi_long(const char *nptr, int *cursor_nptr);
 
 //	* * * 
+// #############################################################################
+
+//stack_a.c
+
+void	stak_a(t_list **list_a);
+
+//	* * *
 // #############################################################################
 
 //swap.c
