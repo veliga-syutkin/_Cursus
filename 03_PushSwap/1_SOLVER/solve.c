@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   solve.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vsyutkin <vsyutkin@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 15:41:44 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/01/05 20:00:13 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/01/06 10:17:59 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	do_cheapest(t_list **list_a, t_list **list_b)
 		return (reset_and_pb(list_a, list_b));
 	chose_move(list_a, list_b);
 	pb(list_a, list_b);
-	write(1, "pb\n", 3);
+	// write(1, "pb\n", 3);
 	stak_a(list_a);
 }
 
