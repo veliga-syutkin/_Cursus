@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsyutkin <vsyutkin@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 15:03:50 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/01/05 09:58:24 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/01/06 18:34:27 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,22 @@ void	make_left_rra(t_list **list_a, int left_rra)
 	}
 }
 
+static
+int	pb_solve3(t_list **list_a, t_list **list_b)
+{
+	if (get_len(*list_a) >= 6)
+	{
+		pb(list_a, list_b);
+		write(1, "pb\n", 3);
+		pb(list_a, list_b);
+		write(1, "pb\n", 3);
+		pb(list_a, list_b);
+		write(1, "pb\n", 3);
+		solve_3(list_b);
+	}
+	return (solve(list_a, list_b));
+}
+
 int	main(int argc, char **argv)
 {
 	t_list	*list_a;
@@ -57,7 +73,7 @@ int	main(int argc, char **argv)
 	if (get_len(list_a) == 3)
 		solve_3(&list_a);
 	if (get_len(list_a) > 3)
-		left_rra = solve(&list_a, &list_b);
+		left_rra = pb_solve3(&list_a, &list_b);
 	make_left_rra(&list_a, left_rra);
 	return (clear_list(&list_a), 0);
 }
