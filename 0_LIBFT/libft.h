@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 00:23:11 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/11/27 05:17:43 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/01/30 02:56:27 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,12 @@
 
 # include "get_next_line_bonus.h"
 # include "ft_printf.h"
+
+// XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+// XXXXXXXXXXXX addons XXXXXXXXXXXX
+// XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+void	ft_init(const int var, ...);
 
 /*
 WWWWWWWWW/''''''''''''''''\WWWWWWWWWW

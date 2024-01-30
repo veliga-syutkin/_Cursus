@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vsyutkin <vsyutkin@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 15:03:50 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/01/06 18:34:27 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/01/26 17:19:50 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	make_left_rra(t_list **list_a, int left_rra)
 	}
 }
 
+// comment before return for roll back.
 static
 int	pb_solve3(t_list **list_a, t_list **list_b)
 {
