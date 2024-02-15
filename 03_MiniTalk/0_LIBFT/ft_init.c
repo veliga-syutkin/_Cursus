@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 02:06:26 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/02/14 05:41:36 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/02/15 12:28:40 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_init(const int var, ...)
 
 	cursor = 0;
 	va_start(args, var);
-	while (++cursor < var)
+	while (cursor++ < var)
 	{
 		arg = va_arg(args, int *);
 		*arg = 0;

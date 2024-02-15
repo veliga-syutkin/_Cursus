@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 05:27:13 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/02/15 11:59:07 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/02/15 12:13:16 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,12 @@ short int	ft_static(int data, int flag, int param)
 ////////////////////////////////////////////////////////////////////////////////
 
 // STR is printed, freed and given NULL value.
+// Double newline is printed after the string to separate the messages.
 char	*ft_print_and_free(char *str)
 {
 	if (str)
 	{
-		ft_printf("%s\n", str);
+		ft_printf("%s\n\n", str);
 		free(str);
 	}
 	return (NULL);

@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:56:49 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/02/14 05:16:41 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/02/15 12:29:40 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,10 @@ void	send_package(char *str, pid_t server, int *state)
 			if (cursor == len)
 			{
 				(*state)++, ft_printf("State updated: %d\n", *state);
+				ft_init(2, &len, &cursor);
 				// cast ft_init for those variables 
-				len = 0;
-				cursor = 0;
+				// len = 0;
+				// cursor = 0;
 			}
 		}
 	}
@@ -102,7 +103,7 @@ void	action(int signal)
 	// ft_printf("pause\n"), pause();
 }
 
-void	reaction(int signal)
+void	reaction(int signal) // here
 {
 	action(signal);
 }
@@ -111,9 +112,9 @@ int	main(int argc, char **argv)
 {
 	struct 	sigaction	client;
 
-	client.sa_handler = *reaction;
+	client.sa_handler = *reaction; // here
 	client.sa_flags = 0;
-	if (sigaction(SIGUSR1, &client, NULL) == -1)
+	if (sigaction(SIGUSR1, &client, NULL) == -1) // here
 	{
 		ft_printf("Error installing signal handler"), perror("Error installing signal handler");
 		exit(EXIT_FAILURE);
