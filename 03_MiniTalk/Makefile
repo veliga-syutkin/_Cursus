@@ -1,5 +1,6 @@
 MANDATORY_FILES =	send.c \
-BONUS_FILES =	server_sigaction.c \
+
+BONUS_FILES =	server_utils.c \
 
 LIBFT_DIR = ./0_LIBFT/ 
 MANDATORY_DIR = ./1_minitalk/
@@ -37,7 +38,7 @@ $(AR):
 
 bonus: $(AR) $(BONUS)
 	make -C $(LIBFT_DIR)
-	$(CC) $(CFLAGS) $(BONUS) ./2_minitalk_bonus/server_utils.c $(AR) -o $(SERVER)
+	$(CC) $(CFLAGS) $(BONUS) ./2_minitalk_bonus/server_sigaction.c $(AR) -o $(SERVER)
 	$(CC) $(CFLAGS) ./2_minitalk_bonus/client_sigaction.c $(AR) -o $(CLIENT)
 
 debug: $(AR) $(DEBUG)

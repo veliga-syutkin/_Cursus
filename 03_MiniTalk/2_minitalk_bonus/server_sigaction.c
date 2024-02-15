@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:56:46 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/02/15 09:03:52 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/02/15 12:07:38 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,25 +35,26 @@ void	processing(char buffer)
 	static char		*str;
 	static int		cursor;
 
-	if (ft_static(0, FT_RD, 4) == MSG_LEN && ft_static(0, FT_RD, 3) != '\0')
-		size = size * 10 + ft_static(0, FT_RD, BUFFER) - '0';
+	if (ft_static(0, FT_RD, STATE) == MSG_LEN && buffer != '\0')
+		size = size * 10 + buffer - '0';
 	if (ft_static(0, FT_RD, STATE) == MSG)
 	{
 		if (!str)
 			str = ft_safelloc(size);
 		if (str)
 		{
-			str[cursor++] = buffer;
+			str[cursor] = buffer;
+			cursor++;
 			if (cursor == size)
 			{
 				cursor = 0;
 				size = 0;
-				ft_print_and_free(str);
+				str = ft_print_and_free(str);
 				ft_static(0, INIT, 0);
 			}
 		}
 	}
-	if (ft_static(0, FT_RD, BUFFER) == '\0')
+	if (buffer == '\0')
 		state_update();
 }
 
@@ -73,7 +74,6 @@ void	the_reception(int signal)
 	call++;
 	if (call == 8)
 	{
-		ft_static(buffer, FT_WR, BUFFER);
 		processing(buffer);
 		buffer = 0;
 		call = 0;

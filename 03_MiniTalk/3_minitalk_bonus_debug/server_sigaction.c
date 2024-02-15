@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:56:46 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/02/15 09:21:47 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/02/15 12:05:34 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,106 +41,31 @@ void	ft_init(const int var, ...)
 
 short int	ft_static(int data, int flag, int param)
 {
-	static short int	client;
-	static short int	buffer;
-	static short int	state;
-	static short int	size;
+	static char	info[3];
 
 	if (flag == FT_RD)
 	{
 		if (param == CLIENT)
-			return (client);
-		if (param == BUFFER)
-			return (buffer);
+			return (info[CLIENT]);
 		if (param == STATE)
-			return (state);
+			return (info[STATE]);
 		if (param == SIZE)
-			return (size);
+			return (info[SIZE]);
 	}
 	if (flag == FT_WR)
 	{
 		if (param == CLIENT)
-			client = data;
-		if (param == BUFFER)
-			buffer = data;
+			info[CLIENT] = data;
 		if (param == STATE)
-			state = data;
+			info[STATE] = data;
 		if (param == SIZE)
-			size = data;
+			info[SIZE] = data;
 	}
 	if (flag == INIT)
-	{
-		client = false;
-		buffer = 0;
-		size = 0;
-	}
+		while (param < 2)
+			info[param++] = 0;
 	return (0);
 }
-
-// // Fusion of ft_static1 and ft_static2
-// short int	ft_static1(int data, int flag, int param);
-// short int	ft_static2(int data, int flag, int param);
-// short int	ft_static(int data, int flag, int param)
-// {
-// 	if (param == CLIENT || param == BUFFER)
-// 		return (ft_static1(data, flag, param));
-// 	if (param == STATE || param == SIZE)
-// 		return (ft_static2(data, flag, param));
-// 	return (0);
-// }
-
-// // Stores client and buffer values.
-// short int	ft_static1(int data, int flag, int param)
-// {
-// 	static short int	client;
-// 	static short int	buffer;
-
-// 	if (flag == FT_RD)
-// 	{
-// 		if (param == CLIENT)
-// 			return (client);
-// 		if (param == BUFFER)
-// 			return (buffer);
-// 	}
-// 	if (flag == FT_WR)
-// 	{
-// 		if (param == CLIENT)
-// 			client = data;
-// 		if (param == BUFFER)
-// 			buffer = data;
-// 	}
-// 	if (flag == INIT)
-// 		client = 0;
-// 	return (0);
-// }
-
-// // Stores state and size values.
-// short int	ft_static2(int data, int flag, int param)
-// {
-// 	static short int	state;
-// 	static short int	size;
-
-// 	if (flag == FT_RD)
-// 	{
-// 		if (param == STATE)
-// 			return (state);
-// 		if (param == SIZE)
-// 			return (size);
-// 	}
-// 	if (flag == FT_WR)
-// 	{
-// 		if (param == STATE)
-// 			state = data;
-// 		if (param == SIZE)
-// 			size = data;
-// 	}
-// 	if (flag == INIT)
-// 	{
-// 		state = 0;
-// 		size = 0;
-// 	}
-// 	return (0);
-// }
 
 void	state_update()
 {
@@ -154,14 +79,14 @@ void	state_update()
 }
 
 // STR is printed, freed and given NULL value.
-void	ft_print_and_free(char *str)
+char	*ft_print_and_free(char *str)
 {
 	if (str)
 	{
 		ft_printf("%s\n", str);
 		free(str);
 	}
-	str = NULL;
+	return (NULL);
 }
 
 // Processing part 2.
@@ -184,8 +109,8 @@ void	processing(char buffer)
 	static char		*str;
 	static int		cursor;
 
-	if (ft_static(0, FT_RD, STATE) == MSG_LEN && ft_static(0, FT_RD, BUFFER) != '\0')
-		size = size * 10 + ft_static(0, FT_RD, BUFFER) - '0', ft_printf("\t\t\t\tMessage len: %d\n\n", size);
+	if (ft_static(0, FT_RD, STATE) == MSG_LEN && buffer != '\0')
+		size = size * 10 + buffer - '0', ft_printf("\t\t\t\tMessage len: %d\n\n", size);
 	if (ft_static(0, FT_RD, STATE) == MSG)
 	{
 		if (!str)
@@ -198,13 +123,12 @@ void	processing(char buffer)
 			{
 				cursor = 0;
 				size = 0;
-				ft_print_and_free(str), ft_printf("\t <-- HERE'S THE MESSAGE\n");
-				ft_printf("Memory freed.\n");
+				str = ft_print_and_free(str), ft_printf("\t <-- HERE'S THE MESSAGE\n"), ft_printf("Memory freed.\n");
 				ft_static(0, INIT, 0), ft_printf("State updatedn't: %d\n", ft_static(0, FT_RD, STATE));
 			}
 		}
 	}
-	if (ft_static(0, FT_RD, BUFFER) == '\0')
+	if (buffer == '\0')
 		state_update();
 }
 
@@ -220,10 +144,7 @@ void	the_reception(int signal)
 	call++, ft_printf("Call: %d\n", call);
 	if (call == 8)
 	{
-		ft_printf("\tReceived: %c\n", buffer);
-		ft_static(buffer, FT_WR, BUFFER);
-		ft_printf("\tBuffer: %c\n", ft_static(0, FT_RD, BUFFER));
-		processing(buffer);
+		ft_printf("\tReceived & buffer: %c\n", buffer), processing(buffer);
 		buffer = 0;
 		call = 0;
 	}
