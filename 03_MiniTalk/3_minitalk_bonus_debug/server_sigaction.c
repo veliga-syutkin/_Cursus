@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:56:46 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/02/14 05:16:40 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/02/15 09:21:47 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,71 @@ short int	ft_static(int data, int flag, int param)
 	return (0);
 }
 
+// // Fusion of ft_static1 and ft_static2
+// short int	ft_static1(int data, int flag, int param);
+// short int	ft_static2(int data, int flag, int param);
+// short int	ft_static(int data, int flag, int param)
+// {
+// 	if (param == CLIENT || param == BUFFER)
+// 		return (ft_static1(data, flag, param));
+// 	if (param == STATE || param == SIZE)
+// 		return (ft_static2(data, flag, param));
+// 	return (0);
+// }
+
+// // Stores client and buffer values.
+// short int	ft_static1(int data, int flag, int param)
+// {
+// 	static short int	client;
+// 	static short int	buffer;
+
+// 	if (flag == FT_RD)
+// 	{
+// 		if (param == CLIENT)
+// 			return (client);
+// 		if (param == BUFFER)
+// 			return (buffer);
+// 	}
+// 	if (flag == FT_WR)
+// 	{
+// 		if (param == CLIENT)
+// 			client = data;
+// 		if (param == BUFFER)
+// 			buffer = data;
+// 	}
+// 	if (flag == INIT)
+// 		client = 0;
+// 	return (0);
+// }
+
+// // Stores state and size values.
+// short int	ft_static2(int data, int flag, int param)
+// {
+// 	static short int	state;
+// 	static short int	size;
+
+// 	if (flag == FT_RD)
+// 	{
+// 		if (param == STATE)
+// 			return (state);
+// 		if (param == SIZE)
+// 			return (size);
+// 	}
+// 	if (flag == FT_WR)
+// 	{
+// 		if (param == STATE)
+// 			state = data;
+// 		if (param == SIZE)
+// 			size = data;
+// 	}
+// 	if (flag == INIT)
+// 	{
+// 		state = 0;
+// 		size = 0;
+// 	}
+// 	return (0);
+// }
+
 void	state_update()
 {
 	ft_printf("Updating from state: %d\n", ft_static(0, FT_RD, STATE));
@@ -86,6 +151,31 @@ void	state_update()
 		ft_static(MSG, FT_WR, STATE), ft_printf("Receiving message...\n");
 	else if (ft_static(0, FT_RD, STATE) == MSG)
 		ft_static(0, FT_WR, STATE), ft_printf("Communication ended, state DID update.\n");
+}
+
+// STR is printed, freed and given NULL value.
+void	ft_print_and_free(char *str)
+{
+	if (str)
+	{
+		ft_printf("%s\n", str);
+		free(str);
+	}
+	str = NULL;
+}
+
+// Processing part 2.
+char	*ft_safelloc(int size)
+{
+	char	*str;
+
+	str = ft_calloc(sizeof(char), size + 1);
+	if (!str)
+	{
+		ft_printf("Internal error (calloc failed).\n");
+		exit(1);
+	}
+	return (str);
 }
 
 void	processing(char buffer)
@@ -99,11 +189,7 @@ void	processing(char buffer)
 	if (ft_static(0, FT_RD, STATE) == MSG)
 	{
 		if (!str)
-		{
-			str = ft_calloc(sizeof(char), size + 1);
-			if (!str)
-				ft_printf("Internal error (calloc failed).\n"), exit(1);
-		}
+			str = ft_safelloc(size);
 		if (str)
 		{
 			str[cursor] = buffer, ft_printf("\tCursor: %d \t MSG: %s \tBuffer: %c\n", cursor, str, buffer);
@@ -112,23 +198,14 @@ void	processing(char buffer)
 			{
 				cursor = 0;
 				size = 0;
-				ft_printf("%s\n", str), ft_printf("\t <-- HERE'S THE MESSAGE\n");
-				free(str), ft_printf("Memory freed.\n");
-				str = NULL;
+				ft_print_and_free(str), ft_printf("\t <-- HERE'S THE MESSAGE\n");
+				ft_printf("Memory freed.\n");
 				ft_static(0, INIT, 0), ft_printf("State updatedn't: %d\n", ft_static(0, FT_RD, STATE));
 			}
 		}
 	}
 	if (ft_static(0, FT_RD, BUFFER) == '\0')
 		state_update();
-}
-
-// stands for SIGnal Invertor Lens
-int	sigil(int signal)
-{
-	if (signal == SIGUSR1)
-		return (SIGUSR2);
-	return (SIGUSR1);
 }
 
 void	the_reception(int signal)
@@ -154,7 +231,8 @@ void	the_reception(int signal)
 
 void	ft_sig(int signal, siginfo_t *info, void *context)
 {
-	static int			pid;
+	static int	pid;
+	int			langis;
 
 	ft_printf("Signal received: %d\tclient: %d\n", signal, ft_static(0, FT_RD, CLIENT));
 	if (!ft_static(0, FT_RD, CLIENT))
@@ -166,23 +244,12 @@ void	ft_sig(int signal, siginfo_t *info, void *context)
 	ft_printf("Communication in progress...\n"), the_reception(signal);
 	if (!context)
 		(void) 0;
+	if (signal == SIGUSR1)
+		langis = SIGUSR2;
+	else
+		langis = SIGUSR1;
 	usleep(200);
-	ft_printf("Back to sender %d\n", sigil(signal)), kill(pid, sigil(signal));
-}
-
-void	ft_sigaction(struct sigaction server)
-{
-	if (sigaction(SIGUSR1, &server, NULL) == -1)
-	{
-		ft_printf("Error installing signal handler"), perror("Error installing signal handler");
-		exit(EXIT_FAILURE);
-	}
-	if (sigaction(SIGUSR2, &server, NULL) == -1)
-	{
-		ft_printf("Error installing signal handler"), perror("Error installing signal handler");
-		exit(EXIT_FAILURE);
-	}
-	ft_printf("Signal handler installed. Waiting for SIGUSR1 or SIGUSR2...\n");
+	ft_printf("Back to sender %d\n", langis), kill(pid, langis);
 }
 
 int	main(void)
@@ -197,7 +264,12 @@ int	main(void)
 		exit(1);
 	ft_putendl_fd(pid, 1);
 	free(pid);
-	ft_sigaction(server);
+	if (sigaction(SIGUSR1, &server, NULL) == -1 
+		|| sigaction(SIGUSR2, &server, NULL) == -1)
+	{
+		ft_printf("Error installing signal handler");
+		exit(EXIT_FAILURE);
+	}
 	while (1)
 		(void) 0;
 }

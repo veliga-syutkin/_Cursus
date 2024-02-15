@@ -1,0 +1,11 @@
+{
+	"files.associations": {
+		"client.h": "c",
+		"malloc.h": "c",
+		"unistd.h": "c",
+		"utils.h": "c",
+		"libft.h": "c",
+		"minitalk.h": "c",
+		"stdio.h": "c"
+	}
+}

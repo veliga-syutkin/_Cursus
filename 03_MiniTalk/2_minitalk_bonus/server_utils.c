@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 05:27:13 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/02/14 07:05:02 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/02/15 09:42:14 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 				/* STATIC VARIABLES TO USE ACROSS THE PROGRAM */
 ////////////////////////////////////////////////////////////////////////////////
 
-// Fusionof ft_static1 and ft_static2
+// Fusion of ft_static1 and ft_static2
 short int	ft_static(int data, int flag, int param)
 {
 	if (param == CLIENT || param == BUFFER)
@@ -92,12 +92,15 @@ void	ft_print_and_free(char *str)
 }
 
 // Processing part 2.
-void	ft_safelloc(int size, char *str)
+char	*ft_safelloc(int size)
 {
+	char	*str;
+
 	str = ft_calloc(sizeof(char), size + 1);
 	if (!str)
 	{
 		ft_printf("Internal error (calloc failed).\n");
 		exit(1);
 	}
+	return (str);
 }

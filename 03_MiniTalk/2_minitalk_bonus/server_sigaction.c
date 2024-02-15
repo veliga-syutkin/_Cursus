@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:56:46 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/02/14 06:59:40 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/02/15 09:03:52 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,14 @@ void	processing(char buffer)
 	if (ft_static(0, FT_RD, STATE) == MSG)
 	{
 		if (!str)
-			ft_safelloc(size, str);
+			str = ft_safelloc(size);
 		if (str)
 		{
 			str[cursor++] = buffer;
 			if (cursor == size)
 			{
-				ft_init(2, &cursor, &size);
+				cursor = 0;
+				size = 0;
 				ft_print_and_free(str);
 				ft_static(0, INIT, 0);
 			}
@@ -109,7 +110,8 @@ void	ft_sig(int signal, siginfo_t *info, void *context)
 }
 
 /* Main function:
-	- Installs signal handler for SIGUSR1 and SIGUSR2. If it fails, the program exits.
+	- Installs signal handler for SIGUSR1 and SIGUSR2. 
+If it fails, the program exits.
 	- Waits for signals
 */
 int	main(void)
@@ -124,7 +126,8 @@ int	main(void)
 		exit(1);
 	ft_putendl_fd(pid, 1);
 	free(pid);
-	if (sigaction(SIGUSR1, &server, NULL) == -1 || sigaction(SIGUSR2, &server, NULL) == -1)
+	if (sigaction(SIGUSR1, &server, NULL) == -1 
+		|| sigaction(SIGUSR2, &server, NULL) == -1)
 	{
 		ft_printf("Error installing signal handler");
 		exit(EXIT_FAILURE);
