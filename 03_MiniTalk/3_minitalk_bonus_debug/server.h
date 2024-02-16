@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 05:05:44 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/02/15 10:32:55 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/02/15 21:53:18 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,7 @@
 # define CLIENT 0
 # define SIZE 1
 # define STATE 2
+
+# define FAKE -42
 
 #endif

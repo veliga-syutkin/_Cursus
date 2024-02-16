@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:56:46 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/02/15 12:05:34 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/02/16 19:29:43 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,23 @@
 
 #include "server.h"
 
-// struct SIGACTION
-// {
-// 	void	(*sa_handler)(int);
-// 	void	(*sa_sigaction)(int, siginfo_t *, void *);
-// 	sigset_t	sa_mask;
-// 	int		sa_flags;
-// };
+void	the_reception(int signal);
+void	ft_sig(int signal, siginfo_t *info, void *context);
 
-// Takes undefined number of integers and assigns 0 to each of them.
-void	ft_init(const int var, ...)
+// Timer function: 
+/* Make timer function containing static char buffer. 
+Every ducking where where buffer is used, call the timer function
+and it should return the righty thingy.*/
+
+/* Stores buffer aka the char received (after each 8 signals).
+And when there is no signals from client for X given time, the buffer wipes.*/
+char timed_buffer(char data, int flag)
 {
-	va_list	args;
-	int		*arg;
-	int		cursor;
+	static char	buffer;
 
-	cursor = 0;
-	va_start(args, var);
-	while (++cursor < var)
-	{
-		arg = va_arg(args, int *);
-		*arg = 0;
-	}
-	va_end(args);
+	if (flag == FT_WR)
+		buffer = data;
+	return (buffer);
 }
 
 short int	ft_static(int data, int flag, int param)
@@ -132,11 +126,37 @@ void	processing(char buffer)
 		state_update();
 }
 
+int timer(int call)
+{
+	static int	timer;
+
+	if (call == SIGUSR1 || call == SIGUSR2)
+		timer = 0;
+	else
+		timer++, ft_printf("Timer: %d\n", timer);
+	if (timer >= 5)
+	{
+		timer = 0;
+		ft_sig(FAKE, NULL, NULL);
+		ft_static(0, FT_WR, STATE);
+	}
+	return (0);
+}
+
 void	the_reception(int signal)
 {
 	static char			buffer;
 	static short int	call;
 
+	timer(signal);
+	if (signal == FAKE)
+	{
+		call = 0;
+		buffer = 0;
+		ft_static(0, INIT, 0);
+		ft_printf("Communication aborted: bad client.\n"); // Not included in the final code.
+		return ;
+	}
 	if (signal == SIGUSR2)
 		buffer |= 1 << call;
 	else if (signal == SIGUSR1)
@@ -144,33 +164,44 @@ void	the_reception(int signal)
 	call++, ft_printf("Call: %d\n", call);
 	if (call == 8)
 	{
-		ft_printf("\tReceived & buffer: %c\n", buffer), processing(buffer);
-		buffer = 0;
+		timed_buffer(buffer, FT_WR);
+		ft_printf("\tReceived & buffer: %c\n", buffer), processing(timed_buffer(0, FT_RD));
+		timed_buffer(0, FT_WR);
 		call = 0;
+		buffer = 0;
 	}
 }
 
 void	ft_sig(int signal, siginfo_t *info, void *context)
 {
 	static int	pid;
-	int			langis;
+	// int			langis;
 
-	ft_printf("Signal received: %d\tclient: %d\n", signal, ft_static(0, FT_RD, CLIENT));
-	if (!ft_static(0, FT_RD, CLIENT))
+	if (signal == FAKE)
+		the_reception(signal);
+	else 
 	{
-		pid = info->si_pid, ft_printf("Signal from PID: %d\n", pid);
-		ft_static(true, FT_WR, CLIENT), ft_printf("Communication with client PID: %d established.\n", pid);
-		state_update();
+		ft_printf("Signal received: %d\tclient: %d\n", signal, ft_static(0, FT_RD, CLIENT));
+		if (!ft_static(0, FT_RD, CLIENT))
+		{
+			pid = info->si_pid, ft_printf("Signal from PID: %d\n", pid);
+			ft_static(true, FT_WR, CLIENT), ft_printf("Communication with client PID: %d established.\n", pid);
+			state_update();
+		}
+		if (pid == info->si_pid)
+		{
+			ft_printf("Communication in progress...\n"), the_reception(signal);
+			if (!context)
+				(void) 0;
+			// if (signal == SIGUSR1)
+			// 	langis = SIGUSR2;
+			// else
+			// 	langis = SIGUSR1;
+			usleep(200);
+			// ft_printf("Back to sender %d\n", langis), kill(pid, langis);
+			ft_printf("Back to sender %d\n", signal), kill(pid, signal);
+		}
 	}
-	ft_printf("Communication in progress...\n"), the_reception(signal);
-	if (!context)
-		(void) 0;
-	if (signal == SIGUSR1)
-		langis = SIGUSR2;
-	else
-		langis = SIGUSR1;
-	usleep(200);
-	ft_printf("Back to sender %d\n", langis), kill(pid, langis);
 }
 
 int	main(void)
@@ -182,7 +213,10 @@ int	main(void)
 	server.sa_flags = SA_SIGINFO;
 	pid = ft_itoa(getpid());
 	if (!pid)
+	{
+		ft_printf("Error getting PID");
 		exit(1);
+	}
 	ft_putendl_fd(pid, 1);
 	free(pid);
 	if (sigaction(SIGUSR1, &server, NULL) == -1 
@@ -192,5 +226,8 @@ int	main(void)
 		exit(EXIT_FAILURE);
 	}
 	while (1)
-		(void) 0;
+	{
+		sleep(1), ft_printf("Timer ticking...\n");
+		timer(0);
+	};
 }

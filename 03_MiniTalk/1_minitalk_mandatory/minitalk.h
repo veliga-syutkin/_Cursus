@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 14:53:44 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/01/10 15:56:50 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/02/14 06:08:04 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,5 @@
 # define PID_RECEPETION 2
 # define MSG_LEN 3
 # define MSG 4
-# define SLEEP 100000 //<- change before submit
-
-void	send_package(char *str, pid_t server, int *state);
-int		send_pid(char *client, pid_t server);
 
 #endif

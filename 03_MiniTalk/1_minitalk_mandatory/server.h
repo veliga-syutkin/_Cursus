@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 05:05:44 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/02/16 17:56:32 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/02/15 14:14:26 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@
 # define SIZE 1
 # define STATE 2
 
-# define FAKE -42
-
 ////////////////////////////////////////////////////////////////////////////////
 				/* SERVER_UTILS */
 ////////////////////////////////////////////////////////////////////////////////
@@ -32,8 +30,6 @@
 short int	ft_static(int data, int flag, int param);
 char		*ft_print_and_free(char *str);
 char		*ft_safelloc(int size);
-int			timer(int call);
-char		timed_buffer(char data, int flag);
 
 ////////////////////////////////////////////////////////////////////////////////
 				/* SERVER */

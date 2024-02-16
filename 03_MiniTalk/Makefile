@@ -23,7 +23,7 @@ CFLAGS = -Wall -Wextra -Werror
 
 CC = gcc
 
-all: $(NAME)
+all: bonus
 
 $(NAME): $(AR) $(SERVER) $(CLIENT)
 
