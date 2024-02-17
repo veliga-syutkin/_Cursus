@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 05:27:13 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/02/16 17:58:37 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/02/16 20:01:07 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 				/* STATIC VARIABLES TO USE ACROSS THE PROGRAM */
 ////////////////////////////////////////////////////////////////////////////////
 
+/* STATIC VARIABLES TO USE ACROSS THE PROGRAM */
 short int	ft_static(int data, int flag, int param)
 {
 	static char	info[3];
@@ -44,17 +45,27 @@ short int	ft_static(int data, int flag, int param)
 	return (0);
 }
 
+/* STATIC VARIABLES TO USE ACROSS THE PROGRAM */
+char	timed_buffer(char data, int flag)
+{
+	static char	buffer;
+
+	if (flag == FT_WR)
+		buffer = data;
+	return (buffer);
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 				/* very tiny so simple and little functions */
 ////////////////////////////////////////////////////////////////////////////////
 
 // STR is printed, freed and given NULL value.
-// Double newline is printed after the string to separate the messages.
+// Triple newline is printed after the string to separate the messages.
 char	*ft_print_and_free(char *str)
 {
 	if (str)
 	{
-		ft_printf("%s\n\n", str);
+		ft_printf("%s\n\n\n", str);
 		free(str);
 	}
 	return (NULL);
@@ -78,6 +89,7 @@ char	*ft_safelloc(int size)
 				/* THE GOOD, THE BAD AND THE UGLY CLIENT */
 ////////////////////////////////////////////////////////////////////////////////
 
+// FAFO
 int	timer(int call)
 {
 	static int	timer;
@@ -93,13 +105,4 @@ int	timer(int call)
 		ft_static(0, FT_WR, STATE);
 	}
 	return (0);
-}
-
-char	timed_buffer(char data, int flag)
-{
-	static char	buffer;
-
-	if (flag == FT_WR)
-		buffer = data;
-	return (buffer);
 }

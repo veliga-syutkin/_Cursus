@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client_sigaction.c                                 :+:      :+:    :+:   */
+/*   client_receptive.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:56:49 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/02/15 14:28:47 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/02/17 10:45:30 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,8 @@ static void	action(int signal)
 		send_package(stockage(0, 0, 4), server, &state);
 	else if (state == MSG)
 		send_package(message, server, &state);
+	if (signal != 0)
+		ft_printf("Signal received from server: %d\n", signal);
 }
 
 /* Main function:

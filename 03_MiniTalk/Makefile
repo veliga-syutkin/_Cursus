@@ -1,17 +1,22 @@
-MANDATORY_FILES =	send.c \
+SERVER_MANDATORY = $(MANDATORY_DIR)server_sigaction.c
+CLIENT_MANDATORY = $(MANDATORY_DIR)client_sigaction.c
+SERVER_BONUS = $(BONUS_DIR)server_sigaction.c
+CLIENT_BONUS = $(BONUS_DIR)client_receptive.c
+SERVER_DEBUG = $(DEBUG_DIR)server_sigaction.c
+CLIENT_DEBUG = $(DEBUG_DIR)client_sigaction.c
+
+MANDATORY_FILES =	server_utils.c \
 
 BONUS_FILES =	server_utils.c \
 
 LIBFT_DIR = ./0_LIBFT/ 
-MANDATORY_DIR = ./1_minitalk/
+MANDATORY_DIR = ./1_minitalk_mandatory/
 BONUS_DIR = ./2_minitalk_bonus/
 DEBUG_DIR = ./3_minitalk_bonus_debug/
 
-MANDATORY = $(MANDATORY_FILES:%=$(MANDATORY_DIR)%)
-BONUS = $(BONUS_FILES:%=$(BONUS_DIR)%)
-DEBUG = $(DEBUG_FILES:%=$(DEBUG_DIR)%)
-
-OBJS = $(SRCS:.c=.o)
+MANDATORY = $(addprefix $(MANDATORY_DIR), $(MANDATORY_FILES))
+BONUS = $(addprefix $(BONUS_DIR), $(BONUS_FILES))
+DEBUG = $(addprefix $(DEBUG_DIR), $(BONUS_FILES))
 
 NAME = minitalk
 CLIENT = client
@@ -23,28 +28,36 @@ CFLAGS = -Wall -Wextra -Werror
 
 CC = gcc
 
-all: bonus
+all: $(NAME)
 
 $(NAME): $(AR) $(SERVER) $(CLIENT)
 
-$(SERVER): $(SRV_SRC) $(AR)
-	$(CC) $(CFLAGS) $(SERVER_SRC) $(AR) -o $(SERVER)
+$(SERVER):
+	$(CC) $(CFLAGS) $(MANDATORY) $(SERVER_MANDATORY) $(AR) -o $(SERVER)
 
-$(CLIENT): $(CLI_SRC) $(AR)
-	$(CC) $(CFLAGS) $(CLI_SRC) $(AR) -o $(CLIENT)
+$(CLIENT):
+	$(CC) $(CFLAGS) $(CLIENT_MANDATORY) $(AR) -o $(CLIENT)
 
 $(AR):
 	make -C $(LIBFT_DIR)
 
 bonus: $(AR) $(BONUS)
-	make -C $(LIBFT_DIR)
-	$(CC) $(CFLAGS) $(BONUS) ./2_minitalk_bonus/server_sigaction.c $(AR) -o $(SERVER)
-	$(CC) $(CFLAGS) ./2_minitalk_bonus/client_sigaction.c $(AR) -o $(CLIENT)
+	$(CC) $(CFLAGS) $(BONUS) $(SERVER_BONUS) $(AR) -o $(SERVER)
+	$(CC) $(CFLAGS) $(CLIENT_BONUS) $(AR) -o $(CLIENT)
 
 debug: $(AR) $(DEBUG)
-	make -C $(LIBFT_DIR)
-	$(CC) $(CFLAGS) $(DEBUG) ./3_minitalk_bonus_debug/server_sigaction.c $(AR) -o $(SERVER)
-	$(CC) $(CFLAGS) ./3_minitalk_bonus_debug/client_sigaction.c $(AR) -o $(CLIENT)
+	$(CC) $(CFLAGS) $(DEBUG) $(SERVER_DEBUG) $(AR) -o $(SERVER)
+	$(CC) $(CFLAGS) $(CLIENT_DEBUG) $(AR) -o $(CLIENT)
+
+run: all
+	./$(SERVER) 
+#	./$(SERVER) & ./$(CLIENT) $$!
+
+bonusrun: bonus
+	./$(SERVER)
+
+debugrun: debug
+	./$(SERVER)
 
 clean:
 	make -C $(LIBFT_DIR) clean
@@ -54,3 +67,5 @@ fclean: clean
 	make -C $(LIBFT_DIR) fclean
 
 re: fclean all
+
+.PHONY: all clean fclean re bonusrun debugrun bonus debug

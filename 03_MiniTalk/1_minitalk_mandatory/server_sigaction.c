@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:56:46 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/02/15 14:14:49 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/02/16 19:44:41 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,14 @@ void	the_reception(int signal)
 	static char			buffer;
 	static short int	call;
 
+	timer(signal);
+	if (signal == FAKE)
+	{
+		buffer = 0;
+		call = 0;
+		ft_static(0, INIT, 0);
+		return ;
+	}
 	if (signal == SIGUSR2)
 		buffer |= 1 << call;
 	else if (signal == SIGUSR1)
@@ -74,8 +82,10 @@ void	the_reception(int signal)
 	call++;
 	if (call == 8)
 	{
-		processing(buffer);
+		timed_buffer(buffer, FT_WR);
+		processing(timed_buffer(0, FT_RD));
 		buffer = 0;
+		timed_buffer(0, FT_WR);
 		call = 0;
 	}
 }
@@ -90,23 +100,26 @@ It receives the signal and the information about the sender.
 void	ft_sig(int signal, siginfo_t *info, void *context)
 {
 	static int	pid;
-	int			langis;
 
-	if (!ft_static(0, FT_RD, CLIENT))
-	{
-		pid = info->si_pid;
-		ft_static(true, FT_WR, CLIENT);
-		state_update();
-	}
-	the_reception(signal);
-	if (!context)
-		(void) 0;
-	if (signal == SIGUSR1)
-		langis = SIGUSR2;
+	if (signal == FAKE)
+		the_reception(signal);
 	else
-		langis = SIGUSR1;
-	usleep(200);
-	kill(pid, langis);
+	{
+		if (!ft_static(0, FT_RD, CLIENT))
+		{
+			pid = info->si_pid;
+			ft_static(true, FT_WR, CLIENT);
+			state_update();
+		}
+		if (pid == info->si_pid)
+		{
+			the_reception(signal);
+			if (!context)
+				(void) 0;
+			usleep(200);
+			kill(pid, signal);
+		}
+	}
 }
 
 /* Main function:
@@ -123,7 +136,10 @@ int	main(void)
 	server.sa_flags = SA_SIGINFO;
 	pid = ft_itoa(getpid());
 	if (!pid)
+	{
+		ft_printf("Error getting PID");
 		exit(1);
+	}
 	ft_putendl_fd(pid, 1);
 	free(pid);
 	if (sigaction(SIGUSR1, &server, NULL) == -1
@@ -133,5 +149,8 @@ int	main(void)
 		exit(EXIT_FAILURE);
 	}
 	while (1)
-		(void) 0;
+	{
+		sleep(1);
+		timer(0);
+	}
 }
