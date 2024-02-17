@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:56:49 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/02/17 10:45:30 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/02/17 15:31:43 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,5 +131,8 @@ int	main(int argc, char **argv)
 	stockage(*(argv + 1), *(argv + 2), 0);
 	action(0);
 	while (1)
-		(void) 0;
+	{
+		sleep(1);
+		bad_pid(0);
+	}
 }
