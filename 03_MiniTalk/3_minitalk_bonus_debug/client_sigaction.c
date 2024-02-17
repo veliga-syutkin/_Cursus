@@ -6,13 +6,15 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:56:49 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/02/15 12:29:40 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/02/17 14:46:46 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // SIGACTION VERSION
 
 #include "minitalk.h"
+
+void bad_pid(int call);
 
 static
 int	send_bit_by_bit(char c, int bit)
@@ -88,6 +90,7 @@ void	action(int signal)
 	static int	server;
 	static char	*message;
 
+	bad_pid(signal);
 	ft_printf("Signal received: %d\n", signal);
 	if (signal == 0)
 	{
@@ -106,6 +109,22 @@ void	action(int signal)
 void	reaction(int signal) // here
 {
 	action(signal);
+}
+
+void bad_pid(int call)
+{
+	static int	timer;
+
+	if (call == SIGUSR1 || call == SIGUSR2)
+		timer = 0;
+	else
+		timer++, ft_printf("Timer: %d\n", timer);
+	if (timer >= 5)
+	{
+		timer = 0;
+		ft_printf("Server is not responding.\n");
+		exit(1);
+	}
 }
 
 int	main(int argc, char **argv)
@@ -132,5 +151,8 @@ int	main(int argc, char **argv)
 	stockage(*(argv + 1), *(argv + 2), 0), ft_printf("Stockage initialized.\n");
 	ft_printf("Starting communication...\n"), action(0);
 	while (1)
-		(void) 0;
+	{
+		sleep(1);
+		bad_pid(0);
+	}
 }

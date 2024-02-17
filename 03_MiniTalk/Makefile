@@ -16,7 +16,7 @@ DEBUG_DIR = ./3_minitalk_bonus_debug/
 
 MANDATORY = $(addprefix $(MANDATORY_DIR), $(MANDATORY_FILES))
 BONUS = $(addprefix $(BONUS_DIR), $(BONUS_FILES))
-DEBUG = $(addprefix $(DEBUG_DIR), $(BONUS_FILES))
+DEBUG = $(addprefix $(DEBUG_DIR), $(DEBUG_FILES))
 
 NAME = minitalk
 CLIENT = client
