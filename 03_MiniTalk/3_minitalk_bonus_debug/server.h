@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 05:05:44 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/02/15 21:53:18 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/02/20 12:35:37 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,13 @@
 # define STATE 2
 
 # define FAKE -42
+
+// Fix-1: client side, add gate 4 to free *len
+// Fix-2: over all, review libft for string functions, no INT only ssize-t
+// Probably implement fixed buffer, to receive unlimited len messages.
+// Fix-3: server side, reset str when string is not complete and client stopped sending signals.
+//		Fix-3: when state = MSG && timer = 5, processing('\0') should be called.
+// Fix-4: makefile should not have relink for bonus. Copy same settings as for all. 
+// Fix-5: EVERY PROJECT, ALL MAKEFILE: GCC ==> CC 
 
 #endif
