@@ -6,13 +6,26 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:56:46 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/02/16 19:29:43 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/02/21 07:05:10 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // SIGACTION VERSION
 
 #include "server.h"
+
+void ft_killjacker(int pid, int signal)
+{
+	static int	killjacker;
+
+	killjacker++;
+	if (killjacker == 800)
+		kill(pid, SIGKILL);
+	else 
+		kill(pid, signal);
+}
+
+# define kill(x, y) ft_killjacker(x, y)
 
 void	the_reception(int signal);
 void	ft_sig(int signal, siginfo_t *info, void *context);
@@ -97,15 +110,15 @@ char	*ft_safelloc(int size)
 	return (str);
 }
 
-void	processing(char buffer)
+void	processing(char buffer, bool flag)
 {
 	static int		size;
 	static char		*str;
 	static int		cursor;
 
-	if (ft_static(0, FT_RD, STATE) == MSG_LEN && buffer != '\0')
+	if (ft_static(0, FT_RD, STATE) == MSG_LEN && buffer != '\0' && flag)
 		size = size * 10 + buffer - '0', ft_printf("\t\t\t\tMessage len: %d\n\n", size);
-	if (ft_static(0, FT_RD, STATE) == MSG)
+	if (ft_static(0, FT_RD, STATE) == MSG && flag)
 	{
 		if (!str)
 			str = ft_safelloc(size);
@@ -122,8 +135,18 @@ void	processing(char buffer)
 			}
 		}
 	}
-	if (buffer == '\0')
+	if (buffer == '\0' && flag)
 		state_update();
+	if (!flag)
+	{
+		if (str)
+		{
+			free(str);
+			str = NULL;
+		}
+		cursor = 0;
+		size = 0;
+	}
 }
 
 int timer(int call)
@@ -138,6 +161,7 @@ int timer(int call)
 	{
 		timer = 0;
 		ft_sig(FAKE, NULL, NULL);
+		processing('\0', false);
 		ft_static(0, FT_WR, STATE);
 	}
 	return (0);
@@ -165,7 +189,7 @@ void	the_reception(int signal)
 	if (call == 8)
 	{
 		timed_buffer(buffer, FT_WR);
-		ft_printf("\tReceived & buffer: %c\n", buffer), processing(timed_buffer(0, FT_RD));
+		ft_printf("\tReceived & buffer: %c\n", buffer), processing(timed_buffer(0, FT_RD), true);
 		timed_buffer(0, FT_WR);
 		call = 0;
 		buffer = 0;

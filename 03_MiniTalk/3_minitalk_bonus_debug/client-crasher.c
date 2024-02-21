@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client_sigaction.c                                 :+:      :+:    :+:   */
+/*   client-crasher.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/11 19:56:49 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/02/21 06:46:56 by vsyutkin         ###   ########.fr       */
+/*   Created: 2024/02/21 04:45:41 by vsyutkin          #+#    #+#             */
+/*   Updated: 2024/02/21 04:56:35 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 #include "minitalk.h"
 
 void bad_pid(int call);
-static
-char	*stockage(char *server, char *data, int gate); 
 
 static
 int	send_bit_by_bit(char c, int bit)
@@ -57,38 +55,34 @@ void	send_package(char *str, pid_t server, int *state)
 	usleep(200);
 	kill(server, send), ft_printf ("Signal sent: %d\n", send);
 	if (*state >= 5)
-		stockage(0, 0, 5);
+		exit(0);
 }
 
 static
-char	*stockage(char *server, char *data, int gate)
+char	*stockage(char *server, char *data, int flag)
 {
 	static char	*server_ptr;
 	static char	*message_ptr;
 	static char	*len;
 
-	if (gate == 0)
+	if (flag == 0)
 	{
 		server_ptr = server, ft_printf("\tServer: %s\n", server_ptr);
 		message_ptr = data, ft_printf("\tMessage: %s\n", message_ptr);
 		len = ft_itoa(ft_strlen(message_ptr) + 1), ft_printf("\tMessage len: %s\n", len);
-		/*CRASH_SHOT:*/
-		// len = ft_itoa(INT_MAX+1), ft_printf("\tMessage len: %s\n", len);
+		// len = ft_itoa(1000), ft_printf("\tMessage len: %s\n", len);
 		if (!len || !server_ptr || !message_ptr)
 		{
 			ft_printf("Internal error.\n");
 			exit(1);
 		}
 	}
-	if (gate == 1)
+	if (flag == 1)
 		return (message_ptr);
-	if (gate == 2)
+	if (flag == 2)
 		return (server_ptr);
-	if (gate == 5)
-	{
-		free(len);
-		exit(0);
-	}
+	// if (flag == 4)
+	// 	free(len);
 	return (len);
 }
 
