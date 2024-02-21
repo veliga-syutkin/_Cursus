@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:56:46 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/02/16 19:44:41 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/02/21 09:13:06 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,33 +29,24 @@ void	state_update(void)
 	- If the static variable is MSG, it saves the message and prints it.
 	- If the static variable is not MSG, it updates the state.
 */
-void	processing(char buffer)
+void	processing(char buffer, bool flag)
 {
-	static int		size;
 	static char		*str;
-	static int		cursor;
+	static int		size;
 
-	if (ft_static(0, FT_RD, STATE) == MSG_LEN && buffer != '\0')
+	if (ft_static(0, FT_RD, STATE) == MSG_LEN && buffer != '\0' && flag)
 		size = size * 10 + buffer - '0';
-	if (ft_static(0, FT_RD, STATE) == MSG)
+	if (ft_static(0, FT_RD, STATE) == MSG && flag)
 	{
 		if (!str)
 			str = ft_safelloc(size);
 		if (str)
-		{
-			str[cursor] = buffer;
-			cursor++;
-			if (cursor == size)
-			{
-				cursor = 0;
-				size = 0;
-				str = ft_print_and_free(str);
-				ft_static(0, INIT, 0);
-			}
-		}
+			ft_print_andor_free(str, buffer, &size, flag);
 	}
-	if (buffer == '\0')
+	if (buffer == '\0' && flag)
 		state_update();
+	if (!flag)
+		ft_print_andor_free(str, buffer, &size, flag);
 }
 
 /* The reception function, aka the modulator.
@@ -83,10 +74,10 @@ void	the_reception(int signal)
 	if (call == 8)
 	{
 		timed_buffer(buffer, FT_WR);
-		processing(timed_buffer(0, FT_RD));
-		buffer = 0;
+		processing(timed_buffer(0, FT_RD), true);
 		timed_buffer(0, FT_WR);
 		call = 0;
+		buffer = 0;
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 05:05:44 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/02/21 05:36:25 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/02/21 07:41:58 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,7 @@
 // [ DONE ] Fix-1: client side, add gate 4 to free *len
 // [ DEPRECATED ] Fix-2: over all, review libft for string functions, no INT only ssize-t
 // [ IMPOSSIBLE BC SUBJECT ] Probably implement fixed buffer, to receive unlimited len messages.
-// Fix-3: server side, reset str when string is not complete and client stopped sending signals.
-//		when state = MSG && timer = 5, processing('\0') should be called.
+// [ DONE ] Fix-3: server side, reset str when string is not complete and client stopped sending signals.
 // Fix-4: makefile should not have relink for bonus. Copy same settings as for all. 
 // Fix-5: EVERY PROJECT, ALL MAKEFILE: GCC ==> CC 
 

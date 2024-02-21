@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:56:49 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/02/17 15:31:43 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/02/21 08:54:05 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	send_package(char *str, pid_t server, int *state)
 	usleep(200);
 	kill(server, send);
 	if (*state >= 5)
-		exit(0);
+		stockage(0, 0, 5);
 }
 
 /* The main tank of the program
@@ -80,6 +80,11 @@ char	*stockage(char *server, char *data, int gate)
 		return (message_ptr);
 	if (gate == 2)
 		return (server_ptr);
+	if (gate == 5)
+	{
+		free(len);
+		exit(0);
+	}
 	return (len);
 }
 
@@ -94,6 +99,7 @@ static void	action(int signal)
 	static int	server;
 	static char	*message;
 
+	bad_pid(signal);
 	if (signal == 0)
 	{
 		server = ft_atoi(stockage(0, 0, 2));

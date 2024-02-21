@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client_sigaction.c                                 :+:      :+:    :+:   */
+/*   client_receptive.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:56:49 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/02/21 08:52:48 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/02/21 12:46:20 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 
 #include "minitalk.h"
 
+static
+char
+
 void bad_pid(int call);
 
-static
 char	*stockage(char *server, char *data, int gate); 
 
-static
 int	send_bit_by_bit(char c, int bit)
 {
 	if (c & 1 << bit)
@@ -61,7 +62,6 @@ void	send_package(char *str, pid_t server, int *state)
 		stockage(0, 0, 5);
 }
 
-static
 char	*stockage(char *server, char *data, int gate)
 {
 	static char	*server_ptr;
@@ -71,7 +71,7 @@ char	*stockage(char *server, char *data, int gate)
 	if (gate == 0)
 	{
 		server_ptr = server, ft_printf("\tServer: %s\n", server_ptr);
-		message_ptr = data, ft_printf("\tMessage: %s\n", message_ptr);
+		message_ptr = ft_itoa(data), ft_printf("\tMessage: %s\n", message_ptr);
 		len = ft_itoa(ft_strlen(message_ptr) + 1), ft_printf("\tMessage len: %s\n", len);
 		/*CRASH_SHOT:*/
 		// len = ft_itoa(INT_MAX+1), ft_printf("\tMessage len: %s\n", len);
@@ -93,7 +93,6 @@ char	*stockage(char *server, char *data, int gate)
 	return (len);
 }
 
-static
 void	action(int signal)
 {
 	static int	state;

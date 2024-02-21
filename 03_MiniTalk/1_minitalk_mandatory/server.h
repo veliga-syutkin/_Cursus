@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 05:05:44 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/02/16 17:56:32 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/02/21 07:55:41 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,19 +30,18 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 short int	ft_static(int data, int flag, int param);
-char		*ft_print_and_free(char *str);
+char		timed_buffer(char data, int flag);
+void		ft_print_andor_free(char *str, char buffer, int *size, int flag);
 char		*ft_safelloc(int size);
 int			timer(int call);
-char		timed_buffer(char data, int flag);
 
 ////////////////////////////////////////////////////////////////////////////////
 				/* SERVER */
 ////////////////////////////////////////////////////////////////////////////////
 
 void		state_update(void);
-void		processing(char buffer);
+void		processing(char buffer, bool flag);
 void		the_reception(int signal);
 void		ft_sig(int signal, siginfo_t *info, void *context);
-void		ft_perror(char *str);
 
 #endif

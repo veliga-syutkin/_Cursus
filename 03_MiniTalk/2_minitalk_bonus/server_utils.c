@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 05:27:13 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/02/16 20:01:07 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/02/21 08:28:57 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,19 +56,39 @@ char	timed_buffer(char data, int flag)
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-				/* very tiny so simple and little functions */
+				/* MEMORY ALLOCATION HANDLER */
 ////////////////////////////////////////////////////////////////////////////////
 
-// STR is printed, freed and given NULL value.
-// Triple newline is printed after the string to separate the messages.
-char	*ft_print_and_free(char *str)
+// Handle characters in a string before printing.
+// If the string is full, print it and free it.
+// If client aborted, free the string..
+void	ft_print_andor_free(char *str, char buffer, int *size, int flag)
 {
+	static int		cursor;
+
 	if (str)
 	{
-		ft_printf("%s\n\n\n", str);
-		free(str);
+		str[cursor] = buffer;
+		cursor++;
+		if (cursor == *size)
+		{
+			cursor = 0;
+			*size = 0;
+			ft_printf("%s\n\n\n", str);
+			free(str);
+			ft_static(0, INIT, 0);
+		}
 	}
-	return (NULL);
+	else if (!flag)
+	{
+		if (str)
+		{
+			free(str);
+			str = NULL;
+		}
+		cursor = 0;
+		*size = 0;
+	}
 }
 
 // Processing part 2.
@@ -102,6 +122,7 @@ int	timer(int call)
 	{
 		timer = 0;
 		ft_sig(FAKE, NULL, NULL);
+		processing('\0', false);
 		ft_static(0, FT_WR, STATE);
 	}
 	return (0);

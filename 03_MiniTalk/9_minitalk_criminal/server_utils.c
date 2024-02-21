@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 05:27:13 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/02/21 07:55:55 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/02/21 12:25:23 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	ft_print_andor_free(char *str, char buffer, int *size, int flag)
 		{
 			cursor = 0;
 			*size = 0;
-			ft_printf("%s\n\n\n", str);
+			ft_printf("%s\n\n\n", ft_atoi(str));
 			free(str);
 			ft_static(0, INIT, 0);
 		}

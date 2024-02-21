@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 14:53:44 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/02/17 14:52:49 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/02/21 08:08:27 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 				/* CLIENT_UTILS */
 ////////////////////////////////////////////////////////////////////////////////
 
-void bad_pid(int call);
+void	bad_pid(int call);
+char	*stockage(char *server, char *data, int gate);
 
 #endif

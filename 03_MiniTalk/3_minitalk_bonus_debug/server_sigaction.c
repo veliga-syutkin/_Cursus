@@ -6,26 +6,13 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:56:46 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/02/21 07:05:10 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/02/21 09:17:20 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // SIGACTION VERSION
 
 #include "server.h"
-
-void ft_killjacker(int pid, int signal)
-{
-	static int	killjacker;
-
-	killjacker++;
-	if (killjacker == 800)
-		kill(pid, SIGKILL);
-	else 
-		kill(pid, signal);
-}
-
-# define kill(x, y) ft_killjacker(x, y)
 
 void	the_reception(int signal);
 void	ft_sig(int signal, siginfo_t *info, void *context);
@@ -110,34 +97,24 @@ char	*ft_safelloc(int size)
 	return (str);
 }
 
-void	processing(char buffer, bool flag)
+void	ft_print_andor_free(char *str, char buffer, int *size, int flag)
 {
-	static int		size;
-	static char		*str;
 	static int		cursor;
 
-	if (ft_static(0, FT_RD, STATE) == MSG_LEN && buffer != '\0' && flag)
-		size = size * 10 + buffer - '0', ft_printf("\t\t\t\tMessage len: %d\n\n", size);
-	if (ft_static(0, FT_RD, STATE) == MSG && flag)
+	if (str)
 	{
-		if (!str)
-			str = ft_safelloc(size);
-		if (str)
+		str[cursor] = buffer;
+		cursor++;
+		if (cursor == *size)
 		{
-			str[cursor] = buffer, ft_printf("\tCursor: %d \t MSG: %s \tBuffer: %c\n", cursor, str, buffer);
-			cursor++;
-			if (cursor == size)
-			{
-				cursor = 0;
-				size = 0;
-				str = ft_print_and_free(str), ft_printf("\t <-- HERE'S THE MESSAGE\n"), ft_printf("Memory freed.\n");
-				ft_static(0, INIT, 0), ft_printf("State updatedn't: %d\n", ft_static(0, FT_RD, STATE));
-			}
+			cursor = 0;
+			*size = 0;
+			ft_printf("%s\n\n\n", str);
+			free(str);
+			ft_static(0, INIT, 0);
 		}
 	}
-	if (buffer == '\0' && flag)
-		state_update();
-	if (!flag)
+	else if (!flag)
 	{
 		if (str)
 		{
@@ -145,8 +122,28 @@ void	processing(char buffer, bool flag)
 			str = NULL;
 		}
 		cursor = 0;
-		size = 0;
+		*size = 0;
 	}
+}
+
+void	processing(char buffer, bool flag)
+{
+	static char		*str;
+	static int		size;
+
+	if (ft_static(0, FT_RD, STATE) == MSG_LEN && buffer != '\0' && flag)
+		size = size * 10 + buffer - '0';
+	if (ft_static(0, FT_RD, STATE) == MSG && flag)
+	{
+		if (!str)
+			str = ft_safelloc(size);
+		if (str)
+			ft_print_andor_free(str, buffer, &size, flag);
+	}
+	if (buffer == '\0' && flag)
+		state_update();
+	if (!flag)
+		ft_print_andor_free(str, buffer, &size, flag);
 }
 
 int timer(int call)
@@ -189,7 +186,8 @@ void	the_reception(int signal)
 	if (call == 8)
 	{
 		timed_buffer(buffer, FT_WR);
-		ft_printf("\tReceived & buffer: %c\n", buffer), processing(timed_buffer(0, FT_RD), true);
+		ft_printf("\tReceived & buffer: %c\n", buffer);
+		processing(timed_buffer(0, FT_RD), true);
 		timed_buffer(0, FT_WR);
 		call = 0;
 		buffer = 0;
@@ -214,7 +212,8 @@ void	ft_sig(int signal, siginfo_t *info, void *context)
 		}
 		if (pid == info->si_pid)
 		{
-			ft_printf("Communication in progress...\n"), the_reception(signal);
+			ft_printf("Communication in progress...\n");
+			the_reception(signal);
 			if (!context)
 				(void) 0;
 			// if (signal == SIGUSR1)
@@ -223,7 +222,8 @@ void	ft_sig(int signal, siginfo_t *info, void *context)
 			// 	langis = SIGUSR1;
 			usleep(200);
 			// ft_printf("Back to sender %d\n", langis), kill(pid, langis);
-			ft_printf("Back to sender %d\n", signal), kill(pid, signal);
+			ft_printf("Back to sender %d\n", signal);
+			kill(pid, signal);
 		}
 	}
 }
@@ -251,7 +251,7 @@ int	main(void)
 	}
 	while (1)
 	{
-		sleep(1), ft_printf("Timer ticking...\n");
+		sleep(1), ft_printf("Timer ticking...\t");
 		timer(0);
 	};
 }
