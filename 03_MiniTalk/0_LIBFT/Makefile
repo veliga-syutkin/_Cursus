@@ -68,7 +68,7 @@ MAIN = main.c
 EXE = ULTIMATE_PROGRAM.EXE
 
 .c.o: 
-	gcc $(CFLAGS) -c $< -o ${<:.c=.o}
+	cc $(CFLAGS) -c $< -o ${<:.c=.o}
 
 all: $(NAME)
 
