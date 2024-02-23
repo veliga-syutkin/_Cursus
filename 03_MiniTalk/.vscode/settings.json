@@ -7,5 +7,12 @@
 		"libft.h": "c",
 		"minitalk.h": "c",
 		"stdio.h": "c"
-	}
+	},
+	"makefile.launchConfigurations": [
+		{
+			"cwd": "/home/vsyutkin/_CURSUS/03_MiniTalk",
+			"binaryPath": "/home/vsyutkin/_CURSUS/03_MiniTalk/server_debug",
+			"binaryArgs": []
+		}
+	]
 }
