@@ -158,7 +158,7 @@ git_cursus:
 	git status
 	git commit -m "😏👌 Updated via Makefile(tm) 😏👌"
 	git push
-	@echo "For detailing commit, please do git pushing manually. Thank you."
+	@echo "\n\tFor detailing commit, please do git pushing manually. Thank you."
 
 # ############################################################################ #
 #								# PHONY #									   #
