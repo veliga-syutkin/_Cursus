@@ -40,8 +40,6 @@ BONUS_DIR = ./2_minitalk_bonus/
 DEBUG_DIR = ./3_minitalk_bonus_debug/
 CRIMINAL_DIR = ./9_minitalk_criminal/
 
-CURSUS_DIR = ../../_CURSUS/
-
 # ############################################################################ #
 #						# END_FILES DECLARATIONS #							   #
 # ############################################################################ #
@@ -125,6 +123,15 @@ re: fclean all
 #							# SUBMITTING #									   #
 # ############################################################################ #
 
+git:
+	@echo "norminette"
+	@echo "git_norminette"
+	@echo "git_auto"
+	@echo "git_push"
+	@echo "git_fpush"
+	@echo "git_status"
+	@echo "git_cursus"
+
 norminette:
 	norminette
 
@@ -132,8 +139,7 @@ git_norminette:
 	norminette
 
 # DO NOT USE THIS UNLESS YOU'RE SURE
-git_auto:
-	fclean
+git_auto:	fclean
 	git add *
 	git commit -m "😏👌 Updated via Makefile(tm) 😏👌"
 	git push
@@ -149,9 +155,6 @@ git_fpush:
 git_status:
 	git status
 
-CURSUS_MSG_AUTO = "😏👌 Updated via Makefile(tm) 😏👌, Commit states:"
-DQUOTE = "
-
 git_cursus:
 	@echo "Pushing to _CURSUS (the personal private github)..."
 	git add ../*
@@ -165,7 +168,7 @@ git_cursus:
 # ############################################################################ #
 
 .PHONY: all clean fclean re bonus debug combo norminette \
-		git_norminette git_auto git_push git_fpush git_status
+		git git_norminette git_auto git_push git_fpush git_status git_cursus
 # .PHONY is used to declare phony targets. When a target is phony, it will
 # run the target rather do something to a file. 
 # 	Check "Makefile Implicit Rules - Phony" for more info.
