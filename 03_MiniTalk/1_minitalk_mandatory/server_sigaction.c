@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:56:46 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/02/23 02:01:04 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/02/23 06:24:35 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	the_reception(int signal)
 	{
 		buffer = 0;
 		call = 0;
-		ft_static(0, INIT, 0);
+		ft_static(0, INIT, CLIENT);
 		return ;
 	}
 	if (signal == SIGUSR2)
@@ -107,7 +107,7 @@ void	ft_sig(int signal, siginfo_t *info, void *context)
 			the_reception(signal);
 			if (!context)
 				(void) 0;
-			usleep(200);
+			usleep(SLEEP);
 			kill(pid, signal);
 		}
 	}
