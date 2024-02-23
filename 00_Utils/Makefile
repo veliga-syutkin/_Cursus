@@ -149,13 +149,15 @@ git_fpush:
 git_status:
 	git status
 
+CURSUS_MSG_COMMIT = "😏👌 Updated via Makefile(tm) 😏👌, Commit states:"
+
 git_cursus:
 	@echo "Pushing to _CURSUS (the personal private github)..."
 	git add ../*
 	git status
 	@echo "Commit:"; \
 	read COMMIT; \
-	git commit -m "_CURSUS 😏👌 Updated via Makefile(tm) 😏👌, Commit states: $$(COMMIT)"
+	git commit -m $(CURSUS_MSG_COMMIT) $$(COMMIT)
 	git push
 
 # ############################################################################ #
