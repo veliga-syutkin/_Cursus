@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 05:05:44 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/02/21 07:55:41 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/02/23 02:02:40 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 
 short int	ft_static(int data, int flag, int param);
 char		timed_buffer(char data, int flag);
-void		ft_print_andor_free(char *str, char buffer, int *size, int flag);
+void		ft_print_andor_free(char **str, char buffer, int *size, int flag);
 char		*ft_safelloc(int size);
 int			timer(int call);
 

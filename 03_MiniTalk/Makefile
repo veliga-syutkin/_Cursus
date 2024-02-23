@@ -80,7 +80,7 @@ AR = ./0_LIBFT/libft.a
 #								# MACROS #									   #
 # ############################################################################ #
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g3
 
 CC = cc
 

@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:56:46 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/02/21 09:13:06 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/02/23 02:01:04 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ void	processing(char buffer, bool flag)
 		if (!str)
 			str = ft_safelloc(size);
 		if (str)
-			ft_print_andor_free(str, buffer, &size, flag);
+			ft_print_andor_free(&str, buffer, &size, flag);
 	}
+	if (!flag)
+		ft_print_andor_free(&str, buffer, &size, flag);
 	if (buffer == '\0' && flag)
 		state_update();
-	if (!flag)
-		ft_print_andor_free(str, buffer, &size, flag);
 }
 
 /* The reception function, aka the modulator.
@@ -75,9 +75,9 @@ void	the_reception(int signal)
 	{
 		timed_buffer(buffer, FT_WR);
 		processing(timed_buffer(0, FT_RD), true);
+		buffer = 0;
 		timed_buffer(0, FT_WR);
 		call = 0;
-		buffer = 0;
 	}
 }
 

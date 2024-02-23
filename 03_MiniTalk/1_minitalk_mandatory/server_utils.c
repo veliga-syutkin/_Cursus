@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 05:27:13 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/02/21 07:55:55 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/02/23 02:33:30 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,30 +62,28 @@ char	timed_buffer(char data, int flag)
 // Handle characters in a string before printing.
 // If the string is full, print it and free it.
 // If client aborted, free the string..
-void	ft_print_andor_free(char *str, char buffer, int *size, int flag)
+void	ft_print_andor_free(char **str, char buffer, int *size, int flag)
 {
 	static int		cursor;
 
-	if (str)
+	if (str && *str && flag)
 	{
-		str[cursor] = buffer;
+		(*str)[cursor] = buffer;
 		cursor++;
 		if (cursor == *size)
 		{
 			cursor = 0;
 			*size = 0;
-			ft_printf("%s\n\n\n", str);
-			free(str);
+			ft_printf("%s\n\n\n", *str);
+			free(*str);
+			*str = NULL;
 			ft_static(0, INIT, 0);
 		}
 	}
-	else if (!flag)
+	if (!flag)
 	{
-		if (str)
-		{
-			free(str);
-			str = NULL;
-		}
+		free(*str);
+		*str = NULL;
 		cursor = 0;
 		*size = 0;
 	}
@@ -120,9 +118,9 @@ int	timer(int call)
 		timer++;
 	if (timer >= 5)
 	{
+		processing('\0', false);
 		timer = 0;
 		ft_sig(FAKE, NULL, NULL);
-		processing('\0', false);
 		ft_static(0, FT_WR, STATE);
 	}
 	return (0);
