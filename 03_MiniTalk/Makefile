@@ -17,12 +17,6 @@ CLIENT_BONUS_FILES = 	client_receptive.c \
 SERVER_DEBUG_FILES = server_sigaction.c
 CLIENT_DEBUG_FILES = client_sigaction.c
 
-SERVER_CRIMINAL_FILES =	server_sigaction.c \
-						server_utils.c
-
-CLIENT_CRIMINAL_FILES =	client_receptive.c \
-						client_utils.c
-
 # ############################################################################ #
 #							# PATH DECLARATIONS #							   #
 # ############################################################################ #
@@ -35,9 +29,6 @@ CLIENT_BONUS = $(addprefix $(BONUS_DIR), $(CLIENT_BONUS_FILES))
 
 SERVER_DEBUG = $(addprefix $(DEBUG_DIR), $(SERVER_DEBUG_FILES))
 CLIENT_DEBUG = $(addprefix $(DEBUG_DIR), $(CLIENT_DEBUG_FILES))
-
-SERVER_CRIMINAL = $(addprefix $(CRIMINAL_DIR), $(SERVER_CRIMINAL_FILES))
-CLIENT_CRIMINAL = $(addprefix $(CRIMINAL_DIR), $(CLIENT_CRIMINAL_FILES))
 
 # ############################################################################ #
 #						# DIRECTORY DECLARATIONS #							   #
@@ -65,14 +56,9 @@ NAME_DEBUG = minitalk_bonus_debug
 SERVERDEBUG = server_debug
 CLIENTDEBUG = client_debug
 
-NAME_CRIMINAL = minitalk_criminal
-SERVERCRIMINAL = server_criminal
-CLIENTCRIMINAL = client_criminal
-
 NAMES =	$(SERVERMANDATORY) $(CLIENTMANDATORY) \
 		$(SERVERBONUS) $(CLIENTBONUS) \
 		$(SERVERDEBUG) $(CLIENTDEBUG) \
-		$(SERVERCRIMINAL) $(CLIENTCRIMINAL)
 
 AR = ./0_LIBFT/libft.a
 
@@ -117,32 +103,10 @@ $(SERVERBONUS):
 
 $(CLIENTBONUS):
 	$(CC) $(CFLAGS) $(CLIENT_BONUS) $(AR) -o $(CLIENTBONUS)
-
 # ############################################################################ #
-#								# DEBUG #									   #
+#								# CUSTOM #									   #
 
-debug: $(NAME_DEBUG)
-
-$(NAME_DEBUG): $(AR) $(SERVERDEBUG) $(CLIENTDEBUG)
-
-$(SERVERDEBUG):
-	$(CC) $(CFLAGS) $(SERVER_DEBUG) $(AR) -o $(SERVERDEBUG)
-
-$(CLIENTDEBUG):
-	$(CC) $(CFLAGS) $(CLIENT_DEBUG) $(AR) -o $(CLIENTDEBUG)
-
-# ############################################################################ #
-#								# CRIMINAL #									   #
-
-criminal: $(NAME_CRIMINAL)
-
-$(NAME_CRIMINAL): $(AR) $(SERVERCRIMINAL) $(CLIENTCRIMINAL)
-
-$(SERVERCRIMINAL):
-	$(CC) $(CFLAGS) $(SERVER_CRIMINAL) $(AR) -o $(SERVERCRIMINAL)
-
-$(CLIENTCRIMINAL):
-	$(CC) $(CFLAGS) $(CLIENT_CRIMINAL) $(AR) -o $(CLIENTCRIMINAL)
+combo: all bonus debug
 
 # ############################################################################ #
 
@@ -156,7 +120,55 @@ fclean: clean
 re: fclean all
 
 # ############################################################################ #
+#							# SUBMITTING #									   #
+# ############################################################################ #
 
-combo: all bonus debug
+git:
+	@echo "norminette"
+	@echo "git_norminette"
+	@echo "git_auto"
+	@echo "git_push"
+	@echo "git_fpush"
+	@echo "git_status"
+	@echo "git_cursus"
 
-.PHONY: all clean fclean re bonus debug combo
+norminette:
+	norminette
+
+git_norminette:
+	norminette
+
+# DO NOT USE THIS UNLESS YOU'RE SURE
+git_auto:	fclean
+	git add *
+	git commit -m "😏👌 Updated via Makefile(tm) 😏👌"
+	git push
+
+git_push:
+	@echo Pushing if norminette OK...
+	./norminette_before_push.sh
+
+git_fpush:
+	@echo Pushing without norminette...
+	git_auto
+
+git_status:
+	git status
+
+git_cursus:
+	@echo "Pushing to _CURSUS (the personal private github)..."
+	git add ../*
+	git status
+	git commit -m "😏👌 Updated via Makefile(tm) 😏👌"
+	git push
+	@echo "\n\tFor detailing commit, please do git pushing manually. Thank you."
+
+# ############################################################################ #
+#								# PHONY #									   #
+# ############################################################################ #
+
+.PHONY: all clean fclean re bonus debug combo norminette \
+		git git_norminette git_auto git_push git_fpush git_status git_cursus
+# .PHONY is used to declare phony targets. When a target is phony, it will
+# run the target rather do something to a file. 
+# 	Check "Makefile Implicit Rules - Phony" for more info.
