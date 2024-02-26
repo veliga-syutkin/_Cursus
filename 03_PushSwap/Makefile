@@ -1,66 +1,174 @@
-SOLVER =	main.c \
-			check.c \
-			dquote.c \
-			error.c \
-			find_cost.c \
-			list_utils.c \
-			list.c \
-			push.c \
-			reset.c \
-			rotate.c \
-			setup.c \
-			solve_3.c \
-			solve.c \
-			stak_a.c \
-			swap.c \
+# ############################################################################ #
+#							# SOURCES DECLARATIONS #						   #
+# ############################################################################ #
 
-LIBFT_DIR = ./0_LIBFT/
+SERVER_FILES = 	server_sigaction.c \
+				server_utils.c
 
-SOLVER_DIR = ./1_SOLVER/
+CLIENT_FILES =	client_sigaction.c \
+				client_utils.c
 
-SRCS = $(addprefix $(SOLVER_DIR), $(SOLVER))
+SERVER_BONUS_FILES =	server_sigaction.c \
+						server_utils.c
 
-OBJS = $(SRCS:.c=.o)
+CLIENT_BONUS_FILES = 	client_receptive.c \
+						client_utils.c
 
-AR = ./libft.a 
+SERVER_DEBUG_FILES = server_sigaction.c
+CLIENT_DEBUG_FILES = client_sigaction.c
 
-RM = rm -f 
+# ############################################################################ #
+#							# PATH DECLARATIONS #							   #
+# ############################################################################ #
 
-CFLAGS = -Wall -Wextra -Werror
+SERVER_MANDATORY = $(addprefix $(MANDATORY_DIR), $(SERVER_FILES))
+CLIENT_MANDATORY = $(addprefix $(MANDATORY_DIR), $(CLIENT_FILES))
 
-NAME = push_swap
+SERVER_BONUS = $(addprefix $(BONUS_DIR), $(SERVER_BONUS_FILES))
+CLIENT_BONUS = $(addprefix $(BONUS_DIR), $(CLIENT_BONUS_FILES))
+
+SERVER_DEBUG = $(addprefix $(DEBUG_DIR), $(SERVER_DEBUG_FILES))
+CLIENT_DEBUG = $(addprefix $(DEBUG_DIR), $(CLIENT_DEBUG_FILES))
+
+# ############################################################################ #
+#						# DIRECTORY DECLARATIONS #							   #
+# ############################################################################ #
+
+LIBFT_DIR = ./0_LIBFT/ 
+MANDATORY_DIR = ./1_minitalk_mandatory/
+BONUS_DIR = ./2_minitalk_bonus/
+DEBUG_DIR = ./3_minitalk_bonus_debug/
+CRIMINAL_DIR = ./9_minitalk_criminal/
+
+# ############################################################################ #
+#						# END_FILES DECLARATIONS #							   #
+# ############################################################################ #
+
+NAME = minitalk
+SERVERMANDATORY = server
+CLIENTMANDATORY = client
+
+NAME_BONUS = minitalk_bonus
+SERVERBONUS = server_bonus
+CLIENTBONUS = client_bonus
+
+NAME_DEBUG = minitalk_bonus_debug
+SERVERDEBUG = server_debug
+CLIENTDEBUG = client_debug
+
+NAMES =	$(SERVERMANDATORY) $(CLIENTMANDATORY) \
+		$(SERVERBONUS) $(CLIENTBONUS) \
+		$(SERVERDEBUG) $(CLIENTDEBUG) \
+
+AR = ./0_LIBFT/libft.a
+
+# ############################################################################ #
+#								# MACROS #									   #
+# ############################################################################ #
+
+CFLAGS = -Wall -Wextra -Werror -g3
+
+CC = cc
+
+RM = rm -f
+
+ARMAKE = make -C $(LIBFT_DIR)
+
+# ############################################################################ #
+#							# RULES DECLARATIONS #							   #
+# ############################################################################ #
 
 all: $(NAME)
 
-$(AR): $(OBJS) 
-	make -C $(LIBFT_DIR) 
+$(NAME): $(AR) $(SERVERMANDATORY) $(CLIENTMANDATORY)
 
-$(NAME): $(OBJS) $(AR) 
-	$(CC) $(CFLAGS) $(OBJS) $(AR) -o $(NAME)
+$(SERVERMANDATORY):
+	$(CC) $(CFLAGS) $(SERVER_MANDATORY) $(AR) -o $(SERVERMANDATORY)
 
-clean: 
-	make -C $(LIBFT_DIR) clean
-	$(RM) $(OBJS) 
+$(CLIENTMANDATORY):
+	$(CC) $(CFLAGS) $(CLIENT_MANDATORY) $(AR) -o $(CLIENTMANDATORY)
 
-fclean: clean 
-	make -C $(LIBFT_DIR) fclean
-	$(RM) $(AR) $(PARASITE) $(NAME)
+$(AR):
+	make -C $(LIBFT_DIR)
 
-mini: main clean
+# ############################################################################ #
+#								# BONUS #									   #
+
+bonus: $(NAME_BONUS)
+
+$(NAME_BONUS): $(AR) $(SERVERBONUS) $(CLIENTBONUS)
+
+$(SERVERBONUS):
+	$(CC) $(CFLAGS) $(SERVER_BONUS) $(AR) -o $(SERVERBONUS)
+
+$(CLIENTBONUS):
+	$(CC) $(CFLAGS) $(CLIENT_BONUS) $(AR) -o $(CLIENTBONUS)
+# ############################################################################ #
+#								# CUSTOM #									   #
+
+combo: all bonus debug
+
+# ############################################################################ #
+
+clean:
+	$(ARMAKE) clean
+
+fclean: clean
+	$(RM) $(NAMES)
+	$(ARMAKE) fclean
 
 re: fclean all
 
-exe: all
-	./$(NAME) 
-	
-new: all 
-	./$(NAME) 228 172 -370 -268 -495 -416 -195 467 199 -80 -137 -42 47 49 -38 55 367 -266 288 396 -40 -360 198 -222 -316 68 -294 351 19 -50 493 336 -335 118 317 -150 399 -325 393 142 -350 51 -245 241 -475 80 192 -146 -238 -353 296 -292 -253 406 177 457 490 116 -260 -240 234 -201 382 -480 -19 79 45 -184 305 -111 -259 209 -446 447 -132 466 -48 112 -349 346 -119 -113 71 -368 -59 -186 -315 -68 130 -94 6 473 -414 414 -421 -249 -306 -387 -224 441 377 257 369 324 423 161 -217 316 153 254 353 -434 400 426 -397 459 -364 123 67 380 374 -79 126 313 0 -311 -172 -417 242 425 -459 278 281 464 -340 -91 173 259 412 -135 -440 -500 -12 -324 350 -44 -450 454 222 81 -131 -155 110 -447 357 -45 83 -83 390 233 480 244 8 -187 -174 -308 483 225 474 -403 -202 335 -380 365 -465 308 -331 261 -85 477 -466 188 -312 -400 91 354 -299 364 -152 375 -15 -58 -144 427 175 -27 -303 -214 -185 315 388 -477 -449 398 -190 70 -198 -17 -175 96 366 347 428 -26 -378 327 -156 -330 -170 82 249 -54 395 -197 92 -129 194 -73 -53 -326 159 56 100 -203 383 -445 420 405 -126 320 -56 291 -96 -252 1 -443 372 478 -457 -305 -228 -301 -128 38 216 -442 -386 152 -339 41 -165 -321 -361 -57 205 -399 -121 345 402 -211 284 227 253 226 -218 -276 492 50 -61 -313 -16 180 -32 179 -162 231 245 499 488 -490 -216 -344 440 455 -405 -220 344 -223 -369 95 -227 481 -470 -485 -469 3 433 -251 -64 129 221 -166 -433 -289 410 -392 20 -139 12 76 18 -31 125 26 -448 182 22 -231 -180 201 -478 -13 139 169 334 -194 -34 120 -145 450 -77 403 -164 223 271 39 -295 389 156 392 358 -120 -345 -208 -362 64 145 -381 -28 -41 -300 -89 -322 348 121 338 133 282 -499 -90 462 29 -60 119 269 -473 32 -169 422 251 -2 87 247 268 -410 452 290 262 -320 -348 274 -488 42 -115 27 160 -439 -219 -49 325 149 266 -317 355 294 309 -287 -281 65 469 28 -329 256 114 -29 449 401 -376 -436 -491 273 -347 475 -246 -138 10 -272 379 -298 -173 -258 -269 376 -234 158 189 -178 -47 430 453 -366 -109 -435 287 -233 280 -232 30 444 -463 84 -492 413 -409 -9 -452 -293 330 187 102 -30 239 341 24 485 371 -333 267 54 109 218 -411 60 -134 -367 -43 -431 246 89 -487 69 -188 460 94 378 391 25 -453 438 -161 434 -270 -398 137 -192 -261 17 220 370 107 -1 | wc -l
+# ############################################################################ #
+#							# SUBMITTING #									   #
+# ############################################################################ #
 
-old: all
-	./push_swap_old 228 172 -370 -268 -495 -416 -195 467 199 -80 -137 -42 47 49 -38 55 367 -266 288 396 -40 -360 198 -222 -316 68 -294 351 19 -50 493 336 -335 118 317 -150 399 -325 393 142 -350 51 -245 241 -475 80 192 -146 -238 -353 296 -292 -253 406 177 457 490 116 -260 -240 234 -201 382 -480 -19 79 45 -184 305 -111 -259 209 -446 447 -132 466 -48 112 -349 346 -119 -113 71 -368 -59 -186 -315 -68 130 -94 6 473 -414 414 -421 -249 -306 -387 -224 441 377 257 369 324 423 161 -217 316 153 254 353 -434 400 426 -397 459 -364 123 67 380 374 -79 126 313 0 -311 -172 -417 242 425 -459 278 281 464 -340 -91 173 259 412 -135 -440 -500 -12 -324 350 -44 -450 454 222 81 -131 -155 110 -447 357 -45 83 -83 390 233 480 244 8 -187 -174 -308 483 225 474 -403 -202 335 -380 365 -465 308 -331 261 -85 477 -466 188 -312 -400 91 354 -299 364 -152 375 -15 -58 -144 427 175 -27 -303 -214 -185 315 388 -477 -449 398 -190 70 -198 -17 -175 96 366 347 428 -26 -378 327 -156 -330 -170 82 249 -54 395 -197 92 -129 194 -73 -53 -326 159 56 100 -203 383 -445 420 405 -126 320 -56 291 -96 -252 1 -443 372 478 -457 -305 -228 -301 -128 38 216 -442 -386 152 -339 41 -165 -321 -361 -57 205 -399 -121 345 402 -211 284 227 253 226 -218 -276 492 50 -61 -313 -16 180 -32 179 -162 231 245 499 488 -490 -216 -344 440 455 -405 -220 344 -223 -369 95 -227 481 -470 -485 -469 3 433 -251 -64 129 221 -166 -433 -289 410 -392 20 -139 12 76 18 -31 125 26 -448 182 22 -231 -180 201 -478 -13 139 169 334 -194 -34 120 -145 450 -77 403 -164 223 271 39 -295 389 156 392 358 -120 -345 -208 -362 64 145 -381 -28 -41 -300 -89 -322 348 121 338 133 282 -499 -90 462 29 -60 119 269 -473 32 -169 422 251 -2 87 247 268 -410 452 290 262 -320 -348 274 -488 42 -115 27 160 -439 -219 -49 325 149 266 -317 355 294 309 -287 -281 65 469 28 -329 256 114 -29 449 401 -376 -436 -491 273 -347 475 -246 -138 10 -272 379 -298 -173 -258 -269 376 -234 158 189 -178 -47 430 453 -366 -109 -435 287 -233 280 -232 30 444 -463 84 -492 413 -409 -9 -452 -293 330 187 102 -30 239 341 24 485 371 -333 267 54 109 218 -411 60 -134 -367 -43 -431 246 89 -487 69 -188 460 94 378 391 25 -453 438 -161 434 -270 -398 137 -192 -261 17 220 370 107 -1 | wc -l
+git:
+	@echo "norminette"
+	@echo "git_norminette"
+	@echo "git_auto"
+	@echo "git_push"
+	@echo "git_fpush"
+	@echo "git_status"
+	@echo "git_cursus"
 
-leak: $(AR)
-	g$(CC) $(CFLAGS) $(SRCS) $(AR) -o $(NAME) 
-	valgrind -s --leak-check=full --show-leak-kinds=all ./push_swap 1 5
+norminette:
+	norminette
 
-.PHONY: all clean fclean mini re exe
+git_norminette:
+	norminette
+
+# DO NOT USE THIS UNLESS YOU'RE SURE
+git_auto:	fclean
+	git add *
+	git commit -m "😏👌 Updated via Makefile(tm) 😏👌"
+	git push
+
+git_push:
+	@echo Pushing if norminette OK...
+	./norminette_before_push.sh
+
+git_fpush:
+	@echo Pushing without norminette...
+	git_auto
+
+git_status:
+	git status
+
+git_cursus:
+	@echo "Pushing to _CURSUS (the personal private github)..."
+	git add ../*
+	git status
+	git commit -m "😏👌 Updated via Makefile(tm) 😏👌"
+	git push
+	@echo "\n\tFor detailing commit, please do git pushing manually. Thank you."
+
+# ############################################################################ #
+#								# PHONY #									   #
+# ############################################################################ #
+
+.PHONY: all clean fclean re bonus debug combo norminette \
+		git git_norminette git_auto git_push git_fpush git_status git_cursus
+# .PHONY is used to declare phony targets. When a target is phony, it will
+# run the target rather do something to a file. 
+# 	Check "Makefile Implicit Rules - Phony" for more info.
