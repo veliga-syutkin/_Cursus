@@ -5,6 +5,6 @@ if [ $norm == 0 ]
 then
 	(make git_auto)
 else
-	echo "Norminette failed"
-	norminette
+	echo "Norminette failed, I presume you are plenty of MAJOR SKILL ISSUE."
+	norminette | grep -v 'OK'
 fi
