@@ -152,7 +152,7 @@ git_push:
 	./norminette_before_push.sh
 
 git_msg1:
-	@echo Pushing without norminette...
+	@echo \n\tPushing without norminette...\n
 
 git_fpush: git_msg1 git_auto
 	
