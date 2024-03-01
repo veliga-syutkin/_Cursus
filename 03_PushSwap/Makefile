@@ -151,9 +151,11 @@ git_push:
 	@echo Pushing if norminette OK...
 	./norminette_before_push.sh
 
-git_fpush: git_auto
+git_msg1:
 	@echo Pushing without norminette...
 
+git_fpush: git_msg1 git_auto
+	
 git_status:
 	git status
 
