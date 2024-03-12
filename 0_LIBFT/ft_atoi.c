@@ -69,3 +69,36 @@ int	ft_atoi(const char *nptr)
 	}
 	return (result * sign);
 }
+
+/*			Converts ASCII number to LONG integer. 
+Skips all white spaces, looks if there is one minus or not, 
+converts the following number in nptring, stops when encounters non digit char.  
+*/
+long	ft_atol(const char *nptr)
+{
+	int		count;
+	long	result;
+	int		sign;
+
+	if (!nptr)
+		return (0);
+	count = 0;
+	result = 0;
+	sign = 1;
+	while (ft_is_white_space(nptr[count]) != false)
+		count++;
+	if (ft_is_negative(nptr[count]) != false)
+	{
+		sign = -1;
+		count++;
+	}
+	else if (ft_is_positive(nptr[count]) != false)
+		count++;
+	while (ft_isdigit(nptr[count]) != false)
+	{
+		result = result * 10 + (nptr[count] - '0');
+		count++;
+	}
+	return (result * sign);
+}
+
