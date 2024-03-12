@@ -1,45 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
+/*   solve_ontop.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/13 16:14:07 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/03/12 20:08:30 by vsyutkin         ###   ########.fr       */
+/*   Created: 2024/03/12 16:33:59 by vsyutkin          #+#    #+#             */
+/*   Updated: 2024/03/12 16:48:09 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pushswap.h"
 
-void	sx(t_list **list)
+void	solve_ontop(t_list **list)
 {
-	t_list	*buffer;
+	static short int	ontop;
 
-	if (list && *list && (*list)->next)
+	if (ontop == 4)
+		ontop = 0;
+	if (ontop == 0)
 	{
-		buffer = (*list)->next;
-		(*list)->next = buffer->next;
-		buffer->next = (*list);
-		(*list) = buffer;
+		if ((*list)->data > (*list)->next->data)
+			sa(list);
+		ontop++;
 	}
-}
-
-void	ss(t_list **list_a, t_list **list_b)
-{
-	sx(list_a);
-	sx(list_b);
-	ft_printf("ss\n");
-}
-
-void	sa(t_list **list)
-{
-	sx(list);
-	ft_printf("sa\n");
-}
-
-void	sb(t_list **list)
-{
-	sx(list);
-	ft_printf("sb\n");
 }

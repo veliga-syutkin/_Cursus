@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   solve_3.c                                          :+:      :+:    :+:   */
+/*   solve_three.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 16:09:42 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/02/29 21:52:58 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/03/12 20:26:37 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,17 @@ void	solve_3(t_list **list)
 		ra(list);
 	if (state == 231 || state == 321)
 		rra(list);
+}
+
+void	solve_3b(t_list **list)
+{
+	int		state;
+
+	state = list_state(*list);
+	if (state == 132 || state == 321 || state == 213)
+		sb(list);
+	if (state == 312 || state == 132)
+		rb(list);
+	if (state == 231 || state == 321)
+		rrb(list);
 }

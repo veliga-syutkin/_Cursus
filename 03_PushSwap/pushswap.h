@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 21:07:54 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/03/01 02:16:09 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/03/12 20:35:15 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,18 @@
 # define PUSHSWAP_H
 
 # include "./0_LIBFT/libft.h"
+
+# define SA 1
+# define SB 2
+# define SS 3
+# define PA 4
+# define PB 5
+# define RA 6
+# define RB 7
+# define RR 8
+# define RRA 9
+# define RRB 10
+# define RRR 11
 
 ////////////////////////////////////////////////////////////////////////////////
 				/* STRUCT */
@@ -73,9 +85,10 @@ int		ft_atoi_prime(const char *nptr, int *cursor_nptr);
 
 bool	find_shortest(t_list *stack);
 void	index_sort(t_list *index);
-void	solve(t_list *list_a, t_list *list_b, int argc, char **argv);
+void	solve(t_list *list_a, t_list *list_b);
 
 void	solve_3(t_list **list);
+void	solve_3b(t_list **list);
 bool	sorted(t_list *list);
 
 #endif

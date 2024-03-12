@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 21:09:35 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/03/01 02:18:34 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/03/12 20:37:45 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ int	main(int argc, char **argv)
 	t_list	*list_b;
 
 	check(argc, argv);
-	ft_printf("Input is correct\n"); //comment
+	// ft_printf("Input is correct\n"); //comment
 	list_a = setup(argc, argv);
 	list_b = NULL;
-	ft_printf("Succesfully initialized\n");
+	// ft_printf("Succesfully initialized\n");
 	if (get_len(list_a) == 1 || sorted(list_a))
 		return (clear_list(&list_a), 0);
 	if (get_len(list_a) == 2)
@@ -34,8 +34,10 @@ int	main(int argc, char **argv)
 	}
 	if (get_len(list_a) == 3)
 		solve_3(&list_a);
-	solve(list_a, list_b, argc, argv); // Here is the main function that will solve the task
+	solve(list_a, list_b); // Here is the main function that will solve the task
 	// check the rightness of the input
+	// push b until 3 elements left in a
+	// solve 3 elements in a
 	// do the sorting and checking the sorting
 	// print the result
 	return (clear_list(&list_a), 0);
