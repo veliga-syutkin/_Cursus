@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 16:09:42 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/03/12 20:26:37 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/03/14 00:25:52 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,10 @@ void	solve_3b(t_list **list)
 	int		state;
 
 	state = list_state(*list);
-	if (state == 132 || state == 321 || state == 213)
+	if (state == 231 || state == 123 || state == 312)
 		sb(list);
-	if (state == 312 || state == 132)
+	if (state == 132 || state == 312)
 		rb(list);
-	if (state == 231 || state == 321)
+	if (state == 213 || state == 123)
 		rrb(list);
 }

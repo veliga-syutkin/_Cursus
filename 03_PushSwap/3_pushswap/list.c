@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 14:54:38 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/02/29 21:33:07 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/03/19 11:24:00 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ t_list	*create(int *data, int len)
 		buffer->next = malloc(sizeof(t_list));
 		buffer = buffer->next;
 		if (!buffer)
-			error(NULL);
+			error(&result);
+			// error(NULL);
 		buffer->data = *(data + cursor);
 		cursor++;
 	}

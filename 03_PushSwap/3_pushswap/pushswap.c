@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 21:09:35 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/03/12 20:37:45 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/03/22 09:43:51 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,12 @@ int	main(int argc, char **argv)
 	}
 	if (get_len(list_a) == 3)
 		solve_3(&list_a);
-	solve(list_a, list_b); // Here is the main function that will solve the task
+	solve(&list_a, &list_b); // Here is the main function that will solve the task
 	// check the rightness of the input
 	// push b until 3 elements left in a
 	// solve 3 elements in a
 	// do the sorting and checking the sorting
 	// print the result
+	ft_lstprint_and_free(instruction(0));
 	return (clear_list(&list_a), 0);
 }

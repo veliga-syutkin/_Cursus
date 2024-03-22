@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 22:00:39 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/03/12 20:57:19 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/03/22 10:45:07 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,57 +59,371 @@ void	index_sort(t_list *index)
 	}
 }
 
-static void	ft_ra(t_list **list)
-{
-	// ft_printf("list->data: %d; list->next->data: %d\n", (*list)->data, (*list)->next->data);
-	// if ((*list)->data > (*list)->next->data)
-	// 	sa(list);
-	ra(list);
-}
+// static void	ft_ra(t_list **list)
+// {
+// 	// ft_printf("list->data: %d; list->next->data: %d\n", (*list)->data, (*list)->next->data);
+// 	// if ((*list)->data > (*list)->next->data)
+// 	// 	sa(list);
+// 	ra(list);
+// }
 
-static void ft_rra(t_list **list)
-{
-	// ft_printf("list->data: %d; list->next->data: %d\n", (*list)->data, (*list)->next->data);
-	if ((*list)->data > (*list)->next->data
-		&& get_last_data(*list, 0) < (*list)->next->data)
-		sa(list);
-	rra(list);
-}
+// static void ft_rra(t_list **list)
+// {
+// 	// ft_printf("list->data: %d; list->next->data: %d\n", (*list)->data, (*list)->next->data);
+// 	if ((*list)->data > (*list)->next->data
+// 		&& get_last_data(*list, 0) < (*list)->next->data)
+// 		sa(list);
+// 	rra(list);
+// }
+
+// static void ft_index_sort(int len, int *data)
+// {
+// 	int	cursor;
+// 	int	temp;
+
+// 	cursor = 0;
+// 	while (cursor < len)
+// 	{
+// 		if (cursor < len - 1 && data[cursor] > data[cursor + 1])
+// 		{
+// 			temp = data[cursor];
+// 			data[cursor] = data[cursor + 1];
+// 			data[cursor + 1] = temp;
+// 		}
+// 		cursor++;
+// 	}
+// }
+
+// static void ft_index_list(t_list *list, const int *data, int len)
+// {
+// 	int		cursor;
+
+// 	cursor = 0;
+// 	while (list)
+// 	{
+// 		while ((list)->data != data[cursor] && cursor < len)
+// 			cursor++;
+// 		(list)->index = cursor;
+// 		cursor = 0;
+// 		list = (list)->next;
+// 	}
+// }
+
+// static void ft_index(t_list *list)
+// {
+// 	int		len;
+// 	int		*data;
+// 	int		cursor;
+// 	t_list	*temp;
+
+// 	temp = list;
+// 	cursor = 0;
+// 	len = get_len(list);
+// 	data = (int *)malloc(sizeof(int) * len);
+// 	if (!data)
+// 		error(&list);
+// 	while (cursor < len)
+// 	{
+// 		data[cursor] = (list)->data;
+// 		list = (list)->next;
+// 		cursor++;
+// 	}
+// 	list = temp;
+// 	ft_index_sort(len, data);
+// 	ft_index_list(list, data, len);
+// 	free(data);
+// }
 
 static void ft_start(t_list **list_a, t_list **list_b)
 {
 	int		cursor;
 
 	cursor = 0;
+	// ft_index(*list_a);
 	while (cursor < 3)
 	{
-		pb(list_a, list_b);
+		pbx(list_a, list_b);
 		cursor++;
 	}
 	solve_3b(list_b);
-	while (*list_b)
-		pa(list_a, list_b);
 }
 
-void	solve(t_list *list_a, t_list *list_b)
+////////////////////////////////////////////////////////////////////////////////
+
+int	ft_find_rx(int data, t_list *list)
+{
+	int		cost_rx;
+	int		cost_rrx;
+	int		len;
+	t_list	*last;
+
+	len = get_len(list);
+	last = list;
+	while (last && last->next)
+		last = last->next;
+	cost_rx = 0;
+	cost_rrx = 0;
+	while (list)
+	{
+		if (data == list->data)
+			break ;
+		list = list->next;
+		cost_rx++;
+	}
+	while (list)
+	{
+		list = list->next;
+		cost_rrx++;
+	}
+	return (cost_rx);
+}
+
+int	ft_find_rrx(int data, t_list *list)
+{
+	int		cost_rx;
+	int		cost_rrx;
+	int		len;
+	t_list	*last;
+
+	len = get_len(list);
+	last = list;
+	while (last && last->next)
+		last = last->next;
+	cost_rx = 0;
+	cost_rrx = 0;
+	while (list)
+	{
+		if (data == list->data)
+			break ;
+		list = list->next;
+		cost_rx++;
+	}
+	while (list)
+	{
+		list = list->next;
+		cost_rrx++;
+	}
+	return (cost_rrx);
+}
+
+static void maxmin_ra_or_rra(t_list **list, int data)
+{
+	int	cost_rx;
+	int	cost_rrx;
+
+	cost_rx = ft_find_rx(data, *list);
+	cost_rrx = ft_find_rrx(data, *list);
+	if (cost_rx <= cost_rrx)
+		while (cost_rx--)
+			ra(list);
+	else
+		while (cost_rrx--)
+			rra(list);
+}
+
+static void maxmin_rb_or_rrb(t_list **list, int data)
+{
+	int	cost_rx;
+	int	cost_rrx;
+
+	cost_rx = ft_find_rx(data, *list);
+	cost_rrx = ft_find_rrx(data, *list);
+	if (cost_rx <= cost_rrx)
+		while (cost_rx--)
+			rb(list);
+	else
+		while (cost_rrx--)
+			rrb(list);
+}
+
+// rb ou rrb
+static void ft_next_next_move(t_list **list_a, t_list **list_b)
+{
+	int		cost_rx;
+	int		cost_rrx;
+	int		*data;
+
+	cost_rx = 0;
+	cost_rrx = 0;
+	data = list_b_to_string(list_a, list_b);
+	while (!((*list_a)->data > data[0] && (*list_a)->data < data[get_len(*list_b) - 1]))
+	{
+		rotate_string(data, get_len(*list_b));
+		cost_rx++;
+	}
+	free(data);
+	cost_rrx = get_len(*list_b) - cost_rx;
+	if (cost_rx <= cost_rrx)
+		while (cost_rx)
+			rb(list_b), cost_rx--;
+	else
+		while (cost_rrx)
+			rrb(list_b), cost_rrx--;
+}
+
+// ra ou rra
+static void ft_last_last_move(t_list **list_a, t_list **list_b)
+{
+	int		cost_rx;
+	int		cost_rrx;
+	int		*data;
+
+	cost_rx = 0;
+	cost_rrx = 0;
+	data = list_a_to_string(list_a, list_b);
+	while (!((data[get_len(*list_a) - 1] < (*list_b)->data
+		&& (*list_b)->data < data[0])
+		|| (data[get_len(*list_a) - 1] > data[0]
+		&& data[get_len(*list_a) - 1] > (*list_b)->data
+		&& data[0] > (*list_b)->data)))
+	{
+		rotate_string(data, get_len(*list_a));
+		cost_rx++;
+	}
+	free(data);
+	cost_rrx = get_len(*list_a) - cost_rx;
+	if (cost_rx <= cost_rrx)
+		while (cost_rx)
+			ra(list_a), cost_rx--;
+	else
+		while (cost_rrx)
+			rra(list_a), cost_rrx--;
+}
+
+static void	ft_pb_pb_ss(t_list **list_a, t_list **list_b)
+{
+	if ((*list_a)
+		&& (*list_a)->next
+		&& (*list_a)->next->next
+		&& (*list_a)->next->next->next)
+	{
+		if ((*list_a)->data > (*list_a)->next->data
+			&& (*list_a)->next->next->data > (*list_a)->next->next->next->data
+			// && !(get_last_data(*list_b, 0) > (*list_a)->data && (*list_a)->data > (*list_b)->data)
+			)
+		{
+			pbx(list_a, list_b);
+			pbx(list_a, list_b);
+			ss(list_a, list_b);
+			pax(list_a, list_b);
+			pax(list_a, list_b);
+		}
+	}
+}
+
+/* take top element of stack a
+ * find the shortest way to put it in stack b keeping stack b in order
+ * put it in stack b
+*/
+static void ft_next_move(t_list **list_a, t_list **list_b)
+{
+	if (get_last_data(*list_b, 0) > (*list_a)->data && (*list_a)->data > (*list_b)->data)
+		pbx(list_a, list_b);
+	else if ((*list_a)->data < find_min(*list_b))
+	{
+		while ((*list_b)->data != find_min(*list_b))
+			maxmin_rb_or_rrb(list_b, find_min(*list_b));
+		rb(list_b);
+		pbx(list_a, list_b);
+	}
+	else if ((*list_a)->data > find_max(*list_b))
+	{
+		while ((*list_b)->data != find_max(*list_b))
+			maxmin_rb_or_rrb(list_b, find_max(*list_b));
+		pbx(list_a, list_b);
+	}
+	else
+		ft_next_next_move(list_a, list_b);
+		// rb(list_b);
+}
+
+static void	ft_mid_move(t_list **list_a, t_list **list_b)
+{
+	while ((*list_b)->data != find_max(*list_b))
+		maxmin_rb_or_rrb(list_b, find_max(*list_b));
+	if (find_max(*list_a) < (*list_b)->data)
+		while ((*list_a)->data != find_max(*list_a))
+			maxmin_ra_or_rra(list_a, find_min(*list_a));
+	else 
+		while ((*list_a)->data != find_max(*list_a))
+			maxmin_ra_or_rra(list_a, find_max(*list_a));
+}
+
+// static void ft_last_last_move(t_list **list_a, t_list **list_b)
+// {
+	
+// }
+
+static void	ft_last_move(t_list **list_a, t_list **list_b)
+{
+	if ((get_last_data(*list_a, 0) < (*list_b)->data
+		&& (*list_b)->data < (*list_a)->data)
+		|| (get_last_data(*list_a, 0) > (*list_a)->data
+		&& get_last_data(*list_a, 0) > (*list_b)->data
+		&& (*list_a)->data > (*list_b)->data))
+		pax(list_a, list_b);
+	else if ((*list_b)->data < find_min(*list_a))
+	{
+		while ((*list_a)->data != find_min(*list_a))
+			maxmin_ra_or_rra(list_a, find_min(*list_a));
+	}
+	else if ((*list_b)->data > find_max(*list_a))
+	{
+		while ((*list_a)->data != find_max(*list_a))
+			maxmin_ra_or_rra(list_a, find_max(*list_a));
+	}
+	else
+		// ra(list_a);
+		ft_last_last_move(list_a, list_b);
+}
+
+void	solve(t_list **list_a, t_list **list_b)
 {
 	int		len;
-	int		min;
 
-	len = get_len(list_a);//, ft_printf("list len: %d\n", len);
-	ft_start(&list_a, &list_b);
-	while (get_len(list_a) > 3)
+	len = get_len(*list_a);
+	// while ((*list_a)->data != find_min(*list_a))
+		// maxmin_ra_or_rra(list_a, find_min(*list_a));
+		// ra(list_a);
+	ft_start(list_a, list_b);
+	while (!(order((*list_a)) && get_len(*list_a) > 3))
 	{
-		min = find_min(list_a);//, ft_printf("min in list A = %d\n", min);
-		if (find_shortest(list_a))
-			while (list_a->data != min)
-				/*ft_printf("list_a->data: %d; ", list_a->data),*/ ft_ra(&list_a);//, ft_while(50000);
-		else
-			while (list_a->data != min)
-				ft_rra(&list_a);
-		pb(&list_a, &list_b);
+		ft_pb_pb_ss(list_a, list_b);
+		while (get_last_data(*list_a, 0) < (*list_a)->data /*&& (*list_a)->data < (*list_a)->next->data*/)
+			rra(list_a);
+		ft_next_move(list_a, list_b);
+		// ft_while(50000);
 	}
-	solve_3(&list_a);
-	while (list_b)
-		pa(&list_a, &list_b);
+	if (get_len(*list_a) == 3)
+		solve_3(list_a);
+	ft_mid_move(list_a, list_b);
+	while (*list_b)
+	{
+		ft_last_move(list_a, list_b);
+		// ft_while(500);
+	}
 }
+
+// void	solve(t_list **list_a, t_list **list_b)
+// {
+// 	int		len;
+// 	int		min;
+// 	int		max;
+
+// 	len = get_len(*list_a);//, ft_printf("list len: %d\n", len);
+// 	ft_start(list_a, list_b);
+// 	while (get_len(*list_a) > len / 2)
+// 	{
+// 		min = find_min(*list_a);
+// 		if (find_shortest(*list_a))
+// 			while ((*list_a)->data != min)
+// 				ra(list_a);
+// 		else
+// 			while ((*list_a)->data != min)
+// 				rra(list_a);
+// 		pb(list_a, list_b);
+// 	}
+// 	solve_3(list_a);
+// 	while (*list_b)
+// 		pa(list_a, list_b);
+// }

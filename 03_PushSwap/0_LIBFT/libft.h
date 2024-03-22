@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 00:23:11 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/03/01 00:32:23 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/03/21 00:12:11 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,11 @@ void	ft_while(int max);
 // -._.-""-._BONUS THINGY_.-""-._.-
 typedef struct s_stack
 {
-	void			*content;
+	int			content;
 	struct s_stack	*next;
 }	t_stack;
 
-t_stack	*ft_lstnew(void *content);
+t_stack	*ft_lstnew(int content);
 void	ft_lstadd_front(t_stack **lst, t_stack *new);
 int		ft_lstsize(t_stack *lst);
 t_stack	*ft_lstlast(t_stack *lst);

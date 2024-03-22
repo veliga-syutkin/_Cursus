@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 14:48:04 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/03/01 00:04:18 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/03/22 10:38:53 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	get_last_data(t_list *list, int offset)
 
 	cursor = 1;
 	len = get_len(list);
-	while (list->next && cursor < len - offset)
+	while (list && list->next && cursor < len - offset)
 	{
 		list = list->next;
 		cursor++;
@@ -72,10 +72,13 @@ int	get_last_data(t_list *list, int offset)
 	return (list->data);
 }
 
-// puts lisb_b in order and pushes to b.
-void	reset_and_pb(t_list **list_a, t_list **list_b)
+bool	order(t_list *list)
 {
-	while ((*list_b)->data < get_last_data(*list_b, 0))
-		rb(list_b);
-	pb(list_a, list_b);
+	while (list && list->next)
+	{
+		if (list->data > list->next->data)
+			return (false);
+		list = list->next;
+	}
+	return (true);
 }

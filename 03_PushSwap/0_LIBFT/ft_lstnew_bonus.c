@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsyutkin <vsyutkin@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 04:08:37 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/11/27 05:17:43 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/03/21 00:08:59 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 // Allocs and returns new t_stack element. 
 // 	Content goes content, next goes NULL.
-t_stack	*ft_lstnew(void *content)
+t_stack	*ft_lstnew(int content)
 {
 	t_stack	*list;
 

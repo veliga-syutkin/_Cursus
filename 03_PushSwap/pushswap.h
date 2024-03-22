@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 21:07:54 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/03/12 20:35:15 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/03/21 02:01:46 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,20 @@
 
 # include "./0_LIBFT/libft.h"
 
-# define SA 1
-# define SB 2
-# define SS 3
-# define PA 4
-# define PB 5
-# define RA 6
-# define RB 7
-# define RR 8
-# define RRA 9
-# define RRB 10
-# define RRR 11
+# define YES 1
+# define NO 0
+
+# define SA (int)'A'
+# define SB (int)'B'
+# define SS (int)'C'
+# define PA (int)'D'
+# define PB (int)'E'
+# define RA (int)'F'
+# define RB (int)'G'
+# define RR (int)'H'
+# define RRA (int)'I'
+# define RRB (int)'J'
+# define RRR (int)'K'
 
 ////////////////////////////////////////////////////////////////////////////////
 				/* STRUCT */
@@ -34,6 +37,7 @@
 typedef struct s_list {
 	struct s_list	*next;
 	int				data;
+	int				index;
 }	t_list;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -42,6 +46,8 @@ typedef struct s_list {
 
 void	pa(t_list **list_a, t_list **list_b);
 void	pb(t_list **list_a, t_list **list_b);
+void	pax(t_list **list_a, t_list **list_b);
+void	pbx(t_list **list_a, t_list **list_b);
 
 void	ra(t_list **list);
 void	rb(t_list **list);
@@ -57,6 +63,11 @@ void	sa(t_list **list);
 void	sb(t_list **list);
 void	ss(t_list **list_a, t_list **list_b);
 void	sx(t_list **list);
+
+void	rotate_string(int *str, int len);
+void	reverse_rotate_string(int *str, int len);
+int		*list_a_to_string(t_list **list_a, t_list **list_b);
+int		*list_b_to_string(t_list **list_a, t_list **list_b);
 
 ////////////////////////////////////////////////////////////////////////////////
 				/* 02 */
@@ -74,7 +85,7 @@ int		find_max(t_list *list);
 int		find_min(t_list *list);
 int		get_len(t_list *list);
 int		get_last_data(t_list *list, int offset);
-void	reset_and_pb(t_list **list_a, t_list **list_b);
+bool	order(t_list *list);
 
 t_list	*create(int *data, int len);
 int		get_next_data(t_list *list, int data);
@@ -85,10 +96,14 @@ int		ft_atoi_prime(const char *nptr, int *cursor_nptr);
 
 bool	find_shortest(t_list *stack);
 void	index_sort(t_list *index);
-void	solve(t_list *list_a, t_list *list_b);
+void	solve(t_list **list_a, t_list **list_b);
 
 void	solve_3(t_list **list);
 void	solve_3b(t_list **list);
 bool	sorted(t_list *list);
+bool	reverse_sorted(t_list *list);
+
+t_stack	**instruction(int flag);
+void	ft_lstprint_and_free(t_stack **instructions);
 
 #endif

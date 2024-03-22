@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstdelone_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsyutkin <vsyutkin@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 04:08:28 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/11/27 05:17:43 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/03/21 00:16:21 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_lstdelone(t_stack *lst, void (*del)(void*))
 		return ;
 	if (lst)
 	{
-		(*del)(lst->content);
+		// (*del)(lst->content);
 		free(lst);
 	}
 }
