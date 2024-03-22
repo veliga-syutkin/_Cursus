@@ -77,8 +77,6 @@ $(PUSHSWAPMANDATORY):
 $(AR):
 	make -C $(LIBFT_DIR)
 
-	$(CC) $(CFLAGS) $(OPERANDS_MANDATORY) $(PROTECTIONS_MANDATORY) $(PUSHSWAP_MANDATORY) $(AR) -o $(NAME)
-
 # ############################################################################ #
 #								# BONUS #									   #
 
@@ -126,7 +124,7 @@ clean:
 	$(ARMAKE) clean
 
 fclean: clean
-	$(RM) $(NAMES)
+	$(RM) $(NAME)
 	$(ARMAKE) fclean
 
 re: fclean all
