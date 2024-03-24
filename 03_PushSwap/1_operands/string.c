@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 16:03:36 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/03/20 16:27:09 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/03/23 03:26:52 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,26 @@ void	reverse_rotate_string(int *str, int len)
 		cursor--;
 	}
 	str[cursor] = temp;
+}
+
+void	order_string(int *data, int len)
+{
+	int		cursor;
+	int		temp;
+
+	cursor = 0;
+	while (cursor < len - 1)
+	{
+		if (data[cursor] > data[cursor + 1])
+		{
+			temp = data[cursor];
+			data[cursor] = data[cursor + 1];
+			data[cursor + 1] = temp;
+			cursor = 0;
+		}
+		else
+			cursor++;
+	}
 }
 
 int	*list_a_to_string(t_list **list_a, t_list **list_b)

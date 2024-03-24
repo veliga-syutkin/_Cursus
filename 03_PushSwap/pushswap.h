@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 21:07:54 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/03/21 02:01:46 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/03/23 03:27:09 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void	rotate_string(int *str, int len);
 void	reverse_rotate_string(int *str, int len);
 int		*list_a_to_string(t_list **list_a, t_list **list_b);
 int		*list_b_to_string(t_list **list_a, t_list **list_b);
+void	order_string(int *data, int len);
 
 ////////////////////////////////////////////////////////////////////////////////
 				/* 02 */
@@ -105,5 +106,12 @@ bool	reverse_sorted(t_list *list);
 
 t_stack	**instruction(int flag);
 void	ft_lstprint_and_free(t_stack **instructions);
+
+////////////////////////////////////////////////////////////////////////////////
+				/* 04 */
+////////////////////////////////////////////////////////////////////////////////
+
+void	print_percentage(void);
+
 
 #endif

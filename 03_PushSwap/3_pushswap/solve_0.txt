@@ -1,14 +1,14 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   solve_0.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/29 22:00:39 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/03/24 03:03:47 by vsyutkin         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    solve_0.txt                                        :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/02/29 22:00:39 by vsyutkin          #+#    #+#              #
+#    Updated: 2024/03/23 20:47:11 by vsyutkin         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
 #include "../pushswap.h"
 
@@ -463,27 +463,19 @@ bool	ft_sort_cases(t_list **list_a, t_list **list_b)
 	// ft_sort_four(list_a, list_b);
 }
 
-void	max_or_min_ra_or_rra(t_list **list)
+void step_ra_or_rra(t_list **list, int data)
 {
 	int	cost_rx;
 	int	cost_rrx;
-	int	data;
-	int	cost;
 
-	data = find_min(*list);
 	cost_rx = ft_find_rx(data, *list);
 	cost_rrx = ft_find_rrx(data, *list);
 	if (cost_rx <= cost_rrx)
-		cost = cost_rx;
+		// while (cost_rx--)
+			ra(list);
 	else
-		cost = cost_rrx;
-	data = find_max(*list);
-	cost_rx = ft_find_rx(data, *list);
-	cost_rrx = ft_find_rrx(data, *list);
-	if (cost < cost_rx && cost < cost_rrx)
-		maxmin_ra_or_rra(list, find_min(*list));
-	else
-		maxmin_ra_or_rra(list, find_max(*list));
+		// while (cost_rrx--)
+			rra(list);
 }
 
 //	works as follows: 
@@ -497,15 +489,14 @@ void	max_or_min_ra_or_rra(t_list **list)
 */	
 static void ft_next_last_move(t_list **list_a, t_list **list_b)
 {
-	if (/*(*list_a)->data > (*list_b)->data &&*/ (*list_a)->data == find_min(*list_a))
+	// static int	flag;
+
+	// if ((*list_b)->data != find_min(*list_b) && !flag++)
+	// 	maxmin_rb_or_rrb(list_b, find_min(*list_b));
+	if ((*list_a)->data > (*list_b)->data && (*list_a)->data == find_min(*list_a))
 		pbx(list_a, list_b);
-	if ((*list_a)->data == find_max(*list_a))
-	{
-		pbx(list_a, list_b);
-		rb(list_b);
-	}
 	else
-		max_or_min_ra_or_rra(list_a);
+		maxmin_ra_or_rra(list_a, find_min(*list_a));
 }
 
 /* take top element of stack a
@@ -514,51 +505,45 @@ static void ft_next_last_move(t_list **list_a, t_list **list_b)
 */
 static void ft_next_move(t_list **list_a, t_list **list_b)
 {
-	if (get_last_data(*list_b, 0) > (*list_a)->data && (*list_a)->data > (*list_b)->data)
-		pbx(list_a, list_b);
-	else if (get_last_data(*list_a, 0) == find_max(*list_a))
-		rra(list_a);
-	else if ((*list_a)->data < find_min(*list_b))
+	if (get_len(*list_a) > get_len(*list_b))
 	{
-		while ((*list_b)->data != find_min(*list_b))
-			maxmin_rb_or_rrb(list_b, find_min(*list_b));
-		rb(list_b);
-		pbx(list_a, list_b);
+		if (get_last_data(*list_b, 0) > (*list_a)->data && (*list_a)->data > (*list_b)->data)
+			pbx(list_a, list_b);
+		else if (get_last_data(*list_a, 0) == find_max(*list_a))
+			rra(list_a);
+		else if ((*list_a)->data < find_min(*list_b))
+		{
+			while ((*list_b)->data != find_min(*list_b))
+				maxmin_rb_or_rrb(list_b, find_min(*list_b));
+			rb(list_b);
+			pbx(list_a, list_b);
+		}
+		else if ((*list_a)->data > find_max(*list_b))
+		{
+			while ((*list_b)->data != find_max(*list_b))
+				maxmin_rb_or_rrb(list_b, find_max(*list_b));
+			pbx(list_a, list_b);
+		}
+		else
+			ft_next_next_move(list_a, list_b);
 	}
-	else if ((*list_a)->data > find_max(*list_b))
-	{
-		while ((*list_b)->data != find_max(*list_b))
-			maxmin_rb_or_rrb(list_b, find_max(*list_b));
-		pbx(list_a, list_b);
-	}
-	else
-		ft_next_next_move(list_a, list_b);
+	else 
+		// ft_sort_cases(list_a, list_b);
+		ft_next_last_move(list_a, list_b);
 }
 
-// static void	ft_last_move(t_list **list_a, t_list **list_b)
-// {
-// 	if ((get_last_data(*list_a, 0) < (*list_b)->data
-// 		&& (*list_b)->data < (*list_a)->data)
-// 		|| (get_last_data(*list_a, 0) > (*list_a)->data
-// 		&& get_last_data(*list_a, 0) > (*list_b)->data
-// 		&& (*list_a)->data > (*list_b)->data))
-// 		pax(list_a, list_b);
-// 	else if ((*list_b)->data < find_min(*list_a))
-// 	{
-// 		while ((*list_a)->data != find_min(*list_a))
-// 			maxmin_ra_or_rra(list_a, find_min(*list_a));
-// 		pax(list_a, list_b);
-// 	}
-// 	else if ((*list_b)->data > find_max(*list_a))
-// 	{
-// 		while ((*list_a)->data != find_max(*list_a))
-// 			maxmin_ra_or_rra(list_a, find_max(*list_a));
-// 		pax(list_a, list_b);
-// 	}
-// 	else
-// 		// ra(list_a);
-// 		ft_last_last_move(list_a, list_b);
-// }
+void	ft_mid_move(t_list **list_a, t_list **list_b)
+{
+	while ((*list_b)->data != find_max(*list_b))
+		maxmin_rb_or_rrb(list_b, find_max(*list_b));
+	if (find_max(*list_a) < (*list_b)->data)
+		while ((*list_a)->data != find_max(*list_a))
+			maxmin_ra_or_rra(list_a, find_max(*list_a));
+	else 
+		while ((*list_a)->data != find_max(*list_a))
+			maxmin_ra_or_rra(list_a, find_max(*list_a));
+}
+
 static void	ft_last_move(t_list **list_a, t_list **list_b)
 {
 	if ((get_last_data(*list_a, 0) < (*list_b)->data
@@ -567,11 +552,22 @@ static void	ft_last_move(t_list **list_a, t_list **list_b)
 		&& get_last_data(*list_a, 0) > (*list_b)->data
 		&& (*list_a)->data > (*list_b)->data))
 		pax(list_a, list_b);
+	else if ((*list_b)->data < find_min(*list_a))
+	{
+		if ((*list_a)->data != find_min(*list_a))
+			maxmin_ra_or_rra(list_a, find_min(*list_a));
+		else
+			pax(list_a, list_b);
+	}
 	else if ((*list_b)->data > find_max(*list_a))
 	{
+		if ((*list_a)->data != find_max(*list_a))
+			maxmin_ra_or_rra(list_a, find_max(*list_a));
+		else
 			pax(list_a, list_b);
 	}
 	else
+		// ra(list_a);
 		ft_last_last_move(list_a, list_b);
 }
 
@@ -580,23 +576,51 @@ void	solve(t_list **list_a, t_list **list_b)
 	int		len;
 
 	len = get_len(*list_a);
+	// while ((*list_a)->data != find_min(*list_a))
+	// 	maxmin_ra_or_rra(list_a, find_min(*list_a));
+	// ra(list_a);
 	ft_start(list_a, list_b);
-	while (!(order((*list_a)) || get_len(*list_a) < get_len(*list_b)))
+	while (!(order((*list_a)) || get_len(*(list_a)) < 3))
 	{
 		ft_pb_pb_ss(list_a, list_b);
-		while (get_last_data(*list_a, 0) < (*list_a)->data)
+		while (get_last_data(*list_a, 0) < (*list_a)->data /*&& (*list_a)->data < (*list_a)->next->data*/)
 			rra(list_a);
 		ft_next_move(list_a, list_b);
+		// ft_while(50000);
 	}
-	if ((*list_b)->data != find_max(*list_b))
-		maxmin_rb_or_rrb(list_b, find_max(*list_b));
-	while (get_len(*list_a) > 2)
-	{
-		ft_next_last_move(list_a, list_b);
-	}
-	maxmin_rb_or_rrb(list_b, find_max(*list_b));
+	if (get_len(*list_a) == 3)
+		solve_3(list_a);
+	// ft_printf("wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww\t"), exit(1);
+	ft_mid_move(list_a, list_b);
 	while (*list_b)
+	{
 		ft_last_move(list_a, list_b);
+		ft_while(500);
+	}
 	while ((*list_a)->data != find_min(*list_a))
 		maxmin_ra_or_rra(list_a, find_min(*list_a));
 }
+
+// void	solve(t_list **list_a, t_list **list_b)
+// {
+// 	int		len;
+// 	int		min;
+// 	int		max;
+
+// 	len = get_len(*list_a);//, ft_printf("list len: %d\n", len);
+// 	ft_start(list_a, list_b);
+// 	while (get_len(*list_a) > len / 2)
+// 	{
+// 		min = find_min(*list_a);
+// 		if (find_shortest(*list_a))
+// 			while ((*list_a)->data != min)
+// 				ra(list_a);
+// 		else
+// 			while ((*list_a)->data != min)
+// 				rra(list_a);
+// 		pb(list_a, list_b);
+// 	}
+// 	solve_3(list_a);
+// 	while (*list_b)
+// 		pa(list_a, list_b);
+// }

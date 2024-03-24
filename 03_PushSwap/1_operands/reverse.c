@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 21:40:35 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/03/21 00:34:09 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/03/22 15:50:40 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,19 @@ void	rrr(t_list **list_a, t_list **list_b)
 	rrx(list_a);
 	rrx(list_b);
 	ft_printf("rrr\n");
+	print_percentage();
 }
 
 void	rra(t_list **list)
 {
 	rrx(list);
 	ft_printf("rra\n");
+	print_percentage();
 }
 
 void	rrb(t_list **list)
 {
 	rrx(list);
 	ft_printf("rrb\n");
+	print_percentage();
 }
