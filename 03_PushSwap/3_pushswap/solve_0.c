@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 22:00:39 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/03/24 03:42:25 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/03/24 05:16:50 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -544,7 +544,7 @@ static void ft_next_move(t_list **list_a, t_list **list_b)
 {
 	if (get_last_data(*list_b, 0) > (*list_a)->data && (*list_a)->data > (*list_b)->data)
 		pbx(list_a, list_b);
-	else if (get_last_data(*list_a, 0) == find_max(*list_a))
+	else if (get_last_data(*list_a, 0) == find_min(*list_a))
 		rra(list_a);
 	else if ((*list_a)->data < find_min(*list_b))
 	{
@@ -588,8 +588,8 @@ void	solve(t_list **list_a, t_list **list_b)
 	while (!(order((*list_a)) || get_len(*list_a) < get_len(*list_b)))
 	{
 		ft_sort_cases(list_a, list_b);
-		while (get_last_data(*list_a, 0) < (*list_a)->data)
-			rra(list_a);
+		// while (get_last_data(*list_a, 0) < (*list_a)->data)
+		// 	rra(list_a);
 		ft_next_move(list_a, list_b);
 	}
 	if ((*list_b)->data != find_max(*list_b))
