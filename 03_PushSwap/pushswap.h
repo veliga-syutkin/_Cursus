@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 21:07:54 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/03/23 03:27:09 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/03/24 05:00:18 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # define YES 1
 # define NO 0
 
+# define BLANK (int)' '
 # define SA (int)'A'
 # define SB (int)'B'
 # define SS (int)'C'
@@ -29,6 +30,11 @@
 # define RRA (int)'I'
 # define RRB (int)'J'
 # define RRR (int)'K'
+
+# define WRITE 2
+# define READ 1
+# define END 0
+# define OPTI 42
 
 ////////////////////////////////////////////////////////////////////////////////
 				/* STRUCT */
@@ -111,7 +117,12 @@ void	ft_lstprint_and_free(t_stack **instructions);
 				/* 04 */
 ////////////////////////////////////////////////////////////////////////////////
 
+void	add_instruction(int instruction);
+void	print_instructions(int *a);
 void	print_percentage(void);
+int		*string_instruction(int move, int flag);
 
+int		optimization_result(int flag);
+void	print_instructions_t(int instruction);
 
 #endif

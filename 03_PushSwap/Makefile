@@ -33,6 +33,8 @@ PUSHSWAP_FILES =	instructions.c \
 					sorted.c \
 
 OPTIMIZATION_FILES =	percentage.c \
+						print_instructions.c \
+						print_instructions_type.c \
 
 # ############################################################################ #
 #							# PATH DECLARATIONS #							   #
@@ -119,7 +121,7 @@ strings: all
 	./$(NAME) 0 1 2 3 4
 
 5ordernot: all
-	./$(NAME) -101 42 -42 0 101
+	./$(NAME) 2 1 3 5 4
 
 100: all
 	./$(NAME) $(100)
