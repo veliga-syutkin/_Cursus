@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 15:23:05 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/03/24 05:02:38 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/03/26 16:55:35 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,29 @@
 void	optimize_instructions_opposite(int *a)
 {
 	int	cursor;
+	int	instruction;
 
 	cursor = 0;
+	instruction = 0;
 	while (cursor < 20000 - 1)
 	{
-		if ((a[cursor] == RRA && a[cursor + 1] == RRB)
-			|| (a[cursor] == RRB && a[cursor + 1] == RRA))
+		instruction = cursor;
+		while (a[instruction] == a[cursor] && cursor < 20000 - 1)
+			cursor++;
+		if ((a[instruction] == RRA && a[cursor] == RRB)
+			|| (a[instruction] == RRB && a[cursor] == RRA))
 		{
-			a[cursor] = RRR;
-			a[cursor + 1] = BLANK;
+			a[instruction] = RRR;
+			a[cursor] = BLANK;
+			instruction++;
 			optimization_result(1);
 		}
-		if ((a[cursor] == RA && a[cursor + 1] == RB)
-			|| (a[cursor] == RB && a[cursor + 1] == RA))
+		if ((a[instruction] == RA && a[cursor] == RB)
+			|| (a[instruction] == RB && a[cursor] == RA))
 		{
-			a[cursor] = RR;
-			a[cursor + 1] = BLANK;
+			a[instruction] = RR;
+			a[cursor] = BLANK;
+			instruction++;
 			optimization_result(1);
 		}
 		cursor++;
@@ -40,22 +47,27 @@ void	optimize_instructions_opposite(int *a)
 void	optimize_instructions_redundant(int *a)
 {
 	int	cursor;
+	int	instruction;
 
 	cursor = 0;
+	instruction = 0;
 	while (cursor < 20000 - 1)
 	{
-		if ((a[cursor] == RA && a[cursor + 1] == RRA)
-			|| (a[cursor] == RRA && a[cursor + 1] == RA))
+		instruction = cursor;
+		while (a[instruction] == a[cursor] && cursor < 20000 - 1)
+			cursor++;
+		if ((a[instruction] == RA && a[cursor] == RRA)
+			|| (a[instruction] == RRA && a[cursor] == RA))
 		{
+			a[instruction] = BLANK;
 			a[cursor] = BLANK;
-			a[cursor + 1] = BLANK;
 			optimization_result(2);
 		}
-		if ((a[cursor] == RB && a[cursor + 1] == RRB)
-			|| (a[cursor] == RRB && a[cursor + 1] == RB))
+		if ((a[instruction] == RB && a[cursor] == RRB)
+			|| (a[instruction] == RRB && a[cursor] == RB))
 		{
+			a[instruction] = BLANK;
 			a[cursor] = BLANK;
-			a[cursor + 1] = BLANK;
 			optimization_result(2);
 		}
 		cursor++;

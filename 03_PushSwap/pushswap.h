@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 21:07:54 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/03/24 05:00:18 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/03/26 16:06:49 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,29 @@
 # define END 0
 # define OPTI 42
 
+# define WEIGHT_RA 0
+# define WEIGHT_RRA 1
+# define WEIGHT_RB 2
+# define WEIGHT_RRB 3
+
 ////////////////////////////////////////////////////////////////////////////////
 				/* STRUCT */
 ////////////////////////////////////////////////////////////////////////////////
 
+
+/*
+weight[0] = ra
+weight[1] = rra
+weight[2] = rb
+weight[3] = rrb
+weight[4] = rr
+weight[5] = rrr
+weight[6] = default
+*/
 typedef struct s_list {
 	struct s_list	*next;
 	int				data;
-	int				index;
+	int				weight[7];
 }	t_list;
 
 ////////////////////////////////////////////////////////////////////////////////

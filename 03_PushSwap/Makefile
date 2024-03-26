@@ -123,6 +123,9 @@ strings: all
 5ordernot: all
 	./$(NAME) 2 1 3 5 4
 
+5special: all
+	./$(NAME) 1 5 2 4 3
+
 100: all
 	./$(NAME) $(100)
 # ARG=`ruby -e "puts (0..99).to_a.shuffle.join(' ')"`; ./$(NAME) $${ARG}

@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 21:09:35 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/03/24 04:53:23 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/03/26 13:35:21 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,5 @@ int	main(int argc, char **argv)
 	else
 		solve(&list_a, &list_b);
 	print_instructions(string_instruction(0, OPTI));
-	ft_lstprint_and_free(instruction(0));
 	return (clear_list(&list_a), 0);
 }

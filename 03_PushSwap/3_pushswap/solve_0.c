@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 22:00:39 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/03/24 05:17:02 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/03/26 20:05:55 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ void	index_sort(t_list *index)
 // 	free(data);
 // }
 
-static void ft_start(t_list **list_a, t_list **list_b)
+void ft_start(t_list **list_a, t_list **list_b)
 {
 	int		cursor;
 
@@ -152,6 +152,7 @@ static void ft_start(t_list **list_a, t_list **list_b)
 			pbx(list_a, list_b);
 			pbx(list_a, list_b);
 			ss(list_a, list_b);
+			pbx(list_a, list_b);
 		}
 	else
 	{	while (cursor < 3)
@@ -448,6 +449,22 @@ void	ft_sort_five(t_list **list_a, t_list **list_b)
 	}
 }
 
+bool	thousand_hundred_one_ten(t_list **list_a)
+{
+	int	one;
+	int	ten;
+	int	hundred;
+	int	thousand;
+
+	thousand = (*list_a)->data;
+	hundred = (*list_a)->next->data;
+	one = (*list_a)->next->next->data;
+	ten = (*list_a)->next->next->next->data;
+	if (one < ten && ten < hundred && hundred < thousand)
+		return (true);
+	return (false);
+}
+
 bool	thousand_hundred_ten_one(t_list **list_a)
 {
 	int	one;
@@ -476,13 +493,45 @@ void	ft_sort_four(t_list **list_a, t_list **list_b)
 		pax(list_a, list_b);
 		pax(list_a, list_b);
 	}
+	// if (thousand_hundred_one_ten(list_a))
+	// {
+	// 	pbx(list_a, list_b);
+	// 	pbx(list_a, list_b);
+	// 	ra(list_a);
+	// 	pax(list_a, list_b);
+	// 	ra(list_a);
+	// 	pax(list_a, list_b);
+	// }
 }
 
+void	ft_special_pb(t_list **list_a, t_list **list_b)
+{
+	if ((*list_a) 
+		&& (*list_a)->next 
+		&& (*list_a)->next->next
+		&& (*list_a)->next->next->next
+		&& (*list_a)->next->next->next->next
+		&& (*list_a)->next->next->next->next->next
+		&& (*list_a)->data < (*list_a)->next->data
+		&& (*list_a)->next->data < (*list_a)->next->next->data
+		&& (*list_a)->next->next->data < (*list_a)->next->next->next->data
+		&& (*list_a)->next->next->next->data < (*list_a)->next->next->next->next->data
+		&& (*list_a)->next->next->next->next->data < (*list_a)->next->next->next->next->next->data)
+	{
+		pbx(list_a, list_b);
+		pbx(list_a, list_b);
+		pbx(list_a, list_b);
+		pbx(list_a, list_b);
+		pbx(list_a, list_b);
+		pbx(list_a, list_b);
+	}
+}
 /*
 	[ DEBUG ] all while around this scope should become if for this to work.
 */
 void	ft_sort_cases(t_list **list_a, t_list **list_b)
 {
+	// ft_special_pb(list_a, list_b);
 	ft_pb_pb_ss(list_a, list_b);
 	if (list_a && (*list_a) && (*list_a)->next && (*list_a)->next->next
 		&& (*list_a)->next->next->next)
@@ -513,6 +562,7 @@ void	max_or_min_ra_or_rra(t_list **list)
 		maxmin_ra_or_rra(list, find_min(*list));
 	else
 		maxmin_ra_or_rra(list, find_max(*list));
+		
 }
 
 //	works as follows: 
@@ -523,11 +573,13 @@ void	max_or_min_ra_or_rra(t_list **list)
 	PB. 
 	If no more possible, rrb. 
 */	
-static void ft_next_last_move(t_list **list_a, t_list **list_b)
+void ft_next_last_move(t_list **list_a, t_list **list_b)
 {
-	if ((*list_a)->data == find_min(*list_a))
+	if (get_last_data(*list_a, 0) == find_max(*list_a))
+		rra(list_a);
+	else if ((*list_a)->data == find_min(*list_a))
 		pbx(list_a, list_b);
-	if ((*list_a)->data == find_max(*list_a))
+	else if ((*list_a)->data == find_max(*list_a))
 	{
 		pbx(list_a, list_b);
 		rb(list_b);
@@ -540,7 +592,7 @@ static void ft_next_last_move(t_list **list_a, t_list **list_b)
  * find the shortest way to put it in stack b keeping stack b in order
  * put it in stack b
 */
-static void ft_next_move(t_list **list_a, t_list **list_b)
+void ft_next_move(t_list **list_a, t_list **list_b)
 {
 	if (get_last_data(*list_b, 0) > (*list_a)->data && (*list_a)->data > (*list_b)->data)
 		pbx(list_a, list_b);
@@ -563,39 +615,297 @@ static void ft_next_move(t_list **list_a, t_list **list_b)
 		ft_next_next_move(list_a, list_b);
 }
 
-static void	ft_last_move(t_list **list_a, t_list **list_b)
+void	ft_last_move(t_list **list_a, t_list **list_b)
 {
 	if ((get_last_data(*list_a, 0) < (*list_b)->data
 		&& (*list_b)->data < (*list_a)->data)
 		|| (get_last_data(*list_a, 0) > (*list_a)->data
 		&& get_last_data(*list_a, 0) > (*list_b)->data
 		&& (*list_a)->data > (*list_b)->data))
+	{
 		pax(list_a, list_b);
+	}
 	else if ((*list_b)->data > find_max(*list_a))
 	{
-			pax(list_a, list_b);
+		pax(list_a, list_b);
 	}
 	else
 		ft_last_last_move(list_a, list_b);
 }
 
+
+void compute_rb(t_list **list, int data)
+{
+	int	cost_rx;
+	int	cost_rrx;
+
+	cost_rx = ft_find_rx(data, *list);
+	cost_rrx = ft_find_rrx(data, *list);
+	if (cost_rx <= cost_rrx)
+		while (cost_rx--)
+			ra(list);
+	else
+		while (cost_rrx--)
+			rra(list);
+}
+
+int	data_before_pb(t_list **list_a, t_list **list_b, int data)
+{
+	t_list	*current;
+	int		prev;
+	int		next;
+
+	current = *list_b;
+	if ((*list_a) && current && current->next)
+	{
+		prev = get_last_data(current, 0);
+		next = current->data;
+		if (!(prev > data && data > next))
+		{
+			prev = current->data;
+			next = current->next->data;
+			while (!(prev > data && data > next) && current->next)
+			{
+				prev = current->data;
+				next = current->next->data;
+				current = current->next;
+			}
+		}
+		return (next);
+	}
+	return ((current->data));
+}
+
+int ft_find_rb(t_list **list_b, int target)
+{
+	int		cost_rx;
+
+	cost_rx = 0;
+	while ((*list_b) && (*list_b)->next)
+	{
+		if (target < find_min(*list_b) || target > find_max(*list_b))
+		{
+			ft_find_rx(find_max(*list_b), *list_b);
+			break ;
+		}
+		if (get_last_data(*list_b, 0) > target && target > (*list_b)->data)
+			break ;
+		if ((*list_b)->data > target && target > (*list_b)->next->data)
+			break ;
+		(*list_b) = (*list_b)->next;
+		cost_rx++;
+	}
+	return (cost_rx);
+}
+
+
+int	ft_cost_rarb(int *weight)
+{
+	int	ra;
+	int	rb;
+
+	ra = weight[WEIGHT_RA];
+	rb = weight[WEIGHT_RB];
+	if (ra >= rb)
+		return (ra - rb);
+	return (rb - ra);
+}
+
+int	ft_cost_rrarrb(int *weight)
+{
+	int	rra;
+	int	rrb;
+
+	rra = weight[WEIGHT_RRA];
+	rrb = weight[WEIGHT_RRB];
+	if (rra >= rrb)
+		return (rra - rrb);
+	return (rrb - rra);
+}
+
+int	ft_cost_default(int *weight)
+{
+	int	result;
+
+	if (weight[WEIGHT_RA] <= weight[WEIGHT_RRA])
+		result = weight[WEIGHT_RA];
+	else
+		result = weight[WEIGHT_RRA];
+	if (weight[WEIGHT_RB] <= weight[WEIGHT_RRB])
+		result += weight[WEIGHT_RB];
+	else
+		result += weight[WEIGHT_RRB];
+	return (result);
+}
+
+void	weight_update(t_list **list_a, t_list **list_b)
+{
+	t_list	*temp;
+	int		data;
+
+	temp = *list_a;
+	while (temp)
+	{
+		data = temp->data;
+		temp->weight[0] = ft_find_rx(temp->data, *list_a);
+		temp->weight[1] = ft_find_rrx(temp->data, *list_a);
+		temp->weight[2] = ft_find_rb(list_b, data);
+		temp->weight[3] = get_len(*list_b) - temp->weight[2];
+		temp->weight[4] = ft_cost_rarb(temp->weight);
+		temp->weight[5] = ft_cost_rrarrb(temp->weight);
+		temp->weight[6] = ft_cost_default(temp->weight);
+		temp = temp->next;
+	}
+}
+
+// returns wich data has the less weight
+int	data_min_weight(t_list **list_a)
+{
+	t_list	*temp;
+	t_list	*min;
+	int		cost;
+
+	temp = *list_a;
+	min = temp;
+	if (temp->weight[4] > temp->weight[5])
+		cost = temp->weight[4];
+	else
+		cost = temp->weight[5];
+	while (temp && temp->next && cost != 0)
+	{
+		if (cost > temp->weight[4] || cost > temp->weight[5] || cost > temp->weight[6])
+		{
+			min = temp;
+			if (temp->weight[4] < cost)
+				cost = temp->weight[4];
+			else if (temp->weight[5] < cost)
+				cost = temp->weight[5];
+			else if (temp->weight[6] < cost)
+				cost = temp->weight[6];
+		}
+		temp = temp->next;
+	}
+	ft_printf("\t\tData with min weight: %d\n", min->data);
+	return (min->data);
+}
+
+bool	condition_rr(int *weight)
+{
+	if (weight[4] < weight[5] && weight[4] < weight[6])
+		return (true);
+	return (false);
+}
+
+void	ft_rr_rrr(int *weight, t_list **list, t_list **list_b)
+{
+	if (condition_rr(weight))
+	{
+		if (weight[4]-- && weight[0]-- && weight[2]--)
+			rr(list, list_b);
+	}
+	else if (weight[5]-- && weight[1]-- && weight[3]--)
+		rrr(list, list_b);
+	if (weight[0] <= weight[1])
+	{
+		if (weight[0]--)
+			ra(list);
+	}
+	else if (weight[1]--)
+		rra(list);
+	if (weight[2] <= weight[3])
+	{
+		if (weight[2]--)
+			rb(list);
+	}
+	else if (weight[3]--)
+		rrb(list);
+	weight_update(list, list_b);
+	// ft_while(9999);
+}
+
+// pass parameter to copy values, pass NULL to return values
+int	*ft_weight(int *original)
+{
+	static int	*weight;
+
+	if (original)
+	{
+		weight[0] = original[0];
+		weight[1] = original[1];
+		weight[2] = original[2];
+		weight[3] = original[3];
+		weight[4] = original[4];
+		weight[5] = original[5];
+		weight[6] = original[6];
+	}
+	return (weight);
+}
+
+void	turk_move(t_list **list_a, t_list **list_b, int data)
+{
+	t_list	*temp;
+
+	temp = *list_a;
+	if ((*list_a)->data == data)
+		pbx(list_a, list_b);
+	else
+	{
+		while (temp->data != data && temp->next)
+		{
+			ft_weight(temp->weight);
+			temp = temp->next;
+		}
+		ft_rr_rrr(temp->weight, list_a, list_b);
+	}
+}
+
+// void	solve(t_list **list_a, t_list **list_b)
+// {
+// 	ft_start(list_a, list_b), ft_printf("start\n");
+// 	// while (get_len(*list_a) > get_len(*list_b) && !order(*list_a))
+// 	while ((*list_a)->next)
+// 	{
+// 		weight_update(list_a, list_b);
+// 		turk_move(list_a, list_b, data_min_weight(list_a));
+// 		ft_while(500);
+// 	}
+// 	// if ((*list_b)->data != find_max(*list_b))
+// 	// 	maxmin_rb_or_rrb(list_b, find_max(*list_b));
+// 	// while (get_len(*list_a) > 2)
+// 	// {
+// 	// 	// ft_sort_cases(list_a, list_b);
+// 	// 	ft_next_last_move(list_a, list_b);
+// 	// }
+// 	// maxmin_rb_or_rrb(list_b, find_max(*list_b));
+// 	// maxmin_ra_or_rra(list_a, find_min(*list_a));
+// 	// while (*list_b)
+// 	// 	ft_last_move(list_a, list_b);
+// 	// while ((*list_a)->data != find_min(*list_a))
+// 	// 	maxmin_ra_or_rra(list_a, find_min(*list_a));
+// 	while (*list_b)
+// 	// 	ft_last_move(list_a, list_b);
+// 		pax(list_a, list_b);
+// }
+
 void	solve(t_list **list_a, t_list **list_b)
 {
-	int		len;
+	int	max;
 
-	len = get_len(*list_a);
+	max = find_max(*list_a);
 	ft_start(list_a, list_b);
-	while (!(order((*list_a)) || get_len(*list_a) < get_len(*list_b)))
+	while (!(order((*list_a)) || get_len(*list_a) < (get_len(*list_b))))
 	{
 		ft_sort_cases(list_a, list_b);
 		while (get_last_data(*list_a, 0) < (*list_a)->data)
 			rra(list_a);
+		ft_sort_cases(list_a, list_b);
 		ft_next_move(list_a, list_b);
 	}
 	if ((*list_b)->data != find_max(*list_b))
 		maxmin_rb_or_rrb(list_b, find_max(*list_b));
 	while (get_len(*list_a) > 2)
 	{
+		// ft_sort_cases(list_a, list_b);
 		ft_next_last_move(list_a, list_b);
 	}
 	maxmin_rb_or_rrb(list_b, find_max(*list_b));
