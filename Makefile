@@ -10,7 +10,7 @@ VERSIONS_NUMBER := $(shell cat $(VERSIONS_DIR)versions.txt)
 
 COMMIT_FILE = $(VERSIONS_DIR)commits.txt
 
-COMMIT_ARGS := $(shell cat $(VERSIONS_DIR)last_commit.txt)
+COMMIT_ARGS = $(shell cat $(VERSIONS_DIR)last_commit.txt)
 
 ARGUMENT ?= something
 
