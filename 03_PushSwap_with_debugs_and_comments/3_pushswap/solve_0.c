@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 22:00:39 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/04/10 09:19:16 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/04/15 13:00:31 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -676,28 +676,53 @@ int	data_before_pb(t_list **list_a, t_list **list_b, int data)
 	return ((current->data));
 }
 
+// int ft_find_rb(t_list **list_b, int target)
+// {
+// 	t_list	*temp;
+// 	int		cost_rx;
+
+// 	cost_rx = 0;
+// 	temp = *list_b;
+// 	while ((temp) && (temp)->next)
+// 	{
+// 		if (target < find_min(*list_b) || target > find_max(*list_b))
+// 		{
+// 			cost_rx = ft_find_rx(find_max(*list_b), *list_b);
+// 			break ;
+// 		}
+// 		if (get_last_data(*list_b, 0) < target && target > (*list_b)->data \
+// 			&& get_last_data(*list_b, 0) < (*list_b)->data)
+// 			break ;
+// 		cost_rx++;
+// 		if (target < (temp)->data && target > (temp)->next->data \
+// 			&& (temp)->data > (temp)->next->data)
+// 			break ;
+// 		(temp) = (temp)->next;
+// 	}
+// 	return (cost_rx);
+// }
+
 int ft_find_rb(t_list **list_b, int target)
 {
+	int		prev;
+	int		next;
 	t_list	*temp;
-	int		cost_rx;
 
-	cost_rx = 0;
+	if (target < find_min(*list_b) || target > find_max(*list_b))
+		return (ft_find_rx(find_max(*list_b), *list_b));
+	prev = find_max(*list_b);
+	next = find_min(*list_b);
 	temp = *list_b;
-	while ((temp) && (temp)->next)
+	while (temp)
 	{
-		if (target < find_min(*list_b) || target > find_max(*list_b))
-		{
-			cost_rx = ft_find_rx(find_max(*list_b), *list_b);
-			break ;
-		}
-		// if (get_last_data(*list_b, 0) < target && target > (*list_b)->data)
-		// 	break ;
-		cost_rx++;
-		if ((temp)->data > target && target > (temp)->next->data)
-			break ;
-		(temp) = (temp)->next;
-	}
-	return (cost_rx);
+		if (temp->data > target && temp->data < prev)
+			prev = temp->data;
+		if (temp->data < target && temp->data > next)
+			next = temp->data;
+		temp = temp->next;
+	}	
+	temp = *list_b;
+	return (ft_find_rx(next, *list_b));
 }
 
 /* COST RR
@@ -800,16 +825,16 @@ int	data_min_weight(t_list **list_a)
 			min = temp;
 			if (temp->weight[6] < cost)
 				cost = temp->weight[6];
-			else if (temp->weight[7] < cost)
+			if (temp->weight[7] < cost)
 				cost = temp->weight[7];
-			else if (temp->weight[8] < cost)
+			if (temp->weight[8] < cost)
 				cost = temp->weight[8];
-			else if (temp->weight[9] < cost)
+			if (temp->weight[9] < cost)
 				cost = temp->weight[9];
 		}
 		temp = temp->next;
 	}
-	ft_printf("\t\tData with min weight: %d\n", min->data);
+	ft_printf("\t\tData with min weight: %d \t with actual cost of: %d\n", min->data, cost);
 	return (min->data);
 }
 
@@ -880,6 +905,7 @@ void	ft_move_rarb(t_list **list_a, t_list **list_b, t_list *temp)
 		ra(list_a);
 	while (copy->weight[WEIGHT_RB]-- > 0)
 		rb(list_b);
+	ft_printf("Done ra and rb\n");
 }
 void	ft_move_rrarrb(t_list **list_a, t_list **list_b, t_list *temp)
 {
@@ -896,6 +922,7 @@ void	ft_move_rrarrb(t_list **list_a, t_list **list_b, t_list *temp)
 		rra(list_a);
 	while (copy->weight[WEIGHT_RRB]-- > 0)
 		rrb(list_b);
+	ft_printf("Done rra and rrb\n");
 }
 
 void	ft_move_rarrb(t_list **list_a, t_list **list_b, t_list *temp)
@@ -906,7 +933,8 @@ void	ft_move_rarrb(t_list **list_a, t_list **list_b, t_list *temp)
 	while (copy->weight[WEIGHT_RA]-- > 0)
 		ra(list_a);
 	while (copy->weight[WEIGHT_RRB]-- > 0)
-		rb(list_b);
+		rrb(list_b);
+	ft_printf("Done ra and rrb\n");
 }
 
 void	ft_move_rrarb(t_list **list_a, t_list **list_b, t_list *temp)
@@ -918,6 +946,7 @@ void	ft_move_rrarb(t_list **list_a, t_list **list_b, t_list *temp)
 		rra(list_a);
 	while (copy->weight[WEIGHT_RB]-- > 0)
 		rb(list_b);
+	ft_printf("Done rra and rb\n");
 }
 
 void	turk_move(t_list **list_a, t_list **list_b, int data)

@@ -6,12 +6,13 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 10:11:26 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/04/10 10:12:48 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/04/10 15:32:08 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pushswap.h"
 
+// makes B with 3 elements sorted
 void	ft_start(t_list **list_a, t_list **list_b)
 {
 	int		cursor;
@@ -40,6 +41,8 @@ void	ft_start(t_list **list_a, t_list **list_b)
 	}
 }
 
+// Compares what element in A is cheapest to move to good position in B
+// as long the way to move it (either rr/ra/rb, rrr/rra/rrb, ra/rrb or rra/rb)
 void	turk_move(t_list **list_a, t_list **list_b, int data)
 {
 	t_list	*temp;
@@ -64,6 +67,7 @@ void	turk_move(t_list **list_a, t_list **list_b, int data)
 		ft_move_rrarb(list_a, list_b, temp);
 }
 
+// Updates the weight (= operations cost) of each element in A
 void	weight_update(t_list **list_a, t_list **list_b)
 {
 	int		data;

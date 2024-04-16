@@ -6,12 +6,13 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 22:00:39 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/04/10 10:24:38 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/04/10 15:28:20 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pushswap.h"
 
+/* finds cost of rotate*/
 int	ft_find_rx(int data, t_list *list)
 {
 	int		cost_rx;
@@ -40,6 +41,7 @@ int	ft_find_rx(int data, t_list *list)
 	return (cost_rx);
 }
 
+// finds cost of reverse rotate
 int	ft_find_rrx(int data, t_list *list)
 {
 	int		cost_rx;
@@ -68,6 +70,7 @@ int	ft_find_rrx(int data, t_list *list)
 	return (cost_rrx);
 }
 
+// executes cheapest between ra and rra
 void	maxmin_ra_or_rra(t_list **list, int data)
 {
 	int	cost_rx;
@@ -83,6 +86,7 @@ void	maxmin_ra_or_rra(t_list **list, int data)
 			rra(list);
 }
 
+// executes cheapest between rb and rrb
 void	maxmin_rb_or_rrb(t_list **list, int data)
 {
 	int	cost_rx;
@@ -98,6 +102,7 @@ void	maxmin_rb_or_rrb(t_list **list, int data)
 			rrb(list);
 }
 
+// main function to solve the problem
 void	solve(t_list **list_a, t_list **list_b)
 {
 	int	max;

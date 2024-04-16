@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 21:09:35 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/04/10 10:32:08 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/04/13 17:39:20 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,12 @@ int	main(int argc, char **argv)
 	list_b = NULL;
 	if (get_len(list_a) == 1 || sorted(list_a))
 		return (clear_list(&list_a), 0);
-	if (get_len(list_a) == 2)
+	else if (get_len(list_a) == 2)
+	{
 		if (list_a->data > list_a->next->data)
 			rra(&list_a);
-	if (get_len(list_a) == 3)
+	}
+	else if (get_len(list_a) == 3)
 		solve_3(&list_a);
 	else
 		solve(&list_a, &list_b);

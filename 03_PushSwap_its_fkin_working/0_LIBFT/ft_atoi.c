@@ -1,13 +1,13 @@
 /* ************************************************************************** */
-/*																		    */
-/*														:::      ::::::::   */
-/*   ft_atoi.c										  :+:      :+:    :+:   */
-/*												    +:+ +:+		 +:+     */
-/*   By: vsyutkin <vsyutkin@student.42.fr>		  +#+  +:+       +#+		*/
-/*												+#+#+#+#+#+   +#+		   */
-/*   Created: 2023/10/17 00:45:02 by vsyutkin		  #+#    #+#		     */
-/*   Updated: 2023/10/17 01:58:30 by vsyutkin		 ###   ########.fr       */
-/*																		    */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/17 00:45:02 by vsyutkin          #+#    #+#             */
+/*   Updated: 2024/04/11 09:15:56 by vsyutkin         ###   ########.fr       */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
@@ -85,16 +85,16 @@ long	ft_atol(const char *nptr)
 	count = 0;
 	result = 0;
 	sign = 1;
-	while (ft_is_white_space(nptr[count]) != false)
+	while (ft_is_white_space(nptr[count]))
 		count++;
-	if (ft_is_negative(nptr[count]) != false)
+	if (ft_is_negative(nptr[count]))
 	{
 		sign = -1;
 		count++;
 	}
-	else if (ft_is_positive(nptr[count]) != false)
+	else if (ft_is_positive(nptr[count]))
 		count++;
-	while (ft_isdigit(nptr[count]) != false)
+	while (ft_isdigit(nptr[count]))
 	{
 		result = result * 10 + (nptr[count] - '0');
 		count++;

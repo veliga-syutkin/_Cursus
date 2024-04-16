@@ -6,13 +6,26 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 10:08:10 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/04/10 10:16:08 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/04/10 15:20:06 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pushswap.h"
 
-// ra ou rra
+/* Rotates or reverse rotates list A until one of the conditions is met:
+last element of A is smaller than first element of B 
+and first element of B is smaller than first element of A;
+
+or
+
+last element of A is bigger than first element of A
+and last element of A is bigger than first element of B
+and first element of A is bigger than first element of B
+
+or
+
+first element of B is bigger than the biggest element of A.
+*/
 void	ft_last_last_move(t_list **list_a, t_list **list_b)
 {
 	int		cost_rx;
@@ -41,6 +54,21 @@ void	ft_last_last_move(t_list **list_a, t_list **list_b)
 			rra(list_a);
 }
 
+/*Checks if it's possible to push to A.
+Valid conditions are: 
+last element of A is smaller than first element of B 
+and first element of B is smaller than first element of A;
+
+or
+
+last element of A is bigger than first element of A
+and last element of A is bigger than first element of B
+and first element of A is bigger than first element of B
+
+or
+
+first element of B is bigger than the biggest element of A.
+*/
 void	ft_last_move(t_list **list_a, t_list **list_b)
 {
 	if ((get_last_data(*list_a, 0) < (*list_b)->data

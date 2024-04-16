@@ -6,12 +6,13 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 22:59:03 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/03/21 00:28:00 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/04/10 15:20:51 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pushswap.h"
 
+// [ DEPRECATED ]
 static void	ft_print_instruction(int instruction)
 {
 	if (instruction == SA)
@@ -38,6 +39,7 @@ static void	ft_print_instruction(int instruction)
 		ft_putstr_fd("rrr\n", 1);
 }
 
+// [ DEPRECATED ]
 t_stack	**instruction(int flag)
 {
 	static t_stack	*instruction;
@@ -65,6 +67,7 @@ t_stack	**instruction(int flag)
 	return (&instruction);
 }
 
+// [ DEPRECATED ]
 void	ft_lstprint_and_free(t_stack **instructions)
 {
 	t_stack	*temp;

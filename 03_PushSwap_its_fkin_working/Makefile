@@ -105,7 +105,7 @@ debug:
 	lldb $(NAME) $(100)
 
 valgrind:
-	valgrind --leak-check=full ./$(NAME) $(100)
+	valgrind --leak-check=full ./$(NAME) $(500)
 
 string: all
 	./$(NAME) string

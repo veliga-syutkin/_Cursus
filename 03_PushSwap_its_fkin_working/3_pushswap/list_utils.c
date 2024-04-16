@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 14:48:04 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/03/22 10:38:53 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/04/10 15:21:14 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ int	get_last_data(t_list *list, int offset)
 	return (list->data);
 }
 
+// checks if list is ordered
 bool	order(t_list *list)
 {
 	while (list && list->next)

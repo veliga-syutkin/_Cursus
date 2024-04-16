@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 02:09:57 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/03/01 02:16:56 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/04/10 15:27:20 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	ft_getsign(const char *c, int *sign, int *cursor, int *cursor_nptr)
 	return ;
 }
 
+/* helps to check if there is int overflow */
 int	ft_atoi_prime(const char *nptr, int *cursor_nptr)
 {
 	int	cursor;

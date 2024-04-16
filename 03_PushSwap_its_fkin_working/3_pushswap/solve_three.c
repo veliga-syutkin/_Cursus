@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 16:09:42 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/03/14 00:25:52 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/04/13 17:38:01 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int	list_state(t_list *list)
 	int	nb2;
 	int	nb3;
 
+	if (!list || !list->next || !list->next->next)
+		return (-1);
 	nb1 = list->data;
 	nb2 = list->next->data;
 	nb3 = list->next->next->data;
@@ -36,7 +38,7 @@ int	list_state(t_list *list)
 	return (123);
 }
 
-// solves list with 3 elements
+// solves list a with 3 elements
 void	solve_3(t_list **list)
 {
 	int		state;
@@ -50,6 +52,7 @@ void	solve_3(t_list **list)
 		rra(list);
 }
 
+// solves list b with 3 elements
 void	solve_3b(t_list **list)
 {
 	int		state;
