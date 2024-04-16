@@ -1,21 +1,124 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/04/16 16:03:36 by vsyutkin          #+#    #+#              #
+#    Updated: 2024/04/16 16:43:37 by vsyutkin         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 # ############################################################################ #
-#					# VERSIONS UPDATER AND GIT MANAGEMENT #					   #
+#						# PROJECT DIRECTORY DECLARATIONS #					   #
+# ############################################################################ #
+
+# ############################################################################ #
+#						# PROJECT SOURCES DECLARATIONS #					   #
+# ############################################################################ #
+
+# ############################################################################ #
+#						# PROJECT PATH DECLARATIONS #						   #
+# ############################################################################ #
+
+# ############################################################################ #
+#						# PROJECT FILES DECLARATIONS #						   #
+# ############################################################################ #
+
+# ############################################################################ #
+#						# PROJECT END_FILES DECLARATIONS #					   #
+# ############################################################################ #
+
+NAME = no_name_yet.you_suck
+PROGRAM = ./$(NAME)
+
+AR = ./0_LIBFT/libft.a
+
+# ############################################################################ #
+#						# PROJECT MACROS #									   #
+# ############################################################################ #
+
+CFLAGS = -Wall -Wextra -Werror -g3 #-fsanitize=address
+
+CC = cc
+
+RM = rm -f
+
+ARMAKE = make -C $(LIBFT_DIR)
+
+# ############################################################################ #
+#						# PROJECT RULES DECLARATIONS #						   #
+# ############################################################################ #
+
+# all: $(NAME) 
+all: help
+
+$(NAME): $(AR)
+	$(CC) $(CFLAGS) $(FILES) $(AR) -o $(NAME)
+
+$(AR):
+	make -C $(LIBFT_DIR)
+
+clean: clear
+	# $(ARMAKE) clean
+
+fclean: clear clean
+	# $(RM) $(NAME)
+	# $(RM) a.out
+	# $(ARMAKE) fclean
+
+re: clear fclean all
+
+# ############################################################################ #
+#						# PROJECT BONUS #									   #
+
+bonus: clear
+	@echo "No bonus for this project done yet."
+
+# ############################################################################ #
+#						# PROJECT CUSTOM #									   #
+
+clear:
+	clear
+
+# ############################################################################ #
+#						# PROJECT TESTS #									   #
+
+# ############################################################################ #
+#										 # VERSIONS UPDATER AND GIT MANAGEMENT #
 # ############################################################################ #
 
 VERSIONS_DIR = ./release_notes/
 
-# variable
+# Variables
 VERSIONS_NUMBER := $(shell cat $(VERSIONS_DIR)versions.txt)
-
 COMMIT_FILE = $(VERSIONS_DIR)commits.txt
-
 COMMIT_ARGS = $(shell cat $(VERSIONS_DIR)last_commit.txt)
-
-ARGUMENT ?= something
-
 EXIT_NORMINETTE := $(shell norminette > /dev/null; echo $$?)
 
-all: checks info
+# Make commands in this makefile
+help: info
+	@echo "Available commands: (make <command>)\n"
+	@echo "help\n Display this help message.\n\n"
+	@echo "norminette, git_norminette\n Check norminette.\n\n"
+	@echo "git_cursus\n Use only from _CURSUS directory; \
+	will push all projects to personal GitHub.\n\n"
+	@echo "git_push\n Use only from project directory; \
+	if norminette's OK -> will push the project to git repo \
+	(be it personal git OR vogsphere).\n\n"
+	@echo "git_fpush\n Use only from project directory; \
+	will push the project to git repo without norminette check.\n\n"
+	@echo "git_status\n Display git status.\n\n"
+
+git: help
+
+git_cursus: clear commit git_add git_commit git_gitpush
+
+git_push: clear norminette
+
+git_fpush: clear git_msg1 git_auto
+#	* *	*
 
 # Release directory and files checker
 checks:
@@ -48,10 +151,7 @@ ifeq ($(wildcard $(VERSIONS_DIR)last_commit.txt),)
 endif
 #	* *	*
 
-git_cursus: commit git_add git_commit git_gitpush
-
-git_push: norminette git_auto
-
+# utils:
 ask:
 	@echo "Please enter your commit message:"
 	@read COMMIT_ARGS; \
@@ -62,6 +162,8 @@ info:
 	@echo "In _CURSUS/ directory, please use 'make git_cursus'"
 	@echo "In projects directory, please use 'make git_push'"
 
+commit: checks ask version_update
+	@echo "v$$(($(VERSIONS_NUMBER) + 1))\n$(COMMIT_ARGS)\n" >> $(COMMIT_FILE)
 
 version_update:
 	@echo "Current version: $(VERSIONS_NUMBER)"
@@ -70,48 +172,32 @@ version_update:
 	@echo "New version: $$(($(VERSIONS_NUMBER) + 1))"
 	@echo "Creating new release note"
 
-git:
-	@echo "norminette"
-	@echo "git_norminette"
-	@echo "git_auto"
-	@echo "git_push"
-	@echo "git_fpush"
-	@echo "git_status"
-	@echo "git_cursus"
-
 norminette:
 	@echo "Checking norminette..."
 ifeq ($(EXIT_NORMINETTE), 0)
-	@echo "Norminette passed!"
+	make git_auto
 else
-	@echo "Norminette failed, I presume you are plenty of MAJOR SKILL ISSUE."
+	@echo "Norminette failed, I presume you are plenty of MAJOR SKILL ISSUE.\n\
+	Here's what you have to fix:"
 	norminette | grep -v 'OK' 
 endif
 
 git_norminette:
 	norminette
 
-# DO NOT USE THIS UNLESS YOU'RE SURE
+# DO NOT USE
 git_auto:	fclean commit git_add git_commit git_gitpush
 
 git_msg1:
 	@echo "\n\tPushing without norminette...\n"
 
 git_msg2:
-	@echo "Pushing to _CURSUS (the personal private github)..."
+	@echo "Pushing to _CURSUS (the personal github)..."
 
-git_fpush: git_msg1 git_auto
-	
+# ############################################################################ #
+#														  # BASIC GIT COMMANDS #
 git_status:
 	git status
-
-commit: ask version_update
-	@echo "v$$(($(VERSIONS_NUMBER) + 1))\n$(COMMIT_ARGS)\n" >> $(COMMIT_FILE)
-#																			   #
-# ############################################################################ #
-
-# ############################################################################ #
-#					# BASIC GIT COMMANDS #									   #
 
 git_add:
 	git add *
@@ -123,3 +209,9 @@ git_gitpush:
 	git push
 #																			   #
 # ############################################################################ #
+
+# ############################################################################ #
+#								# PHONY #									   #
+# ############################################################################ #
+
+.PHONY:
