@@ -4,51 +4,65 @@
 
 VERSIONS_DIR = ./release_notes/
 
+
 # variable
 VERSIONS_NUMBER := $(shell cat $(VERSIONS_DIR)versions.txt)
 
 COMMIT_FILE = $(VERSIONS_DIR)commits.txt
 
-COMMIT_ARGS := $(ARGS)
+COMMIT_ARGS := $(shell cat $(VERSIONS_DIR)last_commit.txt)
 
 ARGUMENT ?= something
 
 EXIT_NORMINETTE := $(shell norminette > /dev/null; echo $$?)
 
-all: info
+all: checks info
+
+# Release directory and files checker
+checks:
+	@echo "Checking for release notes directory..."
+	@echo "Checking for versions file..."
+	@echo "Checking for commits file..."
+	@echo "Checking for last commit file..."
+ifeq ($(wildcard $(VERSIONS_DIR)),)
+	@echo "Creating release notes directory..."
+	@mkdir $(VERSIONS_DIR)
+	@echo "Done!"
+endif
+
+ifeq ($(wildcard $(VERSIONS_DIR)versions.txt),)
+	@echo "Creating versions file..."
+	@echo "0" > $(VERSIONS_DIR)versions.txt
+	@echo "Done!"
+endif
+
+ifeq ($(wildcard $(VERSIONS_DIR)commits.txt),)
+	@echo "Creating commits file..."
+	@echo "\t\t\t$(NAME) release notes:" > $(VERSIONS_DIR)commits.txt
+	@echo "Done!"
+endif
+
+ifeq ($(wildcard $(VERSIONS_DIR)last_commit.txt),)
+	@echo "Creating last commit file..."
+	@echo "0" > $(VERSIONS_DIR)last_commit.txt
+	@echo "Done!\t"
+endif
+#	* *	*
 
 git_cursus: commit git_add git_commit git_gitpush
 
 git_push: norminette git_auto
 
 ask:
-	@read -p "Please specify the commit message: " user_input; \
-	export ARGUMENT=$$user_input; \
+	@echo "Please enter your commit message:"
+	@read COMMIT_ARGS; \
+	echo $$COMMIT_ARGS > $(VERSIONS_DIR)last_commit.txt
 
 info:
 	@echo "This makefile is only for managing git!"
 	@echo "In _CURSUS/ directory, please use 'make git_cursus'"
 	@echo "In projects directory, please use 'make git_push'"
 
-# Release directory and files checker
-ifeq ($(shell cd $(VERSIONS_DIR) && ls),)
-	@echo "Creating release notes directory..."
-	@mkdir $(VERSIONS_DIR)
-	@echo "Done!"
-endif
-
-ifeq ($(shell cat $(VERSIONS_DIR)versions.txt),)
-	@echo "Creating versions file..."
-	@echo "0" > $(VERSIONS_DIR)versions.txt
-	@echo "Done!"
-endif
-
-ifeq ($(shell cat $(VERSIONS_DIR)commits.txt),)
-	@echo "Creating commits file..."
-	@echo "\t\t\t$(NAME) release notes:" > $(VERSIONS_DIR)commits.txt
-	@echo "Done!"
-endif
-#	* *	*
 
 version_update:
 	@echo "Current version: $(VERSIONS_NUMBER)"

@@ -4,34 +4,59 @@
 
 VERSIONS_DIR = ./release_notes/
 
+
 # variable
 VERSIONS_NUMBER := $(shell cat $(VERSIONS_DIR)versions.txt)
 
 COMMIT_FILE = $(VERSIONS_DIR)commits.txt
 
-COMMIT_ARGS := $(ARGS)
+COMMIT_ARGS := $(shell cat $(VERSIONS_DIR)last_commit.txt)
+
+ARGUMENT ?= something
 
 EXIT_NORMINETTE := $(shell norminette > /dev/null; echo $$?)
 
-all: norminette
-
-
+all: info
 # Release directory and files checker
-ifeq ($(shell cd $(VERSIONS_DIR) && ls),)
-	@echo "Creating release notes directory"
+ifeq ($(wildcard $(VERSIONS_DIR)),)
+	@echo "Creating release notes directory..."
 	@mkdir $(VERSIONS_DIR)
+	@echo "Done!"
 endif
 
-ifeq ($(shell cat $(VERSIONS_DIR)versions.txt),)
-	@echo "Creating versions file"
+ifeq ($(wildcard $(VERSIONS_DIR)versions.txt),)
+	@echo "Creating versions file..."
 	@echo "0" > $(VERSIONS_DIR)versions.txt
+	@echo "Done!"
 endif
 
-ifeq ($(shell cat $(VERSIONS_DIR)commits.txt),)
-	@echo "Creating commits file"
+ifeq ($(wildcard $(VERSIONS_DIR)commits.txt),)
+	@echo "Creating commits file..."
 	@echo "\t\t\t$(NAME) release notes:" > $(VERSIONS_DIR)commits.txt
+	@echo "Done!"
+endif
+
+ifeq ($(wildcard $(VERSIONS_DIR)last_commit.txt),)
+	@echo "Creating last commit file..."
+	@echo "0" > $(VERSIONS_DIR)last_commit.txt
+	@echo "Done!"
 endif
 #	* *	*
+
+git_cursus: commit git_add git_commit git_gitpush
+
+git_push: norminette git_auto
+
+ask:
+	@echo "Please enter your commit message:"
+	@read COMMIT_ARGS; \
+	echo $$COMMIT_ARGS > $(VERSIONS_DIR)last_commit.txt
+
+info:
+	@echo "This makefile is only for managing git!"
+	@echo "In _CURSUS/ directory, please use 'make git_cursus'"
+	@echo "In projects directory, please use 'make git_push'"
+
 
 version_update:
 	@echo "Current version: $(VERSIONS_NUMBER)"
@@ -51,41 +76,43 @@ git:
 
 norminette:
 	@echo "Checking norminette..."
-	@echo "norminette exit code: $(EXIT_NORMINETTE)"
 ifeq ($(EXIT_NORMINETTE), 0)
 	@echo "Norminette passed!"
 else
 	@echo "Norminette failed, I presume you are plenty of MAJOR SKILL ISSUE."
+	norminette | grep -v 'OK' 
 endif
 
 git_norminette:
 	norminette
 
 # DO NOT USE THIS UNLESS YOU'RE SURE
-git_auto:	fclean
-	git add *
-	git commit -m "😏👌 Updated via Makefile(tm) 😏👌"
-	git push
-
-git_push:
-	@echo Pushing if norminette OK...
-	./norminette_before_push.sh
+git_auto:	fclean commit git_add git_commit git_gitpush
 
 git_msg1:
 	@echo "\n\tPushing without norminette...\n"
+
+git_msg2:
+	@echo "Pushing to _CURSUS (the personal private github)..."
 
 git_fpush: git_msg1 git_auto
 	
 git_status:
 	git status
 
-git_cursus:
-	@echo "Pushing to _CURSUS (the personal private github)..."
-	git add ../*
-	git status
-	git commit -m "😏👌 Updated via Makefile(tm) 😏👌"
-	git push
-	@echo "\n\tFor detailing commit, please do git pushing manually. Thank you."
+commit: ask version_update
+	@echo "v$$(($(VERSIONS_NUMBER) + 1))\n$(COMMIT_ARGS)\n" >> $(COMMIT_FILE)
 
-commit: version_update
-	@echo "v$$(($(VERSIONS_NUMBER) + 1))\n$(COMMIT_ARGS) \n" >> $(COMMIT_FILE)
+# ############################################################################ #
+#					# BASIC GIT COMMANDS #									   #
+
+git_add:
+	git add *
+
+git_commit:
+	git commit -m "v$$(($(VERSIONS_NUMBER) + 1)) $(COMMIT_ARGS)"
+
+git_gitpush:
+	git push
+#																			   #
+# ############################################################################ #
