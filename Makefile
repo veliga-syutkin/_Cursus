@@ -11,6 +11,8 @@ COMMIT_FILE = $(VERSIONS_DIR)commits.txt
 
 COMMIT_ARGS := $(ARGS)
 
+ARGUMENT ?= something
+
 EXIT_NORMINETTE := $(shell norminette > /dev/null; echo $$?)
 
 all: info
@@ -20,9 +22,8 @@ git_cursus: commit git_add git_commit git_gitpush
 git_push: norminette git_auto
 
 ask:
-	@echo "Please specify the commit message: "
-	@read ARGS
-	export COMMIT_ARGS=$$ARGS
+	@read -p "Please specify the commit message: " user_input; \
+	export ARGUMENT=$$user_input; \
 
 info:
 	@echo "This makefile is only for managing git!"
