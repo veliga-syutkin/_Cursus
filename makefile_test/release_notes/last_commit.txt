@@ -1,1 +1,1 @@
-Makefile tests.
+test of makefile

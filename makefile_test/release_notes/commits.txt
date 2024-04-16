@@ -2,3 +2,6 @@
 v1
 Makefile tests.
 
+v2
+test of makefile
+
