@@ -15,7 +15,7 @@ EXIT_NORMINETTE := $(shell norminette > /dev/null; echo $$?)
 
 all: info
 
-git_cursus: commit git_add git_commit git_push
+git_cursus: commit git_add git_commit git_gitpush
 
 git_push: norminette git_auto
 
@@ -74,12 +74,11 @@ else
 	norminette | grep -v 'OK' 
 endif
 
-
 git_norminette:
 	norminette
 
 # DO NOT USE THIS UNLESS YOU'RE SURE
-git_auto:	fclean commit git_add git_commit git_push
+git_auto:	fclean commit git_add git_commit git_gitpush
 
 git_msg1:
 	@echo "\n\tPushing without norminette...\n"
@@ -104,7 +103,7 @@ git_add:
 git_commit:
 	git commit -m "v$$(($(VERSIONS_NUMBER) + 1)) $(COMMIT_ARGS)"
 
-git_push:
+git_gitpush:
 	git push
 #																			   #
 # ############################################################################ #
