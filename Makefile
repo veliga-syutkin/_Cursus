@@ -13,16 +13,21 @@ COMMIT_ARGS := $(ARGS)
 
 EXIT_NORMINETTE := $(shell norminette > /dev/null; echo $$?)
 
-all: info norminette
+all: info
+
+git_cursus: commit git_add git_commit git_push
+
+git_push: norminette git_auto
 
 ask:
 	@echo "Please specify the commit message: "
 	@read ARGS
+	export COMMIT_ARGS=$$ARGS
 
 info:
 	@echo "This makefile is only for managing git!"
-	@echo "In _CURSUS/ directory, please use make git_cursus"
-	@echo "In projects directory, please use make git_push"
+	@echo "In _CURSUS/ directory, please use 'make git_cursus'"
+	@echo "In projects directory, please use 'make git_push'"
 
 # Release directory and files checker
 ifeq ($(shell cd $(VERSIONS_DIR) && ls),)
@@ -69,24 +74,23 @@ else
 	norminette | grep -v 'OK' 
 endif
 
+
 git_norminette:
 	norminette
 
 # DO NOT USE THIS UNLESS YOU'RE SURE
 git_auto:	fclean commit git_add git_commit git_push
 
-git_push: norminette git_auto
-
 git_msg1:
 	@echo "\n\tPushing without norminette...\n"
+
+git_msg2:
+	@echo "Pushing to _CURSUS (the personal private github)..."
 
 git_fpush: git_msg1 git_auto
 	
 git_status:
 	git status
-
-git_cursus: commit git_add git_commit git_push
-	@echo "Pushing to _CURSUS (the personal private github)..."
 
 commit: ask version_update
 	@echo "v$$(($(VERSIONS_NUMBER) + 1))\n$(COMMIT_ARGS)\n" >> $(COMMIT_FILE)
