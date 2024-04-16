@@ -26,18 +26,21 @@ info:
 
 # Release directory and files checker
 ifeq ($(shell cd $(VERSIONS_DIR) && ls),)
-	@echo "Creating release notes directory"
+	@echo "Creating release notes directory..."
 	@mkdir $(VERSIONS_DIR)
+	@echo "Done!"
 endif
 
 ifeq ($(shell cat $(VERSIONS_DIR)versions.txt),)
-	@echo "Creating versions file"
+	@echo "Creating versions file..."
 	@echo "0" > $(VERSIONS_DIR)versions.txt
+	@echo "Done!"
 endif
 
 ifeq ($(shell cat $(VERSIONS_DIR)commits.txt),)
-	@echo "Creating commits file"
+	@echo "Creating commits file..."
 	@echo "\t\t\t$(NAME) release notes:" > $(VERSIONS_DIR)commits.txt
+	@echo "Done!"
 endif
 #	* *	*
 
@@ -70,10 +73,7 @@ git_norminette:
 	norminette
 
 # DO NOT USE THIS UNLESS YOU'RE SURE
-git_auto:	fclean commit
-	git add *
-	git commit -m "v$$(($(VERSIONS_NUMBER) + 1))\n$(COMMIT_ARGS)"
-	git push
+git_auto:	fclean commit git_add git_commit git_push
 
 git_push: norminette git_auto
 
@@ -85,11 +85,22 @@ git_fpush: git_msg1 git_auto
 git_status:
 	git status
 
-git_cursus: commit
+git_cursus: commit git_add git_commit git_push
 	@echo "Pushing to _CURSUS (the personal private github)..."
-	git add ./*
-	git commit -m "v $$(($(VERSIONS_NUMBER) + 1))\n$(COMMIT_ARGS)"
-	git push
 
 commit: ask version_update
-	@echo "v$$(($(VERSIONS_NUMBER) + 1))\n$(COMMIT_ARGS) \n" >> $(COMMIT_FILE)
+	@echo "v$$(($(VERSIONS_NUMBER) + 1))\n$(COMMIT_ARGS)\n" >> $(COMMIT_FILE)
+
+# ############################################################################ #
+#					# BASIC GIT COMMANDS #									   #
+
+git_add:
+	git add *
+
+git_commit:
+	git commit -m "v$$(($(VERSIONS_NUMBER) + 1)) $(COMMIT_ARGS)"
+
+git_push:
+	git push
+#																			   #
+# ############################################################################ #
