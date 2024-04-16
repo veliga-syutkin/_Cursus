@@ -1,1 +1,0 @@
-Looks like successfully test of makefile :)
