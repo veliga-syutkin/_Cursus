@@ -4,7 +4,6 @@
 
 VERSIONS_DIR = ./release_notes/
 
-
 # variable
 VERSIONS_NUMBER := $(shell cat $(VERSIONS_DIR)versions.txt)
 
