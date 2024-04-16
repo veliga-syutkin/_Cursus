@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/16 14:28:24 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/04/16 14:28:53 by vsyutkin         ###   ########.fr       */
+/*   Created: 2024/04/16 16:35:07 by vsyutkin          #+#    #+#             */
+/*   Updated: 2024/04/16 16:37:25 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,6 @@
 
 int	main(void)
 {
-	printf("Hello, norminette!\n");
+	printf("Hello, World!\n");
+	return (0);
 }
