@@ -1,1 +1,1 @@
-test of makefile
+Looks like successfully test of makefile :)

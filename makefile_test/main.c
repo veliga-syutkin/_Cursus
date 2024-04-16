@@ -6,13 +6,13 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 16:35:07 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/04/16 16:38:52 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/04/16 16:41:51 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 
-int	main()
+int	main(void)
 {
 	printf("Hello, World!\n");
 	return (0);

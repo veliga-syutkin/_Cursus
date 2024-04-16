@@ -6,7 +6,7 @@
 #    By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/16 16:03:36 by vsyutkin          #+#    #+#              #
-#    Updated: 2024/04/16 16:38:03 by vsyutkin         ###   ########.fr        #
+#    Updated: 2024/04/16 16:41:39 by vsyutkin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -115,7 +115,7 @@ git: help
 
 git_cursus: clear commit git_add git_commit git_gitpush
 
-git_push: clear norminette git_auto
+git_push: clear norminette
 
 git_fpush: clear git_msg1 git_auto
 #	* *	*
@@ -175,9 +175,10 @@ version_update:
 norminette:
 	@echo "Checking norminette..."
 ifeq ($(EXIT_NORMINETTE), 0)
-	@echo "Norminette passed!"
+	make git_auto
 else
-	@echo "Norminette failed, I presume you are plenty of MAJOR SKILL ISSUE."
+	@echo "Norminette failed, I presume you are plenty of MAJOR SKILL ISSUE.\n\
+	Here's what you have to fix:"
 	norminette | grep -v 'OK' 
 endif
 

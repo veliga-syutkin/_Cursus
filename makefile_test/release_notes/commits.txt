@@ -5,3 +5,6 @@ Makefile tests.
 v2
 test of makefile
 
+v3
+Looks like successfully test of makefile :)
+
