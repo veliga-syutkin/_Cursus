@@ -15,6 +15,10 @@ EXIT_NORMINETTE := $(shell norminette > /dev/null; echo $$?)
 
 all: info norminette
 
+ask:
+	@echo "Please specify the commit message: "
+	@read ARGS
+
 info:
 	@echo "This makefile is only for managing git!"
 	@echo "In _CURSUS/ directory, please use make git_cursus"
@@ -84,8 +88,8 @@ git_status:
 git_cursus: commit
 	@echo "Pushing to _CURSUS (the personal private github)..."
 	git add ./*
-	git commit -m "v$$(($(VERSIONS_NUMBER) + 1))\n$(COMMIT_ARGS)"
+	git commit -m "v $$(($(VERSIONS_NUMBER) + 1))\n$(COMMIT_ARGS)"
 	git push
 
-commit: version_update
+commit: ask version_update
 	@echo "v$$(($(VERSIONS_NUMBER) + 1))\n$(COMMIT_ARGS) \n" >> $(COMMIT_FILE)
