@@ -1,1 +1,1 @@
-I spoke Makefile.
+Fixed _CURSUS's Makefile.

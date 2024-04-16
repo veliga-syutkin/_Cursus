@@ -41,3 +41,6 @@ I spoke Makefile.
 v15
 I spoke Makefile.
 
+v16
+Fixed _CURSUS's Makefile.
+
