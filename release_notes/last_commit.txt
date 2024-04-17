@@ -1,1 +1,1 @@
-Added .gitignore for .vscode
+Updated .PHONY commentary. Updating so_long's Makefile.

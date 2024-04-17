@@ -47,3 +47,6 @@ Fixed _CURSUS's Makefile.
 v17
 Added .gitignore for .vscode
 
+v18
+Updated .PHONY commentary. Updating so_long's Makefile.
+

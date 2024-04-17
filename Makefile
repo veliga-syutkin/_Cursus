@@ -6,7 +6,7 @@
 #    By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/16 16:03:36 by vsyutkin          #+#    #+#              #
-#    Updated: 2024/04/16 18:10:02 by vsyutkin         ###   ########.fr        #
+#    Updated: 2024/04/17 10:10:15 by vsyutkin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -217,3 +217,7 @@ git_gitpush:
 .PHONY: all clean fclean re bonus clear help git git_cursus git_push git_fpush \
 git_status git_add git_commit git_gitpush norminette git_norminette git_auto \
 git_msg1 git_msg2
+
+# .PHONY is used to declare phony targets. When a target is phony, it will
+# run the target rather do something to a file. 
+# 	Check "Makefile Implicit Rules - Phony" for more info.
