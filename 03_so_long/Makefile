@@ -6,7 +6,7 @@
 #    By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/16 16:03:36 by vsyutkin          #+#    #+#              #
-#    Updated: 2024/04/17 10:10:04 by vsyutkin         ###   ########.fr        #
+#    Updated: 2024/04/17 10:26:13 by vsyutkin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@
 
 LIBFT_DIR = ./0_LIBFT/
 MLX_DIR = ./1_MLX42/
+NORMINETTE_DIR = $(LIBFT_DIR) 
 
 # ############################################################################ #
 #						# PROJECT SOURCES DECLARATIONS #					   #
@@ -98,6 +99,9 @@ clear:
 # ############################################################################ #
 #						# PROJECT TESTS #									   #
 
+test: clear
+	norminette $(NORMINETTE_DIR) > /dev/null; echo $$?
+
 # ############################################################################ #
 #										 # VERSIONS UPDATER AND GIT MANAGEMENT #
 # ############################################################################ #
@@ -108,7 +112,7 @@ VERSIONS_DIR = ./release_notes/
 VERSIONS_NUMBER := $(shell cat $(VERSIONS_DIR)versions.txt)
 COMMIT_FILE = $(VERSIONS_DIR)commits.txt
 COMMIT_ARGS = $(shell cat $(VERSIONS_DIR)last_commit.txt)
-EXIT_NORMINETTE := $(shell norminette > /dev/null; echo $$?)
+EXIT_NORMINETTE := $(shell norminette $(NORMINETTE_DIR) > /dev/null; echo $$?)
 
 # Make commands in this makefile
 help: info
@@ -192,7 +196,7 @@ ifeq ($(EXIT_NORMINETTE), 0)
 else
 	@echo "Norminette failed, I presume you are plenty of MAJOR SKILL ISSUE.\n\
 	Here's what you have to fix:"
-	norminette | grep -v 'OK' 
+	norminette $(NORMINETTE_DIR) | grep -v 'OK' 
 endif
 
 git_norminette:

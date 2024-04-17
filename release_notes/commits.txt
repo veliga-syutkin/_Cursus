@@ -50,3 +50,6 @@ Added .gitignore for .vscode
 v18
 Updated .PHONY commentary. Updating so_long's Makefile.
 
+v19
+Fixed norminette for 0_LIBFT
+

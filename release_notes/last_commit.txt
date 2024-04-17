@@ -1,1 +1,1 @@
-Updated .PHONY commentary. Updating so_long's Makefile.
+Fixed norminette for 0_LIBFT
