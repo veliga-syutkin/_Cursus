@@ -44,3 +44,6 @@ I spoke Makefile.
 v16
 Fixed _CURSUS's Makefile.
 
+v17
+Added .gitignore for .vscode
+

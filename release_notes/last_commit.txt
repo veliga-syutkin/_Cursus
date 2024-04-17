@@ -1,1 +1,1 @@
-Fixed _CURSUS's Makefile.
+Added .gitignore for .vscode
