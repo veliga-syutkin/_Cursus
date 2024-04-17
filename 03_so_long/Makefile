@@ -6,13 +6,31 @@
 #    By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/16 16:03:36 by vsyutkin          #+#    #+#              #
-#    Updated: 2024/04/17 10:26:13 by vsyutkin         ###   ########.fr        #
+#    Updated: 2024/04/17 11:20:35 by vsyutkin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # ############################################################################ #
-#						# PROJECT DIRECTORY DECLARATIONS #					   #
+#						# PROJECT MLX #					   #
 # ############################################################################ #
+
+# CFLAGS	:= -Wextra -Wall -Werror -Wunreachable-code -Ofast # what are those 2 last flags for?
+LIBMLX	:= ./1_MLX42
+
+LIBS	:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm # what is -ldl? -lglfw? -pthread? -lm?
+
+all_mlx: libmlx $(NAME)
+
+libmlx:
+	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
+
+clean_mlx:
+	@rm -rf $(OBJS)
+	@rm -rf $(LIBMLX)/build
+
+fclean_mlx: clean_mlx
+	@rm -rf $(NAME)
+#################################### #
 
 LIBFT_DIR = ./0_LIBFT/
 MLX_DIR = ./1_MLX42/
@@ -34,7 +52,7 @@ NAME = so_long
 
 AR = ./0_LIBFT/libft.a
 
-MLX42 = ./1_MLX42/build/libmlx42.a
+MLX42 = ./1_MLX42/build/libmlx42.a # check if mlx42 pops here
 
 # ############################################################################ #
 #						# PROJECT END_FILES DECLARATIONS #					   #
@@ -62,10 +80,7 @@ ARMAKE = make -C $(LIBFT_DIR)
 # ############################################################################ #
 
 # all: $(NAME) 
-all: libmlx42 help
-
-libmlx42:
-	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
+all: all_mlx help
 
 $(NAME): $(AR)
 	$(CC) $(CFLAGS) $(FILES) $(AR) -o $(NAME)
@@ -73,11 +88,11 @@ $(NAME): $(AR)
 $(AR):
 	make -C $(LIBFT_DIR)
 
-clean: clear
+clean: clear clean_mlx
 	$(ARMAKE) clean
 	$(RM) $(MLX_DIR)build
 
-fclean: clear clean
+fclean: clear clean fclean_mlx
 	$(RM) $(NAME)
 	$(RM) a.out
 	$(ARMAKE) fclean
