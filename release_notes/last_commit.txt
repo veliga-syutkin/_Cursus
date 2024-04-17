@@ -1,1 +1,1 @@
-Updated Makefile for better norminette checks
+Added in info help display message checks command.

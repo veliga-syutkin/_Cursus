@@ -56,3 +56,6 @@ Fixed norminette for 0_LIBFT
 v20
 Updated Makefile for better norminette checks
 
+v21
+Added in info help display message checks command.
+
