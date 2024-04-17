@@ -1,1 +1,1 @@
-Added in info help display message checks command.
+Started so_long

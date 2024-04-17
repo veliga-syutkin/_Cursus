@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 21:36:41 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/03/12 21:59:03 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/04/17 12:13:47 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,4 +16,4 @@
 # include "./0_LIBFT/libft.h"
 # include "./1_MLX42/include/MLX42/MLX42.h"
 
-# endif
+#endif

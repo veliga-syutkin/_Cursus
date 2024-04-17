@@ -6,7 +6,7 @@
 #    By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/16 16:03:36 by vsyutkin          #+#    #+#              #
-#    Updated: 2024/04/17 12:03:31 by vsyutkin         ###   ########.fr        #
+#    Updated: 2024/04/17 12:18:26 by vsyutkin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,11 +34,13 @@ fclean_mlx: clean_mlx
 
 LIBFT_DIR = ./0_LIBFT/
 MLX_DIR = ./1_MLX42/
-NORMINETTE_DIR = $(LIBFT_DIR) 
+NORMINETTE_DIR = $(MAIN) $(LIBFT_DIR) 
 
 # ############################################################################ #
 #						# PROJECT SOURCES DECLARATIONS #					   #
 # ############################################################################ #
+
+MAIN = so_long.c
 
 # ############################################################################ #
 #						# PROJECT PATH DECLARATIONS #						   #
@@ -48,8 +50,6 @@ NORMINETTE_DIR = $(LIBFT_DIR)
 #						# PROJECT FILES DECLARATIONS #						   #
 # ############################################################################ #
 
-NAME = so_long
-
 AR = ./0_LIBFT/libft.a
 
 MLX42 = ./1_MLX42/build/libmlx42.a # check if mlx42 pops here
@@ -58,7 +58,8 @@ MLX42 = ./1_MLX42/build/libmlx42.a # check if mlx42 pops here
 #						# PROJECT END_FILES DECLARATIONS #					   #
 # ############################################################################ #
 
-NAME = no_name_yet.you_suck
+NAME = so_long
+
 PROGRAM = ./$(NAME)
 
 AR = ./0_LIBFT/libft.a
@@ -204,8 +205,7 @@ version_update:
 	@echo "New version: $$(($(VERSIONS_NUMBER) + 1))"
 	@echo "Creating new release note"
 
-norminette:
-	@echo "Checking norminette..."
+norminette: norminette_msg
 ifeq ($(EXIT_NORMINETTE), 0)
 	@echo "Norminette OK!"
 else
@@ -215,8 +215,7 @@ else
 endif
 
 # DO NOT USE
-git_norminette:
-	@echo "Checking norminette..."
+git_norminette: norminette_msg
 ifeq ($(EXIT_NORMINETTE), 0)
 	make git_auto
 else
@@ -232,6 +231,9 @@ git_msg1:
 
 git_msg2:
 	@echo "Pushing to _CURSUS (the personal github)..."
+
+norminette_msg:
+	@echo "Checking norminette in $(NORMINETTE_DIR)..."
 
 # ############################################################################ #
 #														  # BASIC GIT COMMANDS #
