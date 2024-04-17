@@ -6,7 +6,7 @@
 #    By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/16 16:03:36 by vsyutkin          #+#    #+#              #
-#    Updated: 2024/04/17 10:10:15 by vsyutkin         ###   ########.fr        #
+#    Updated: 2024/04/17 12:06:17 by vsyutkin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -101,7 +101,7 @@ EXIT_NORMINETTE := $(shell norminette > /dev/null; echo $$?)
 help: info
 	@echo "Available commands: (make <command>)\n"
 	@echo "help\n Display this help message.\n\n"
-	@echo "norminette, git_norminette\n Check norminette.\n\n"
+	@echo "norminette\n Check norminette.\n\n"
 	@echo "git_cursus\n Use only from _CURSUS directory; \
 	will push all projects to personal GitHub.\n\n"
 	@echo "git_push\n Use only from project directory; \
@@ -115,7 +115,7 @@ git: help
 
 git_cursus: clear commit git_add git_commit git_gitpush
 
-git_push: clear norminette
+git_push: clear git_norminette
 
 git_fpush: clear git_msg1 git_auto
 #	* *	*
@@ -172,7 +172,7 @@ version_update:
 	@echo "New version: $$(($(VERSIONS_NUMBER) + 1))"
 	@echo "Creating new release note"
 
-norminette:
+git_norminette:
 	@echo "Checking norminette..."
 ifeq ($(EXIT_NORMINETTE), 0)
 	make git_auto
@@ -183,7 +183,14 @@ else
 endif
 
 git_norminette:
-	norminette
+	@echo "Checking norminette..."
+ifeq ($(EXIT_NORMINETTE), 0)
+	@echo "Norminette OK!"
+else
+	@echo "Norminette failed, I presume you are plenty of MAJOR SKILL ISSUE.\n\
+	Here's what you have to fix:"
+	norminette | grep -v 'OK' 
+endif
 
 # DO NOT USE
 git_auto:	fclean commit git_add git_commit git_gitpush

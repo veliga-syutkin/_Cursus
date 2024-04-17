@@ -6,7 +6,7 @@
 #    By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/16 16:03:36 by vsyutkin          #+#    #+#              #
-#    Updated: 2024/04/17 11:20:35 by vsyutkin         ###   ########.fr        #
+#    Updated: 2024/04/17 12:03:31 by vsyutkin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,8 +25,8 @@ libmlx:
 	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
 
 clean_mlx:
-	@rm -rf $(OBJS)
-	@rm -rf $(LIBMLX)/build
+	rm -rf $(OBJS)
+	rm -rf $(LIBMLX)/build
 
 fclean_mlx: clean_mlx
 	@rm -rf $(NAME)
@@ -147,7 +147,7 @@ git: help
 
 git_cursus: clear commit git_add git_commit git_gitpush
 
-git_push: clear norminette
+git_push: clear git_norminette
 
 git_fpush: clear git_msg1 git_auto
 #	* *	*
@@ -207,6 +207,17 @@ version_update:
 norminette:
 	@echo "Checking norminette..."
 ifeq ($(EXIT_NORMINETTE), 0)
+	@echo "Norminette OK!"
+else
+	@echo "Norminette failed, I presume you are plenty of MAJOR SKILL ISSUE.\n\
+	Here's what you have to fix:"
+	norminette $(NORMINETTE_DIR) | grep -v 'OK' 
+endif
+
+# DO NOT USE
+git_norminette:
+	@echo "Checking norminette..."
+ifeq ($(EXIT_NORMINETTE), 0)
 	make git_auto
 else
 	@echo "Norminette failed, I presume you are plenty of MAJOR SKILL ISSUE.\n\
@@ -214,10 +225,6 @@ else
 	norminette $(NORMINETTE_DIR) | grep -v 'OK' 
 endif
 
-git_norminette:
-	norminette
-
-# DO NOT USE
 git_auto:	fclean commit git_add git_commit git_gitpush
 
 git_msg1:

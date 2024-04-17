@@ -53,3 +53,6 @@ Updated .PHONY commentary. Updating so_long's Makefile.
 v19
 Fixed norminette for 0_LIBFT
 
+v20
+Updated Makefile for better norminette checks
+
