@@ -6,7 +6,7 @@
 #    By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/16 16:03:36 by vsyutkin          #+#    #+#              #
-#    Updated: 2024/04/18 15:47:10 by vsyutkin         ###   ########.fr        #
+#    Updated: 2024/04/18 16:10:09 by vsyutkin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@
 
 #Only .c files
 MAIN = so_long.c
+KEYS = esc.c
 
 # ############################################################################ #
 #						# PROJECT PATH DECLARATIONS #						   #
@@ -24,13 +25,15 @@ MAIN = so_long.c
 #Only directories
 LIBFT_DIR = ./0_LIBFT/
 MLX_DIR = ./1_MLX42/
+KEY_DIR = ./2_KEY/
 
 # ############################################################################ #
 #						# PROJECT FILES DECLARATIONS #						   #
 # ############################################################################ #
 
 #Gathers all files in $(FILES)
-FILES = $(MAIN)
+FILES = $(MAIN) \
+		$(addprefix $(KEY_DIR), $(KEYS))
 
 INCLUDES = -I $(MLX_DIR)include/MLX42/MLX42.h
 
@@ -101,6 +104,9 @@ clear:
 
 run: clear
 	./$(NAME)
+
+valgrind: clear
+	valgrind --leak-check=full ./$(NAME)
 
 # ############################################################################ #
 #						# PROJECT TESTS #									   #

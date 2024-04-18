@@ -1,1 +1,1 @@
-My 1st open window (with compiling MLX with the project)
+Added ESC management. Added valgrind rule to makefile; need to ask if leaks are expected or not.
