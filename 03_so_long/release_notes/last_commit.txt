@@ -1,1 +1,1 @@
-MLX compiles successfully
+My 1st open window (with compiling MLX with the project)

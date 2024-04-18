@@ -6,53 +6,37 @@
 #    By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/16 16:03:36 by vsyutkin          #+#    #+#              #
-#    Updated: 2024/04/17 12:18:26 by vsyutkin         ###   ########.fr        #
+#    Updated: 2024/04/18 15:47:10 by vsyutkin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
-# ############################################################################ #
-#						# PROJECT MLX #					   #
-# ############################################################################ #
-
-# CFLAGS	:= -Wextra -Wall -Werror -Wunreachable-code -Ofast # what are those 2 last flags for?
-LIBMLX	:= ./1_MLX42
-
-LIBS	:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm # what is -ldl? -lglfw? -pthread? -lm?
-
-all_mlx: libmlx $(NAME)
-
-libmlx:
-	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
-
-clean_mlx:
-	rm -rf $(OBJS)
-	rm -rf $(LIBMLX)/build
-
-fclean_mlx: clean_mlx
-	@rm -rf $(NAME)
-#################################### #
-
-LIBFT_DIR = ./0_LIBFT/
-MLX_DIR = ./1_MLX42/
-NORMINETTE_DIR = $(MAIN) $(LIBFT_DIR) 
 
 # ############################################################################ #
 #						# PROJECT SOURCES DECLARATIONS #					   #
 # ############################################################################ #
 
+#Only .c files
 MAIN = so_long.c
 
 # ############################################################################ #
 #						# PROJECT PATH DECLARATIONS #						   #
 # ############################################################################ #
 
+#Only directories
+LIBFT_DIR = ./0_LIBFT/
+MLX_DIR = ./1_MLX42/
+
 # ############################################################################ #
 #						# PROJECT FILES DECLARATIONS #						   #
 # ############################################################################ #
 
-AR = ./0_LIBFT/libft.a
+#Gathers all files in $(FILES)
+FILES = $(MAIN)
 
-MLX42 = ./1_MLX42/build/libmlx42.a # check if mlx42 pops here
+INCLUDES = -I $(MLX_DIR)include/MLX42/MLX42.h
+
+# Library files
+AR = ./0_LIBFT/libft.a
+MLX42 = ./1_MLX42/build/libmlx42.a
 
 # ############################################################################ #
 #						# PROJECT END_FILES DECLARATIONS #					   #
@@ -62,41 +46,44 @@ NAME = so_long
 
 PROGRAM = ./$(NAME)
 
-AR = ./0_LIBFT/libft.a
+LIBS = $(AR) $(MLX42)
 
 # ############################################################################ #
 #						# PROJECT MACROS #									   #
 # ############################################################################ #
 
-CFLAGS = -Wall -Wextra -Werror -g3 #-fsanitize=address
-
 CC = cc
+CFLAGS = -Wall -Wextra -Werror -g3 #-fsanitize=address
 
 RM = rm -f
 
 ARMAKE = make -C $(LIBFT_DIR)
+MLX42MAKE = make -C $(MLX_DIR)
 
 # ############################################################################ #
 #						# PROJECT RULES DECLARATIONS #						   #
 # ############################################################################ #
 
-# all: $(NAME) 
-all: all_mlx help
+MLX42_FLAG = -Iinclude -ldl -lglfw -pthread -lm
 
-$(NAME): $(AR)
-	$(CC) $(CFLAGS) $(FILES) $(AR) -o $(NAME)
+all: $(NAME)
 
-$(AR):
-	make -C $(LIBFT_DIR)
+$(NAME): $(LIBS)
+	$(CC) $(CFLAGS) $(FILES) $(LIBS) $(MLX42_FLAG) -o $(NAME)
 
-clean: clear clean_mlx
+$(LIBS):
+	$(ARMAKE)
+	$(MLX42MAKE)
+
+clean: clear
 	$(ARMAKE) clean
-	$(RM) $(MLX_DIR)build
+	$(MLX42MAKE) clean
 
-fclean: clear clean fclean_mlx
+fclean: clean
 	$(RM) $(NAME)
 	$(RM) a.out
 	$(ARMAKE) fclean
+	$(MLX42MAKE) fclean
 
 re: clear fclean all
 
@@ -112,19 +99,43 @@ bonus: clear
 clear:
 	clear
 
+run: clear
+	./$(NAME)
+
 # ############################################################################ #
 #						# PROJECT TESTS #									   #
 
 test: clear
-	norminette $(NORMINETTE_DIR) > /dev/null; echo $$?
 
 # ############################################################################ #
 #										 # VERSIONS UPDATER AND GIT MANAGEMENT #
 # ############################################################################ #
 
+# Colors
+NC = \033[0m
+BOLD_BLACK = \033[1;30m
+RED = \033[0;31m
+BOLD_RED = \033[1;31m
+GREEN = \033[0;32m
+BOLD_GREEN = \033[1;32m
+YELLOW = \033[0;33m
+BOLD_YELLOW = \033[1;33m
+BLUE = \033[0;34m
+BOLD_BLUE = \033[1;34m
+BOLD_PURPLE = \033[1;35m
+PURPLE = \033[0;35m
+BOLD_CYAN = \033[1;36m
+CYAN = \033[0;36m
+BOLD_WHITE = \033[1;37m
+WHITE = \033[0;37m
+BACKGROUND_GREEN = \033[42m
+BACKGROUND_RED = \033[41m
+BACKGROUND_WHITE = \033[47m
+
 VERSIONS_DIR = ./release_notes/
 
 # Variables
+NORMINETTE_DIR = $(MAIN) $(LIBFT_DIR)
 VERSIONS_NUMBER := $(shell cat $(VERSIONS_DIR)versions.txt)
 COMMIT_FILE = $(VERSIONS_DIR)commits.txt
 COMMIT_ARGS = $(shell cat $(VERSIONS_DIR)last_commit.txt)
@@ -207,10 +218,10 @@ version_update:
 
 norminette: norminette_msg
 ifeq ($(EXIT_NORMINETTE), 0)
-	@echo "Norminette OK!"
+	@echo "$(BOLD_GREEN)Norminette OK!$(NC)"
 else
-	@echo "Norminette failed, I presume you are plenty of MAJOR SKILL ISSUE.\n\
-	Here's what you have to fix:"
+	@echo "$(BOLD_RED)Norminette failed, I presume you are plenty of MAJOR SKILL ISSUE.\n\
+	Here's what you have to fix:$(NC)"
 	norminette $(NORMINETTE_DIR) | grep -v 'OK' 
 endif
 
@@ -219,8 +230,8 @@ git_norminette: norminette_msg
 ifeq ($(EXIT_NORMINETTE), 0)
 	make git_auto
 else
-	@echo "Norminette failed, I presume you are plenty of MAJOR SKILL ISSUE.\n\
-	Here's what you have to fix:"
+	@echo "$(BOLD_RED)Norminette failed, I presume you are plenty of MAJOR SKILL ISSUE.\n\
+	Here's what you have to fix:$(NC)"
 	norminette $(NORMINETTE_DIR) | grep -v 'OK' 
 endif
 
@@ -233,7 +244,7 @@ git_msg2:
 	@echo "Pushing to _CURSUS (the personal github)..."
 
 norminette_msg:
-	@echo "Checking norminette in $(NORMINETTE_DIR)..."
+	@echo "$(YELLOW)Checking norminette in $(NORMINETTE_DIR)...$(NC)"
 
 # ############################################################################ #
 #														  # BASIC GIT COMMANDS #

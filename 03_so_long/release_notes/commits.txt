@@ -2,3 +2,6 @@
 v1
 MLX compiles successfully
 
+v2
+My 1st open window (with compiling MLX with the project)
+
