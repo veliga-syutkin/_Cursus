@@ -1,1 +1,1 @@
-Added ESC management. Added valgrind rule to makefile; need to ask if leaks are expected or not.
+WIP memory leak checks
