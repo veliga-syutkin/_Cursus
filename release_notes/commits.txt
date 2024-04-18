@@ -62,3 +62,6 @@ Added in info help display message checks command.
 v22
 Started so_long
 
+v23
+Fixed missing ''
+

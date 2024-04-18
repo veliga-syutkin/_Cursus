@@ -6,7 +6,7 @@
 #    By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/16 16:03:36 by vsyutkin          #+#    #+#              #
-#    Updated: 2024/04/17 12:09:14 by vsyutkin         ###   ########.fr        #
+#    Updated: 2024/04/18 16:07:03 by vsyutkin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -101,7 +101,7 @@ EXIT_NORMINETTE := $(shell norminette > /dev/null; echo $$?)
 help: info
 	@echo "Available commands: (make <command>)\n"
 	@echo "help\n Display this help message.\n\n"
-	@echo "checks\n Check for release notes directory and files.\n
+	@echo "checks\n Check for release notes directory and files.\n\
 	If there is something missing, it will create it with defautl values.\n\n"
 	@echo "git_cursus\n Use only from _CURSUS directory; \
 	will push all projects to personal GitHub.\n\n"
