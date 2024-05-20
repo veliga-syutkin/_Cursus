@@ -6,7 +6,7 @@
 #    By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/16 16:03:36 by vsyutkin          #+#    #+#              #
-#    Updated: 2024/05/20 22:23:44 by vsyutkin         ###   ########.fr        #
+#    Updated: 2024/05/20 23:32:03 by vsyutkin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,8 +26,9 @@ KEYS = esc.c
 LIBFT_DIR = ./0_LIBFT/
 MLX_DIR = ./1_MLX42/
 KEY_DIR = ./2_KEY/
+MAP_DIR = ./3_MAPS/
 
-PROJECT_DIR = $(LIBFT_DIR) $(KEY_DIR)
+PROJECT_DIR = $(LIBFT_DIR) $(KEY_DIR) $(MAP_DIR)
 
 # ############################################################################ #
 #						# PROJECT FILES DECLARATIONS #						   #

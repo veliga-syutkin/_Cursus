@@ -1,1 +1,1 @@
-Proper closing windows on ESC press & release
+added valid maps for tests

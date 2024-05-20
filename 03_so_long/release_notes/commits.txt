@@ -1,4 +1,4 @@
-			no_name_yet.you_suck release notes:
+			so_long release notes:
 v1
 MLX compiles successfully
 
@@ -16,4 +16,7 @@ Changed 256 into HEIGHT/WIDTH macros; updated mlx_loop what key was pressed inst
 
 v6
 Proper closing windows on ESC press & release
+
+v7
+added valid maps for tests
 
