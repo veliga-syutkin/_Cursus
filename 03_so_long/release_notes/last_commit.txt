@@ -1,1 +1,1 @@
-Changed 256 into HEIGHT/WIDTH macros; updated mlx_loop what key was pressed instead of width & height
+Proper closing windows on ESC press & release
