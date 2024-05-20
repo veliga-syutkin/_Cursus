@@ -1,1 +1,1 @@
-added valid maps for tests
+expanded so_long.h for 4-chained list as map + defined WALL EXIT FLOOR PLAYER COLLECTIBLE
