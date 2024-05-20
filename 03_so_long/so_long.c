@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 12:14:07 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/04/18 16:03:00 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/05/20 22:44:23 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ static void	ft_hook(void *param)
 	const mlx_t	*mlx;
 
 	mlx = param;
-	ft_printf("WIDTH: %d | HEIGHT: %d\n", mlx->width, mlx->height);
 }
 
 /* Codes with commentaries:
@@ -120,7 +119,7 @@ int	main(void)
 	mlx_image_t		*img;
 
 	mlx = mlx_init(WIDTH, HEIGHT, "Gulag simulator", true);
-	img = mlx_new_image(mlx, 256, 256);
+	img = mlx_new_image(mlx, WIDTH, HEIGHT);
 	mlx_set_setting(MLX_MAXIMIZED, true);
 	if (!mlx)
 		ft_error();

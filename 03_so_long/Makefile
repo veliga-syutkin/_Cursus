@@ -6,7 +6,7 @@
 #    By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/16 16:03:36 by vsyutkin          #+#    #+#              #
-#    Updated: 2024/04/18 17:03:10 by vsyutkin         ###   ########.fr        #
+#    Updated: 2024/05/20 22:23:44 by vsyutkin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -143,7 +143,7 @@ BACKGROUND_WHITE = \033[47m
 VERSIONS_DIR = ./release_notes/
 
 # Variables
-NORMINETTE_DIR = $(MAIN) $(PROJECT_DIR)
+NORMINETTE_DIR = so_long.h $(MAIN) $(PROJECT_DIR)
 VERSIONS_NUMBER := $(shell cat $(VERSIONS_DIR)versions.txt)
 COMMIT_FILE = $(VERSIONS_DIR)commits.txt
 COMMIT_ARGS = $(shell cat $(VERSIONS_DIR)last_commit.txt)

@@ -11,3 +11,6 @@ Added ESC management. Added valgrind rule to makefile; need to ask if leaks are 
 v4
 WIP memory leak checks
 
+v5
+Changed 256 into HEIGHT/WIDTH macros; updated mlx_loop what key was pressed instead of width & height
+
