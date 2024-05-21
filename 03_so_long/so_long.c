@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 12:14:07 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/05/20 22:47:37 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/05/21 03:05:54 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ int	main(void)
 	mlx_terminate(mlx);
 	return (EXIT_SUCCESS);
 }*/
-int	main(void)
+int	ft_mlx(void)
 {
 	mlx_t			*mlx;
 	mlx_image_t		*img;
@@ -128,5 +128,12 @@ int	main(void)
 	mlx_key_hook(mlx, &key_esc, mlx);
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
+	return (EXIT_SUCCESS);
+}
+
+int	main(int argc, char **argv)
+{
+	map(argc, argv);
+	ft_mlx();
 	return (EXIT_SUCCESS);
 }

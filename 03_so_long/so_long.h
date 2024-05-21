@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 21:36:41 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/05/21 00:15:41 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/05/21 03:57:43 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@
 # define FLOOR '0'
 # define PLAYER 'P'
 # define COLLECTIBLE 'C'
+
+# define ERR_MAP_PATH "Error\nMap path is wrong\n"
+# define ERR_MAP_OPEN "Error\nCouldn't open map file\n"
+# define ERR_MAP_EXTENSION "Error\nMap file extension is not .ber\n"
+# define ERR_MAP_CONTENT "Error\nMap content is invalid\n"
 
 void	key_esc(mlx_key_data_t keydata, void *param);
 
