@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 12:14:07 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/05/21 03:05:54 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/05/21 08:30:33 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,9 @@ int	ft_mlx(void)
 
 int	main(int argc, char **argv)
 {
+	t_stack		*to_free;
+	t_map		**map;
+
 	map(argc, argv);
 	ft_mlx();
 	return (EXIT_SUCCESS);

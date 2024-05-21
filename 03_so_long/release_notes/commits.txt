@@ -26,3 +26,6 @@ expanded so_long.h for 4-chained list as map + defined WALL EXIT FLOOR PLAYER CO
 v9
 Creating map handler
 
+v10
+To fix: LIBFT t_stack description; load_map for proper chained list initialize; t_stack and t_map from main to pass all along the program.
+
