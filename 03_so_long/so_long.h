@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 21:36:41 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/05/22 16:55:35 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/05/23 00:22:47 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "./0_LIBFT/libft.h"
 # include "./1_MLX42/include/MLX42/MLX42.h"
+# include "./9_MHANDLER/mhandler.h"
 
 # define WIDTH 1024
 # define HEIGHT 1024
@@ -54,7 +55,7 @@ typedef struct s_map
 
 void	key_esc(mlx_key_data_t keydata, void *param);
 
-void	map(int argc, char **argv);
+void	map(int argc, char **argv, t_allocs **allocs);
 void	check_map_extension(int argc, char **argv);
 t_map	**load_map(const char *line);
 void	read_map(char *map);

@@ -32,3 +32,6 @@ To fix: LIBFT t_stack description; load_map for proper chained list initialize; 
 v11
 WIP memory_handler, map handler.
 
+v12
+WIP
+

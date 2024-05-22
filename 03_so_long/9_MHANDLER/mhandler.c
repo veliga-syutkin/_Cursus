@@ -6,22 +6,25 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 13:57:01 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/05/22 16:39:12 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/05/22 23:44:37 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
 #include "mhandler.h"
+#include "../0_LIBFT/libft.h"
 
-t_allocs	*mhandler_init(void)
+t_allocs	*mhandler_init(void *content)
 {
 	t_allocs	*allocs;
 
 	allocs = (t_allocs *)malloc(sizeof(t_allocs));
 	if (!allocs)
-		ft_error(ERR_ALLOC, NULL);
+	{
+		ft_printf(ERR_ALLOC);
+		exit(1);
+	}
 	allocs->id = 0;
-	allocs->content = NULL;
+	allocs->content = content;
 	allocs->next = NULL;
 	return (allocs);
 }
@@ -33,13 +36,17 @@ void	mhandler_add(t_allocs **allocs, void *content)
 
 	new = (t_allocs *)malloc(sizeof(t_allocs));
 	if (!new)
-		ft_error(ERR_ALLOC, NULL);
-	new->id = (*allocs)->id + 1;
-	new->content = content;
-	new->next = NULL;
+	{
+		ft_printf(ERR_ALLOC);
+		mhandler_free_all(allocs);
+		exit(1);
+	}
 	temp = *allocs;
 	while (temp->next)
 		temp = temp->next;
+	new->id = temp->id + 1;
+	new->content = content;
+	new->next = NULL;
 	temp->next = new;
 }
 

@@ -6,7 +6,7 @@
 #    By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/16 16:03:36 by vsyutkin          #+#    #+#              #
-#    Updated: 2024/05/20 23:32:03 by vsyutkin         ###   ########.fr        #
+#    Updated: 2024/05/22 23:19:00 by vsyutkin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,10 @@
 #Only .c files
 MAIN = so_long.c
 KEYS = esc.c
+MAPS = maps.c \
+		check_map.c
+ERRORS = errors.c
+MHANDLER = mhandler.c
 
 # ############################################################################ #
 #						# PROJECT PATH DECLARATIONS #						   #
@@ -27,8 +31,10 @@ LIBFT_DIR = ./0_LIBFT/
 MLX_DIR = ./1_MLX42/
 KEY_DIR = ./2_KEY/
 MAP_DIR = ./3_MAPS/
+ERR_DIR = ./4_ERRORS/
+MHANDLER_DIR = ./9_MAP_HANDLER/
 
-PROJECT_DIR = $(LIBFT_DIR) $(KEY_DIR) $(MAP_DIR)
+PROJECT_DIR = $(LIBFT_DIR) $(KEY_DIR) $(MAP_DIR) $(ERR_DIR) $(MHANDLER_DIR)
 
 # ############################################################################ #
 #						# PROJECT FILES DECLARATIONS #						   #
