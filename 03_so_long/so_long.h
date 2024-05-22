@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 21:36:41 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/05/21 07:05:21 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/05/22 16:55:35 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@
 
 # define ERR_ALLOC "Error\nMemory allocation failed\n"
 
-void	key_esc(mlx_key_data_t keydata, void *param);
-
 /*
 Map structure
 ->top = cell on top
@@ -53,5 +51,12 @@ typedef struct s_map
 	int				xy[2];
 	bool			path_check;
 }	t_map;
+
+void	key_esc(mlx_key_data_t keydata, void *param);
+
+void	map(int argc, char **argv);
+void	check_map_extension(int argc, char **argv);
+t_map	**load_map(const char *line);
+void	read_map(char *map);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 23:33:49 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/05/21 08:30:42 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/05/22 13:51:38 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	read_map(char *map)
 {
 	int		fd;
 	char	*line;
-	t_mma	**map;
+	t_map	**map;
 
 	fd = open(map, O_RDONLY);
 	if (fd < 0)
