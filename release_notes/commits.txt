@@ -65,3 +65,6 @@ Started so_long
 v23
 Fixed missing ''
 
+v24
+Fixed get_next_line missing fnctl.h include
+

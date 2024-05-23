@@ -6,7 +6,7 @@
 #    By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/16 16:03:36 by vsyutkin          #+#    #+#              #
-#    Updated: 2024/04/18 16:07:03 by vsyutkin         ###   ########.fr        #
+#    Updated: 2024/05/23 22:15:40 by vsyutkin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -184,15 +184,15 @@ else
 	norminette | grep -v 'OK' 
 endif
 
-git_norminette:
-	@echo "Checking norminette..."
-ifeq ($(EXIT_NORMINETTE), 0)
-	@echo "Norminette OK!"
-else
-	@echo "Norminette failed, I presume you are plenty of MAJOR SKILL ISSUE.\n\
-	Here's what you have to fix:"
-	norminette | grep -v 'OK' 
-endif
+# git_norminette:
+# 	@echo "Checking norminette..."
+# ifeq ($(EXIT_NORMINETTE), 0)
+# 	@echo "Norminette OK!"
+# else
+# 	@echo "Norminette failed, I presume you are plenty of MAJOR SKILL ISSUE.\n\
+# 	Here's what you have to fix:"
+# 	norminette | grep -v 'OK' 
+# endif
 
 # DO NOT USE
 git_auto:	fclean commit git_add git_status git_commit git_gitpush
