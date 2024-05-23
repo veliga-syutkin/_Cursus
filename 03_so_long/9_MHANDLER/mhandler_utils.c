@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 17:05:44 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/05/23 17:16:38 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/05/23 22:05:58 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,5 @@ t_allocs	*get_id(t_allocs **allocs, void *id)
 			return (temp);
 		temp = temp->next;
 	}
-	return (NULL);
+	return (0);
 }

@@ -6,14 +6,12 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 13:57:35 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/05/23 17:17:01 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/05/23 21:58:37 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MHANDLER_H
 # define MHANDLER_H
-
-# include "../so_long.h"
 
 # define ERR_ALLOC "Error\nMemory allocation failed\n"
 

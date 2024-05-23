@@ -1,1 +1,1 @@
-WIP on compilation bugs (there is a lot of them). Done Map handler, need test it. Updated Memory_handler.
+Compilation bugs resolved.

@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 17:14:02 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/05/23 18:02:14 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/05/23 22:13:24 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,14 @@ void	grid_fix(t_map **map, t_allocs **allocs)
 	t_allocs	*cursor;
 	t_map		*cursor_map;
 
-	cursor = get_id(allocs, "top_left");
+	cursor = get_id(allocs, TOP_LEFT);
 	cursor_map = *map;
-	while (cursor->id == "somewhere")
+	while (cursor->id == SOMEWHERE || cursor->id == TOP_LEFT)
 	{
 		if (((t_map *)(cursor->content))->xy[1] !=
 			((t_map *)(cursor->next->content))->xy[1])
 		{
-			cursor_map->down = (((t_map *)(cursor->next->content))->xy[1]);
+			cursor_map->down = (((t_map *)(cursor->next->content)));
 			cursor_map = cursor_map->down;
 		}
 		cursor = cursor->next;

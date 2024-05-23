@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 23:33:49 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/05/23 17:18:18 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/05/23 22:04:46 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	read_map(char *map, t_map **map_grid, t_allocs **allocs)
 {
 	int		fd;
-	int		len_first_line;
+	size_t	len_first_line;
 	char	*line;
 
 	fd = open(map, O_RDONLY);
@@ -35,7 +35,7 @@ void	read_map(char *map, t_map **map_grid, t_allocs **allocs)
 	close(fd);
 }
 
-void	map_init(void *content, int x, int y, t_map *map_cell)
+void	map_init(int content, int x, int y, t_map *map_cell)
 {
 	map_cell->content = content;
 	map_cell->xy[0] = x;
@@ -52,7 +52,7 @@ void	load_map(const char *line, t_map **map_grid, t_allocs **allocs)
 	cursor = 0;
 	if (!*map_grid)
 	{
-		mhandler_add(allocs, (malloc(sizeof(t_map))), "top_left");
+		mhandler_add(allocs, (malloc(sizeof(t_map))), (TOP_LEFT));
 		*map_grid = (*allocs)->content;
 		map_init(line[cursor], cursor, y, *map_grid);
 		cell_on_left = *map_grid;
@@ -60,7 +60,7 @@ void	load_map(const char *line, t_map **map_grid, t_allocs **allocs)
 	}
 	while (line[cursor])
 	{
-		mhandler_add(allocs, (malloc(sizeof(t_map))), "somewhere");
+		mhandler_add(allocs, (malloc(sizeof(t_map))), (SOMEWHERE));
 		map_init(line[cursor], cursor, y, get_last(allocs)->content);
 		cell_on_left->right = get_last(allocs)->content;
 		cell_on_left = cell_on_left->right;
@@ -74,10 +74,10 @@ void	check_map_extension(int argc, char **argv)
 	int		cursor;
 
 	cursor = ft_strlen(argv[1]);
-	if (argv[1][cursor - 1] != 'r'
-		|| argv[1][cursor - 2] != 'e'
-		|| argv[1][cursor - 3] != 'b'
-		|| argv[1][cursor - 4] != '.')
+	if (argv[argc - 1][cursor - 1] != 'r'
+		|| argv[argc - 1][cursor - 2] != 'e'
+		|| argv[argc - 1][cursor - 3] != 'b'
+		|| argv[argc - 1][cursor - 4] != '.')
 	{
 		ft_error(ERR_MAP_EXTENSION, NULL);
 	}

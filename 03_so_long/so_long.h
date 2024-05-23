@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 21:36:41 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/05/23 17:25:53 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/05/23 22:05:07 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@
 # define FLOOR '0'
 # define PLAYER 'P'
 # define COLLECTIBLE 'C'
+
+# define TOP_LEFT (int *)-1
+# define SOMEWHERE (int *)-2
 
 # define ERR_MAP_PATH "Error\nMap path is wrong\n"
 # define ERR_MAP_OPEN "Error\nCouldn't open map file\n"
