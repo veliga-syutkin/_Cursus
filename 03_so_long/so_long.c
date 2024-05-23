@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 12:14:07 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/05/23 00:16:56 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/05/23 18:10:06 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,11 @@ collectible = only escaping prisoners, and they are not moving.
 */
 
 // Exit the program as failure.
-static void	ft_error(void)
-{
-	ft_printf("%s", mlx_strerror(mlx_errno));
-	exit(EXIT_FAILURE);
-}
+// static void	ft_error(void)
+// {
+// 	ft_printf("%s", mlx_strerror(mlx_errno));
+// 	exit(EXIT_FAILURE);
+// }
 
 // Print the window width and height.
 static void	ft_hook(void *param)
@@ -122,7 +122,7 @@ int	ft_mlx(void)
 	img = mlx_new_image(mlx, WIDTH, HEIGHT);
 	mlx_set_setting(MLX_MAXIMIZED, true);
 	if (!mlx)
-		ft_error();
+		ft_error("Couldn't initialize mlx. Exiting.", NULL);
 	mlx_put_pixel(img, 0, 0, 0xFF0000FF);
 	mlx_loop_hook(mlx, ft_hook, mlx);
 	mlx_key_hook(mlx, &key_esc, mlx);
@@ -136,6 +136,8 @@ int	main(int argc, char **argv)
 	t_allocs	**to_free;
 	t_map		**map_grid;
 
-	map(argc, argv, to_free);
-	return (ft_mlx);
+	to_free = NULL;
+	map_grid = NULL;
+	map(argc, argv, map_grid, to_free);
+	return (ft_mlx());
 }

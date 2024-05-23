@@ -1,21 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.c                                           :+:      :+:    :+:   */
+/*   mhandler_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/21 03:42:04 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/05/23 18:00:50 by vsyutkin         ###   ########.fr       */
+/*   Created: 2024/05/23 17:05:44 by vsyutkin          #+#    #+#             */
+/*   Updated: 2024/05/23 17:16:38 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "./mhandler.h"
 
-void	ft_error(char *error, t_allocs **allocs)
+t_allocs	*get_last(t_allocs **allocs)
 {
-	ft_printf("Error\n%s\n", error);
-	if (*allocs && allocs)
-		mhandler_free_all(allocs);
-	exit(EXIT_FAILURE);
+	t_allocs	*temp;
+
+	temp = *allocs;
+	while (temp && temp->next)
+		temp = temp->next;
+	return (temp);
+}
+
+t_allocs	*get_id(t_allocs **allocs, void *id)
+{
+	t_allocs	*temp;
+
+	temp = *allocs;
+	while (temp)
+	{
+		if (temp->id == id)
+			return (temp);
+		temp = temp->next;
+	}
+	return (NULL);
 }

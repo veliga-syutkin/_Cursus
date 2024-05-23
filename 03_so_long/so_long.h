@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 21:36:41 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/05/23 00:22:47 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/05/23 17:25:53 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@
 # define ERR_MAP_EXTENSION "Error\nMap file extension is not .ber\n"
 # define ERR_MAP_CONTENT "Error\nMap content is invalid\n"
 
-# define ERR_ALLOC "Error\nMemory allocation failed\n"
-
 /*
 Map structure
 ->top = cell on top
@@ -45,7 +43,7 @@ Map structure
 typedef struct s_map
 {
 	struct s_map	*top;
-	struct s_map	*bottom;
+	struct s_map	*down;
 	struct s_map	*left;
 	struct s_map	*right;
 	int				content;
@@ -53,11 +51,13 @@ typedef struct s_map
 	bool			path_check;
 }	t_map;
 
+void	ft_error(char *error, t_allocs **allocs);
+
 void	key_esc(mlx_key_data_t keydata, void *param);
 
-void	map(int argc, char **argv, t_allocs **allocs);
+void	map(int argc, char **argv, t_map **map_grid, t_allocs **allocs);
 void	check_map_extension(int argc, char **argv);
-t_map	**load_map(const char *line);
-void	read_map(char *map);
+void	load_map(const char *line, t_map **map_grid, t_allocs **allocs);
+void	read_map(char *map, t_map **map_grid, t_allocs **allocs);
 
 #endif

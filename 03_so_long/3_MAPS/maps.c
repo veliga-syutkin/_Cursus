@@ -6,25 +6,28 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 23:33:49 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/05/23 00:18:26 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/05/23 17:18:18 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-void	read_map(char *map)
+void	read_map(char *map, t_map **map_grid, t_allocs **allocs)
 {
 	int		fd;
+	int		len_first_line;
 	char	*line;
-	t_map	**map;
 
 	fd = open(map, O_RDONLY);
 	if (fd < 0)
 		ft_error(ERR_MAP_OPEN, NULL);
 	line = get_next_line(fd);
+	len_first_line = ft_strlen(line);
 	while (line)
 	{
-		map = load_map(line);
+		if (ft_strlen(line) != len_first_line)
+			ft_error(ERR_MAP_CONTENT, allocs);
+		load_map(line, map_grid, allocs);
 		free(line);
 		line = get_next_line(fd);
 	}
@@ -32,30 +35,38 @@ void	read_map(char *map)
 	close(fd);
 }
 
-t_map	**load_map(const char *line)
+void	map_init(void *content, int x, int y, t_map *map_cell)
 {
-	t_map		**map;
+	map_cell->content = content;
+	map_cell->xy[0] = x;
+	map_cell->xy[1] = y;
+	map_cell->path_check = false;
+}
+
+void	load_map(const char *line, t_map **map_grid, t_allocs **allocs)
+{
 	int			cursor;
 	static int	y;
-	static int	len_first_line;
+	t_map		*cell_on_left;
 
-	if (y == 0)
-		len_first_line = ft_strlen(line);
-	if (len_first_line != ft_strlen(line))
-		ft_error(ERR_MAP_CONTENT, NULL);
-	*map = (t_map *)malloc(sizeof(t_map));
-	if (!(*map))
-		ft_error(ERR_ALLOC, NULL);
 	cursor = 0;
-	while (line[cursor])
+	if (!*map_grid)
 	{
-		(*map)->content = line[cursor];
-		(*map)->xy[0] = cursor;
-		(*map)->xy[1] = y;
-		(*map)->path_check = false;
+		mhandler_add(allocs, (malloc(sizeof(t_map))), "top_left");
+		*map_grid = (*allocs)->content;
+		map_init(line[cursor], cursor, y, *map_grid);
+		cell_on_left = *map_grid;
 		cursor++;
 	}
-	return (map);
+	while (line[cursor])
+	{
+		mhandler_add(allocs, (malloc(sizeof(t_map))), "somewhere");
+		map_init(line[cursor], cursor, y, get_last(allocs)->content);
+		cell_on_left->right = get_last(allocs)->content;
+		cell_on_left = cell_on_left->right;
+		cursor++;
+	}
+	y++;
 }
 
 void	check_map_extension(int argc, char **argv)
@@ -72,10 +83,10 @@ void	check_map_extension(int argc, char **argv)
 	}
 }
 
-void	map(int argc, char **argv, t_allocs **allocs)
+void	map(int argc, char **argv, t_map **map_grid, t_allocs **allocs)
 {
 	if (argc != 2)
 		ft_error(ERR_MAP_PATH, NULL);
 	check_map_extension(argc, argv);
-	read_map(argv[1]);
+	read_map(argv[1], map_grid, allocs);
 }

@@ -6,7 +6,7 @@
 #    By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/16 16:03:36 by vsyutkin          #+#    #+#              #
-#    Updated: 2024/05/22 23:19:00 by vsyutkin         ###   ########.fr        #
+#    Updated: 2024/05/23 18:15:40 by vsyutkin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,9 +18,11 @@
 MAIN = so_long.c
 KEYS = esc.c
 MAPS = maps.c \
-		check_map.c
+		check_map.c \
+		map_grid.c
 ERRORS = errors.c
-MHANDLER = mhandler.c
+MHANDLER = mhandler.c \
+			mhandler_utils.c
 
 # ############################################################################ #
 #						# PROJECT PATH DECLARATIONS #						   #
@@ -32,7 +34,7 @@ MLX_DIR = ./1_MLX42/
 KEY_DIR = ./2_KEY/
 MAP_DIR = ./3_MAPS/
 ERR_DIR = ./4_ERRORS/
-MHANDLER_DIR = ./9_MAP_HANDLER/
+MHANDLER_DIR = ./9_MHANDLER/
 
 PROJECT_DIR = $(LIBFT_DIR) $(KEY_DIR) $(MAP_DIR) $(ERR_DIR) $(MHANDLER_DIR)
 
@@ -42,7 +44,10 @@ PROJECT_DIR = $(LIBFT_DIR) $(KEY_DIR) $(MAP_DIR) $(ERR_DIR) $(MHANDLER_DIR)
 
 #Gathers all files in $(FILES)
 FILES = $(MAIN) \
-		$(addprefix $(KEY_DIR), $(KEYS))
+		$(addprefix $(KEY_DIR), $(KEYS)) \
+		$(addprefix $(MAP_DIR), $(MAPS)) \
+		$(addprefix $(ERR_DIR), $(ERRORS)) \
+		$(addprefix $(MHANDLER_DIR), $(MHANDLER))
 
 INCLUDES = -I $(MLX_DIR)include/MLX42/MLX42.h
 
