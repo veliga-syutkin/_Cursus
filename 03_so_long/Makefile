@@ -6,7 +6,7 @@
 #    By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/16 16:03:36 by vsyutkin          #+#    #+#              #
-#    Updated: 2024/05/23 18:15:40 by vsyutkin         ###   ########.fr        #
+#    Updated: 2024/05/24 19:58:19 by vsyutkin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -120,7 +120,10 @@ run: clear
 	./$(NAME)
 
 valgrind: clear
-	valgrind --leak-check=full ./$(NAME)
+	valgrind --leak-check=full --leak-show=all ./$(NAME)
+
+gnl: clear all
+	$(CC) $(CFLAGS) gnl_main.c ./0_LIBFT/libft.a -o gnl
 
 # ############################################################################ #
 #						# PROJECT TESTS #									   #

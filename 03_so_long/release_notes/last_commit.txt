@@ -1,1 +1,1 @@
-Compilation bugs resolved.
+Fixed various SIGSEGV, need to fix map's cells linkings. [...]

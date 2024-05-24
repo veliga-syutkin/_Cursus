@@ -41,3 +41,6 @@ WIP on compilation bugs (there is a lot of them). Done Map handler, need test it
 v14
 Compilation bugs resolved.
 
+v15
+Fixed various SIGSEGV, need to fix map's cells linkings. [...]
+

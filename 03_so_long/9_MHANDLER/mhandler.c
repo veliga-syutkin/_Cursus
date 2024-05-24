@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 13:57:01 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/05/23 16:31:23 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/05/24 18:42:35 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,18 @@
 
 t_allocs	*mhandler_init(void *content, void *id)
 {
-	t_allocs	*allocs;
+	t_allocs	*head_allocs;
 
-	allocs = (t_allocs *)malloc(sizeof(t_allocs));
-	if (!allocs)
+	head_allocs = (t_allocs *)malloc(sizeof(t_allocs));
+	if (!head_allocs)
 	{
 		ft_printf(ERR_ALLOC);
 		exit(EXIT_FAILURE);
 	}
-	allocs->id = id;
-	allocs->content = content;
-	allocs->next = NULL;
-	return (allocs);
+	head_allocs->id = id;
+	head_allocs->content = content;
+	head_allocs->next = NULL;
+	return (head_allocs);
 }
 
 void	mhandler_add(t_allocs **allocs, void *content, void *id)
@@ -34,9 +34,9 @@ void	mhandler_add(t_allocs **allocs, void *content, void *id)
 	t_allocs	*new;
 	t_allocs	*temp;
 
-	if (!*allocs)
+	if (!(*allocs))
 	{
-		*allocs = mhandler_init(content, id);
+		(*allocs) = mhandler_init(content, id);
 		return ;
 	}
 	new = (t_allocs *)malloc(sizeof(t_allocs));

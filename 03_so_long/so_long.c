@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 12:14:07 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/05/23 18:10:06 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/05/24 20:49:38 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,27 @@ static void	ft_hook(void *param)
 	mlx = param;
 }
 
+static void	print_map(t_map **map)
+{
+	t_map	*temp;
+
+	temp = *map;
+	while (temp)
+	{
+		ft_printf("%c", temp->content);
+		if (!temp->right && temp->down)
+		{
+			temp = temp->down;
+			while (temp && temp->left)
+				temp = temp->left;
+			ft_printf("\t void \n");
+		}
+		else
+			temp = temp->right;
+	}
+	ft_printf("\n");
+}
+
 /* Codes with commentaries:
 
 int	main(void)
@@ -133,11 +154,13 @@ int	ft_mlx(void)
 
 int	main(int argc, char **argv)
 {
-	t_allocs	**to_free;
-	t_map		**map_grid;
+	t_allocs	*head_to_free;
+	t_map		*head_map_grid;
 
-	to_free = NULL;
-	map_grid = NULL;
-	map(argc, argv, map_grid, to_free);
+	head_to_free = NULL;
+	head_map_grid = NULL;
+	map(argc, argv, &head_map_grid, &head_to_free);
+	print_map(&head_map_grid);
+	mhandler_free_all(&head_to_free);
 	return (ft_mlx());
 }

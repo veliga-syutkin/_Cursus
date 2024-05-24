@@ -1,21 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.c                                           :+:      :+:    :+:   */
+/*   gnl_main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/21 03:42:04 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/05/24 18:09:27 by vsyutkin         ###   ########.fr       */
+/*   Created: 2024/05/24 19:52:12 by vsyutkin          #+#    #+#             */
+/*   Updated: 2024/05/24 19:58:51 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "./0_LIBFT/libft.h"
 
-void	ft_error(char *error, t_allocs **allocs)
+int	main(int ac, char **av)
 {
-	ft_printf("%s\n", error);
-	if (allocs && *allocs)
-		mhandler_free_all(allocs);
-	exit(EXIT_FAILURE);
+	int		fd;
+	char	*line;
+
+	line = NULL;
+	fd = open(av[ac-1], O_RDONLY);
+	line = get_next_line(fd);
+	while (line)
+	{
+		ft_putstr_fd(line, 1);
+		line = get_next_line(fd);
+	}
+	close(fd);
 }

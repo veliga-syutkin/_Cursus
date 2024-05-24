@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 23:33:49 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/05/23 22:04:46 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/05/24 20:55:56 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,21 @@
 void	read_map(char *map, t_map **map_grid, t_allocs **allocs)
 {
 	int		fd;
-	size_t	len_first_line;
 	char	*line;
 
 	fd = open(map, O_RDONLY);
 	if (fd < 0)
 		ft_error(ERR_MAP_OPEN, NULL);
 	line = get_next_line(fd);
-	len_first_line = ft_strlen(line);
 	while (line)
 	{
-		if (ft_strlen(line) != len_first_line)
-			ft_error(ERR_MAP_CONTENT, allocs);
 		load_map(line, map_grid, allocs);
 		free(line);
 		line = get_next_line(fd);
 	}
 	free(line);
 	close(fd);
+	grid_fix(map_grid, allocs);
 }
 
 void	map_init(int content, int x, int y, t_map *map_cell)
@@ -60,10 +57,11 @@ void	load_map(const char *line, t_map **map_grid, t_allocs **allocs)
 	}
 	while (line[cursor])
 	{
+		cell_on_left = get_last(allocs)->content;
 		mhandler_add(allocs, (malloc(sizeof(t_map))), (SOMEWHERE));
+		if (cursor)
+			cell_on_left->right = get_last(allocs)->content;
 		map_init(line[cursor], cursor, y, get_last(allocs)->content);
-		cell_on_left->right = get_last(allocs)->content;
-		cell_on_left = cell_on_left->right;
 		cursor++;
 	}
 	y++;
