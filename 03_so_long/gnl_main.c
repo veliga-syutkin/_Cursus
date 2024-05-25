@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 19:52:12 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/05/25 15:13:41 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/05/25 23:31:09 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,10 @@ int	main(int ac, char **av)
 	line = NULL;
 	fd = open(av[ac-1], O_RDONLY);
 	line = get_next_line(fd);
+	ft_printf("%p\n", line);
 	while (line)
 	{
-		ft_putstr_fd(line, 1);
+		ft_printf("%s\n", line);
 		free(line);
 		line = get_next_line(fd);
 	}

@@ -6,7 +6,7 @@
 #    By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/16 16:03:36 by vsyutkin          #+#    #+#              #
-#    Updated: 2024/05/24 19:58:19 by vsyutkin         ###   ########.fr        #
+#    Updated: 2024/05/25 23:03:08 by vsyutkin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@
 MAIN = so_long.c
 KEYS = esc.c
 MAPS = maps.c \
-		check_map.c \
+		map_check.c \
+		map_check2.c \
 		map_grid.c
 ERRORS = errors.c
 MHANDLER = mhandler.c \

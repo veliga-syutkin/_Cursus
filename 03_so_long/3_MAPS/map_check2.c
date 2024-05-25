@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 17:50:02 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/05/25 18:24:13 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/05/25 23:21:10 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,17 @@ void	make_path(t_map *start_cell)
 
 	cursor = start_cell;
 	cursor->path_check = true;
-	if (cursor->top && cursor->top->content != WALL)
+	if (cursor->top && cursor->top->content != WALL
+		&& !cursor->top->path_check)
 		make_path(cursor->top);
-	if (cursor->right && cursor->right->content != WALL)
+	if (cursor->right && cursor->right->content != WALL
+		&& !cursor->right->path_check)
 		make_path(cursor->right);
-	if (cursor->down && cursor->down->content != WALL)
+	if (cursor->down && cursor->down->content != WALL
+		&& !cursor->down->path_check)
 		make_path(cursor->down);
-	if (cursor->left && cursor->left->content != WALL)
+	if (cursor->left && cursor->left->content != WALL
+		&& !cursor->left->path_check)
 		make_path(cursor->left);
 }
 
@@ -55,6 +59,7 @@ void	path_check(t_map *map_grid, t_allocs **allocs)
 
 	cursor = goto_exit(map_grid);
 	make_path(cursor);
+	collectible_path_check(map_grid, allocs);
 }
 
 void	collectible_path_check(t_map *map_grid, t_allocs **allocs)
@@ -64,7 +69,8 @@ void	collectible_path_check(t_map *map_grid, t_allocs **allocs)
 	cursor = map_grid;
 	while (cursor)
 	{
-		if (cursor->content == COLLECTIBLE && !cursor->path_check)
+		if ((cursor->content == COLLECTIBLE
+				|| cursor->content == PLAYER) && !cursor->path_check)
 			ft_error(ERR_MAP_DEAD_END, allocs);
 		if (cursor->right)
 			cursor = cursor->right;

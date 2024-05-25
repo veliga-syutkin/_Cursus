@@ -50,3 +50,6 @@ Solved segfaults (all pointers in map struct HAS to be initialized!)
 v17
 WIP map checker. Map loader works fine.
 
+v18
+Made parsing, works very fine, almost perfectly.
+

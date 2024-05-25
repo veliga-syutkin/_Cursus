@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 21:36:41 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/05/25 18:04:48 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/05/25 23:03:58 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,10 @@
 # define ERR_MAP_CONTENT "Error\nMap content is invalid\n"
 # define ERR_MAP_DEAD_END "Error\nMap is impossible to solve\n"
 
+////////////////////////////////////////////////////////////////////////////////
+				/* STRUCT */
+////////////////////////////////////////////////////////////////////////////////
+
 /*
 Map structure
 ->top = cell on top
@@ -60,18 +64,51 @@ typedef struct s_map
 	bool			path_check;
 }	t_map;
 
-void	ft_error(char *error, t_allocs **allocs);
+////////////////////////////////////////////////////////////////////////////////
+					/* 02 */
+////////////////////////////////////////////////////////////////////////////////
 
 void	key_esc(mlx_key_data_t keydata, void *param);
 
-void	map(int argc, char **argv, t_map **map_grid, t_allocs **allocs);
+////////////////////////////////////////////////////////////////////////////////
+					/* 03 */
+////////////////////////////////////////////////////////////////////////////////
+
+	//	map_check.c
+
+void	check_map(t_map *map_grid, t_allocs **allocs);
+int		content_check(int c, t_map *map_grid);
+int		grid_len(t_map *map_grid, t_allocs **allocs);
+int		grid_height(t_map *map_grid, t_allocs **allocs);
+void	inner_check(t_map *map_grid, t_allocs **allocs);
+
+	//	map_check2.c
+
+void	collectible_path_check(t_map *map_grid, t_allocs **allocs);
+t_map	*goto_exit(t_map *map_grid);
+void	make_path(t_map *start_cell);
+void	path_check(t_map *map_grid, t_allocs **allocs);
+void	outer_check(t_map *map_grid, t_allocs **allocs);
+
+	//	map_grid.c
+
+void	grid_fix(t_map **map, t_allocs **allocs);
+void	horizontal_fix(t_map *cell_start);
+t_map	*find_cell(t_map **map, int cell_x, int cell_y);
+void	vertical_fix(t_map *cell_start);
+
+	//	maps.c
+
 void	check_map_extension(int argc, char **argv);
 void	load_map(const char *line, t_map **map_grid, t_allocs **allocs);
+void	map(int argc, char **argv, t_map **map_grid, t_allocs **allocs);
+void	map_init(int content, int x, int y, t_map *map_cell);
 void	read_map(char *map, t_map **map_grid, t_allocs **allocs);
 
-void	vertical_fix(t_map *cell_start);
-void	horizontal_fix(t_map *cell_start);
-void	grid_fix(t_map **map, t_allocs **allocs);
-t_map	*find_cell(t_map **map, int cell_x, int cell_y);
+////////////////////////////////////////////////////////////////////////////////
+					/* 04 */
+////////////////////////////////////////////////////////////////////////////////
+
+void	ft_error(char *error, t_allocs **allocs);
 
 #endif

@@ -1,1 +1,1 @@
-WIP map checker. Map loader works fine.
+Made parsing, works very fine, almost perfectly.

@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 17:24:19 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/05/25 17:49:46 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/05/25 23:01:59 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,4 +91,6 @@ void	check_map(t_map *map_grid, t_allocs **allocs)
 	grid_len(map_grid, allocs);
 	grid_height(map_grid, allocs);
 	inner_check(map_grid, allocs);
+	outer_check(map_grid, allocs);
+	path_check(map_grid, allocs);
 }
