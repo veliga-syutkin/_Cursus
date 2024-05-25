@@ -44,3 +44,6 @@ Compilation bugs resolved.
 v15
 Fixed various SIGSEGV, need to fix map's cells linkings. [...]
 
+v16
+Solved segfaults (all pointers in map struct HAS to be initialized!)
+

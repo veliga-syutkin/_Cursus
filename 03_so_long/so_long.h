@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 21:36:41 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/05/24 20:21:05 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/05/25 16:48:51 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ void	check_map_extension(int argc, char **argv);
 void	load_map(const char *line, t_map **map_grid, t_allocs **allocs);
 void	read_map(char *map, t_map **map_grid, t_allocs **allocs);
 
-void	vertical_fix(t_map **map, t_map *cell_start);
+void	vertical_fix(t_map *cell_start);
+void	horizontal_fix(t_map *cell_start);
 void	grid_fix(t_map **map, t_allocs **allocs);
 t_map	*find_cell(t_map **map, int cell_x, int cell_y);
 

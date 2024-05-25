@@ -6,21 +6,21 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 17:14:02 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/05/24 20:56:08 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/05/25 16:48:57 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-void	vertical_fix(t_map **map, t_map *cell_start)
+void	vertical_fix(t_map *cell_start)
 {
 	t_map	*cursor_1;
 	t_map	*cursor_2;
 
-	if (!cell_start)
+	if (!cell_start || !cell_start->down)
 		return ;
 	cursor_1 = cell_start;
-	cursor_2 = cursor_1->down;
+	cursor_2 = cell_start->down;
 	while (cursor_1 && cursor_2)
 	{
 		if (cursor_1->xy[0] == cursor_2->xy[0])
@@ -29,9 +29,31 @@ void	vertical_fix(t_map **map, t_map *cell_start)
 			cursor_2->top = cursor_1;
 		}
 		cursor_1 = cursor_1->right;
-		cursor_2 = cursor_1->right;
+		cursor_2 = cursor_2->right;
 	}
-	vertical_fix(map, cell_start->down);
+	vertical_fix(cell_start->down);
+}
+
+void	horizontal_fix(t_map *cell_start)
+{
+	t_map	*cursor_1;
+	t_map	*cursor_2;
+
+	if (!cell_start || !cell_start->right)
+		return ;
+	cursor_1 = cell_start;
+	cursor_2 = cell_start->right;
+	while (cursor_1 && cursor_2)
+	{
+		if (cursor_1->xy[1] == cursor_2->xy[1])
+		{
+			cursor_1->right = cursor_2;
+			cursor_2->left = cursor_1;
+		}
+		cursor_1 = cursor_1->right;
+		cursor_2 = cursor_2->right;
+	}
+	horizontal_fix(cell_start->down);
 }
 
 t_map	*find_cell(t_map **map, int cell_x, int cell_y)
@@ -67,5 +89,9 @@ void	grid_fix(t_map **map, t_allocs **allocs)
 		}
 		cursor = cursor->next;
 	}
-	vertical_fix(map, *map);
+	ft_printf("\t\t\t P MAP: %p\n", *map);
+	if (!(*map) || !(map) || !(*map)->down)
+		return ;
+	vertical_fix(*map);
+	horizontal_fix(*map);
 }

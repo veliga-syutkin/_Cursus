@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 12:14:07 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/05/24 20:49:38 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/05/25 16:55:59 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,16 +94,19 @@ static void	print_map(t_map **map)
 {
 	t_map	*temp;
 
+	if (map == NULL)
+		ft_printf("		HERE\n");
+	if (*map == NULL)
+		ft_printf("		HEREEEEEEEEEEEEEEEEEE\n");
 	temp = *map;
 	while (temp)
 	{
 		ft_printf("%c", temp->content);
-		if (!temp->right && temp->down)
+		if (!temp->right)
 		{
-			temp = temp->down;
 			while (temp && temp->left)
 				temp = temp->left;
-			ft_printf("\t void \n");
+			temp = temp->down;
 		}
 		else
 			temp = temp->right;
@@ -160,7 +163,8 @@ int	main(int argc, char **argv)
 	head_to_free = NULL;
 	head_map_grid = NULL;
 	map(argc, argv, &head_map_grid, &head_to_free);
-	print_map(&head_map_grid);
+	if (!head_map_grid)
+		print_map(&head_map_grid);
 	mhandler_free_all(&head_to_free);
 	return (ft_mlx());
 }

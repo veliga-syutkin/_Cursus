@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 23:33:49 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/05/24 20:55:56 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/05/25 16:59:11 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,10 @@ void	map_init(int content, int x, int y, t_map *map_cell)
 	map_cell->xy[0] = x;
 	map_cell->xy[1] = y;
 	map_cell->path_check = false;
+	map_cell->top = NULL;
+	map_cell->down = NULL;
+	map_cell->left = NULL;
+	map_cell->right = NULL;
 }
 
 void	load_map(const char *line, t_map **map_grid, t_allocs **allocs)
