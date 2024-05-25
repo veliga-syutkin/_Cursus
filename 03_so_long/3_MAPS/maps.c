@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 23:33:49 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/05/25 16:59:11 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/05/25 17:36:04 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	load_map(const char *line, t_map **map_grid, t_allocs **allocs)
 		cell_on_left = *map_grid;
 		cursor++;
 	}
-	while (line[cursor])
+	while (line[cursor] && line[cursor] != '\n')
 	{
 		cell_on_left = get_last(allocs)->content;
 		mhandler_add(allocs, (malloc(sizeof(t_map))), (SOMEWHERE));
@@ -91,4 +91,5 @@ void	map(int argc, char **argv, t_map **map_grid, t_allocs **allocs)
 		ft_error(ERR_MAP_PATH, NULL);
 	check_map_extension(argc, argv);
 	read_map(argv[1], map_grid, allocs);
+	check_map(*map_grid, allocs);
 }

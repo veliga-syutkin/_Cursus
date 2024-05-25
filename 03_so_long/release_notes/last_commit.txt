@@ -1,1 +1,1 @@
-Solved segfaults (all pointers in map struct HAS to be initialized!)
+WIP map checker. Map loader works fine.

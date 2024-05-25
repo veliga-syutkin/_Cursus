@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 21:36:41 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/05/25 16:48:51 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/05/25 18:04:48 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,16 @@
 # define TOP_LEFT (int *)-1
 # define SOMEWHERE (int *)-2
 
+# define DIR_RIGHT 0
+# define DIR_DOWN 1
+# define DIR_LEFT 2
+# define DIR_UP 3
+
 # define ERR_MAP_PATH "Error\nMap path is wrong\n"
 # define ERR_MAP_OPEN "Error\nCouldn't open map file\n"
 # define ERR_MAP_EXTENSION "Error\nMap file extension is not .ber\n"
 # define ERR_MAP_CONTENT "Error\nMap content is invalid\n"
+# define ERR_MAP_DEAD_END "Error\nMap is impossible to solve\n"
 
 /*
 Map structure

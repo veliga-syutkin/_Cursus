@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 17:14:02 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/05/25 16:48:57 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/05/25 17:17:30 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ void	grid_fix(t_map **map, t_allocs **allocs)
 		}
 		cursor = cursor->next;
 	}
-	ft_printf("\t\t\t P MAP: %p\n", *map);
 	if (!(*map) || !(map) || !(*map)->down)
 		return ;
 	vertical_fix(*map);
