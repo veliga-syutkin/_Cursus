@@ -56,3 +56,6 @@ Made parsing, works very fine, almost perfectly.
 v19
 Small reorganization.
 
+v20
+added another unvalid map
+
