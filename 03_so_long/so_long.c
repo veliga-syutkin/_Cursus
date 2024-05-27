@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 12:14:07 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/05/25 17:23:03 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/05/27 18:25:29 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,18 @@ Suggestion from copilot:
 	5. Draw the map
 	6. Handle the events
 	7. Close the window
+
+								! IMPORTANT INFO !								!
+When player meets collectible, collectible disappears.
+When player meets exit without collecting all collectibles, player get's 
+	notification that they have to collect all collectibles.
+When player collects all collectibles and meets exit, player wins.
+Player's position is stored via pointer on cell he's on.
+One of the collectibles is Solzhenitsyn. When player collects it, 
+	he gets a notification that he has found Solzhenitsyn.
+
+When player tries to go into wall, he dies (bonus part only).
+
 
 Sprite animations: 
 smoke from chimney of guard home (it's door IS the exit for the player)
