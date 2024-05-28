@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 12:14:07 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/05/27 18:25:29 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/05/28 16:03:12 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,6 +159,7 @@ int	ft_mlx(void)
 	mlx_put_pixel(img, 0, 0, 0xFF0000FF);
 	mlx_loop_hook(mlx, ft_hook, mlx);
 	mlx_key_hook(mlx, &key_esc, mlx);
+	mlx_close_hook(mlx, close_window, mlx);
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
 	return (EXIT_SUCCESS);
@@ -173,6 +174,7 @@ int	main(int argc, char **argv)
 	head_map_grid = NULL;
 	map(argc, argv, &head_map_grid, &head_to_free);
 	print_map(&head_map_grid);
+	ft_mlx();
 	mhandler_free_all(&head_to_free);
-	return (ft_mlx());
+	return (EXIT_SUCCESS);
 }

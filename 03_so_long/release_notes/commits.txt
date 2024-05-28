@@ -62,3 +62,6 @@ added another unvalid map
 v21
 Developed algorithm. Yet to be implemented. Started to look for textures...
 
+v22
+Implemented cross press in window bar handling
+
