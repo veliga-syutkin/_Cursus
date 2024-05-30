@@ -68,3 +68,6 @@ Fixed missing ''
 v24
 Fixed get_next_line missing fnctl.h include
 
+v25
+Test from MSI UBUNTU
+
