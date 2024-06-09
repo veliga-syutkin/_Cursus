@@ -141,7 +141,7 @@ int	main(void)
 	mlx_terminate(mlx);
 	return (EXIT_SUCCESS);
 }*/
-int	ft_mlx(t_map **map_grid)
+int	ft_mlx(t_map **map_grid, t_allocs **allocs)
 {
 	mlx_t			*mlx;	
 	mlx_image_t		*img;
@@ -150,7 +150,7 @@ int	ft_mlx(t_map **map_grid)
 	img = mlx_new_image(mlx, WIDTH, HEIGHT);
 	mlx_set_setting(MLX_MAXIMIZED, true);
 	if (!mlx)
-		ft_error("Couldn't initialize mlx. Exiting.", NULL);
+		ft_error("Couldn't initialize mlx. Exiting.", allocs);
 	mlx_put_pixel(img, 0, 0, 0xFF0000FF);
 	mlx_loop_hook(mlx, ft_hook, *map_grid);
 	address_map(*map_grid);
@@ -171,7 +171,7 @@ int	main(int argc, char **argv)
 	head_map_grid = NULL;
 	map(argc, argv, &head_map_grid, &head_to_free);
 	print_map(&head_map_grid);
-	ft_mlx(&head_map_grid);
+	ft_mlx(&head_map_grid, &head_to_free);
 	mhandler_free_all(&head_to_free);
 	return (EXIT_SUCCESS);
 }

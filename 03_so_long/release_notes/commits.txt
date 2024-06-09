@@ -74,3 +74,6 @@ passing wrong arg to function close_window when escape (compare with mlx_close h
 v25
 Fixed ESC IOT crash
 
+v26
+Small fixes
+

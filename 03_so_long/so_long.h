@@ -90,9 +90,6 @@ void	key_right(mlx_key_data_t keydata, void *map);
 					/* 03 */
 ////////////////////////////////////////////////////////////////////////////////
 
-mlx_t	*address_mlx(mlx_t *mlx);
-t_map	*address_map(t_map *map);
-
 	//	map_check.c
 
 void	check_map(t_map *map_grid, t_allocs **allocs);
@@ -147,5 +144,14 @@ int		collectible(t_map *map);
 	//	player.c
 
 t_map	*player(t_map *map, int dir);
+
+////////////////////////////////////////////////////////////////////////////////
+					/* SO_LONG */
+////////////////////////////////////////////////////////////////////////////////
+
+	//	so_long.c
+
+mlx_t	*address_mlx(mlx_t *mlx);
+t_map	*address_map(t_map *map);
 
 #endif

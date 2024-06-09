@@ -18,7 +18,7 @@ int	main(int ac, char **av)
 	char	*line;
 
 	line = NULL;
-	fd = open(av[ac-1], O_RDONLY);
+	fd = open(av[ac - 1], O_RDONLY);
 	line = get_next_line(fd);
 	ft_printf("%p\n", line);
 	while (line)
