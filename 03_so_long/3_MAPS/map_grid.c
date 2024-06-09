@@ -12,6 +12,27 @@
 
 #include "../so_long.h"
 
+void	print_map(t_map **map)
+{
+	t_map	*temp;
+
+	temp = *map;
+	while (temp)
+	{
+		ft_printf("%c", temp->content);
+		if (!temp->right)
+		{
+			while (temp && temp->left)
+				temp = temp->left;
+			temp = temp->down;
+			ft_printf("\n");
+		}
+		else
+			temp = temp->right;
+	}
+	ft_printf("\n");
+}
+
 void	vertical_fix(t_map *cell_start)
 {
 	t_map	*cursor_1;

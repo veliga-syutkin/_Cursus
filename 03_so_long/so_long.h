@@ -90,6 +90,9 @@ void	key_right(mlx_key_data_t keydata, void *map);
 					/* 03 */
 ////////////////////////////////////////////////////////////////////////////////
 
+mlx_t	*address_mlx(mlx_t *mlx);
+t_map	*address_map(t_map *map);
+
 	//	map_check.c
 
 void	check_map(t_map *map_grid, t_allocs **allocs);
@@ -112,6 +115,7 @@ void	grid_fix(t_map **map, t_allocs **allocs);
 void	horizontal_fix(t_map *cell_start);
 t_map	*find_cell(t_map **map, int cell_x, int cell_y);
 void	vertical_fix(t_map *cell_start);
+void	print_map(t_map **map);
 
 	//	maps.c
 

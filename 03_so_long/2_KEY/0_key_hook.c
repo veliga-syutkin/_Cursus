@@ -14,9 +14,15 @@
 
 void	ft_mlx_key_hook(mlx_key_data_t keydata, void *param)
 {
-	key_esc(keydata, param);
-	key_up(keydata, param);
-	key_down(keydata, param);
-	key_left(keydata, param);
-	key_right(keydata, param);
+	t_map	*map_grid;
+	mlx_t	*mlx;
+
+	(void)param;
+	mlx = address_mlx(NULL);
+	map_grid = address_map(NULL);
+	key_esc(keydata, mlx);
+	key_up(keydata, map_grid);
+	key_down(keydata, map_grid);
+	key_left(keydata, map_grid);
+	key_right(keydata, map_grid);
 }

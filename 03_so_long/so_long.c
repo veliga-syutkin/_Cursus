@@ -100,25 +100,22 @@ static void	ft_hook(void *map)
 	collectible(player(map, -1));
 }
 
-static void	print_map(t_map **map)
+t_map	*address_map(t_map *map)
 {
-	t_map	*temp;
+	static t_map	*address;
 
-	temp = *map;
-	while (temp)
-	{
-		ft_printf("%c", temp->content);
-		if (!temp->right)
-		{
-			while (temp && temp->left)
-				temp = temp->left;
-			temp = temp->down;
-			ft_printf("\n");
-		}
-		else
-			temp = temp->right;
-	}
-	ft_printf("\n");
+	if (map)
+		address = map;
+	return (address);
+}
+
+mlx_t	*address_mlx(mlx_t *mlx)
+{
+	static mlx_t	*address;
+
+	if (mlx)
+		address = mlx;
+	return (address);
 }
 
 /* Codes with commentaries:
@@ -146,7 +143,7 @@ int	main(void)
 }*/
 int	ft_mlx(t_map **map_grid)
 {
-	mlx_t			*mlx;
+	mlx_t			*mlx;	
 	mlx_image_t		*img;
 
 	mlx = mlx_init(WIDTH, HEIGHT, "Gulag simulator", true);
@@ -156,7 +153,9 @@ int	ft_mlx(t_map **map_grid)
 		ft_error("Couldn't initialize mlx. Exiting.", NULL);
 	mlx_put_pixel(img, 0, 0, 0xFF0000FF);
 	mlx_loop_hook(mlx, ft_hook, *map_grid);
-	mlx_key_hook(mlx, &ft_mlx_key_hook, *map_grid);
+	address_map(*map_grid);
+	address_mlx(mlx);
+	mlx_key_hook(mlx, &ft_mlx_key_hook, NULL);
 	mlx_close_hook(mlx, close_window, mlx);
 	mlx_loop(mlx);
 	mlx_terminate(mlx);

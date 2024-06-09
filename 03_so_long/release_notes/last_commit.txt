@@ -1,1 +1,1 @@
-passing wrong arg to function close_window when escape (compare with mlx_close hook on X !)
+Fixed ESC IOT crash

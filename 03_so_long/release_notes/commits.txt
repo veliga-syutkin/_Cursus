@@ -71,3 +71,6 @@ Added full key support (arrows, WASD and ZQSD). Made few progress with norminett
 v24
 passing wrong arg to function close_window when escape (compare with mlx_close hook on X !)
 
+v25
+Fixed ESC IOT crash
+
