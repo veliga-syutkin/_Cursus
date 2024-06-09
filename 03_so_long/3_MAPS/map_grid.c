@@ -76,10 +76,10 @@ void	grid_fix(t_map **map, t_allocs **allocs)
 	t_allocs	*cursor;
 	t_map		*cursor_map;
 
-	cursor = get_id(allocs, TOP_LEFT);
+	cursor = get_id(allocs, (int *)-1);
 	cursor_map = *map;
-	while ((cursor->next) && (cursor->id == SOMEWHERE || \
-		cursor->id == TOP_LEFT))
+	while ((cursor->next) && (cursor->id == (int *)-1 \
+		|| cursor->id == (int *)-2))
 	{
 		if (((t_map *)(cursor->content))->xy[1]
 			!= ((t_map *)(cursor->next->content))->xy[1])

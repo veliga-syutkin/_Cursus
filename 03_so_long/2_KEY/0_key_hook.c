@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   0_key_hook.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vsyutkin <vsyutkin@student.42mulhouse.fr>  #+#  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/17 02:10:48 by vsyutkin          #+#    #+#             */
-/*   Updated: 2023/11/08 15:32:03 by vsyutkin         ###   ########.fr       */
+/*   Created: 2024-06-09 05:29:04 by vsyutkin          #+#    #+#             */
+/*   Updated: 2024-06-09 05:29:04 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../so_long.h"
 
-/*  Prints character in output fd and return how many characters were print. 
-Returns -1 if print failed.*/
-int	ft_putchar_fd(char c, int fd)
+void	ft_mlx_key_hook(mlx_key_data_t keydata, void *param)
 {
-	return (write(fd, &c, 1));
+	key_esc(keydata, param);
+	key_up(keydata, param);
+	key_down(keydata, param);
+	key_left(keydata, param);
+	key_right(keydata, param);
 }

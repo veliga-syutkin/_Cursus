@@ -95,11 +95,9 @@ collectible = only escaping prisoners, and they are not moving.
 // }
 
 // Print the window width and height.
-static void	ft_hook(void *param)
+static void	ft_hook(void *map)
 {
-	const mlx_t	*mlx;
-
-	mlx = param;
+	collectible(player(map, -1));
 }
 
 static void	print_map(t_map **map)
@@ -146,7 +144,7 @@ int	main(void)
 	mlx_terminate(mlx);
 	return (EXIT_SUCCESS);
 }*/
-int	ft_mlx(void)
+int	ft_mlx(t_map **map_grid)
 {
 	mlx_t			*mlx;
 	mlx_image_t		*img;
@@ -157,8 +155,8 @@ int	ft_mlx(void)
 	if (!mlx)
 		ft_error("Couldn't initialize mlx. Exiting.", NULL);
 	mlx_put_pixel(img, 0, 0, 0xFF0000FF);
-	mlx_loop_hook(mlx, ft_hook, mlx);
-	mlx_key_hook(mlx, &key_esc, mlx);
+	mlx_loop_hook(mlx, ft_hook, *map_grid);
+	mlx_key_hook(mlx, &ft_mlx_key_hook, *map_grid);
 	mlx_close_hook(mlx, close_window, mlx);
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
@@ -174,7 +172,7 @@ int	main(int argc, char **argv)
 	head_map_grid = NULL;
 	map(argc, argv, &head_map_grid, &head_to_free);
 	print_map(&head_map_grid);
-	ft_mlx();
+	ft_mlx(&head_map_grid);
 	mhandler_free_all(&head_to_free);
 	return (EXIT_SUCCESS);
 }

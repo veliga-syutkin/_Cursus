@@ -35,7 +35,7 @@ void	load_map(const char *line, t_map **map_grid, t_allocs **allocs)
 	cursor = 0;
 	if (!*map_grid)
 	{
-		mhandler_add(allocs, (malloc(sizeof(t_map))), (TOP_LEFT));
+		mhandler_add(allocs, (malloc(sizeof(t_map))), (int *)-1);
 		*map_grid = (*allocs)->content;
 		map_init(line[cursor], cursor, y, *map_grid);
 		cell_on_left = *map_grid;
@@ -44,7 +44,7 @@ void	load_map(const char *line, t_map **map_grid, t_allocs **allocs)
 	while (line[cursor] && line[cursor] != '\n')
 	{
 		cell_on_left = get_last(allocs)->content;
-		mhandler_add(allocs, (malloc(sizeof(t_map))), (SOMEWHERE));
+		mhandler_add(allocs, (malloc(sizeof(t_map))), (int *)-2);
 		if (cursor)
 			cell_on_left->right = get_last(allocs)->content;
 		map_init(line[cursor], cursor, y, get_last(allocs)->content);

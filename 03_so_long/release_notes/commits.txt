@@ -65,3 +65,6 @@ Developed algorithm. Yet to be implemented. Started to look for textures...
 v22
 Implemented cross press in window bar handling
 
+v23
+Added full key support (arrows, WASD and ZQSD). Made few progress with norminette. Started implementing player events. Troubles: IOT when pressing esc. WTF?!
+

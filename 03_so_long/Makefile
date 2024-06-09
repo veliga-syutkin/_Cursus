@@ -15,14 +15,18 @@
 # ############################################################################ #
 
 #Only .c files
-MAIN = so_long.c
-KEYS = esc.c
-MAPS = maps.c \
+MAIN =	so_long.c
+KEYS =	0_key_hook.c \
+		arrows_WASD_ZQSD.c \
+		esc.c
+MAPS =	maps.c \
 		map_check.c \
 		map_check2.c \
 		map_grid.c
-ERRORS = errors.c
-MHANDLER = mhandler.c \
+ERRORS =	errors.c
+EVENTS =	collectible.c
+PLAYER =	player.c
+MHANDLER =	mhandler.c \
 			mhandler_utils.c
 
 # ############################################################################ #
@@ -30,61 +34,72 @@ MHANDLER = mhandler.c \
 # ############################################################################ #
 
 #Only directories
-LIBFT_DIR = ./0_LIBFT/
-MLX_DIR = ./1_MLX42/
-KEY_DIR = ./2_KEY/
-MAP_DIR = ./3_MAPS/
-ERR_DIR = ./4_ERRORS/
-MHANDLER_DIR = ./9_MHANDLER/
+LIBFT_DIR =	./0_LIBFT/
+MLX_DIR =	./1_MLX42/
+KEY_DIR =	./2_KEY/
+MAP_DIR =	./3_MAPS/
+ERR_DIR =	./4_ERRORS/
+EVENTS_DIR =	./5_EVENTS/
+PLAYER_DIR =	./6_PLAYER/
+MHANDLER_DIR =	./9_MHANDLER/
 
-PROJECT_DIR = $(LIBFT_DIR) $(KEY_DIR) $(MAP_DIR) $(ERR_DIR) $(MHANDLER_DIR)
+PROJECT_DIR =	$(LIBFT_DIR) \
+				$(KEY_DIR) \
+				$(MAP_DIR) \
+				$(ERR_DIR) \
+				$(EVENTS_DIR) \
+				$(PLAYER_DIR) \
+				$(MHANDLER_DIR)
 
 # ############################################################################ #
 #						# PROJECT FILES DECLARATIONS #						   #
 # ############################################################################ #
 
 #Gathers all files in $(FILES)
-FILES = $(MAIN) \
+FILES =	$(MAIN) \
 		$(addprefix $(KEY_DIR), $(KEYS)) \
 		$(addprefix $(MAP_DIR), $(MAPS)) \
 		$(addprefix $(ERR_DIR), $(ERRORS)) \
+		$(addprefix $(EVENTS_DIR), $(EVENTS)) \
+		$(addprefix $(PLAYER_DIR), $(PLAYER)) \
 		$(addprefix $(MHANDLER_DIR), $(MHANDLER))
 
-INCLUDES = -I $(MLX_DIR)include/MLX42/MLX42.h
+INCLUDES =	-I $(MLX_DIR)include/MLX42/MLX42.h
 
 # Library files
-AR = ./0_LIBFT/libft.a
-MLX42 = ./1_MLX42/build/libmlx42.a
+AR =	./0_LIBFT/libft.a
+MLX42 =	./1_MLX42/build/libmlx42.a
 
 # ############################################################################ #
 #						# PROJECT END_FILES DECLARATIONS #					   #
 # ############################################################################ #
 
-NAME = so_long
+NAME =	so_long
 
-PROGRAM = ./$(NAME)
+PROGRAM =	./$(NAME)
 
-LIBS = $(AR) $(MLX42)
+LIBS =	$(AR) $(MLX42)
 
 # ############################################################################ #
 #						# PROJECT MACROS #									   #
 # ############################################################################ #
 
-CC = cc
-CFLAGS = -Wall -Wextra -Werror -g3 #-fsanitize=address
+CC =	cc
+CFLAGS =	-Wall -Wextra -Werror -g3 #-fsanitize=address
 
-RM = rm -f
+RM =	rm -f
 
-ARMAKE = make -C $(LIBFT_DIR)
-MLX42MAKE = make -C $(MLX_DIR)
+ARMAKE =	make -C $(LIBFT_DIR)
+MLX42MAKE =	make -C $(MLX_DIR)
 
 # ############################################################################ #
 #						# PROJECT RULES DECLARATIONS #						   #
 # ############################################################################ #
 
-MLX42_FLAG = -Iinclude -ldl -lglfw -pthread -lm
+MLX42_FLAG =	-Iinclude -ldl -lglfw -pthread -lm
 
 all: $(NAME)
+#z	@echo "\n\tCompilation done!\n Suggestion: try 'make run' or 'make valgrind'.\n"
 
 $(NAME): $(LIBS)
 	$(CC) $(CFLAGS) $(FILES) $(LIBS) $(MLX42_FLAG) -o $(NAME)
@@ -105,11 +120,15 @@ fclean: clean
 
 re: clear fclean all
 
+.PHONY: all clean fclean re
+
 # ############################################################################ #
 #						# PROJECT BONUS #									   #
 
 bonus: clear
 	@echo "No bonus for this project done yet."
+
+.PHONY: bonus
 
 # ############################################################################ #
 #						# PROJECT CUSTOM #									   #
@@ -117,53 +136,63 @@ bonus: clear
 clear:
 	clear
 
-run: clear
-	./$(NAME)
+# run: clear
+# 	@echo "Please enter the map name:"
+# 	ls $(MAP_DIR) | grep .ber
+# 	@read COMMIT_ARGS; \
+# 	./$(NAME) $(MAP_DIR)/$$COMMIT_ARGS
 
 valgrind: clear
-	valgrind --leak-check=full --leak-show=all ./$(NAME)
+	@echo "Please enter the map name:"
+	ls $(MAP_DIR) | grep .ber
+	@read COMMIT_ARGS;
+	valgrind --leak-check=full --leak-show=all ./$(NAME) $(MAP_DIR)/$$COMMIT_ARGS
 
 gnl: clear all
 	$(CC) $(CFLAGS) gnl_main.c ./0_LIBFT/libft.a -o gnl
 
+.PHONY: clear run valgrind gnl
+
 # ############################################################################ #
 #						# PROJECT TESTS #									   #
 
-test: clear
+test: run
+
+.PHONY: test
 
 # ############################################################################ #
 #										 # VERSIONS UPDATER AND GIT MANAGEMENT #
 # ############################################################################ #
 
 # Colors
-NC = \033[0m
-BOLD_BLACK = \033[1;30m
-RED = \033[0;31m
-BOLD_RED = \033[1;31m
-GREEN = \033[0;32m
-BOLD_GREEN = \033[1;32m
-YELLOW = \033[0;33m
-BOLD_YELLOW = \033[1;33m
-BLUE = \033[0;34m
-BOLD_BLUE = \033[1;34m
-BOLD_PURPLE = \033[1;35m
-PURPLE = \033[0;35m
-BOLD_CYAN = \033[1;36m
-CYAN = \033[0;36m
-BOLD_WHITE = \033[1;37m
-WHITE = \033[0;37m
-BACKGROUND_GREEN = \033[42m
-BACKGROUND_RED = \033[41m
-BACKGROUND_WHITE = \033[47m
+NC =	\033[0m
+BOLD_BLACK =	\033[1;30m
+RED =	\033[0;31m
+BOLD_RED =	\033[1;31m
+GREEN =	\033[0;32m
+BOLD_GREEN =	\033[1;32m
+YELLOW =	\033[0;33m
+BOLD_YELLOW =	\033[1;33m
+BLUE =	\033[0;34m
+BOLD_BLUE =	\033[1;34m
+BOLD_PURPLE =	\033[1;35m
+PURPLE =	\033[0;35m
+BOLD_CYAN =	\033[1;36m
+CYAN =	\033[0;36m
+BOLD_WHITE =	\033[1;37m
+WHITE =	\033[0;37m
+BACKGROUND_GREEN =	\033[42m
+BACKGROUND_RED =	\033[41m
+BACKGROUND_WHITE =	\033[47m
 
-VERSIONS_DIR = ./release_notes/
+VERSIONS_DIR =	./release_notes/
 
 # Variables
-NORMINETTE_DIR = so_long.h $(MAIN) $(PROJECT_DIR)
-VERSIONS_NUMBER := $(shell cat $(VERSIONS_DIR)versions.txt)
-COMMIT_FILE = $(VERSIONS_DIR)commits.txt
-COMMIT_ARGS = $(shell cat $(VERSIONS_DIR)last_commit.txt)
-EXIT_NORMINETTE := $(shell norminette $(NORMINETTE_DIR) > /dev/null; echo $$?)
+NORMINETTE_DIR =	so_long.h $(MAIN) $(PROJECT_DIR)
+VERSIONS_NUMBER :=	$(shell cat $(VERSIONS_DIR)versions.txt)
+COMMIT_FILE =	$(VERSIONS_DIR)commits.txt
+COMMIT_ARGS =	$(shell cat $(VERSIONS_DIR)last_commit.txt)
+EXIT_NORMINETTE :=	$(shell norminette $(NORMINETTE_DIR) > /dev/null; echo $$?)
 
 # Make commands in this makefile
 help: info
@@ -270,6 +299,10 @@ git_msg2:
 norminette_msg:
 	@echo "$(YELLOW)Checking norminette in $(NORMINETTE_DIR)...$(NC)"
 
+.PHONY: help git git_cursus git_push git_fpush \
+checks \
+ask info commit version_update norminette git_norminette git_auto git_msg1 git_msg2 norminette_msg
+
 # ############################################################################ #
 #														  # BASIC GIT COMMANDS #
 git_status:
@@ -283,6 +316,8 @@ git_commit:
 
 git_gitpush:
 	git push
+
+.PHONY: git_status git_add git_commit git_gitpush
 #																			   #
 # ############################################################################ #
 
@@ -290,9 +325,6 @@ git_gitpush:
 #								# PHONY #									   #
 # ############################################################################ #
 
-.PHONY: all clean fclean re bonus clear help git git_cursus git_push git_fpush \
-git_status git_add git_commit git_gitpush norminette git_norminette git_auto \
-git_msg1 git_msg2
 # .PHONY is used to declare phony targets. When a target is phony, it will
 # run the target rather do something to a file. 
 # 	Check "Makefile Implicit Rules - Phony" for more info.

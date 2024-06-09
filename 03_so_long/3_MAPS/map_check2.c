@@ -12,14 +12,21 @@
 
 #include "../so_long.h"
 
-t_map	*goto_exit(t_map *map_grid)
+/*
+Function to find the cell with specific item in the map.
+Parsing is done from left to right on each line from top to bottom.
+Returns the first encountered cell with the item.
+Pass next cell to start from in order to find the next one.
+Returns NULL if the item is not found.
+*/
+t_map	*goto_item(t_map *map_grid, int item)
 {
 	t_map	*cursor;
 
 	cursor = map_grid;
 	while (cursor)
 	{
-		if (cursor->content == EXIT)
+		if (cursor->content == item)
 			break ;
 		if (cursor->right)
 			cursor = cursor->right;
@@ -57,7 +64,7 @@ void	path_check(t_map *map_grid, t_allocs **allocs)
 {
 	t_map	*cursor;
 
-	cursor = goto_exit(map_grid);
+	cursor = goto_item(map_grid, EXIT);
 	make_path(cursor);
 	collectible_path_check(map_grid, allocs);
 }

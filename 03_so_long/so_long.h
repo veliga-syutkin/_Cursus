@@ -26,8 +26,9 @@
 # define PLAYER 'P'
 # define COLLECTIBLE 'C'
 
-# define TOP_LEFT (int *)-1
-# define SOMEWHERE (int *)-2
+// hating norminette right down here:
+// # define TOP_LEFT (int *)-1
+// # define SOMEWHERE (int *)-2
 
 # define DIR_RIGHT 0
 # define DIR_DOWN 1
@@ -47,7 +48,7 @@
 /*
 Map structure
 ->top = cell on top
-->bottom = cell on bottom
+// ->down = cell on bottom/down
 ->left = cell on left
 ->right = cell on right
 ->content = what is in the cell
@@ -69,8 +70,21 @@ typedef struct s_map
 					/* 02 */
 ////////////////////////////////////////////////////////////////////////////////
 
+	//	0_key_hooks.c
+
+void	ft_mlx_key_hook(mlx_key_data_t keydata, void *param);
+
+	//	esc.c
+
 void	key_esc(mlx_key_data_t keydata, void *param);
 void	close_window(void *param);
+
+	//	arrows_WASD_ZQSD.c
+
+void	key_up(mlx_key_data_t keydata, void *map);
+void	key_down(mlx_key_data_t keydata, void *map);
+void	key_left(mlx_key_data_t keydata, void *map);
+void	key_right(mlx_key_data_t keydata, void *map);
 
 ////////////////////////////////////////////////////////////////////////////////
 					/* 03 */
@@ -87,7 +101,7 @@ void	inner_check(t_map *map_grid, t_allocs **allocs);
 	//	map_check2.c
 
 void	collectible_path_check(t_map *map_grid, t_allocs **allocs);
-t_map	*goto_exit(t_map *map_grid);
+t_map	*goto_item(t_map *map_grid, int item);
 void	make_path(t_map *start_cell);
 void	path_check(t_map *map_grid, t_allocs **allocs);
 void	outer_check(t_map *map_grid, t_allocs **allocs);
@@ -112,5 +126,22 @@ void	read_map(char *map, t_map **map_grid, t_allocs **allocs);
 ////////////////////////////////////////////////////////////////////////////////
 
 void	ft_error(char *error, t_allocs **allocs);
+
+////////////////////////////////////////////////////////////////////////////////
+					/* 05 */
+////////////////////////////////////////////////////////////////////////////////
+
+	//	collectible.c
+
+bool	all_collected(t_map *map);
+int		collectible(t_map *map);
+
+////////////////////////////////////////////////////////////////////////////////
+					/* 06 */
+////////////////////////////////////////////////////////////////////////////////
+
+	//	player.c
+
+t_map	*player(t_map *map, int dir);
 
 #endif

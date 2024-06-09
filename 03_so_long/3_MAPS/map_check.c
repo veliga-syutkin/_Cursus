@@ -50,7 +50,10 @@ int	grid_height(t_map *map_grid, t_allocs **allocs)
 	return (height);
 }
 
-int	content_check(int c, t_map *map_grid)
+/*
+	Counts and returns the number of cells with specific item.
+*/
+int	content_check(int item, t_map *map_grid)
 {
 	int		x;
 	t_map	*cursor;
@@ -59,7 +62,7 @@ int	content_check(int c, t_map *map_grid)
 	x = 0;
 	while (cursor)
 	{
-		if (cursor->content == c)
+		if (cursor->content == item)
 			x++;
 		if (cursor->right)
 			cursor = cursor->right;
@@ -85,9 +88,6 @@ void	inner_check(t_map *map_grid, t_allocs **allocs)
 
 void	check_map(t_map *map_grid, t_allocs **allocs)
 {
-	t_map	*cursor;
-
-	cursor = map_grid;
 	grid_len(map_grid, allocs);
 	grid_height(map_grid, allocs);
 	inner_check(map_grid, allocs);
