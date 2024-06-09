@@ -68,3 +68,6 @@ Implemented cross press in window bar handling
 v23
 Added full key support (arrows, WASD and ZQSD). Made few progress with norminette. Started implementing player events. Troubles: IOT when pressing esc. WTF?!
 
+v24
+passing wrong arg to function close_window when escape (compare with mlx_close hook on X !)
+
