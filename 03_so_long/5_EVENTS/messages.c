@@ -23,3 +23,16 @@ void	message(char *s)
 		last = s;
 	}
 }
+
+void	notification(void)
+{
+	bool	end;
+
+	end = false;
+	if (exit_game(player(map, -1)))
+		end = true;
+	if (end)
+		message(MSG_WON);
+	else
+		collectible(player(map, -1));
+}

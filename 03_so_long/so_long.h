@@ -30,10 +30,10 @@
 // # define TOP_LEFT (int *)-1
 // # define SOMEWHERE (int *)-2
 
-# define DIR_RIGHT 0
 # define DIR_DOWN 1
 # define DIR_LEFT 2
 # define DIR_UP 3
+# define DIR_RIGHT 4
 
 # define ERR_MAP_PATH "Error\nDirectory path to map is wrong\n"
 # define ERR_MAP_OPEN "Error\nCouldn't open map file\n"
@@ -147,6 +147,7 @@ bool	exit_game(t_map *map);
 	//	messages.c
 
 void	message(char *s);
+void	notification(void);
 
 ////////////////////////////////////////////////////////////////////////////////
 					/* 06 */
@@ -155,6 +156,8 @@ void	message(char *s);
 	//	player.c
 
 t_map	*player(t_map *map, int dir);
+int		last_dir(int dir);
+int		turns(bool count);
 
 ////////////////////////////////////////////////////////////////////////////////
 					/* SO_LONG */

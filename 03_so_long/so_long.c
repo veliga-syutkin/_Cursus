@@ -14,13 +14,13 @@
 
 /*
 Suggestion from copilot:
-	1. Read the map from the file
-	2. Check if the map is valid
-	3. Create a window
+w	1. Read the map from the file
+w	2. Check if the map is valid
+w	3. Create a window
 	4. Load images
 	5. Draw the map
-	6. Handle the events
-	7. Close the window
+w	6. Handle the events
+w	7. Close the window
 
 								! IMPORTANT INFO !								!
 When player meets collectible, collectible disappears.
@@ -97,17 +97,13 @@ collectible = only escaping prisoners, and they are not moving.
 // Print the window width and height.
 static void	ft_hook(void *map)
 {
-	bool	end;
-
-	end = false;
-	if (exit_game(player(map, -1)))
-		end = true;
-	if (end)
-		message(MSG_WON);
-	else
-		collectible(player(map, -1));
+	notification();
 }
 
+/*
+	This function stores and returns if argument is NULL t_map cell.
+Used to store top left most cell.
+*/
 t_map	*address_map(t_map *map)
 {
 	static t_map	*address;
@@ -117,6 +113,9 @@ t_map	*address_map(t_map *map)
 	return (address);
 }
 
+/*
+	This function stores and returns if argument is NULL mlx_t instance.
+*/
 mlx_t	*address_mlx(mlx_t *mlx)
 {
 	static mlx_t	*address;
@@ -161,8 +160,8 @@ int	ft_mlx(t_map **map_grid, t_allocs **allocs)
 		ft_error("Couldn't initialize mlx. Exiting.", allocs);
 	mlx_put_pixel(img, 0, 0, 0xFF0000FF);
 	mlx_loop_hook(mlx, ft_hook, *map_grid);
-	address_map(*map_grid);
-	address_mlx(mlx);
+	(void)address_map(*map_grid);
+	(void)address_mlx(mlx);
 	mlx_key_hook(mlx, &ft_mlx_key_hook, NULL);
 	mlx_close_hook(mlx, close_window, mlx);
 	mlx_loop(mlx);
@@ -179,7 +178,7 @@ int	main(int argc, char **argv)
 	head_map_grid = NULL;
 	map(argc, argv, &head_map_grid, &head_to_free);
 	print_map(&head_map_grid);
-	ft_mlx(&head_map_grid, &head_to_free);
+	(void)ft_mlx(&head_map_grid, &head_to_free);
 	mhandler_free_all(&head_to_free);
 	return (EXIT_SUCCESS);
 }

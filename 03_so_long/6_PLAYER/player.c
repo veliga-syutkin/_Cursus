@@ -15,10 +15,10 @@
 /*
 Function to move player in the map
 dir = direction of the movement, unless it's a wall:
-DIR_RIGHT (0) = right
 DIR_DOWN (1) = down
 DIR_LEFT (2) = left
 DIR_UP (3) = up
+DIR_RIGHT (4) = right
 And returns player's new position.
 -----
 	If direction points to a wall, returns NULL.
@@ -27,6 +27,7 @@ t_map	*player(t_map *map, int dir)
 {
 	static t_map	*player;
 
+	(void)last_dir(dir);
 	if (!player)
 		player = goto_item(map, PLAYER);
 	if (dir == DIR_RIGHT && player->right->content != WALL)
@@ -41,4 +42,29 @@ t_map	*player(t_map *map, int dir)
 				|| dir == DIR_LEFT || dir == DIR_UP)
 		return (NULL);
 	return (player);
+}
+
+/*
+	Returns last direction of the player.
+	Stores if dir not NULL before. 
+*/
+int	last_dir(int dir)
+{
+	static int	last;
+
+	if (!dir)
+		last = dir;
+	return (last);
+}
+
+/*
+Increases turn count with argument TRUE,
+and returns total value in any case*/
+int	turns(bool count)
+{
+	static int	turns;
+
+	if (count)
+		turns++;
+	return (turns);
 }

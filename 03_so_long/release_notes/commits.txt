@@ -80,3 +80,6 @@ Small fixes
 v27
 Implemented win condition.
 
+v28
+Added turn counter, added last direction player memory, fixed message loops, and few other very minnor things.
+

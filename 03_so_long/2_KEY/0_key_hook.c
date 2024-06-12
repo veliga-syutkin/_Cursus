@@ -12,6 +12,13 @@
 
 #include "../so_long.h"
 
+/*
+	MLX key hook implementation for following keys:
+ESCAPE
+ARROWS (UP, DOWN, RIGHT, LEFT)
+WASD (english keyboard)
+ZQSD (french keyboard)
+*/
 void	ft_mlx_key_hook(mlx_key_data_t keydata, void *param)
 {
 	t_map	*map_grid;

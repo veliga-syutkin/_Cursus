@@ -19,6 +19,7 @@ void	key_up(mlx_key_data_t keydata, void *map)
 		|| (keydata.key == MLX_KEY_Z && keydata.action == MLX_RELEASE))
 	{
 		ft_printf("Key pressed: UP\n");
+		(void)turns(true);
 		player(map, DIR_UP);
 	}
 }
@@ -29,6 +30,7 @@ void	key_down(mlx_key_data_t keydata, void *map)
 		|| (keydata.key == MLX_KEY_S && keydata.action == MLX_RELEASE))
 	{
 		ft_printf("Key pressed: DOWN\n");
+		(void)turns(true);
 		player(map, DIR_DOWN);
 	}
 }
@@ -40,6 +42,7 @@ void	key_left(mlx_key_data_t keydata, void *map)
 		|| (keydata.key == MLX_KEY_Q && keydata.action == MLX_RELEASE))
 	{
 		ft_printf("Key pressed: LEFT\n");
+		(void)turns(true);
 		player(map, DIR_LEFT);
 	}
 }
@@ -50,6 +53,7 @@ void	key_right(mlx_key_data_t keydata, void *map)
 		|| (keydata.key == MLX_KEY_D && keydata.action == MLX_RELEASE))
 	{
 		ft_printf("Key pressed: RIGHT\n");
+		(void)turns(true);
 		player(map, DIR_RIGHT);
 	}
 }
