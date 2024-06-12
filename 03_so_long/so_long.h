@@ -41,6 +41,9 @@
 # define ERR_MAP_CONTENT "Error\nMap is corrupted\n"
 # define ERR_MAP_DEAD_END "Error\nMap is impossible to solve\n"
 
+# define MSG_WON "\tCONGRATULATION!\n\tYou WON!\nPress ESC to close the game.\n"
+# define MSG_EXIT_CLOSED "You have to collect all collectibles!\n"
+
 ////////////////////////////////////////////////////////////////////////////////
 				/* STRUCT */
 ////////////////////////////////////////////////////////////////////////////////
@@ -136,6 +139,14 @@ void	ft_error(char *error, t_allocs **allocs);
 
 bool	all_collected(t_map *map);
 int		collectible(t_map *map);
+
+	//	exit.c
+
+bool	exit_game(t_map *map);
+
+	//	messages.c
+
+void	message(char *s);
 
 ////////////////////////////////////////////////////////////////////////////////
 					/* 06 */

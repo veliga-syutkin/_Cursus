@@ -97,7 +97,15 @@ collectible = only escaping prisoners, and they are not moving.
 // Print the window width and height.
 static void	ft_hook(void *map)
 {
-	collectible(player(map, -1));
+	bool	end;
+
+	end = false;
+	if (exit_game(player(map, -1)))
+		end = true;
+	if (end)
+		message(MSG_WON);
+	else
+		collectible(player(map, -1));
 }
 
 t_map	*address_map(t_map *map)

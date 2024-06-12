@@ -26,6 +26,7 @@ int	collectible(t_map *map)
 	{
 		collectible++;
 		map->content = FLOOR;
+		ft_printf("Collected: %d\n", collectible);
 	}
 	return (collectible);
 }

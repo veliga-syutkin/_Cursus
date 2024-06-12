@@ -77,3 +77,6 @@ Fixed ESC IOT crash
 v26
 Small fixes
 
+v27
+Implemented win condition.
+

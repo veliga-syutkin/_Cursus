@@ -24,7 +24,9 @@ MAPS =	maps.c \
 		map_check2.c \
 		map_grid.c
 ERRORS =	errors.c
-EVENTS =	collectible.c
+EVENTS =	collectible.c \
+			exit.c \
+			messages.c
 PLAYER =	player.c
 MHANDLER =	mhandler.c \
 			mhandler_utils.c
@@ -136,11 +138,11 @@ bonus: clear
 clear:
 	clear
 
-# run: clear
-# 	@echo "Please enter the map name:"
-# 	ls $(MAP_DIR) | grep .ber
-# 	@read COMMIT_ARGS; \
-# 	./$(NAME) $(MAP_DIR)/$$COMMIT_ARGS
+run: clear
+	@echo "Please enter the map name:"
+	ls $(MAP_DIR) | grep .ber
+	@read COMMIT_ARGS; \
+	./$(NAME) $(MAP_DIR)/$$COMMIT_ARGS
 
 valgrind: clear
 	@echo "Please enter the map name:"

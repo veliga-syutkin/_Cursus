@@ -40,6 +40,14 @@ t_map	*goto_item(t_map *map_grid, int item)
 	return (cursor);
 }
 
+/*
+  Reccursive function for checking if player, collectibles and exit
+are reacheable between each other, by flooding, starting at exit.
+From starting cell, sets boolean PATH_CHECK of this cell to TRUE,
+then looks if cell above/right/below/left isn't a WALL 
+and it's PATH_CHECK is FALSE, then reccursives on this cell.
+  This way the function won't verify a cell that once was verified.
+*/
 void	make_path(t_map *start_cell)
 {
 	t_map	*cursor;
