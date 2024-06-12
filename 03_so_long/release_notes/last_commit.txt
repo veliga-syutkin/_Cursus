@@ -1,1 +1,1 @@
-Added turn counter, added last direction player memory, fixed message loops, and few other very minnor things.
+Fixed few bugs and compilation errors.

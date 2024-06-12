@@ -97,7 +97,7 @@ collectible = only escaping prisoners, and they are not moving.
 // Print the window width and height.
 static void	ft_hook(void *map)
 {
-	notification();
+	notification(map);
 }
 
 /*

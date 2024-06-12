@@ -137,7 +137,7 @@ void	ft_error(char *error, t_allocs **allocs);
 
 	//	collectible.c
 
-bool	all_collected(t_map *map);
+bool	all_collected(void);
 int		collectible(t_map *map);
 
 	//	exit.c
@@ -147,7 +147,7 @@ bool	exit_game(t_map *map);
 	//	messages.c
 
 void	message(char *s);
-void	notification(void);
+void	notification(t_map *map);
 
 ////////////////////////////////////////////////////////////////////////////////
 					/* 06 */

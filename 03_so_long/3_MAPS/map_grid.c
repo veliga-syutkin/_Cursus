@@ -31,6 +31,7 @@ void	print_map(t_map **map)
 			temp = temp->right;
 	}
 	ft_printf("\n");
+	ft_printf("Collectibles: %d\n", content_check(COLLECTIBLE, *map));
 }
 
 void	vertical_fix(t_map *cell_start)

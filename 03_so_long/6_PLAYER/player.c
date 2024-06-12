@@ -13,7 +13,7 @@
 #include "../so_long.h"
 
 /*
-Function to move player in the map
+Function to move player in the map and store it's current position.
 dir = direction of the movement, unless it's a wall:
 DIR_DOWN (1) = down
 DIR_LEFT (2) = left
@@ -52,7 +52,7 @@ int	last_dir(int dir)
 {
 	static int	last;
 
-	if (!dir)
+	if (!dir && dir != -1)
 		last = dir;
 	return (last);
 }

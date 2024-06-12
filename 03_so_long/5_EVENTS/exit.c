@@ -21,9 +21,9 @@ that they have to collect all collectibles.
 */
 bool	exit_game(t_map *map)
 {
-	if (map->content == EXIT)
+	if (map && map->content == EXIT)
 	{
-		if (all_collected(map))
+		if (all_collected())
 			return (true);
 		else
 			message(MSG_EXIT_CLOSED);

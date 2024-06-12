@@ -24,7 +24,7 @@ void	message(char *s)
 	}
 }
 
-void	notification(void)
+void	notification(t_map *map)
 {
 	bool	end;
 

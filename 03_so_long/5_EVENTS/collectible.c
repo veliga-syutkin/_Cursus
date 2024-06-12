@@ -34,13 +34,12 @@ int	collectible(t_map *map)
 /*
 If all collectibles are collected, returns true, else returns false.
 */
-bool	all_collected(t_map *map)
+bool	all_collected(void)
 {
-	static int	max;
+	t_map	*map;
 
-	if (!max)
-		max = content_check(COLLECTIBLE, map);
-	if (collectible(map) == max)
+	map = address_map(NULL);
+	if (content_check(COLLECTIBLE, map) == 0)
 		return (true);
 	return (false);
 }
