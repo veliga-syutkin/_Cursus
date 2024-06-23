@@ -12,6 +12,9 @@
 
 #include "../so_long.h"
 
+/*
+  Looks if map file extension is .ber
+*/
 void	check_map_extension(int argc, char **argv)
 {
 	int		cursor;
@@ -26,33 +29,39 @@ void	check_map_extension(int argc, char **argv)
 	}
 }
 
+/*
+  Loads map from file to grid
+*/
 void	load_map(const char *line, t_map **map_grid, t_allocs **allocs)
 {
-	int			cursor;
-	static int	y;
+	int			column;
+	static int	line_number;
 	t_map		*cell_on_left;
 
-	cursor = 0;
+	column = 0;
 	if (!*map_grid)
 	{
 		mhandler_add(allocs, (malloc(sizeof(t_map))), (int *)-1);
 		*map_grid = (*allocs)->content;
-		map_init(line[cursor], cursor, y, *map_grid);
+		map_init(line[column], column, line_number, *map_grid);
 		cell_on_left = *map_grid;
-		cursor++;
+		column++;
 	}
-	while (line[cursor] && line[cursor] != '\n')
+	while (line[column] && line[column] != '\n')
 	{
 		cell_on_left = get_last(allocs)->content;
 		mhandler_add(allocs, (malloc(sizeof(t_map))), (int *)-2);
-		if (cursor)
+		if (column)
 			cell_on_left->right = get_last(allocs)->content;
-		map_init(line[cursor], cursor, y, get_last(allocs)->content);
-		cursor++;
+		map_init(line[column], column, line_number, get_last(allocs)->content);
+		column++;
 	}
-	y++;
+	line_number++;
 }
 
+/*
+  Checks map path, map file, loads map and checks it.
+*/
 void	map(int argc, char **argv, t_map **map_grid, t_allocs **allocs)
 {
 	if (argc != 2)
@@ -62,6 +71,9 @@ void	map(int argc, char **argv, t_map **map_grid, t_allocs **allocs)
 	check_map(*map_grid, allocs);
 }
 
+/*
+  Initializes map cell
+*/
 void	map_init(int content, int x, int y, t_map *map_cell)
 {
 	map_cell->content = content;
@@ -74,6 +86,9 @@ void	map_init(int content, int x, int y, t_map *map_cell)
 	map_cell->right = NULL;
 }
 
+/*
+  Reads and stores map from file
+*/
 void	read_map(char *map, t_map **map_grid, t_allocs **allocs)
 {
 	int		fd;

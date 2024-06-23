@@ -13,6 +13,9 @@
 #include "mhandler.h"
 #include "../0_LIBFT/libft.h"
 
+/*
+  Initialize the list of allocated elements.
+*/
 t_allocs	*mhandler_init(void *content, void *id)
 {
 	t_allocs	*head_allocs;
@@ -29,6 +32,9 @@ t_allocs	*mhandler_init(void *content, void *id)
 	return (head_allocs);
 }
 
+/*
+  Add new element to the end of the list of allocated elements.
+*/
 void	mhandler_add(t_allocs **allocs, void *content, void *id)
 {
 	t_allocs	*new;
@@ -55,6 +61,9 @@ void	mhandler_add(t_allocs **allocs, void *content, void *id)
 	temp->next = new;
 }
 
+/*
+  Free all elements in the list of allocated elements.
+*/
 void	mhandler_free_all(t_allocs **allocs)
 {
 	t_allocs	*temp;
@@ -68,6 +77,9 @@ void	mhandler_free_all(t_allocs **allocs)
 	}
 }
 
+/*
+  Free one element ID in the list of allocated elements.
+*/
 void	mhandler_free_one(void *id, t_allocs **allocs)
 {
 	t_allocs	*temp;

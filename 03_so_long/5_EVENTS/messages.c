@@ -19,7 +19,7 @@ void	message(char *s)
 	if (s)
 	{
 		if (last != s)
-			ft_printf (s);
+			ft_printf(s);
 		last = s;
 	}
 }

@@ -68,6 +68,9 @@ void	make_path(t_map *start_cell)
 		make_path(cursor->left);
 }
 
+/*
+  Checks if player, collectibles and exit are reacheable between each other.
+*/
 void	path_check(t_map *map_grid, t_allocs **allocs)
 {
 	t_map	*cursor;
@@ -77,6 +80,9 @@ void	path_check(t_map *map_grid, t_allocs **allocs)
 	collectible_path_check(map_grid, allocs);
 }
 
+/*
+  Checks if collectibles are reacheable from exit.
+*/
 void	collectible_path_check(t_map *map_grid, t_allocs **allocs)
 {
 	t_map	*cursor;
@@ -98,6 +104,9 @@ void	collectible_path_check(t_map *map_grid, t_allocs **allocs)
 	}
 }
 
+/*
+  Checks if map is surrounded by walls.
+*/
 void	outer_check(t_map *map_grid, t_allocs **allocs)
 {
 	short int	dir;

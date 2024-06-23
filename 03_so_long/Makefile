@@ -28,6 +28,7 @@ EVENTS =	collectible.c \
 			exit.c \
 			messages.c
 PLAYER =	player.c
+TEXTURES =	textures.c
 MHANDLER =	mhandler.c \
 			mhandler_utils.c
 
@@ -43,6 +44,7 @@ MAP_DIR =	./3_MAPS/
 ERR_DIR =	./4_ERRORS/
 EVENTS_DIR =	./5_EVENTS/
 PLAYER_DIR =	./6_PLAYER/
+TEXTURES_DIR =	./7_TEXTURES/
 MHANDLER_DIR =	./9_MHANDLER/
 
 PROJECT_DIR =	$(LIBFT_DIR) \
@@ -51,6 +53,7 @@ PROJECT_DIR =	$(LIBFT_DIR) \
 				$(ERR_DIR) \
 				$(EVENTS_DIR) \
 				$(PLAYER_DIR) \
+				$(TEXTURES_DIR) \
 				$(MHANDLER_DIR)
 
 # ############################################################################ #
@@ -64,6 +67,7 @@ FILES =	$(MAIN) \
 		$(addprefix $(ERR_DIR), $(ERRORS)) \
 		$(addprefix $(EVENTS_DIR), $(EVENTS)) \
 		$(addprefix $(PLAYER_DIR), $(PLAYER)) \
+		$(addprefix $(TEXTURES_DIR), $(TEXTURES)) \
 		$(addprefix $(MHANDLER_DIR), $(MHANDLER))
 
 INCLUDES =	-I $(MLX_DIR)include/MLX42/MLX42.h
@@ -147,8 +151,8 @@ run: clear
 valgrind: clear
 	@echo "Please enter the map name:"
 	ls $(MAP_DIR) | grep .ber
-	@read COMMIT_ARGS;
-	valgrind --leak-check=full --leak-show=all ./$(NAME) $(MAP_DIR)/$$COMMIT_ARGS
+	@read COMMIT_ARGS; \
+	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) $(MAP_DIR)/$$COMMIT_ARGS
 
 gnl: clear all
 	$(CC) $(CFLAGS) gnl_main.c ./0_LIBFT/libft.a -o gnl

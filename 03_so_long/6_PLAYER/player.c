@@ -13,7 +13,7 @@
 #include "../so_long.h"
 
 /*
-Function to move player in the map and store it's current position.
+Function to move player in the map and store it's new position.
 dir = direction of the movement, unless it's a wall:
 DIR_DOWN (1) = down
 DIR_LEFT (2) = left
@@ -22,6 +22,7 @@ DIR_RIGHT (4) = right
 And returns player's new position.
 -----
 	If direction points to a wall, returns NULL.
+	If direction is NULL, returns player's current position.
 */
 t_map	*player(t_map *map, int dir)
 {
@@ -52,7 +53,7 @@ int	last_dir(int dir)
 {
 	static int	last;
 
-	if (!dir && dir != -1)
+	if (dir && dir != -1)
 		last = dir;
 	return (last);
 }
@@ -67,4 +68,32 @@ int	turns(bool count)
 	if (count)
 		turns++;
 	return (turns);
+}
+
+int	display_player(mlx_t *mlx, t_txtr *images, t_map *player)
+{
+	int				xy[2];
+	static int		r_value;
+	static t_txtr	*s_images;
+	mlx_image_t		*show_player;
+
+	if (!s_images)
+	{
+		s_images = images;
+	}
+	if (mlx && images)
+	{
+		xy[0] = player->xy[0] * 128;
+		xy[1] = player->xy[1] * 128;
+		r_value = (mlx_image_to_window(mlx, images->player, xy[0], xy[1]));
+	}
+	if (player)
+	{
+		show_player = s_images->player;
+		xy[0] = 128 * (player->xy[0]);
+		xy[1] = 128 * (player->xy[1]);
+		show_player->instances[0].x = xy[0];
+		show_player->instances[0].y = xy[1];
+	}
+	return (r_value);
 }

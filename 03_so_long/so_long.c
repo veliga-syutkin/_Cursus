@@ -150,18 +150,18 @@ int	main(void)
 }*/
 int	ft_mlx(t_map **map_grid, t_allocs **allocs)
 {
-	mlx_t			*mlx;	
-	mlx_image_t		*img;
+	mlx_t	*mlx;	
+	t_txtr	*img;
 
 	mlx = mlx_init(WIDTH, HEIGHT, "Gulag simulator", true);
-	img = mlx_new_image(mlx, WIDTH, HEIGHT);
+	img = ft_images(allocs, load_textures(allocs), mlx);
 	mlx_set_setting(MLX_MAXIMIZED, true);
 	if (!mlx)
 		ft_error("Couldn't initialize mlx. Exiting.", allocs);
-	mlx_put_pixel(img, 0, 0, 0xFF0000FF);
-	mlx_loop_hook(mlx, ft_hook, *map_grid);
 	(void)address_map(*map_grid);
 	(void)address_mlx(mlx);
+	display(mlx, img, *map_grid, allocs);
+	mlx_loop_hook(mlx, ft_hook, *map_grid);
 	mlx_key_hook(mlx, &ft_mlx_key_hook, NULL);
 	mlx_close_hook(mlx, close_window, mlx);
 	mlx_loop(mlx);

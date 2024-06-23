@@ -1,0 +1,4 @@
+player_ne.png
+player_nw.png
+player_se.png
+player_sw.png

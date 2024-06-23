@@ -86,3 +86,6 @@ Added turn counter, added last direction player memory, fixed message loops, and
 v29
 Fixed few bugs and compilation errors.
 
+v30
+Graphics + comments + small fixes, updates...
+

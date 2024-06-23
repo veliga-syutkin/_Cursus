@@ -76,6 +76,9 @@ int	content_check(int item, t_map *map_grid)
 	return (x);
 }
 
+/*
+  Checks if map has exactly 1 player, exactly 1 exit and at least 1 collectible.
+*/
 void	inner_check(t_map *map_grid, t_allocs **allocs)
 {
 	if (content_check(PLAYER, map_grid) != 1)
@@ -86,6 +89,12 @@ void	inner_check(t_map *map_grid, t_allocs **allocs)
 		ft_error(ERR_MAP_CONTENT, allocs);
 }
 
+/*
+  Checks the map for rectangular shape,
+  for inner content,
+  for the outer wall,
+  for the solvable path.
+*/
 void	check_map(t_map *map_grid, t_allocs **allocs)
 {
 	grid_len(map_grid, allocs);
