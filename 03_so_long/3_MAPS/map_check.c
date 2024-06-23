@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 17:24:19 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/06/23 17:41:44 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/06/23 17:49:24 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,9 @@ void	inner_check(t_map *map_grid, t_allocs **allocs)
 		ft_error(ERR_MAP_CONTENT, allocs);
 	while (cursor)
 	{
-		if (cursor->content != '1' && cursor->content != '0' \
-			&& cursor->content != 'P' && cursor->content != 'C' \
-			&& cursor->content != 'E')
+		if (!(cursor->content == '1' || cursor->content == '0' \
+			|| cursor->content == 'P' || cursor->content == 'C' \
+			|| cursor->content == 'E'))
 			ft_error(ERR_MAP_CONTENT, allocs);
 		if (cursor->right)
 			cursor = cursor->right;

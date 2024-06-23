@@ -6,7 +6,7 @@
 #    By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/16 16:03:36 by vsyutkin          #+#    #+#              #
-#    Updated: 2024/05/25 23:03:08 by vsyutkin         ###   ########.fr        #
+#    Updated: 2024/06/23 17:45:30 by vsyutkin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -142,7 +142,7 @@ bonus: clear
 clear:
 	clear
 
-run: clear
+run: clear all
 	@echo "Please enter the map name:"
 	ls $(MAP_DIR) | grep .ber
 	@read COMMIT_ARGS; \
@@ -162,7 +162,7 @@ gnl: clear all
 # ############################################################################ #
 #						# PROJECT TESTS #									   #
 
-test: run
+test: all run
 
 .PHONY: test
 

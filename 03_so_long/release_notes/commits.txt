@@ -98,3 +98,6 @@ Changed width and height of window to match valid1.ber. Turned in turn counter i
 v33
 Fixed aalferov's breach: undefined behaviour when inner content is other than 1 E C P 0
 
+v34
+Fixed empty line (aalferov's breach) bug (either empty line bypass map checker or map checker refuses valid maps).
+
