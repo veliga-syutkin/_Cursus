@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsyutkin <vsyutkin@student.42mulhouse.fr>  #+#  +:+       +#+        */
+/*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024-06-23 08:32:43 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024-06-23 08:32:43 by vsyutkin         ###   ########.fr       */
+/*   Created: 2024/06/23 08:32:43 by vsyutkin          #+#    #+#             */
+/*   Updated: 2024/06/23 16:02:35 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ int	display_cell(mlx_t *mlx, t_txtr *images, t_map *cell)
 
 	xy[0] = cell->xy[0] * 128;
 	xy[1] = cell->xy[1] * 128;
+	r_value = 0;
 	if (cell->content == WALL)
 		r_value = mlx_image_to_window(mlx, images->wall, xy[0], xy[1]);
 	else if (cell->content == FLOOR || cell->content == PLAYER)
