@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 17:24:19 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/05/25 23:01:59 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/06/23 17:41:44 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,12 +81,30 @@ int	content_check(int item, t_map *map_grid)
 */
 void	inner_check(t_map *map_grid, t_allocs **allocs)
 {
+	t_map	*cursor;
+
+	cursor = map_grid;
 	if (content_check(PLAYER, map_grid) != 1)
 		ft_error(ERR_MAP_CONTENT, allocs);
 	if (content_check(EXIT, map_grid) != 1)
 		ft_error(ERR_MAP_CONTENT, allocs);
 	if (content_check(COLLECTIBLE, map_grid) < 1)
 		ft_error(ERR_MAP_CONTENT, allocs);
+	while (cursor)
+	{
+		if (cursor->content != '1' && cursor->content != '0' \
+			&& cursor->content != 'P' && cursor->content != 'C' \
+			&& cursor->content != 'E')
+			ft_error(ERR_MAP_CONTENT, allocs);
+		if (cursor->right)
+			cursor = cursor->right;
+		else
+		{
+			while (cursor && cursor->left)
+				cursor = cursor->left;
+			cursor = cursor->down;
+		}
+	}
 }
 
 /*

@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 23:33:49 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/05/25 23:34:28 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/06/23 17:33:25 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,8 @@ void	read_map(char *map, t_map **map_grid, t_allocs **allocs)
 		load_map(line, map_grid, allocs);
 		free(line);
 		line = get_next_line(fd);
+		if (!line)
+			ft_error(ERR_MAP_CONTENT, allocs);
 	}
 	free(line);
 	close(fd);

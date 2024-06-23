@@ -95,3 +95,6 @@ Updated flag warning (unitialized value when if is false)
 v32
 Changed width and height of window to match valid1.ber. Turned in turn counter in terminal. Deleted moving keys' log. To do: texture for collectible and exit, debug collectible may be staying displayed after it's gone (prayge). Memory leaks are due to mlx, checked all valgrind logs (with both --leak-check=full --show-leak-kinds=all) manually.
 
+v33
+Fixed aalferov's breach: undefined behaviour when inner content is other than 1 E C P 0
+
