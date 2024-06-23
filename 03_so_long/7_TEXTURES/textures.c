@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 08:32:43 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/06/23 16:02:35 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/06/23 16:38:34 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	display(mlx_t *mlx, t_txtr *images, t_map *map, t_allocs **allocs)
 	player_cell = player(map, 0);
 	while (parser)
 	{
-		if (parser != player_cell && display_cell(mlx, images, parser) < 0)
+		if (display_cell(mlx, images, parser) < 0)
 			ft_error(ERR_IMG_LOAD, allocs);
 		if (parser->right)
 			parser = parser->right;

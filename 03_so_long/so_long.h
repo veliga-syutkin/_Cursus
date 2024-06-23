@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 21:36:41 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/05/28 15:59:37 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/06/23 16:59:20 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include "./1_MLX42/include/MLX42/MLX42.h"
 # include "./9_MHANDLER/mhandler.h"
 
-# define WIDTH 1024
-# define HEIGHT 1024
+# define WIDTH 1664
+# define HEIGHT 640
 
 # define WALL '1'
 # define EXIT 'E'
@@ -107,6 +107,7 @@ void	key_up(mlx_key_data_t keydata, void *map);
 void	key_down(mlx_key_data_t keydata, void *map);
 void	key_left(mlx_key_data_t keydata, void *map);
 void	key_right(mlx_key_data_t keydata, void *map);
+void	counter_turns(t_map *new_pos);
 
 ////////////////////////////////////////////////////////////////////////////////
 					/* 03 */
