@@ -71,3 +71,6 @@ Fixed get_next_line missing fnctl.h include
 v25
 Test from MSI UBUNTU
 
+v26
+Added validated push_swap w/ 92
+
