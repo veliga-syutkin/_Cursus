@@ -101,3 +101,6 @@ Fixed aalferov's breach: undefined behaviour when inner content is other than 1 
 v34
 Fixed empty line (aalferov's breach) bug (either empty line bypass map checker or map checker refuses valid maps).
 
+v35
+WIP collectible display
+

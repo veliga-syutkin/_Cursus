@@ -1,1 +1,1 @@
-Fixed empty line (aalferov's breach) bug (either empty line bypass map checker or map checker refuses valid maps).
+WIP collectible display

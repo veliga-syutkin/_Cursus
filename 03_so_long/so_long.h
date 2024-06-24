@@ -38,10 +38,8 @@
 # define IMG_FLOOR "./7_TEXTURES/texture_neige_128x128.png"
 # define IMG_PLAYER "./7_TEXTURES/player_north.png"
 # define IMG_WALL "./7_TEXTURES/wall.png"
-// # define IMG_COLLECTIBLE "./7_TEXTURES/collectible.png"
-// # define IMG_EXIT "./7_TEXTURES/exit.png"
-# define IMG_COLLECTIBLE IMG_FLOOR
-# define IMG_EXIT IMG_FLOOR
+# define IMG_COLLECTIBLE "./7_TEXTURES/collectible.png"
+# define IMG_EXIT "./7_TEXTURES/exit.png"
 
 # define ERR_MAP_PATH "Error\nDirectory path to map is wrong\n"
 # define ERR_MAP_OPEN "Error\nCouldn't open map file\n"
@@ -61,7 +59,9 @@
 /*
 Map structure
 ->top = cell on top
-// ->down = cell on bottom/down
+// ->down = cell on bottom/dowmlx_put_image_to_window(address_mlx(NULL)->mlx, \
+			address_mlx(NULL)->win, s_images->collectible, \
+			map->x * CELL, map->y * CELL);n
 ->left = cell on left
 ->right = cell on right
 ->content = what is in the cell
@@ -79,7 +79,7 @@ typedef struct s_map
 	bool			path_check;
 }	t_map;
 
-typedef struct s_textures
+typedef struct s_txtr
 {
 	void	*floor;
 	void	*player;
@@ -159,6 +159,7 @@ void	ft_error(char *error, t_allocs **allocs);
 
 bool	all_collected(void);
 int		collectible(t_map *map);
+void	update_collectible(t_txtr *images, t_map *cell, t_allocs **allocs);
 
 	//	exit.c
 
@@ -178,6 +179,7 @@ void	notification(t_map *map);
 t_map	*player(t_map *map, int dir);
 int		last_dir(int dir);
 int		turns(bool count);
+int		display_player(mlx_t *mlx, t_txtr *images, t_map *player);
 
 ////////////////////////////////////////////////////////////////////////////////
 					/* 07 */
@@ -186,10 +188,10 @@ int		turns(bool count);
 	// textures.c
 
 t_txtr	*load_textures(t_allocs **allocs);
+
 t_txtr	*ft_images(t_allocs **allocs, t_txtr *textures, mlx_t *mlx);
 void	display(mlx_t *mlx, t_txtr *images, t_map *map, t_allocs **allocs);
 int		display_cell(mlx_t *mlx, t_txtr *images, t_map *cell);
-int		display_player(mlx_t *mlx, t_txtr *images, t_map *player);
 
 ////////////////////////////////////////////////////////////////////////////////
 					/* SO_LONG */
