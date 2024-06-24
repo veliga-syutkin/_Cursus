@@ -21,11 +21,19 @@ Returns the number of collected collectibles.
 int	collectible(t_map *map)
 {
 	static int	collectible;
+	mlx_image_t	*floor;
+	mlx_image_t	*player;
 
 	if (map && map->content == COLLECTIBLE)
 	{
+		floor = ft_images(NULL, NULL, NULL)->floor;
+		player = ft_images(NULL, NULL, NULL)->player;
 		collectible++;
 		map->content = FLOOR;
+		mlx_image_to_window(address_mlx(NULL), floor, \
+			128 * (map->xy[0]), 128 * (map->xy[1]));
+		mlx_set_instance_depth(&(player->instances[0]), \
+			(floor->instances[floor->count - 1].z) + 1);
 		ft_printf("Collected: %d\n", collectible);
 	}
 	return (collectible);

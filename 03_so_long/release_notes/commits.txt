@@ -104,3 +104,6 @@ Fixed empty line (aalferov's breach) bug (either empty line bypass map checker o
 v35
 WIP collectible display
 
+v36
+OBT live. Final line before finish.
+
