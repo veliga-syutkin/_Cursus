@@ -113,3 +113,6 @@ Limited map's size (to not overcome 1920*1024 screen). Added return check from m
 v38
 End of beta test.
 
+v39
+End of beta test.
+
