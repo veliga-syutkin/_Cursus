@@ -74,3 +74,6 @@ Test from MSI UBUNTU
 v26
 Added validated push_swap w/ 92
 
+v27
+GNL main in 00_Utils
+
