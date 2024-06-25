@@ -1,1 +1,1 @@
-Limited map's size (to not overcome 1920*1024 screen). Added return check from mlx_key_hook.
+End of beta test.

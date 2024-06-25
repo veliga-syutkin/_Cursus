@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   maps_new.c                                         :+:      :+:    :+:   */
+/*   maps.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 23:33:49 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/06/23 18:11:40 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/06/25 17:54:16 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	check_map_extension(int argc, char **argv)
 /*
   Loads map from file to grid
 */
-void	load_map(const char *line, t_map **map_grid, t_allocs **allocs)
+void	load_map(char *line, t_map **map_grid, t_allocs **allocs)
 {
 	int			column;
 	static int	line_number;
@@ -40,7 +40,7 @@ void	load_map(const char *line, t_map **map_grid, t_allocs **allocs)
 
 	column = 0;
 	if (line[column] == '\n')
-		ft_error(ERR_MAP_CONTENT, allocs);
+		return (free(line), ft_error(ERR_MAP_CONTENT, allocs));
 	if (!*map_grid)
 	{
 		mhandler_add(allocs, (malloc(sizeof(t_map))), (int *)-1);

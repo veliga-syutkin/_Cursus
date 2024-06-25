@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 21:36:41 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/06/25 16:58:19 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/06/25 17:54:34 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ void	print_map(t_map **map);
 	//	maps.c
 
 void	check_map_extension(int argc, char **argv);
-void	load_map(const char *line, t_map **map_grid, t_allocs **allocs);
+void	load_map(char *line, t_map **map_grid, t_allocs **allocs);
 void	map(int argc, char **argv, t_map **map_grid, t_allocs **allocs);
 void	map_init(int content, int x, int y, t_map *map_cell);
 void	read_map(char *map, t_map **map_grid, t_allocs **allocs);
