@@ -116,3 +116,6 @@ End of beta test.
 v39
 End of beta test.
 
+v40
+Commented each function.
+

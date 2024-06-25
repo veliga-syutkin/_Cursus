@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsyutkin <vsyutkin@student.42mulhouse.fr>  #+#  +:+       +#+        */
+/*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024-06-09 04:38:31 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024-06-09 04:38:31 by vsyutkin         ###   ########.fr       */
+/*   Created: 2024/06/09 04:38:31 by vsyutkin          #+#    #+#             */
+/*   Updated: 2024/06/25 20:35:30 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
 /*
-Function to move player in the map and store it's new position.
+  Function to move player in the map and store it's new position.
 dir = direction of the movement, unless it's a wall:
 DIR_DOWN (1) = down
 DIR_LEFT (2) = left
@@ -59,8 +59,9 @@ int	last_dir(int dir)
 }
 
 /*
-Increases turn count with argument TRUE,
-and returns total value in any case*/
+  Increases turn count with argument TRUE,
+and returns total value in any case
+*/
 int	turns(bool count)
 {
 	static int	turns;
@@ -70,6 +71,10 @@ int	turns(bool count)
 	return (turns);
 }
 
+/*
+  Function to display player, at the beginning, after every move,
+and after taking each collectible.
+*/
 int	display_player(mlx_t *mlx, t_txtr *images, t_map *player)
 {
 	int				xy[2];

@@ -1,0 +1,74 @@
+/*
+Suggestion from copilot:
+w	1. Read the map from the file
+w	2. Check if the map is valid
+w	3. Create a window
+	4. Load images
+	5. Draw the map
+w	6. Handle the events
+w	7. Close the window
+
+								! IMPORTANT INFO !								!
+When player meets collectible, collectible disappears.
+When player meets exit without collecting all collectibles, player get's 
+	notification that they have to collect all collectibles.
+When player collects all collectibles and meets exit, player wins.
+Player's position is stored via pointer on cell he's on.
+One of the collectibles is Solzhenitsyn. When player collects it, 
+	he gets a notification that he has found Solzhenitsyn.
+
+When player tries to go into wall, he dies (bonus part only).
+
+
+Sprite animations: 
+smoke from chimney of guard home (it's door IS the exit for the player)
+player loosing 'cuz they are eaten by prisoner. 
+
+ARROW KEYS FOR MOVEMENT ARE ALLOWED
+
+	The game is about GULAG. The player is a guard.
+	The player has to catch all escaping prisoners. 
+Prisoners == collectible. 
+	THEY CAN MOVE.
+
+	If the player catches hiding prisoner, the player dies. 
+	If the player catches running away prisoner, 
+the prisoner is caught (as collectible)
+	The prisoner can hide only if they are fed 
+(only 1 turn after leaving their cell).
+	Number of collectibles = number of barracks. 
+	Prisoners that successfully escaped are counted 
+but do not making the player lose.
+
+	Cells of the prisoners provide them unlimited food and hide ability.
+	Player moves at least 2 times faster than prisoner 
+(due to lack of quality food of prisoner).
+
+running prisoner = 
+hiding prisoner = has food and fork in hand.
+
+Vision in corner: if on same row or column, visible.
+Player's vision is about 2 cells in front and 1 cell everywhere else.
+There is ONLY 1 TOWER GUARD, 
+from wich the player can see from 3 to 5 cells around.
+The guard tower is near the exit for prisoneers for freedom.
+It takes at least 2 moves for prisoner to escape through exit, 
+but only 1 move for player to quit the guard tower and catch the prisoner.
+
+Player spawns at the bottom of the map. 
+The prisoner exit is at the top of the map.
+they player has exactly enough turns 
+to catch the nearest to escape prisoneer before he escapes.
+then can camp at guard tower and catch them all when they are passing by.
+The barracks are rectangular, with height of 3 and have 2 ways in/out 
+(on top and bottom).
+all the escaping prisoners are spawned in the barracks, and move firstly 
+from bottomst barrack to the top one, then from top to the exit.
+
+////////////////////////////////////////////////////////////////////////////////
+
+base game: 
+
+collectible = only escaping prisoners, and they are not moving.
+////////////////////////////////////////////////////////////////////////////////
+*/

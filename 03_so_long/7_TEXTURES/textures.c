@@ -6,12 +6,16 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 08:32:43 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/06/23 16:38:34 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/06/25 20:33:44 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
+/*
+  MLX function to load textures from given .png files.
+  Returns a pointer to t_txtr structure.
+*/
 t_txtr	*load_textures(t_allocs **allocs)
 {
 	t_txtr	*textures;
@@ -30,11 +34,15 @@ t_txtr	*load_textures(t_allocs **allocs)
 	return (textures);
 }
 
+/*
+  MLX function to transform given textures into displayable images.
+  Returns a pointer to t_txtr structure after first callback.
+*/
 t_txtr	*ft_images(t_allocs **allocs, t_txtr *textures, mlx_t *mlx)
 {
 	static t_txtr	*img;
 
-	if (!img)
+	if (!img && textures)
 	{
 		img = (t_txtr *)malloc(sizeof(t_txtr));
 		if (!img)
@@ -58,6 +66,10 @@ t_txtr	*ft_images(t_allocs **allocs, t_txtr *textures, mlx_t *mlx)
 	return (img);
 }
 
+/*
+  Function to display a single cell.
+  Returns if it was successfully displayed or not.
+*/
 int	display_cell(mlx_t *mlx, t_txtr *images, t_map *cell)
 {
 	int		xy[2];

@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 23:33:49 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/06/25 17:54:16 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/06/25 20:43:26 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	map_init(int content, int x, int y, t_map *map_cell)
 }
 
 /*
-  Reads and stores map from file
+  Reads and stores map from file.
 */
 void	read_map(char *map, t_map **map_grid, t_allocs **allocs)
 {

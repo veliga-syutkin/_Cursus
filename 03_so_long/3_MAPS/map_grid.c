@@ -6,12 +6,15 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 17:14:02 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/05/25 17:17:30 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/06/25 20:43:08 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
+/*
+  Function to print the map in the terminal.
+*/
 void	print_map(t_map **map)
 {
 	t_map	*temp;
@@ -34,6 +37,9 @@ void	print_map(t_map **map)
 	ft_printf("Collectibles: %d\n", content_check(COLLECTIBLE, *map));
 }
 
+/*
+  Function to bound each cell vertically.
+*/
 void	vertical_fix(t_map *cell_start)
 {
 	t_map	*cursor_1;
@@ -56,6 +62,9 @@ void	vertical_fix(t_map *cell_start)
 	vertical_fix(cell_start->down);
 }
 
+/*
+  Function to bound each cell horizontally.
+*/
 void	horizontal_fix(t_map *cell_start)
 {
 	t_map	*cursor_1;
@@ -78,6 +87,9 @@ void	horizontal_fix(t_map *cell_start)
 	horizontal_fix(cell_start->down);
 }
 
+/*
+  Function to find a cell with it's X and Y position.
+*/
 t_map	*find_cell(t_map **map, int cell_x, int cell_y)
 {
 	t_map	*temp;
@@ -93,6 +105,9 @@ t_map	*find_cell(t_map **map, int cell_x, int cell_y)
 	return (temp);
 }
 
+/*
+  Function to construct a bounded grid map with chained structures.
+*/
 void	grid_fix(t_map **map, t_allocs **allocs)
 {
 	t_allocs	*cursor;

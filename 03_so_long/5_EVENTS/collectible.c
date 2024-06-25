@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   collectible.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsyutkin <vsyutkin@student.42mulhouse.fr>  #+#  +:+       +#+        */
+/*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024-06-09 04:52:39 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024-06-09 04:52:39 by vsyutkin         ###   ########.fr       */
+/*   Created: 2024/06/09 04:52:39 by vsyutkin          #+#    #+#             */
+/*   Updated: 2024/06/25 20:37:54 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
 /*
-Checks if the cell is collectible.
+  Checks if the cell is collectible.
 If it is, increments the counter of collected collectibles,
 and changes the cell content to FLOOR.
 Returns the number of collected collectibles.
@@ -40,7 +40,7 @@ int	collectible(t_map *map)
 }
 
 /*
-If all collectibles are collected, returns true, else returns false.
+  If all collectibles are collected, returns true, else returns false.
 */
 bool	all_collected(void)
 {

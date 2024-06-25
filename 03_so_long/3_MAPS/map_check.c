@@ -6,12 +6,17 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 17:24:19 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/06/25 17:03:27 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/06/25 20:40:59 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
+/*
+  Reccursive function to check map's width between each line and widths overall.
+  Returns the width of each line, and if it's different from any other line,
+  or bigger than a certain limint, executes ft_error.
+*/
 int	grid_len(t_map *map_grid, t_allocs **allocs)
 {
 	int		len;
@@ -36,6 +41,9 @@ int	grid_len(t_map *map_grid, t_allocs **allocs)
 	return (len);
 }
 
+/*
+  Reccursive function same as grid_len but for height.
+*/
 int	grid_height(t_map *map_grid, t_allocs **allocs)
 {
 	int		height;
