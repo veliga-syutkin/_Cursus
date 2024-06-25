@@ -119,3 +119,6 @@ End of beta test.
 v40
 Commented each function.
 
+v41
+Bug found by aalferov: starting position not initialized for counter, thus any press key, especialli in direction to a wall, misleads the counter.
+

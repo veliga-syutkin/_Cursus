@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 05:16:34 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/06/25 20:45:42 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/06/25 21:32:31 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ void	counter_turns(t_map *new_pos)
 
 	dummy[0] = '\r';
 	dummy[1] = '\0';
+	if (!old_pos)
+		old_pos = player(address_map(NULL), 0);
 	if (old_pos != new_pos)
 	{
 		ft_printf("Turns: %i\n", turns(true));
