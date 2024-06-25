@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 12:14:07 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/05/28 16:03:12 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/06/25 16:46:19 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,15 +153,16 @@ int	ft_mlx(t_map **map_grid, t_allocs **allocs)
 	mlx_t	*mlx;	
 	t_txtr	*img;
 
-	mlx = mlx_init(WIDTH, HEIGHT, "Gulag simulator", true);
+	mlx = mlx_init(WIDTH, HEIGHT, "Gulag simulator HD", true);
 	img = ft_images(allocs, load_textures(allocs), mlx);
 	mlx_set_setting(MLX_MAXIMIZED, true);
 	if (!mlx)
-		ft_error("Couldn't initialize mlx. Exiting.", allocs);
+		ft_error(ERR_MLX, allocs);
 	(void)address_map(*map_grid);
 	(void)address_mlx(mlx);
 	display(mlx, img, *map_grid, allocs);
-	mlx_loop_hook(mlx, ft_hook, *map_grid);
+	if (!mlx_loop_hook(mlx, ft_hook, *map_grid))
+		return (mlx_terminate(mlx), ft_error(ERR_MLX, allocs), EXIT_FAILURE);
 	mlx_key_hook(mlx, &ft_mlx_key_hook, NULL);
 	mlx_close_hook(mlx, close_window, mlx);
 	mlx_loop(mlx);

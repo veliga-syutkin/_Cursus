@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 17:24:19 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/06/23 17:49:24 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/06/25 17:03:27 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,13 @@ int	grid_len(t_map *map_grid, t_allocs **allocs)
 	}
 	if (!map_grid->down)
 		return (len);
-	else if (grid_len(map_grid->down, allocs) != len)
-		ft_error(ERR_MAP_CONTENT, allocs);
+	else if (grid_len(map_grid->down, allocs) != len || len > 1920 / 128)
+	{
+		if (grid_len(map_grid->down, allocs) != len)
+			ft_error(ERR_MAP_CONTENT, allocs);
+		else if (len > 1920 / 128)
+			ft_error(ERR_MAP_BIG, allocs);
+	}
 	return (len);
 }
 
@@ -45,8 +50,13 @@ int	grid_height(t_map *map_grid, t_allocs **allocs)
 	}
 	if (!map_grid->right)
 		return (height);
-	else if (grid_height(map_grid->right, allocs) != height)
-		ft_error(ERR_MAP_CONTENT, allocs);
+	else if (grid_height(map_grid->right, allocs) != height || height > 8)
+	{
+		if (grid_height(map_grid->right, allocs) != height)
+			ft_error(ERR_MAP_CONTENT, allocs);
+		else if (height > 1024 / 128)
+			ft_error(ERR_MAP_BIG, allocs);
+	}
 	return (height);
 }
 

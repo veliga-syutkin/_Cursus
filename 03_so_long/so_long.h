@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 21:36:41 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/06/23 16:59:20 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/06/25 16:58:19 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,16 @@
 # define IMG_COLLECTIBLE "./7_TEXTURES/collectible.png"
 # define IMG_EXIT "./7_TEXTURES/exit.png"
 
+# define ERR_MLX "Couldn't initialize mlx. Exiting.\n"
+
+# define ERR_MAP_BIG "Error\nMap is to big to be displayed, sorry.\n"
 # define ERR_MAP_PATH "Error\nDirectory path to map is wrong\n"
 # define ERR_MAP_OPEN "Error\nCouldn't open map file\n"
 # define ERR_MAP_EXTENSION "Error\nMap file extension is not .ber\n"
 # define ERR_MAP_CONTENT "Error\nMap is corrupted\n"
 # define ERR_MAP_DEAD_END "Error\nMap is impossible to solve\n"
 
-# define ERR_IMG_LOAD "Error\nFailed to allocate memory for textures"
+# define ERR_IMG_LOAD "Error\nFailed to allocate memory for textures\n"
 
 # define MSG_WON "\tCONGRATULATION!\n\tYou WON!\nPress ESC to close the game.\n"
 # define MSG_EXIT_CLOSED "You have to collect all collectibles!\n"
