@@ -40,6 +40,8 @@ SRCS = 	ft_atoi.c \
 		ft_printf.c \
 		get_next_line_bonus.c \
 		get_next_line_utils_bonus.c \
+		mhandler.c \
+		mhandler_utils.c
 
 OBJS = $(SRCS:.c=.o)
 

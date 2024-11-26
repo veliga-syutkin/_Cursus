@@ -48,7 +48,7 @@ int	ft_puthexl_fd(unsigned int number, int fd)
 				return (-1);
 			start_print = 1;
 			result++;
-		}	
+		}
 	}
 	return (result);
 }

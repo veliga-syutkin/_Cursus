@@ -15,6 +15,6 @@
 /*  Prints character in output fd and return how many characters were print. 
 Returns -1 if print failed.*/
 int	ft_putchar_fd(char c, int fd)
-{	
+{
 	return (write(fd, &c, 1));
 }
