@@ -1,1 +1,1 @@
-Push_Swap aimed for 100, WIP.
+Push_swap aimed for 100, WIP.
