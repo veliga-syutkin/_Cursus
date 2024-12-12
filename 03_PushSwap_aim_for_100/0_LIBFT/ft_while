@@ -1,0 +1,38 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_while                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vsyutkin <vsyutkin@student.42mulhouse.fr>  #+#  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024-08-07 08:48:57 by vsyutkin          #+#    #+#             */
+/*   Updated: 2024-08-07 08:48:57 by vsyutkin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+/*
+Need to track back for each calling function
+*/
+// void	ft_while(bool flag_log, char *calling_function)
+// {
+// 	static int	counter;
+// 	static char *last_calling_function;
+	
+// 	if (!last_calling_function)
+// 		last_calling_function = calling_function;
+// 	if (last_calling_function == calling_function)
+// 	{
+// 		counter++;
+// 	}
+// 	else
+// 	{
+// 		counter = 0;
+// 		last_calling_function = calling_function;
+// 	}
+// 	if (flag_log == true)
+// 	{
+// 		ft_putendl_fd("Infinite loop detected!", 2);
+// 	}
+// }
