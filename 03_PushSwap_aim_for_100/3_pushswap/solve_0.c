@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 22:00:39 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/12/12 16:53:36 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/12/12 17:29:04 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,9 +112,9 @@ void	solve(t_list **list_a, t_list **list_b)
 		turk_move(list_a, list_b, data_min_weight(list_a));
 		pbx(list_a, list_b);
 	}
-	while (get_len(*list_a) > 2)
+	while (get_len(*list_a) > 3)
 		pbx(list_a, list_b);
-	maxmin_ra_or_rra(list_a, find_min(*list_a));
+	solve_3(list_a);
 	while (*list_b)
 	{
 		weight_update_b(list_a, list_b);

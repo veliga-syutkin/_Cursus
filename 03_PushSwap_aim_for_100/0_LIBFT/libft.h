@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vsyutkin <vsyutkin@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 00:23:11 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/08/19 19:42:09 by aalferov         ###   ########.fr       */
+/*   Updated: 2024/12/12 17:26:37 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,10 @@ int		ft_tolower(int c);
 int		ft_toupper(int c);
 
 // -._.-""-._BONUS THINGY_.-""-._.-
-typedef struct s_list
+typedef struct s_stack
 {
 	void			*content;
-	struct s_list	*next;
+	struct s_stack	*next;
 }	t_stack;
 
 t_stack	*ft_lstnew(void *content);

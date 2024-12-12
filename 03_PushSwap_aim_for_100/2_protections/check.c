@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vsyutkin <vsyutkin@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 13:31:43 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/04/15 15:40:59 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/12/12 17:51:41 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pushswap.h"
-#include <stdio.h>
+// #include <stdio.h> // check if usefull in this file
 
 /* Checks input for allowed signs: space before single '+' or '-' */
 static

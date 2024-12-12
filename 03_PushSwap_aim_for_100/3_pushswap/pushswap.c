@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pushswap.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vsyutkin <vsyutkin@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 21:09:35 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/04/13 17:39:20 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/12/12 18:06:49 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	main(int argc, char **argv)
 	t_list	*list_a;
 	t_list	*list_b;
 
+	methods(0, 0, 0);
 	check(argc, argv);
 	list_a = setup(argc, argv);
 	list_b = NULL;

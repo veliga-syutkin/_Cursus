@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 14:59:37 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/12/12 16:41:07 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/12/12 18:45:50 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 /*
 	Have at least 2 variants of turk: 
 	- turk with threshold get_len(list_a) > get_len(list_b) (50% sorted)
+	- turk with threshold get_len(list_a) * 2 > get_len(list_b) (66% sorted)
 	- turk with threshold get_len(list_a) * 3 - 1 > get_len(list_b) (75% sorted)
 	- turk with threshold get_len(list_a) > 3 (99% sorted)
 
@@ -45,3 +46,39 @@
 			and observer is restarted from next (non whipped) step.
 
 */
+
+/*
+method[0] = 50 or METHOD_50;
+method[1] = 66 or METHOD_66;
+method[2] = 75 or METHOD_75;
+method[3] = 99 or METHOD_99;
+
+*/
+int	*methods(int flag_rw, int method_to, int operator)
+{
+	t_allocs	*method50;
+	t_allocs	*method66;
+	t_allocs	*method75;
+	t_allocs	*method99;
+
+	if (flag_rw == WRITE)
+	{
+		method50 = mhandler_add(&method50, operator, &methods);
+		method66 = mhandler_add(&method66, operator, &methods);
+		method75 = mhandler_add(&method75, operator, &methods);
+		method99 = mhandler_add(&method99, operator, &methods);
+	}
+}
+
+/* Wich method is currently in use.
++ flag_rw = WRITE or READ
++ method = METHOD_50, METHOD_66, METHOD_75, METHOD_99
+*/
+int	flag_method(int flag_rw, int method)
+{
+	static int	flag;
+
+	if (flag_rw == WRITE)
+		flag = method;
+	return (flag);
+}

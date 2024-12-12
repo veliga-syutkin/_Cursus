@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 21:07:54 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/12/12 16:51:41 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/12/12 17:45:21 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,11 @@
 # define READ 1
 # define END 0
 # define OPTI 42
+
+# define METHOD_50 1
+# define METHOD_66 2
+# define METHOD_75 3
+# define METHOD_99 4
 
 # define WEIGHT_RA 0
 # define WEIGHT_RRA 1

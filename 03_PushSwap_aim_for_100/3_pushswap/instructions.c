@@ -6,12 +6,13 @@
 /*   By: vsyutkin <vsyutkin@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 22:59:03 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/12/12 16:49:21 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/12/12 17:27:19 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pushswap.h"
 
+/*
 // [ DEPRECATED ]
 static void	ft_print_instruction(int instruction)
 {
@@ -80,3 +81,4 @@ void	ft_lstprint_and_free(t_stack **instructions)
 	}
 	instruction(-1);
 }
+*/

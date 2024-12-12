@@ -83,3 +83,6 @@ Push_Swap aimed for 100, WIP.
 v29
 Push_swap aimed for 100, WIP.
 
+v30
+Push_swap WIP.
+
