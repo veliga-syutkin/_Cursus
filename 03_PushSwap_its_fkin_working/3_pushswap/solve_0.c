@@ -17,10 +17,10 @@ int	ft_find_rx(int data, t_list *list)
 {
 	int		cost_rx;
 	int		cost_rrx;
-	int		len;
+	// int		len;
 	t_list	*last;
 
-	len = get_len(list);
+	// len = get_len(list);
 	last = list;
 	while (last && last->next)
 		last = last->next;
@@ -46,10 +46,10 @@ int	ft_find_rrx(int data, t_list *list)
 {
 	int		cost_rx;
 	int		cost_rrx;
-	int		len;
+	// int		len;
 	t_list	*last;
 
-	len = get_len(list);
+	// len = get_len(list);
 	last = list;
 	while (last && last->next)
 		last = last->next;
@@ -105,18 +105,19 @@ void	maxmin_rb_or_rrb(t_list **list, int data)
 // main function to solve the problem
 void	solve(t_list **list_a, t_list **list_b)
 {
-	int	max;
+	// int	max;
 
-	max = find_max(*list_a);
+	// max = find_max(*list_a);
 	ft_start(list_a, list_b);
-	while (get_len(*list_a) > 2)
+	while (get_len(*list_a) > 3)
 	{
 		weight_update(list_a, list_b);
 		turk_move(list_a, list_b, data_min_weight(list_a));
 		pbx(list_a, list_b);
 	}
-	maxmin_rb_or_rrb(list_b, find_max(*list_b));
-	maxmin_ra_or_rra(list_a, find_min(*list_a));
+	// maxmin_rb_or_rrb(list_b, find_max(*list_b));
+	// maxmin_ra_or_rra(list_a, find_min(*list_a));
+	solve_3(list_a);
 	while (*list_b)
 		ft_last_move(list_a, list_b);
 	while ((*list_a)->data != find_min(*list_a))

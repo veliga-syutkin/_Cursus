@@ -26,7 +26,8 @@ static char	*ft_strndup(const char *s, size_t n)
 	return (copy);
 }
 
-//Extracts new string from index start in string *s, sized of len
+//Extracts new string from index start in string *s, sized of len.
+//No frees. 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	if (!s)
