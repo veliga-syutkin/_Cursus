@@ -1,1 +1,1 @@
-Push_swap WIP.
+push_swap 100 ?

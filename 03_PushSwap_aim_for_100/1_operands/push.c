@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vsyutkin <vsyutkin@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 15:19:04 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/04/10 10:28:59 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/12/13 15:15:23 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,10 @@ void	pax(t_list **list_a, t_list **list_b)
 		(*list_b)->next = (*list_a);
 		(*list_a) = (*list_b);
 		(*list_b) = buffer;
-		ft_printf("pa\n");
+		if (flag_method(0, 0) == STDOUT)
+			ft_printf("pa\n");
+		else
+			methods(WRITE, flag_method(0, 0), PA);
 	}
 }
 
@@ -62,6 +65,9 @@ void	pbx(t_list **list_a, t_list **list_b)
 		(*list_a)->next = (*list_b);
 		(*list_b) = (*list_a);
 		(*list_a) = buffer;
-		ft_printf("pb\n");
+		if (flag_method(0, 0) == STDOUT)
+			ft_printf("pb\n");
+		else
+			methods(WRITE, flag_method(0, 0), PB);
 	}
 }

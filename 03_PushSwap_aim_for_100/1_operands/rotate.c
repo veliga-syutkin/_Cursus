@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vsyutkin <vsyutkin@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 15:23:38 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/04/10 10:29:22 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/12/13 15:16:54 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,26 @@ void	rr(t_list **list_a, t_list **list_b)
 {
 	rx(list_a);
 	rx(list_b);
-	ft_printf("rr\n");
+	if (flag_method(0, 0) == STDOUT)
+		ft_printf("rr\n");
+	else
+		methods(WRITE, flag_method(0, 0), RR);
 }
 
 void	ra(t_list **list)
 {
 	rx(list);
-	ft_printf("ra\n");
+	if (flag_method(0, 0) == STDOUT)
+		ft_printf("ra\n");
+	else
+		methods(WRITE, flag_method(0, 0), RA);
 }
 
 void	rb(t_list **list)
 {
 	rx(list);
-	ft_printf("rb\n");
+	if (flag_method(0, 0) == STDOUT)
+		ft_printf("rb\n");
+	else
+		methods(WRITE, flag_method(0, 0), RB);
 }

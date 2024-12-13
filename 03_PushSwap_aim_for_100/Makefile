@@ -37,6 +37,8 @@ PUSHSWAP_FILES =	cost.c \
 					weight.c \
 
 OPTIMIZATION_FILES =	observer.c \
+						observer_utils.c \
+						solvers.c
 
 # ############################################################################ #
 #							# PATH DECLARATIONS #							   #
@@ -62,6 +64,8 @@ PROGRAM = ./$(NAME)
 
 AR = ./0_LIBFT/libft.a
 
+OBJS = $(FILES:.c=.o)
+
 # ############################################################################ #
 #								# MACROS #									   #
 # ############################################################################ #
@@ -84,10 +88,13 @@ ARMAKE = make -C $(LIBFT_DIR)
 #							# RULES DECLARATIONS #							   #
 # ############################################################################ #
 
+.c.o: 
+	$(CC) $(CFLAGS) -c $< -o ${<:.c=.o}
+
 all: $(NAME) 
 
-$(NAME): $(AR)
-	$(CC) $(CFLAGS) $(FILES) $(AR) -o $(NAME)
+$(NAME): $(AR) $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) $(AR) -o $(NAME)
 
 $(AR):
 	make -C $(LIBFT_DIR)
@@ -105,7 +112,7 @@ debug:
 	lldb $(NAME) $(100)
 
 valgrind:
-	valgrind --leak-check=full ./$(NAME) $(500)
+	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) $(500)
 
 string: all
 	./$(NAME) string

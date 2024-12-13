@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 14:59:37 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/12/12 18:45:50 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/12/13 15:12:42 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,37 +48,83 @@
 */
 
 /*
-method[0] = 50 or METHOD_50;
-method[1] = 66 or METHOD_66;
-method[2] = 75 or METHOD_75;
-method[3] = 99 or METHOD_99;
+FLAG_RW:
+	- READ: observer is reading the list
+	- WRITE: observer is writing to the list
 
+METHOD_TO:
+	- METHOD_50: 50% sorted
+	- METHOD_66: 66% sorted
+	- METHOD_75: 75% sorted
+	- METHOD_99: 99% sorted
+	- free all methods
+
+OPERATOR:
+SS, SA, SB, PA, PB, RA, RB, RR, RRA, RRB, RRR
 */
-int	*methods(int flag_rw, int method_to, int operator)
+t_allocs	*methods(int flag_rw, int method_to, void *operator)
 {
-	t_allocs	*method50;
-	t_allocs	*method66;
-	t_allocs	*method75;
-	t_allocs	*method99;
+	static t_allocs	*method50;
+	static t_allocs	*method66;
+	static t_allocs	*method75;
+	static t_allocs	*method99;
 
 	if (flag_rw == WRITE)
 	{
-		method50 = mhandler_add(&method50, operator, &methods);
-		method66 = mhandler_add(&method66, operator, &methods);
-		method75 = mhandler_add(&method75, operator, &methods);
-		method99 = mhandler_add(&method99, operator, &methods);
+		if (method_to == METHOD_50)
+			mhandler_check(&method50, operator, &methods);
+		else if (method_to == METHOD_66)
+			mhandler_check(&method66, operator, &methods);
+		else if (method_to == METHOD_75)
+			mhandler_check(&method75, operator, &methods);
+		else if (method_to == METHOD_99)
+			mhandler_check(&method99, operator, &methods);
 	}
+	if (method_to == METHOD_50)
+		return (method50);
+	else if (method_to == METHOD_66)
+		return (method66);
+	else if (method_to == METHOD_75)
+		return (method75);
+	else if (method_to == METHOD_99)
+		return (method99);
+	return (method_free(method50, method66, method75, method99), NULL);
 }
 
-/* Wich method is currently in use.
-+ flag_rw = WRITE or READ
-+ method = METHOD_50, METHOD_66, METHOD_75, METHOD_99
-*/
-int	flag_method(int flag_rw, int method)
+t_allocs	*best_m(t_allocs *m50, t_allocs *m66, t_allocs *m75, t_allocs *m99)
 {
-	static int	flag;
+	int		len50;
+	int		len66;
+	int		len75;
+	int		len99;
 
-	if (flag_rw == WRITE)
-		flag = method;
-	return (flag);
+	len50 = count_steps(m50);
+	len66 = count_steps(m66);
+	len75 = count_steps(m75);
+	len99 = count_steps(m99);
+	if (len50 <= len66 && len50 <= len75 && len50 <= len99)
+		return (m50);
+	else if (len66 <= len50 && len66 <= len75 && len66 <= len99)
+		return (m66);
+	else if (len75 <= len50 && len75 <= len66 && len75 <= len99)
+		return (m75);
+	else
+		return (m99);
+}
+
+void	print_best_method(void)
+{
+	t_allocs	*m50;
+	t_allocs	*m66;
+	t_allocs	*m75;
+	t_allocs	*m99;
+	t_allocs	*best;
+
+	m50 = methods(READ, METHOD_50, 0);
+	m66 = methods(READ, METHOD_66, 0);
+	m75 = methods(READ, METHOD_75, 0);
+	m99 = methods(READ, METHOD_99, 0);
+	best = best_m(m50, m66, m75, m99);
+	print_method(best);
+	method_free(m50, m66, m75, m99);
 }

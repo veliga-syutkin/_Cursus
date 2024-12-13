@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 17:23:37 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/12/12 17:33:34 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/12/13 14:42:09 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	solve_50(t_list **list_a, t_list **list_b)
 {
+	flag_method(WRITE, METHOD_50);
 	pbx(list_a, list_b);
 	while ((get_len(*list_a) > get_len(*list_b)))
 	{
@@ -34,8 +35,9 @@ void	solve_50(t_list **list_a, t_list **list_b)
 		maxmin_ra_or_rra(list_a, find_min(*list_a));
 }
 
-void	solve_67(t_list **list_a, t_list **list_b)
+void	solve_66(t_list **list_a, t_list **list_b)
 {
+	flag_method(WRITE, METHOD_66);
 	pbx(list_a, list_b);
 	while (get_len(*list_a) * 2 - 1 > get_len(*list_b))
 	{
@@ -58,6 +60,7 @@ void	solve_67(t_list **list_a, t_list **list_b)
 
 void	solve_75(t_list **list_a, t_list **list_b)
 {
+	flag_method(WRITE, METHOD_75);
 	pbx(list_a, list_b);
 	while (((get_len(*list_a) * 3 - 1) > get_len(*list_b)))
 	{
@@ -80,6 +83,7 @@ void	solve_75(t_list **list_a, t_list **list_b)
 
 void	solve_99(t_list **list_a, t_list **list_b)
 {
+	flag_method(WRITE, METHOD_99);
 	pbx(list_a, list_b);
 	while ((get_len(*list_a)) > 3)
 	{
@@ -96,4 +100,23 @@ void	solve_99(t_list **list_a, t_list **list_b)
 	}
 	while ((*list_a)->data != find_min(*list_a))
 		maxmin_ra_or_rra(list_a, find_min(*list_a));
+}
+
+void	run_solvers(t_list **list_a, t_list **list_b, int argc, char **argv)
+{
+	solve_50(list_a, list_b);
+	clear_list(list_a);
+	(*list_a) = setup(argc, argv);
+	(*list_b) = NULL;
+	solve_66(list_a, list_b);
+	clear_list(list_a);
+	(*list_a) = setup(argc, argv);
+	(*list_b) = NULL;
+	solve_75(list_a, list_b);
+	clear_list(list_a);
+	(*list_a) = setup(argc, argv);
+	(*list_b) = NULL;
+	solve_99(list_a, list_b);
+	clear_list(list_a);
+	print_best_method();
 }

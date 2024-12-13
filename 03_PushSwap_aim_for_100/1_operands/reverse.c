@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reverse.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vsyutkin <vsyutkin@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 21:40:35 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/04/10 10:29:08 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/12/13 15:16:23 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,26 @@ void	rrr(t_list **list_a, t_list **list_b)
 {
 	rrx(list_a);
 	rrx(list_b);
-	ft_printf("rrr\n");
+	if (flag_method(0, 0) == STDOUT)
+		ft_printf("rrr\n");
+	else
+		methods(WRITE, flag_method(0, 0), RRR);
 }
 
 void	rra(t_list **list)
 {
 	rrx(list);
-	ft_printf("rra\n");
+	if (flag_method(0, 0) == STDOUT)
+		ft_printf("rra\n");
+	else
+		methods(WRITE, flag_method(0, 0), RRA);
 }
 
 void	rrb(t_list **list)
 {
 	rrx(list);
-	ft_printf("rrb\n");
+	if (flag_method(0, 0) == STDOUT)
+		ft_printf("rrb\n");
+	else
+		methods(WRITE, flag_method(0, 0), RRB);
 }

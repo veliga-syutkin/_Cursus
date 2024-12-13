@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 21:07:54 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/12/12 17:45:21 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/12/13 15:14:15 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,23 +18,24 @@
 # define YES 1
 # define NO 0
 
-# define BLANK 32
-# define SA 65
-# define SB 66
-# define SS 67
-# define PA 68
-# define PB 69
-# define RA 70
-# define RB 71
-# define RR 72
-# define RRA 73
-# define RRB 74
-# define RRR 75
+# define BLANK " "
+# define SA "A"
+# define SB "B"
+# define SS "C"
+# define PA "D"
+# define PB "E"
+# define RA "F"
+# define RB "G"
+# define RR "H"
+# define RRA "I"
+# define RRB "J"
+# define RRR "K"
 
 # define WRITE 2
 # define READ 1
 # define END 0
 # define OPTI 42
+# define STDOUT 99
 
 # define METHOD_50 1
 # define METHOD_66 2
@@ -181,6 +182,24 @@ void	print_instructions_t(int instruction);
 
 void	weight_update_b(t_list **list_a, t_list **list_b);
 void	turk_move_b(t_list **list_a, t_list **list_b, int data);
-int		ft_find_r_single(int target, t_list *list);
+
+void	print_method(t_allocs *method);
+int		count_steps(t_allocs *method);
+int		flag_method(int flag_rw, int method);
+void	method_free(t_allocs *m50, t_allocs *m66, t_allocs *m75, t_allocs *m99);
+
+////////////////////////////////////////////////////////////////////////////////
+				/* ++ */
+////////////////////////////////////////////////////////////////////////////////
+
+	// observer.c
+
+typedef t_allocs	t_allcs;
+
+t_allcs	*methods(int flag_rw, int method_to, void *operator);
+t_allcs	*best_m(t_allocs *m50, t_allocs *m66, t_allocs *m75, t_allocs *m99);
+void	print_best_method(void);
+
+void	run_solvers(t_list **list_a, t_list **list_b, int argc, char **argv);
 
 #endif
