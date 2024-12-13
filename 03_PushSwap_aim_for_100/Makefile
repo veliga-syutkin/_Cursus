@@ -149,6 +149,9 @@ echo:
 
 # ############################################################################ #
 
+clear:
+	clear
+
 clean:
 	$(RM) $(OBJS)
 	$(ARMAKE) clean
@@ -315,7 +318,7 @@ git_commit:
 	git commit -m "v$$(($(VERSIONS_NUMBER) + 1)) $(COMMIT_ARGS)"
 
 git_pull:
-	git pull
+#	git pull
 
 git_gitpush:
 	git push
