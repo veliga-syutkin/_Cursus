@@ -17,3 +17,6 @@ v5
 v6
 push_swap 125?
 
+v7
+push_swap 125
+

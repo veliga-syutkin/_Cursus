@@ -29,7 +29,6 @@ PUSHSWAP_FILES =	cost.c \
 					list_utils.c \
 					list.c \
 					moves.c \
-					pushswap.c \
 					setup_utils.c \
 					setup.c \
 					solve_0.c \
@@ -41,7 +40,11 @@ OPTIMIZATION_FILES =	observer.c \
 						observer_utils.c \
 						solvers.c
 
-FILE_BONUS =	checker.c \
+FILE_BONUS =	
+
+MAIN_MANDATORY =	pushswap.c
+
+MAIN_BONUS =	checker.c
 
 # ############################################################################ #
 #							# PATH DECLARATIONS #							   #
@@ -59,6 +62,9 @@ BONUS_FILES = $(addprefix $(BONUS_DIR), $(FILE_BONUS))
 
 FILES = $(OPERANDS_MANDATORY) $(PROTECTIONS_MANDATORY) $(PUSHSWAP_MANDATORY) $(OPTIMIZATION_MANDATORY)
 
+MAIN_PATH = $(PUSHSWAP_DIR)$(MAIN_MANDATORY)
+MAIN_BONUS_PATH = $(BONUS_DIR)$(MAIN_BONUS)
+
 # ############################################################################ #
 #						# END_FILES DECLARATIONS #							   #
 # ############################################################################ #
@@ -71,7 +77,9 @@ PROGRAM_BONUS = ./$(NAME_BONUS)
 AR = ./0_LIBFT/libft.a
 
 OBJS = $(FILES:.c=.o)
-OBJS_BONUS = $(FILES:.c=.o) $(BONUS_FILES:.c=.o)
+OBJS_MAIN = $(MAIN_PATH:.c=.o)
+OBJS_BONUS = $(BONUS_FILES:.c=.o)
+OBJS_MAIN_BONUS = $(MAIN_BONUS_PATH:.c=.o)
 
 # ############################################################################ #
 #								# MACROS #									   #
@@ -100,8 +108,8 @@ ARMAKE = make -C $(LIBFT_DIR)
 
 all: $(NAME) 
 
-$(NAME): $(AR) $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) $(AR) -o $(NAME)
+$(NAME): $(AR) $(OBJS) $(OBJS_MAIN)
+	$(CC) $(CFLAGS) $(OBJS) $(OBJS_MAIN) $(AR) -o $(NAME)
 
 $(AR):
 	make -C $(LIBFT_DIR)
@@ -109,9 +117,11 @@ $(AR):
 # ############################################################################ #
 #								# BONUS #									   #
 
-bonus: $(AR) $(OBJS_BONUS)
+bonus: $(NAME_BONUS)
+
+$(NAME_BONUS): $(AR) $(OBJS) $(OBJS_BONUS) $(OBJS_MAIN_BONUS)
 #	@echo "No bonus for this project done yet."
-	$(CC) $(CFLAGS) $(OBJS) $(AR) -o ./checker
+	$(CC) $(CFLAGS) $(OBJS) $(OBJS_BONUS) $(OBJS_MAIN_BONUS) $(AR) -o $(NAME_BONUS)
 
 # ############################################################################ #
 #								# CUSTOM #									   #
