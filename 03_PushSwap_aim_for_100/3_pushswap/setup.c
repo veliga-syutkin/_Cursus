@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vsyutkin <vsyutkin@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 15:30:16 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/03/01 02:11:30 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/12/14 03:43:25 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 // will add a new node to the end of the list
 // if list doesn't exist, will create it
 static
-int	*extend(int *buffer, int buffer_len, int value)
+int	*extend(int *buffer, int buffer_len, int value, int fd)
 {
 	int	*result;
 	int	cursor;
@@ -24,7 +24,7 @@ int	*extend(int *buffer, int buffer_len, int value)
 	{
 		result = malloc(sizeof(int));
 		if (!result)
-			error(NULL);
+			error(NULL, fd);
 		*result = value;
 		return (result);
 	}
@@ -32,7 +32,7 @@ int	*extend(int *buffer, int buffer_len, int value)
 	if (!result)
 	{
 		free(buffer);
-		error(NULL);
+		error(NULL, fd);
 	}
 	cursor = -1;
 	while (cursor++ < buffer_len - 1)
@@ -43,7 +43,7 @@ int	*extend(int *buffer, int buffer_len, int value)
 
 // creates chained list from given and validated arguments
 static
-t_list	*setup_multiple(int argc, char **argv)
+t_list	*setup_multiple(int argc, char **argv, int fd)
 {
 	int		*buffer;
 	int		buffer_len;
@@ -64,7 +64,7 @@ t_list	*setup_multiple(int argc, char **argv)
 		}
 		else if (*(*(argv + csr_argc) + csr_argv) != ' ')
 			buffer = extend(buffer, buffer_len++, \
-			ft_atoi_prime(*(argv + csr_argc) + csr_argv, &csr_argv));
+			ft_atoi_prime(*(argv + csr_argc) + csr_argv, &csr_argv), fd);
 		else
 			csr_argv++;
 	}
@@ -74,7 +74,7 @@ t_list	*setup_multiple(int argc, char **argv)
 
 // creates chained list from given and validated arguments
 static
-t_list	*setup_single(char **argv)
+t_list	*setup_single(char **argv, int fd)
 {
 	int		*buffer;
 	int		buffer_len;
@@ -90,7 +90,7 @@ t_list	*setup_single(char **argv)
 	{
 		if (*(argv[1] + csr_argv) != ' ')
 			buffer = extend(buffer, buffer_len++, \
-			ft_atoi_prime(argv[1] + csr_argv, &csr_argv));
+			ft_atoi_prime(argv[1] + csr_argv, &csr_argv), fd);
 		else
 			csr_argv++;
 	}
@@ -99,10 +99,10 @@ t_list	*setup_single(char **argv)
 }
 
 // creates chained list from given and validated arguments
-t_list	*setup(int argc, char **argv)
+t_list	*setup(int argc, char **argv, int fd)
 {
 	if (argc == 2)
-		return (setup_single(argv));
+		return (setup_single(argv, fd));
 	else
-		return (setup_multiple(argc, argv));
+		return (setup_multiple(argc, argv, fd));
 }

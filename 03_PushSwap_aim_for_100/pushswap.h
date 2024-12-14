@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 21:07:54 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/12/13 16:49:30 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/12/14 03:43:49 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,9 +110,9 @@ void	order_string(int *data, int len);
 				/* 02 */
 ////////////////////////////////////////////////////////////////////////////////
 
-void	check(int argc, char **argv);
+void	check(int argc, char **argv, int fd);
 void	dquote(char **argv);
-void	error(t_list **list);
+void	error(t_list **list, int fd);
 
 ////////////////////////////////////////////////////////////////////////////////
 				/* 03 */
@@ -147,7 +147,7 @@ t_list	*create(int *data, int len);
 int		get_next_data(t_list *list, int data);
 void	clear_list(t_list **list);
 
-t_list	*setup(int argc, char **argv);
+t_list	*setup(int argc, char **argv, int fd);
 int		ft_atoi_prime(const char *nptr, int *cursor_nptr);
 
 int		ft_find_rx(int data, t_list *list);

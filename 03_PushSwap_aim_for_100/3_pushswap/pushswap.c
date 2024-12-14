@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 21:09:35 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/12/13 15:14:42 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/12/14 03:21:37 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(int argc, char **argv)
 	t_list	*list_b;
 
 	methods(0, 0, 0);
-	check(argc, argv);
+	check(argc, argv, 2);
 	list_a = setup(argc, argv);
 	list_b = NULL;
 	flag_method(WRITE, STDOUT);

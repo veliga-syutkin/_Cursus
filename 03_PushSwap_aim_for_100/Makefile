@@ -7,6 +7,7 @@ OPERANDS_DIR = ./1_operands/
 PROTECTIONS_DIR = ./2_protections/
 PUSHSWAP_DIR = ./3_pushswap/
 OPTIMIZATION_DIR = ./4_optimization/
+BONUS_DIR = ./5_bonus/
 
 # ############################################################################ #
 #							# SOURCES DECLARATIONS #						   #
@@ -40,6 +41,8 @@ OPTIMIZATION_FILES =	observer.c \
 						observer_utils.c \
 						solvers.c
 
+FILE_BONUS =	checker.c \
+
 # ############################################################################ #
 #							# PATH DECLARATIONS #							   #
 # ############################################################################ #
@@ -48,6 +51,7 @@ OPERANDS_MANDATORY = $(addprefix $(OPERANDS_DIR), $(OPERANDS_FILES))
 PROTECTIONS_MANDATORY = $(addprefix $(PROTECTIONS_DIR), $(PROTECTIONS_FILES))
 PUSHSWAP_MANDATORY = $(addprefix $(PUSHSWAP_DIR), $(PUSHSWAP_FILES))
 OPTIMIZATION_MANDATORY = $(addprefix $(OPTIMIZATION_DIR), $(OPTIMIZATION_FILES))
+BONUS_FILES = $(addprefix $(BONUS_DIR), $(FILE_BONUS))
 
 # ############################################################################ #
 #							# FILES DECLARATIONS #							   #
@@ -60,11 +64,14 @@ FILES = $(OPERANDS_MANDATORY) $(PROTECTIONS_MANDATORY) $(PUSHSWAP_MANDATORY) $(O
 # ############################################################################ #
 
 NAME = push_swap
+NAME_BONUS = checker
 PROGRAM = ./$(NAME)
+PROGRAM_BONUS = ./$(NAME_BONUS)
 
 AR = ./0_LIBFT/libft.a
 
 OBJS = $(FILES:.c=.o)
+OBJS_BONUS = $(FILES:.c=.o) $(BONUS_FILES:.c=.o)
 
 # ############################################################################ #
 #								# MACROS #									   #
@@ -102,8 +109,9 @@ $(AR):
 # ############################################################################ #
 #								# BONUS #									   #
 
-bonus: 
-	@echo "No bonus for this project done yet."
+bonus: $(AR) $(OBJS_BONUS)
+#	@echo "No bonus for this project done yet."
+	$(CC) $(CFLAGS) $(OBJS) $(AR) -o ./checker
 
 # ############################################################################ #
 #								# CUSTOM #									   #
@@ -153,11 +161,11 @@ clear:
 	clear
 
 clean:
-	$(RM) $(OBJS)
+	$(RM) $(OBJS) $(OBJS_BONUS)
 	$(ARMAKE) clean
 
 fclean: clean
-	$(RM) $(NAME)
+	$(RM) $(NAME) $(NAME_BONUS)
 	$(ARMAKE) fclean
 
 re: fclean all

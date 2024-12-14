@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 14:54:38 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/12/13 17:04:33 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/12/14 03:41:02 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	check_duplicate(int *data, int len)
 		if (intchr(data, *(data + cursor++), len))
 		{
 			free(data);
-			error(NULL);
+			error(NULL, 2);
 		}
 	}
 }
@@ -54,12 +54,12 @@ t_list	*create(int *data, int len)
 	t_list	*buffer;
 
 	if (!data)
-		error(NULL);
+		error(NULL, 2);
 	check_duplicate(data, len);
 	cursor = 0;
 	result = malloc(sizeof(t_list));
 	if (!result)
-		error(NULL);
+		error(NULL, 2);
 	buffer = result;
 	buffer->data = *data;
 	cursor++;
@@ -68,7 +68,7 @@ t_list	*create(int *data, int len)
 		buffer->next = malloc(sizeof(t_list));
 		buffer = buffer->next;
 		if (!buffer)
-			error(&result);
+			error(&result, 2);
 		buffer->data = *(data + cursor);
 		cursor++;
 	}

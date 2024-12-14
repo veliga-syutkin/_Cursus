@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   string.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vsyutkin <vsyutkin@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 16:03:36 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/03/23 03:26:52 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/12/14 03:39:43 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	*list_a_to_string(t_list **list_a, t_list **list_b)
 	if (!data)
 	{
 		clear_list(list_b);
-		error(list_a);
+		error(list_a, 2);
 	}
 	while (temp && cursor < get_len(*list_a))
 	{
@@ -97,7 +97,7 @@ int	*list_b_to_string(t_list **list_a, t_list **list_b)
 	if (!data)
 	{
 		clear_list(list_b);
-		error(list_a);
+		error(list_a, 2);
 	}
 	while (temp && cursor < get_len(*list_b))
 	{

@@ -11,3 +11,6 @@ Push_swap 100, please!
 v4
 Push_swap 100, please? fixed minors memory management errors (why I tried to free something in heap xD)
 
+v5
+125 done in 2hours, WTF?
+
