@@ -14,3 +14,6 @@ Push_swap 100, please? fixed minors memory management errors (why I tried to fre
 v5
 125 done in 2hours, WTF?
 
+v6
+push_swap 125?
+

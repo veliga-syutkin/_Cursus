@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 21:09:35 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/12/14 03:21:37 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/12/14 13:05:17 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	main(int argc, char **argv)
 
 	methods(0, 0, 0);
 	check(argc, argv, 2);
-	list_a = setup(argc, argv);
+	list_a = setup(argc, argv, 2);
 	list_b = NULL;
 	flag_method(WRITE, STDOUT);
 	if (get_len(list_a) == 1 || sorted(list_a))

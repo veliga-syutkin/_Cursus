@@ -1,1 +1,1 @@
-125 done in 2hours, WTF?
+push_swap 125?
