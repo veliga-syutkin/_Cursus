@@ -89,3 +89,6 @@ Push_swap WIP.
 v31
 push_swap 100 ?
 
+v32
+Passed 100, yay!
+

@@ -1,1 +1,1 @@
-Push_swap 100, please!
+Push_swap 100, please? fixed minors memory management errors (why I tried to free something in heap xD)

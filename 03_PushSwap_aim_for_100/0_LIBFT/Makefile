@@ -49,7 +49,7 @@ NAME = libft.a
 
 RM = rm -f
 
-CFLAGS =  -Wall -Wextra -Werror
+CFLAGS =  -Wall -Wextra -Werror -g3
 
 BONUS			=	ft_lstadd_back_bonus.c \
 					ft_lstadd_front_bonus.c \

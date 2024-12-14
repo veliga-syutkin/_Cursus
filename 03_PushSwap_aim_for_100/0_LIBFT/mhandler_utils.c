@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mhandler_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsyutkin <vsyutkin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vsyutkin <vsyutkin@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 17:05:44 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/10/24 12:38:45 by aalferov         ###   ########.fr       */
+/*   Updated: 2024/12/13 16:53:21 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	mhandler_free_all(t_allocs **allocs)
 		temp = (*allocs)->next;
 		if ((*allocs)->is_2d)
 			free((*allocs)->content_2d);
-		else
+		else if ((*allocs)->content)
 			free((*allocs)->content);
 		(*allocs)->content = NULL;
 		free(*allocs);

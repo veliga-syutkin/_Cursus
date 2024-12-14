@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 13:54:50 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/12/13 13:55:52 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/12/13 16:50:15 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,10 @@ int	flag_method(int flag_rw, int method)
 	return (flag);
 }
 
-void	method_free(t_allocs *m50, t_allocs *m66, t_allocs *m75, t_allocs *m99)
+void	method_free(t_allocs **m5, t_allocs **m6, t_allocs **m7, t_allocs **m9)
 {
-	mhandler_free_all(&m50);
-	mhandler_free_all(&m66);
-	mhandler_free_all(&m75);
-	mhandler_free_all(&m99);
+	mhandler_free_all(m5);
+	mhandler_free_all(m6);
+	mhandler_free_all(m7);
+	mhandler_free_all(m9);
 }

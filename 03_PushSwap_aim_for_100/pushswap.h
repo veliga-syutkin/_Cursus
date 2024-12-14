@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 21:07:54 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/12/13 15:14:15 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/12/13 16:49:30 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,7 +186,7 @@ void	turk_move_b(t_list **list_a, t_list **list_b, int data);
 void	print_method(t_allocs *method);
 int		count_steps(t_allocs *method);
 int		flag_method(int flag_rw, int method);
-void	method_free(t_allocs *m50, t_allocs *m66, t_allocs *m75, t_allocs *m99);
+void	method_free(t_allocs **m5, t_allocs **m6, t_allocs **m7, t_allocs **m9);
 
 ////////////////////////////////////////////////////////////////////////////////
 				/* ++ */

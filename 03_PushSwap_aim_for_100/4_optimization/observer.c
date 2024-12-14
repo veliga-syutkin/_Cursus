@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 14:59:37 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/12/13 15:12:42 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/12/13 16:49:54 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ t_allocs	*methods(int flag_rw, int method_to, void *operator)
 		return (method75);
 	else if (method_to == METHOD_99)
 		return (method99);
-	return (method_free(method50, method66, method75, method99), NULL);
+	return (method_free(&method50, &method66, &method75, &method99), NULL);
 }
 
 t_allocs	*best_m(t_allocs *m50, t_allocs *m66, t_allocs *m75, t_allocs *m99)
@@ -126,5 +126,5 @@ void	print_best_method(void)
 	m99 = methods(READ, METHOD_99, 0);
 	best = best_m(m50, m66, m75, m99);
 	print_method(best);
-	method_free(m50, m66, m75, m99);
+	methods(0, 0, 0);
 }

@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 21:40:35 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/12/13 15:16:23 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/12/13 17:01:10 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	rrr(t_list **list_a, t_list **list_b)
 	if (flag_method(0, 0) == STDOUT)
 		ft_printf("rrr\n");
 	else
-		methods(WRITE, flag_method(0, 0), RRR);
+		methods(WRITE, flag_method(0, 0), ft_strdup(RRR));
 }
 
 void	rra(t_list **list)
@@ -42,7 +42,7 @@ void	rra(t_list **list)
 	if (flag_method(0, 0) == STDOUT)
 		ft_printf("rra\n");
 	else
-		methods(WRITE, flag_method(0, 0), RRA);
+		methods(WRITE, flag_method(0, 0), ft_strdup(RRA));
 }
 
 void	rrb(t_list **list)
@@ -51,5 +51,5 @@ void	rrb(t_list **list)
 	if (flag_method(0, 0) == STDOUT)
 		ft_printf("rrb\n");
 	else
-		methods(WRITE, flag_method(0, 0), RRB);
+		methods(WRITE, flag_method(0, 0), ft_strdup(RRB));
 }

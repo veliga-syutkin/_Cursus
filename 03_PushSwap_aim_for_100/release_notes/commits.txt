@@ -2,3 +2,12 @@
 v1
 Push_swap 100, please!
 
+v2
+Push_swap 100, please!
+
+v3
+Push_swap 100, please!
+
+v4
+Push_swap 100, please? fixed minors memory management errors (why I tried to free something in heap xD)
+

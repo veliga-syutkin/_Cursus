@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 17:23:37 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/12/13 14:42:09 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/12/13 17:09:15 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,5 @@ void	run_solvers(t_list **list_a, t_list **list_b, int argc, char **argv)
 	(*list_a) = setup(argc, argv);
 	(*list_b) = NULL;
 	solve_99(list_a, list_b);
-	clear_list(list_a);
 	print_best_method();
 }

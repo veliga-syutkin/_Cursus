@@ -1,1 +1,1 @@
-push_swap 100 ?
+Passed 100, yay!

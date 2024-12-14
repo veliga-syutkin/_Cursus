@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 15:19:04 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/12/13 15:15:23 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/12/13 17:00:50 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	pax(t_list **list_a, t_list **list_b)
 		if (flag_method(0, 0) == STDOUT)
 			ft_printf("pa\n");
 		else
-			methods(WRITE, flag_method(0, 0), PA);
+			methods(WRITE, flag_method(0, 0), ft_strdup(PA));
 	}
 }
 
@@ -68,6 +68,6 @@ void	pbx(t_list **list_a, t_list **list_b)
 		if (flag_method(0, 0) == STDOUT)
 			ft_printf("pb\n");
 		else
-			methods(WRITE, flag_method(0, 0), PB);
+			methods(WRITE, flag_method(0, 0), ft_strdup(PB));
 	}
 }
