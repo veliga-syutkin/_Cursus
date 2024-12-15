@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 17:05:44 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/12/15 01:39:09 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/12/15 01:52:16 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,8 @@ static void	mhandler_free_1d_or_2d(t_allocs *allocs)
 			free(allocs->content_2d);
 	}
 	else
-	{
 		if (allocs->content)
 			free(allocs->content);
-	}
 }
 
 /*
