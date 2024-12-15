@@ -6,7 +6,7 @@
 /*   By: vsyutkin <vsyutkin@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 17:05:44 by vsyutkin          #+#    #+#             */
-/*   Updated: 2024/12/13 16:53:21 by vsyutkin         ###   ########.fr       */
+/*   Updated: 2024/12/15 01:39:09 by vsyutkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,15 @@
 static void	mhandler_free_1d_or_2d(t_allocs *allocs)
 {
 	if (allocs->is_2d)
-		free(allocs->content_2d);
+	{
+		if (allocs->content_2d)
+			free(allocs->content_2d);
+	}
 	else
-		free(allocs->content);
+	{
+		if (allocs->content)
+			free(allocs->content);
+	}
 }
 
 /*
@@ -33,10 +39,7 @@ void	mhandler_free_all(t_allocs **allocs)
 	while (*allocs)
 	{
 		temp = (*allocs)->next;
-		if ((*allocs)->is_2d)
-			free((*allocs)->content_2d);
-		else if ((*allocs)->content)
-			free((*allocs)->content);
+		mhandler_free_1d_or_2d(*allocs);
 		(*allocs)->content = NULL;
 		free(*allocs);
 		*allocs = temp;
@@ -56,10 +59,7 @@ void	mhandler_free_all_rev(t_allocs **allocs)
 	while (current)
 	{
 		prev = *allocs;
-		if (current->is_2d)
-			free(current->content_2d);
-		else
-			free(current->content);
+		mhandler_free_1d_or_2d(current);
 		current->content = NULL;
 		free(current);
 		while (prev && prev->next != current)
