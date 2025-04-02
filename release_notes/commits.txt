@@ -92,3 +92,6 @@ push_swap 100 ?
 v32
 Passed 100, yay!
 
+v33
+print_string_to_ascii_per_char_with_null
+

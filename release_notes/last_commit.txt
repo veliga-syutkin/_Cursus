@@ -1,1 +1,1 @@
-Passed 100, yay!
+print_string_to_ascii_per_char_with_null
